@@ -1,0 +1,66 @@
+$sm:576px;
+$md: 768px;
+$lg: 992px;
+.home {
+    color: red;
+}
+.homeLayout-banner {
+    height: 100vh;
+    background-image: url('../../../assets/images/header-bg-1.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    @media (max-width: $sm) {
+        background-position: 54% 90%;
+    }
+    .textContainer {
+        font-size: 25px;
+        color: white;
+        margin-top: 155px;
+        @media (max-width: $sm) {
+            margin-left: 30px;
+            margin-right: 30px;
+        }
+    }
+    .slogan {
+        color: #ec5078;
+        font-size: 1.1rem;
+        font-weight: bold;
+        @media (max-width: $sm) {
+            font-size: 0.9rem;
+        }
+    }
+    .heH1 {
+        font-size: 62px;
+        color: white;
+        font-weight: bold;
+        @media (max-width: 375px) {
+            font-size: 38px;
+        }
+        @media (max-width: $sm) {
+            font-size: 50px;
+        }
+    }
+    .idiom {
+        color: white;
+        font-size: 1rem;
+        @media (max-width: 576px) {
+            font-size: 0.9rem;
+        }
+    }
+    .contactBtn {
+        background-color: #5f970a;
+        border-radius: 330px;
+        padding: 15px 40px;
+        margin: 25px 0;
+        font-size: 1.3rem;
+        border: #5f970a;
+        color: white;
+    }
+}
+.navb {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+}
