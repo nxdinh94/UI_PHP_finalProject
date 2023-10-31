@@ -6,7 +6,9 @@ import HomeLayout from './components/Layout/HomeLayout';
 import AnotherLayout from './components/Layout/AnotherLayout';
 import { publicRoutes } from './Routes';
 
+
 function App() {
+    
     return (
         <Router>
             <div className="App">

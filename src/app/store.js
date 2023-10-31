@@ -6,6 +6,7 @@ import thunk from 'redux-thunk';
 
 import counterReducer from '../features/counter/counterSlice';
 import postsReducer from '../features/posts/postsSlice';
+import languageReducer from '~/components/Navbar/languageSlice';
 
 const persistConfig = {
     key: 'root',
@@ -14,7 +15,8 @@ const persistConfig = {
 
 const rootReducer = combineReducers({
     posts: postsReducer,
-    counter: counterReducer, 
+    counter: counterReducer,
+    language: languageReducer,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
