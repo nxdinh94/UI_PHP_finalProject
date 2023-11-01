@@ -1,0 +1,50 @@
+// .alayout-wrapper{}
+
+.banner {
+    background-image: url('https://nxdinh94.github.io/dacs1/img/site-header-6.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    width: 100%;
+    height: 400px;
+    .banner-img {
+        width: 100%;
+        height: auto;
+    }
+    .banner-title {
+        margin: 0px;
+        height: inherit;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        .wrap-title {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .title {
+                color: white;
+                font-weight: bolder;
+                font-size: 3.6rem;
+                text-transform: uppercase;
+                margin: 1rem;
+            }
+            .p-link {
+                color: yellow;
+                font-weight: bolder;
+                font-size: large;
+            }
+            span {
+                color: white;
+                font-weight: bolder;
+                font-size: large;
+            }
+        }
+    }
+}
+
+.navb {
+    width: 100%;
+    position: fixed;
+    top: 0;
+    background-color: transparent;
+}

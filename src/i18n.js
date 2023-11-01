@@ -21,6 +21,9 @@ i18n.use(initReactI18next).init({
                 slogan2: "I'm always available to take care of your pets!",
                 idiom: 'A dog is the only thing on earth that loves you more than it loves itself - Josh Billings',
                 contactnow: 'Contact now',
+                contactPage: {
+                    title: 'Contact',
+                },
             },
         },
         vi: {
@@ -34,6 +37,9 @@ i18n.use(initReactI18next).init({
                 slogan2: 'Tôi luôn sẵn sàng chăm sóc thú cưng của bạn!',
                 idiom: 'Chó là điều duy nhất trên trái đất yêu bạn hơn yêu chính nó - Josh Billings',
                 contactnow: 'Liên hệ ngay',
+                contactPage: {
+                    title: 'Liên hệ',
+                },
             },
         },
     },

@@ -24,8 +24,8 @@ function App() {
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <Layout>
-                                        <Page />
+                                    <Layout isloginPage={route.loginPage}>
+                                        <Page/>
                                     </Layout>
                                 }
                             ></Route>

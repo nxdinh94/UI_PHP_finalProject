@@ -4,9 +4,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import React, { Fragment, useEffect, useState } from 'react';
 import './Navbar.scss';
 import {changeLanguage} from './languageSlice';
-import ImageAssests from '~/assets/images';
 import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
+
 
 import { i18n } from 'i18next';
 
@@ -42,7 +42,13 @@ function HeaderOnly({ children }) {
             <Container className="px-0">
                 <Navbar color="faded" light expand="md" className="px-0">
                     <NavbarBrand href="/" className="px-0">
-                        <Image src={onColorChange ? ImageAssests.darkLogo : ImageAssests.lightLogo} />
+                        <Image
+                            src={
+                                onColorChange
+                                    ? 'https://nxdinh94.github.io/dacs1/img/logo-dark.png'
+                                    : 'https://nxdinh94.github.io/dacs1/img/logo-light.png'
+                            }
+                        />
                     </NavbarBrand>
                     <NavbarToggler onClick={toggle} />
                     <Collapse isOpen={isOpen} navbar>
@@ -74,7 +80,10 @@ function HeaderOnly({ children }) {
                             </NavItem>
                             <NavItem className="navItem">
                                 <NavLink style={{ color: onColorChange ? '#000' : '#fff' }}>
-                                    <button className={onColorChange? 'btn-language scroll': 'btn-language'}onClick={() => dispatch(changeLanguage())}>
+                                    <button
+                                        className={onColorChange ? 'btn-language scroll' : 'btn-language'}
+                                        onClick={() => dispatch(changeLanguage())}
+                                    >
                                         {language || 'vi'}
                                     </button>
                                 </NavLink>

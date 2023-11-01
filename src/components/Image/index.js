@@ -1,11 +1,19 @@
 import { useState, forwardRef } from 'react';
-import images from '~/assets/images';
 const Image = forwardRef(({ src, alt, ...props }, ref) => {
-    console.log('check src', src);
+    let width = props.width;
+    let height = props.height;
     const [fallback, setFallback] = useState('');
     const handleError = () => {
-        setFallback(images.altImage);
+        setFallback('../../../public/images/alt_img.png');
     };
-    return <img ref={ref} alt={alt} src={fallback || src} onError={handleError} />;
+    return (
+        <img
+            style={{ width: width, height: height, objectFit: 'cover', objectFit: 'cover' }}
+            ref={ref}
+            alt={alt}
+            src={fallback || src}
+            onError={handleError}
+        />
+    );
 });
 export default Image;
