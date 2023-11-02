@@ -6,7 +6,11 @@ import 'slick-carousel/slick/slick-theme.css';
 import Image from '~/components/Image';
 import { useState } from 'react';
 
-import { Button, Modal, ModalHeader, ModalBody, ModalFooter } from 'reactstrap';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faEye } from '@fortawesome/free-regular-svg-icons';
+
+
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modals from '~/components/Modal';
 
@@ -27,7 +31,7 @@ function SliderCarousel({ settings, dataPet }) {
                             <div className="image">
                                 <Image width={'100%'} height={'185px'} src={data.img} />
                             </div>
-                            <Modals></Modals>
+                            <Modals petDetail={data.petDetail}></Modals>
                         </div>
                     );
                 })}

@@ -1,37 +1,4 @@
-.slick-prev {
-    // position: relative!important;
-    left: -10px !important;
-    z-index: 1000 !important;
-    height: 35px !important;
-    width: 35px !important;
 
-    background-color: #fff !important;
-    border: 1px solid rgb(198, 18, 18) !important;
-
-    &:hover {
-        background: #ede9e9 !important;
-    }
-}
-
-.slick-next {
-    right: -10px !important;
-    z-index: 1000 !important;
-    height: 35px !important;
-    width: 35px !important;
-
-    background-color: #fff !important;
-    border: 1px solid rgb(198, 18, 18) !important;
-
-    &:hover {
-        background: #ede9e9 !important;
-    }
-}
-
-.slick-prev::before,
-.slick-next::before {
-    font-family: FontAwesome !important;
-    color: red !important;
-}
 .slick-slide {
     .section-customize {
         width: 100% !important;

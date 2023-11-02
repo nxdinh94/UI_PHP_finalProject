@@ -16,7 +16,6 @@ var settings = {
                 slidesToShow: 3,
                 slidesToScroll: 3,
                 infinite: true,
-                dots: true,
             },
         },
         {
@@ -40,29 +39,92 @@ const dataPet = [
     {
         img: '/images/slider/baby-cat.jpg', // Use the 'require' method to import images
         stt: '1',
-        petDetail:{
-            
-        }
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/baby-cat.jpg',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
     {
         img: '/images/slider/chó lạp xưởng.png', // Use relative paths if needed
         stt: '2',
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/chó lạp xưởng.png',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
     {
         img: '/images/slider/golden.jpg',
         stt: '3',
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/golden.jpg',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
     {
         img: '/images/slider/meo-ba-tu.jpg',
         stt: '4',
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/meo-ba-tu.jpg',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
     {
         img: '/images/slider/meo-trang.jpg',
         stt: '5',
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/meo-trang.jpg',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
     {
         img: '/images/slider/Poodle.jpg',
         stt: '6',
+        petDetail: {
+            name: 'Baby Cat',
+            thumnail: '/images/slider/Poodle.jpg',
+            description:
+                'It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout',
+            furColor: 'Green',
+            apprearance: 'Big',
+            weight: '55kg',
+            longevity: '12 year',
+            original: 'American',
+        },
     },
 ];
 function Home() {
