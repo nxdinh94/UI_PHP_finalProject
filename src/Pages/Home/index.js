@@ -133,9 +133,6 @@ function Home() {
             <Container fluid>
                 <div className="container">
                     <Row>
-                        <Col md="3" lg="12" className="section-share ">
-                            <Slider settings={settings} dataPet={dataPet}></Slider>
-                        </Col>
                         <Col md="3" lg="4"></Col>
                         <Col md="3" lg="4">
                             <h1>Home</h1>
@@ -145,6 +142,21 @@ function Home() {
                         </Col>
                         <Col md="3" lg="4">
                             <h1>Home</h1>
+                        </Col>
+                        <Col md="3" lg="4">
+                            <h1>Home</h1>
+                        </Col>
+                        <Col md="3" lg="4">
+                            <h1>Home</h1>
+                        </Col>
+                        <Col md="3" lg="4">
+                            <h1>Home</h1>
+                        </Col>
+                        <Col md="3" lg="4">
+                            <h1>Home</h1>
+                        </Col>
+                        <Col md="3" lg="12" className="section-share ">
+                            <Slider settings={settings} dataPet={dataPet}></Slider>
                         </Col>
                     </Row>
                     <Row></Row>

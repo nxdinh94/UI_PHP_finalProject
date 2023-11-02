@@ -14,7 +14,7 @@ function Model({ petDetail }) {
         <div
             style={{
                 display: 'block',
-                width: 700,
+                width:'100%',
                 padding: 30,
             }}
         >

@@ -13,7 +13,7 @@
         .pet-thumnail {
             width: 250px;
             height: 250px;
-            
+
             position: absolute;
             bottom: -13px;
             right: -12px;
@@ -24,21 +24,18 @@
                 object-fit: cover;
             }
         }
-        .list-in4{
-            li{
+        .list-in4 {
+            li {
                 width: 220px;
                 display: flex;
                 justify-content: space-between;
                 line-height: 27px;
-                &:last-child{
+                &:last-child {
                     width: 235px;
                     flex-direction: column;
                     text-align: justify;
-                    
                 }
             }
-            
-            
         }
     }
 }

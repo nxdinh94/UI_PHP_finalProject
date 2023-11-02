@@ -18,7 +18,7 @@ function HomeLayout({ children }) {
                 </div>
                 <Container>
                     <Row>
-                        <Col md="7" className="px-0">
+                        <Col md="8" lg="8" className="px-0">
                             <div className="textContainer">
                                 <div>
                                     <p className="slogan">{t('slogan')}</p>
@@ -36,7 +36,7 @@ function HomeLayout({ children }) {
                                 </button>
                             </div>
                         </Col>
-                        <Col md="5" className="px-0"></Col>
+                        <Col md="4" lg="4" className="px-0"></Col>
                     </Row>
                 </Container>
             </div>

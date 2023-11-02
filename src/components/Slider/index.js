@@ -29,7 +29,7 @@ function SliderCarousel({ settings, dataPet }) {
                     return (
                         <div className="section-customize" key={index}>
                             <div className="image">
-                                <Image width={'100%'} height={'185px'} src={data.img} />
+                                <Image borderRadius = {'10px'}  width={'100%'} height={'185px'} src={data.img} />
                             </div>
                             <Modals petDetail={data.petDetail}></Modals>
                         </div>

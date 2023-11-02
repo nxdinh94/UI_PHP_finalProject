@@ -1,6 +1,7 @@
-$sm:576px;
+$sm: 576px;
 $md: 768px;
 $lg: 992px;
+$xl: 1200px;
 .home {
     color: red;
 }
@@ -12,6 +13,7 @@ $lg: 992px;
     background-repeat: no-repeat;
     @media (max-width: $sm) {
         background-position: 54% 90%;
+        padding: 10px;
     }
     .textContainer {
         font-size: 25px;
@@ -21,6 +23,10 @@ $lg: 992px;
             margin-left: 30px;
             margin-right: 30px;
         }
+        @media (max-width: $lg) {
+            margin-left: 0px;
+            margin-right: 0px;
+        }
     }
     .slogan {
         color: #ec5078;
@@ -29,22 +35,25 @@ $lg: 992px;
         @media (max-width: $sm) {
             font-size: 0.9rem;
         }
+        @media (max-width: $lg) {
+            font-size: 0.9rem;
+        }
     }
     .heH1 {
         font-size: 62px;
         color: white;
         font-weight: bold;
-        @media (max-width: 375px) {
-            font-size: 38px;
+        @media (max-width: 376px) {
+            font-size: 48px;
         }
-        @media (max-width: $sm) {
-            font-size: 50px;
+        @media (max-width: 465px) {
+            font-size: 48px;
         }
     }
     .idiom {
         color: white;
         font-size: 1rem;
-        @media (max-width: 576px) {
+        @media (max-width: $sm) {
             font-size: 0.9rem;
         }
     }
