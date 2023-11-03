@@ -1,0 +1,11 @@
+.myImage {
+    &:hover {
+        scale: 1.05;
+        transition: {
+            transition-property: scale;
+            duration: 0.3s; // Transition duration
+            timing-function: ease-in-out; // Transition timing function
+            delay: 0s;
+        }
+    }
+}

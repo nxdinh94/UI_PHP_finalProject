@@ -1,39 +1,76 @@
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600&display=swap';
+
+$lg: 992px;
+.modal-wrapper {
+    width: 100%;
+    padding: 20px 0px;
+    margin: auto;
+    .btn-toggle {
+        border-radius: 11px;
+    }
+}
 .modal-content {
     height: 90vh;
+    // width: 737px;
     background-image: url('../../../public/images/backgroundPetDetail.jpg');
-    background-position: 90% 99%;
+    background-repeat: no-repeat;
+
+    background-position: 100% 99%;
+    position: relative;
+
     .modal-header {
         border: none;
+        padding: 16px 16px 0px 16px;
     }
     .modal-body-content {
         width: 100%;
         height: 100%;
         border: none;
-        position: relative;
+        .pet-name {
+            padding-left: 2rem;
+        }
         .pet-thumnail {
             width: 250px;
             height: 250px;
-
             position: absolute;
-            bottom: -13px;
-            right: -12px;
+            bottom: 5px;
+            right: 5px;
             .thumnail {
-                border-radius: 50% !important;
+                border-radius: 38% 62% 52% 48% / 47% 56% 44% 53%;
+
                 width: 100%;
                 height: 100%;
                 object-fit: cover;
             }
         }
         .list-in4 {
+            width: 60%;
+            margin-bottom: 0px;
+            font-size: 18px;
+            font-family: 'Oswald', sans-serif !important;
+            font-weight: 300;
+            z-index: 10;
+            @media (max-width: $lg) {
+                font-size: 16px;
+            }
             li {
-                width: 220px;
                 display: flex;
                 justify-content: space-between;
                 line-height: 27px;
+                span {
+                    &:last-child {
+                        font-style: italic;
+                    }
+                }
                 &:last-child {
-                    width: 235px;
+                    // width: 235px;
                     flex-direction: column;
                     text-align: justify;
+                    span {
+                        &:last-child {
+                            padding-left: 36px;
+                        }
+                    }
                 }
             }
         }

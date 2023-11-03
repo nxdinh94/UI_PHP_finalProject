@@ -1,6 +1,6 @@
 @import 'normalize.css';
 @import 'normalize.css';
-@import url('https://fonts.googleapis.com/css2?family=Kanit&family=Merriweather:wght@700&family=PT+Serif:wght@700&family=Poppins:wght@900&family=Roboto+Condensed&family=Roboto:wght@400;700;900&display=swap');
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600&display=swap';
 
 :root {
     --primary: #fe2c55;
@@ -18,7 +18,7 @@
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family: 'Roboto Condensed', 'sans-serif';
+    font-family: 'Oswald', sans-serif !important;
 }
 
 body {

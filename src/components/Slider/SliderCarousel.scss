@@ -1,9 +1,36 @@
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600&display=swap';
 
+.slider-title {
+    text-align: center;
+
+        p {
+            color: #ec5078;
+            font-weight: bold;
+            font-size: 18px;
+            margin: 8px 0px;
+            line-height: 45px;
+        }
+        img {
+            object-fit: contain;
+            margin-right: 5px;
+            padding-bottom: 5px;
+        }
+    
+
+    h2 {
+        font-size: 3.4rem;
+        font-weight: bolder;
+        color: #0c1529;
+        margin-bottom: 30px;
+    }
+}
 .slick-slide {
+    margin-top: 5px;
     .section-customize {
         width: 100% !important;
         display: flex;
         justify-content: center;
+
         .image {
             width: 100%;
             height: auto;
@@ -14,7 +41,7 @@
                 delay: 0s;
             }
             &:hover {
-                scale: 1.05;
+                cursor: pointer;
             }
         }
         .detailBtn {
