@@ -15,13 +15,7 @@ import Modals from '~/components/Modal';
 function SliderCarousel({ settings, dataPet }) {
     return (
         <div className='slider-wrapper'>
-            <div className="slider-title">
-                <p>
-                    <img src={'/images/icons8-cat-footprint-16.png'} />
-                    Pets of the month
-                </p>
-                <h2>Pets of the month</h2>
-            </div>
+            
 
             <Slider {...settings}>
                 {dataPet.map((data, index) => {

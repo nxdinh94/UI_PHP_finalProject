@@ -1,6 +1,30 @@
-h1{
-    color: white;
+.slider-title {
+    text-align: center;
+
+    p {
+        color: #ec5078;
+        font-weight: bold;
+        font-size: 18px;
+        margin: 8px 0px;
+        line-height: 45px;
+    }
+    img {
+        object-fit: contain;
+        margin-right: 5px;
+        padding-bottom: 5px;
+    }
+
+    h2 {
+        font-size: 3.4rem;
+        font-weight: bolder;
+        color: #0c1529;
+        margin-bottom: 30px;
+    }
 }
-body{
-    padding: 0;
+.home{
+    .container{
+        .row{
+            margin: 30px 0px;
+        }
+    }
 }
