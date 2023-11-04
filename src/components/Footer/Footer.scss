@@ -2,12 +2,14 @@ $xl: 1200px;
 $lg: 992px;
 $md: 768px;
 $sm: 576px;
+
 .container-fluid {
     padding: 20px 0px !important;
 }
 .footer-wrapper {
     width: 100%;
     height: auto;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
 .list-groups {
     padding: 0px 16px;

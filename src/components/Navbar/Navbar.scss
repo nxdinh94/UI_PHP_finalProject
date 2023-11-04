@@ -38,10 +38,10 @@ $xl: 1200px;
         border-radius: 50%;
         border: 2px solid rgb(255, 238, 207);
         &.scroll {
-            background-color: rgb(158, 155, 155);
-            box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
-            -webkit-box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
-            -moz-box-shadow: 2px 5px 13px 0px rgba(0, 0, 0, 0.75);
+            background-color: #ec5078;
+            box-shadow: 2px 5px 13px 0px #ec416c;
+            -webkit-box-shadow: 2px 5px 13px 0px #fb3465;
+            -moz-box-shadow: 2px 5px 13px 0px #f53a68;
         }
         &:hover {
             scale: 1.1;

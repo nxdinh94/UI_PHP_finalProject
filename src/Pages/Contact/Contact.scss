@@ -1,3 +1,206 @@
-h1{
-    color: black;
+.co-contact {
+    margin: 100px 0px;
+    p {
+        &.h1 {
+            font-weight: bold;
+            font-size: 3rem;
+            color: #10223a;
+            margin-bottom: 10px;
+            margin-left: -8px;
+            text-align: center;
+            @media (max-width: 580px) {
+                margin-left: 0px;
+                font-size: 42px;
+            }
+        }
+    }
+    .discipt {
+        color: rgb(137, 137, 134);
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-left: 30px;
+        @media (max-width: 580px) {
+            font-size: 14px;
+        }
+    }
+    animation: 0.8s ease-in-out co-contact;
+    @keyframes co-contact {
+        from {
+            transform: translateY(-10%);
+            opacity: 0;
+        }
+        to {
+            transform: translateY(0%);
+            opacity: 1;
+        }
+    }
+}
+
+.co-img {
+    img {
+        border-radius: 10px;
+    }
+    @media (max-width: 992px) {
+        display: none;
+    }
+}
+.list-card {
+    position: absolute;
+    @media (max-width: 992px) {
+        position: relative;
+        flex-direction: column;
+    }
+    .cards {
+        text-align: center;
+        width: 200px;
+        height: 180px;
+        max-height: 180px;
+        background-color: #fdf3e2;
+        border-radius: 25px;
+        padding: 40px 10px;
+        margin-right: 32px;
+        position: relative;
+
+        @media (max-width: 992px) {
+            margin: 30px;
+            width: 100%;
+            padding: 45px;
+            height: 151px;
+            &:first-child {
+                img {
+                    left: 313px !important;
+                }
+            }
+            &:nth-child(2) {
+                img {
+                    left: 313px !important;
+                }
+            }
+            &:last-child {
+                img {
+                    left: 313px !important;
+                }
+            }
+        }
+        @media (max-width: 772px) {
+            &:first-child {
+                img {
+                    left: 224px !important;
+                }
+            }
+            &:nth-child(2) {
+                img {
+                    left: 224px !important;
+                }
+            }
+            &:last-child {
+                img {
+                    left: 224px !important;
+                }
+            }
+        }
+        @media (max-width: 610px) {
+            &:first-child {
+                img {
+                    left: 228px !important;
+                }
+            }
+            &:nth-child(2) {
+                img {
+                    left: 228px !important;
+                }
+            }
+            &:last-child {
+                img {
+                    left: 228px !important;
+                }
+            }
+        }
+        @media (max-width: 540px) {
+            &:first-child {
+                img {
+                    left: 206px !important;
+                }
+            }
+            &:nth-child(2) {
+                img {
+                    left: 206px !important;
+                }
+            }
+            &:last-child {
+                img {
+                    left: 206px !important;
+                }
+            }
+        }
+        @media (max-width: 510px) {
+            &:first-child {
+                img {
+                    left: 199px !important;
+                }
+            }
+            &:nth-child(2) {
+                img {
+                    left: 199px !important;
+                }
+            }
+            &:last-child {
+                img {
+                    left: 199px !important;
+                }
+            }
+        }
+    }
+}
+
+.cards {
+    &:first-child {
+        img {
+            position: absolute;
+            width: 50px;
+            top: -25px;
+            left: 80px;
+            transition: all 0.1s ease;
+        }
+    }
+    &:nth-child(2) {
+        img {
+            position: absolute;
+            width: 50px;
+            top: -27px;
+            left: 78px;
+            transition: all 0.1s ease;
+        }
+    }
+    &:last-child {
+        img {
+            position: absolute;
+            width: 50px;
+            top: -27px;
+            left: 85px;
+            transition: all 0.1s ease;
+        }
+    }
+    img {
+        &:hover {
+            top: -30px;
+            scale: 1.1;
+        }
+    }
+    p {
+        &.h3 {
+            font-weight: 500;
+            color: #041d3c;
+            font-family: cursive;
+        }
+        &:last-child {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            font-size: 1.1rem;
+        }
+    }
+}
+.maps iframe {
+    width: 100%;
+    @media (max-width: 645px) {
+        display: none;
+    }
 }

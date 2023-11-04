@@ -1,4 +1,4 @@
-// .alayout-wrapper{}
+
 
 .banner {
     background-image: url('https://nxdinh94.github.io/dacs1/img/site-header-6.jpg');
@@ -21,6 +21,17 @@
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: 1s ease-in-out wrap-title;
+            @keyframes wrap-title {
+                from {
+                    transform: translateY(-15%);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0%);
+                    opacity: 1;
+                }
+            }
             .title {
                 color: white;
                 font-weight: bolder;

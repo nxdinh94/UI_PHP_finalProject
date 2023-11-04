@@ -88,7 +88,7 @@ function Home() {
                     <Col md="12" lg="6">
                         <div className="title d-flex">
                             <img
-                                src={'/images/icons8-cat-footprint-16.png'}
+                                src={'/images/icons8/icons8-cat-footprint-16.png'}
                                 alt="alternation"
                                 loading="lazy"
                                 className="iconCat"
@@ -131,7 +131,7 @@ function Home() {
                         <Col md="12" lg="6">
                             <div className="checkin">
                                 <p className="my-1">
-                                    <img className="iconCat" src={'/images/icons8-cat-footprint-16.png'} />
+                                    <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
                                     <span className="topic1">Check in time</span>
                                 </p>
                                 <h2 className="topic2">Chúng tôi mang lại niềm vui cho bạn</h2>
@@ -175,7 +175,7 @@ function Home() {
                     <Col lg="12" className="section-share ">
                         <div className="slider-title">
                             <p>
-                                <img className="iconCat" src={'/images/icons8-cat-footprint-16.png'} />
+                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
                                 <span className="topic1">Nhân viên chuyên nghiệp</span>
                             </p>
                             <h2 className="topic2">Nhân viên chuyên nghiệp</h2>
@@ -189,7 +189,7 @@ function Home() {
                     <Col lg="12" className="section-share ">
                         <div className="slider-title">
                             <p>
-                                <img className="iconCat" src={'/images/icons8-cat-footprint-16.png'} />
+                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
                                 <span className="topic1">Pets of the month</span>
                             </p>
                             <h2 className="topic2">Pets of the month</h2>
