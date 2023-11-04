@@ -1,10 +1,11 @@
-import { Fragment } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
 import Navbar from '~/components/Navbar';
 import './HomeLayout.scss';
 import { useTranslation } from 'react-i18next';
+
+import Footer from '../../Footer';
 
 function HomeLayout({ children }) {
     //Translatetion
@@ -40,7 +41,11 @@ function HomeLayout({ children }) {
                     </Row>
                 </Container>
             </div>
-            {children}
+            <div className="homeLayout-body">{children}</div>
+
+            <div className="homeLayout-footer">
+                <Footer />
+            </div>
         </div>
     );
 }

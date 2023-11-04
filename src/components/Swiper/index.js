@@ -24,6 +24,21 @@ export default ({ teamData }) => {
             pagination={{ clickable: true }}
             onSwiper={(swiper) => console.log(swiper)}
             onSlideChange={() => console.log('slide change')}
+            breakpoints={{
+                0:{
+                  slidesPerView :1  
+                },
+                450:{
+                    slidesPerView: 2,
+                },
+                800:{
+                    slidesPerView: 3,
+                },
+                1000:{
+                    slidesPerView: 4,
+                },
+                
+            }}
         >
             {teamData.map((data, index) => (
                 <SwiperSlide key={index}>
@@ -35,7 +50,7 @@ export default ({ teamData }) => {
                             <h4>{data.fullname}</h4>
                         </div>
                         <div className="position">
-                            <h5>{data.name}</h5>
+                            <h6>{data.name}</h6>
                         </div>
                         <div className="social">
                             <div className="social-icon">

@@ -1,6 +1,8 @@
 @import 'normalize.css';
-@import 'normalize.css';
-
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
 :root {
     --primary: #fe2c55;
     --black: #000;
@@ -17,7 +19,6 @@
     margin: 0px;
     padding: 0px;
     color: black;
-    font-family:  Arial, Helvetica, sans-serif ;
     font-weight: normal;
 }
 
@@ -35,7 +36,37 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
+.iconCat {
+    object-fit: contain;
+    margin-right: 5px;
+    padding-bottom: 5px;
+}
 
+.topic1 {
+    color: #ec5078;
+    font-weight: bold;
+    font-size: 18px;
+    margin: 8px 0px;
+    line-height: 45px;
+}
+
+.topic2 {
+    font-size: 3.4rem;
+    font-weight: bolder;
+    color: #0c1529;
+    margin-bottom: 30px;
+    @media (max-width: $md) {
+        font-size: 40px;
+    }
+}
+.p-text {
+    color: rgb(147, 144, 144);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: justify;
+    @media (max-width: $sm) {
+        font-size: 15px;
+    }
+}
 //Custom tippy tooltips
 body {
     .tippy-box {

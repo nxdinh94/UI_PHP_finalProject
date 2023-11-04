@@ -2,7 +2,7 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
-
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Roboto+Condensed:wght@300&display=swap';
 .container {
     background-color: transparent;
 }
@@ -19,12 +19,13 @@ $xl: 1200px;
 .nav-item {
     font-size: 20px !important;
     margin: 0 8px;
-    font-weight: bold;
+
     .nav-link {
         line-height: 40px;
-        @media (max-width: $lg ) {
+        font-family: oswald;
+        @media (max-width: $lg) {
             font-size: 17px;
-            padding: 2px  !important;
+            padding: 2px !important;
         }
     }
     .btn-language {

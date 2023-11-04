@@ -1,29 +1,37 @@
+$lg: 992px;
+$sm: 540px;
+
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Roboto+Condensed:wght@300&display=swap';
+@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Roboto+Condensed:wght@300&display=swap';
+
 .slider-title {
     text-align: center;
+}
 
-    p {
-        color: #ec5078;
-        font-weight: bold;
-        font-size: 18px;
-        margin: 8px 0px;
-        line-height: 45px;
-    }
-    img {
-        object-fit: contain;
-        margin-right: 5px;
-        padding-bottom: 5px;
-    }
-
-    h2 {
-        font-size: 3.4rem;
-        font-weight: bolder;
-        color: #0c1529;
-        margin-bottom: 30px;
+.w-list {
+    list-style-image: url('../../../public/images/icons8-cat-footprint-16.png');
+}
+.checkin {
+    .checkin-list {
+        list-style-image: url('../../../public/images/icons8-checkmark-16.png');
     }
 }
-.home{
-    .container{
-        .row{
+.decor {
+    background-color: #061a33;
+    background-image: url('../../../public/images/footer-tr-bg.png');
+    height: 25vh;
+    margin-bottom: 20px;
+    @media (max-width: $lg) {
+        height: 20vh;
+        margin-bottom: 80px;
+    }
+}
+.container-fluid {
+    padding: 0px !important;
+}
+.home {
+    .container {
+        .row {
             margin: 30px 0px;
         }
     }
