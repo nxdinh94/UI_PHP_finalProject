@@ -28,11 +28,8 @@ function AnotherLayout({ children }) {
                         </div>
                     </div>
                 </div>
-                <Container>
-                    <Row>
-                        <div>{children}</div>
-                    </Row>
-                </Container>
+
+                <div className="another-layout-content">{children}</div>
 
                 <div className="homeLayout-footer">
                     <Footer />

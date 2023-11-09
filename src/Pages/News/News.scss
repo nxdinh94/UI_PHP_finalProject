@@ -1,0 +1,104 @@
+#icon {
+    color: red;
+}
+.advanced {
+    button {
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        font-size: 21px;
+        color: rgb(39, 79, 237);
+        &:hover {
+            color: rgb(39, 39, 237);
+        }
+    }
+    sup {
+        color: rgb(60, 89, 206);
+        &:hover {
+            color: rgb(39, 39, 237);
+        }
+    }
+}
+
+.float-start {
+    text-align: justify;
+}
+.boder {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+.category {
+    i {
+        font-size: 17px;
+    }
+    sup {
+        font-size: 11px;
+        color: rgb(60, 89, 206);
+        &:hover {
+            color: rgb(39, 39, 237);
+        }
+    }
+    .cate {
+        scale: 1.3;
+        &:hover {
+            color: rgb(39, 39, 237);
+            cursor: pointer;
+        }
+    }
+    .begin {
+        margin-bottom: 100px;
+    }
+    .card {
+        height: 270px;
+        padding: 1px;
+        text-align: center;
+        position: relative;
+    }
+    a {
+        &.btn {
+            position: absolute;
+            bottom: 10px;
+            right: 30%;
+            margin-right: 5px;
+        }
+    }
+}
+
+.search {
+    .right-sidebar {
+        background-color: #f7f7f5;
+        width: 100%;
+        height: fit-content;
+        margin-left: 14px;
+        padding: 30px;
+        border-radius: 5px;
+        h4 {
+            margin-bottom: 20px;
+            font-weight: bolder;
+            color: #0f2353;
+        }
+        .list-cate {
+            list-style-type: none;
+            .item-cate {
+                padding: 22px 0px 15px 0px;
+                border-top: 1px solid #dcdada;
+                sup {
+                    font-size: 15px;
+                    font-weight: bold;
+                    color: #0f2353;
+                }
+                transition: all 0.3s ease-in-out;
+                &:hover {
+                    transform: translateX(8%);
+                    cursor: pointer;
+                    sup {
+                        color: #ec5078;
+                    }
+                }
+                &:last-child {
+                    border-bottom: 1px solid #dcdada;
+                }
+            }
+        }
+        
+    }
+}

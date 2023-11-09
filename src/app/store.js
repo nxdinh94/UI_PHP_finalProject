@@ -3,10 +3,11 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
+import { fetchApiAsyn } from '../Pages/News/NewsSlice';
 
-import counterReducer from '../features/counter/counterSlice';
-import postsReducer from '../features/posts/postsSlice';
+import newsSlices from '../Pages/News/NewsSlice'
 import languageReducer from '~/components/Navbar/languageSlice';
+
 
 const persistConfig = {
     key: 'root',
@@ -14,8 +15,7 @@ const persistConfig = {
 };
 
 const rootReducer = combineReducers({
-    posts: postsReducer,
-    counter: counterReducer,
+    newsSlices: newsSlices,
     language: languageReducer,
 });
 
@@ -27,3 +27,4 @@ export const store = configureStore({
 });
 export const persistor = persistStore(store);
  
+// store.dispatch(fetchApiAsyn());
