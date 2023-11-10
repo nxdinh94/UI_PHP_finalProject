@@ -1,13 +1,34 @@
 import './NewsDetail.scss';
-import {Container, Col, Row} from 'reactstrap';
+import { Container, Col, Row } from 'reactstrap';
 import { useParams } from 'react-router-dom';
-function NewsDetail({ postDetail }) {
-    let { slug } = useParams();
-    console.log('checkpostdetail' ,postDetail);
+import { useSelector } from 'react-redux';
+function NewsDetail({}) {
+    let { slug, cate } = useParams();
+    const dataCate = useSelector((state) => state.newsSlices.value);
+    const dataByCate = dataCate[cate];
+
+    const dataDetail = dataByCate.filter((item) => {
+        return item.slug == slug;
+    });
+    
     return (
         <Container>
             <Row>
-                <Col></Col>
+                <Col lg="8" className="newDetail-wrapper">
+                    <div>
+                        <img className="img-fluid newDetail-image" src={dataDetail[0].thumbnail} />
+                    </div>
+                    <div className="newDetail-content">
+                        <div className="newDetail-detail"></div>
+                        <div className="newDetail-title">
+                            <h2 className="topic2">{dataDetail[0].title}</h2>
+                            <p className="p-text">
+                                <p className="p-text">{dataDetail[0].content}</p>
+                            </p>
+                        </div>
+                    </div>
+                </Col>
+                <Col lg="4"></Col>
             </Row>
         </Container>
     );

@@ -1,12 +1,21 @@
 import { Container, Row, Col } from 'reactstrap';
-import BlogItem from '../../components/NewsItem';
+import NewsItem from '../../components/NewsItem';
 import './News.scss';
 import 'boxicons';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { Link, useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 function News() {
     const dataCate = useSelector((state) => state.newsSlices.value);
-    const post = useSelector((state) => state.newsSlices.value.title);
+    // console.log('dataCate', dataCate);
+    let { slug } = useParams();
+    if(!slug) slug='dog';
+    // console.log('slug', slug);
+    const [dataByCate, setDataByCate] = useState(dataCate[slug]);
+    // console.log('dataBycate', dataByCate);
+    useEffect(() => {
+        setDataByCate(dataCate[slug]);
+    }, [slug]);
 
     return (
         <Container className="search my-5">
@@ -45,24 +54,11 @@ function News() {
             <Row>
                 <Col lg="8" className="px-0">
                     <Row>
-                        {/* {data.map((items, index) => (
+                        {dataByCate.map((items, index) => (
                             <Col lg="6" key={index}>
-                                <BlogItem/>
+                                <NewsItem data={items} slug={slug} />
                             </Col>
-                        ))} */}
-
-                        <Col lg="6">
-                            <BlogItem postDetail={post} />
-                        </Col>
-                        <Col lg="6">
-                            <BlogItem postDetail={post} />
-                        </Col>
-                        <Col lg="6">
-                            <BlogItem postDetail={post} />
-                        </Col>
-                        <Col lg="6">
-                            <BlogItem postDetail={post} />
-                        </Col>
+                        ))}
                     </Row>
                 </Col>
                 <Col lg="4">
@@ -72,15 +68,21 @@ function News() {
                             <u className="list-cate">
                                 <li className="item-cate">
                                     <box-icon color="#EC5078" name="chevron-right"></box-icon>
-                                    <sup>abc</sup>
+                                    <Link to="/news/dog/category">
+                                        <sup>dog</sup>
+                                    </Link>
                                 </li>
                                 <li className="item-cate">
                                     <box-icon color="#EC5078" name="chevron-right"></box-icon>
-                                    <sup>abc</sup>
+                                    <Link to="/news/cat/category">
+                                        <sup>cat</sup>
+                                    </Link>
                                 </li>
                                 <li className="item-cate">
                                     <box-icon color="#EC5078" name="chevron-right"></box-icon>
-                                    <sup>abc</sup>
+                                    <Link to="/news/petnews/category">
+                                        <sup>Pet News</sup>
+                                    </Link>
                                 </li>
                             </u>
                         </div>

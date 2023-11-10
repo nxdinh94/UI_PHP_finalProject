@@ -1,6 +1,8 @@
 import { Container, Row, Col, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 
+import configRoutes from '~/config/routes';
+
 import React, { Fragment, useEffect, useState } from 'react';
 import './Navbar.scss';
 import { changeLanguage } from './languageSlice';
@@ -8,7 +10,6 @@ import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useTranslation } from 'react-i18next';
-
 
 const logoOption = {
     lightLogo: 'https://nxdinh94.github.io/dacs1/img/logo-light.png',
@@ -25,6 +26,7 @@ function HeaderOnly({ children }) {
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
+    console.log('language', language);
 
     const { t, i18n } = useTranslation();
 
@@ -40,7 +42,7 @@ function HeaderOnly({ children }) {
             setLogo(logoOption.darkLogo);
             setBtnLanguage((prev) => (prev += ' scroll'));
         } else {
-            if (isOpen===false) {
+            if (isOpen === false) {
                 setclassNameSuperContainer('superContainer');
                 setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
                 setLogo(logoOption.lightLogo);
@@ -122,7 +124,7 @@ function HeaderOnly({ children }) {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink style={styleForNavLink} href="/news">
+                                <NavLink style={styleForNavLink} href={configRoutes.news}>
                                     {t('news')}
                                 </NavLink>
                             </NavItem>

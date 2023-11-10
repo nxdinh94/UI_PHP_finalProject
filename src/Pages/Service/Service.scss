@@ -1,0 +1,26 @@
+.ser-img {
+    border-radius: 70% 30% 58% 42% / 30% 30% 70% 70%;
+    transition: all 0.3s ease-in-out;
+    margin: 0px 80px;
+    cursor: pointer;
+    &:hover {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+}
+.con-image {
+    position: absolute;
+    left: 125px;
+    top: -92px;
+    transition: all 0.3s ease-out;
+}
+.con-image:hover {
+    scale: 1.03;
+}
+.img-contain {
+    height: 460px;
+    position: relative;
+}
+.con-text {
+    padding-top: 40px;
+}
+

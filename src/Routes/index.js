@@ -16,6 +16,7 @@ const publicRoutes = [
     { path: configRoutes.handbook, component: Handbook },
     { path: configRoutes.login, component: Login, loginPage: true },
     { path: configRoutes.newsDetail, component: NewsDetail },
+    { path: configRoutes.newsCategory, component: News },
 ];
 const privateRoutes = [];
 export { publicRoutes, privateRoutes };

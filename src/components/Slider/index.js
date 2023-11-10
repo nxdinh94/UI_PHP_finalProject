@@ -4,15 +4,11 @@ import './SliderCarousel.scss';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from '~/components/Image';
-import { useState } from 'react';
-
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faEye } from '@fortawesome/free-regular-svg-icons';
-
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Modals from '~/components/Modal';
 
 function SliderCarousel({ settings, dataPet }) {
+    console.log('datapet', Array.isArray(dataPet) );
     return (
         <div className='slider-wrapper'>
             
