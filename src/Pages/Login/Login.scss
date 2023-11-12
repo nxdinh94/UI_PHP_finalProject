@@ -24,6 +24,9 @@
             border-radius: 10px;
             background-color: #f8dba6;
             padding: 40px 20px;
+            box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+            -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+            -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
             .login-form {
                 width: 80%;
                 height: auto;
@@ -46,7 +49,9 @@ h1 {
     margin: 15px 0;
     outline: none;
     border: none;
-    border-bottom: 3px solid #a49b9b;
+    box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+    -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
 }
 
 .forgot-pass {
@@ -75,6 +80,9 @@ h1 {
     cursor: pointer;
     border: none;
     border-radius: 6px;
+    box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+    -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+    -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
     &:hover {
         background-color: #ec5078;
         transition: all 0.3s ease-in-out;
@@ -85,7 +93,6 @@ h1 {
     font-size: 14px;
     text-align: center;
     padding-left: 80px;
-    
 }
 
 .link-block {
@@ -107,5 +114,3 @@ h1 {
         transition: 0.3s all;
     }
 }
-
-

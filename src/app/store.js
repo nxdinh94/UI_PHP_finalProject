@@ -3,9 +3,9 @@ import storage from 'redux-persist/lib/storage';
 import { persistReducer, persistStore } from 'redux-persist';
 import thunk from 'redux-thunk';
 
-import { fetchApiAsyn } from '../Pages/News/NewsSlice';
+import { fetchNewsAsyn } from '../Pages/News/NewsSlice';
 
-import newsSlices from '../Pages/News/NewsSlice'
+import newsSlices from '../Pages/News/NewsSlice';
 import languageReducer from '~/components/Navbar/languageSlice';
 
 import { changeLanguage } from '~/components/Navbar/languageSlice';
@@ -28,7 +28,6 @@ export const store = configureStore({
 });
 export const persistor = persistStore(store);
 
-
 //dispatch immediately when bootstrap app
-store.dispatch(fetchApiAsyn());
+store.dispatch(fetchNewsAsyn());
 // store.dispatch(changeLanguage());

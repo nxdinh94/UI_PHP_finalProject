@@ -8,14 +8,13 @@ import configRoutes from '~/config/routes';
 import Footer from '../../Footer';
 
 function AnotherLayout({ children }) {
-    const [isLoginPage, setIsLoginPage] = useState(false);
-    const { t } = useTranslation();
+    let isLoginPage = false;
     const loginURL = window.location.pathname;
-    useEffect(() => {
-        if (loginURL === '/login' || loginURL === '/register') {
-            setIsLoginPage(true);
-        }
-    }, []);
+    if (loginURL === '/login' || loginURL === '/register' || loginURL === '/admin') {
+        isLoginPage =true;
+    }
+    const { t } = useTranslation();
+    
     return (
         <Fragment>
             <Container fluid className="alayout-wrapper">

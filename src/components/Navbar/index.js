@@ -7,6 +7,8 @@ import React, { useEffect, useState } from 'react';
 import './Navbar.scss';
 import { Logout } from '~/service/userService';
 
+import { changeLanguage } from './languageSlice';
+
 import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,10 +25,9 @@ function HeaderOnly({ children }) {
     const [classNameSuperContainer, setclassNameSuperContainer] = useState('superContainer');
     const [styleForNavLink, setStyleForNavLink] = useState({ color: '#fff' });
     const [logo, setLogo] = useState(logoOption.lightLogo);
-    const [btnLanguage, setBtnLanguage] = useState('btn-language');
     const [isDropdown, setIsDropdown] = useState(false);
     const [avatar, setAvatar] = useState('');
-
+    const [isAdmin, setIsAdmin] = useState(true);
     const isLogin = sessionStorage.isLogin;
 
     // const [language, setLanguage] = useState('vi');
@@ -38,6 +39,10 @@ function HeaderOnly({ children }) {
         if (isLogin) {
             const user_data = JSON.parse(sessionStorage.user_data);
             setAvatar(user_data.thumbnail);
+            const decentralization_id = user_data.decentralization_id;
+            if (decentralization_id === 1) {
+                setIsAdmin(true);
+            } else setIsAdmin(false);
         }
     }, []);
     useEffect(() => {
@@ -50,13 +55,11 @@ function HeaderOnly({ children }) {
             setclassNameSuperContainer((prev) => (prev += ' changeBgColor'));
             setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
             setLogo(logoOption.darkLogo);
-            setBtnLanguage((prev) => (prev += ' scroll'));
         } else {
             if (isOpen === false) {
                 setclassNameSuperContainer('superContainer');
                 setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
                 setLogo(logoOption.lightLogo);
-                setBtnLanguage('btn-language');
             }
         }
     }, [onColorChange]);
@@ -66,12 +69,10 @@ function HeaderOnly({ children }) {
             setclassNameSuperContainer((prev) => (prev += ' changeBgColor'));
             setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
             setLogo(logoOption.darkLogo);
-            setBtnLanguage((prev) => (prev += ' scroll'));
         } else {
             setclassNameSuperContainer('superContainer');
             setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
             setLogo(logoOption.lightLogo);
-            setBtnLanguage('btn-language');
         }
     }, [isOpen]);
 
@@ -97,7 +98,6 @@ function HeaderOnly({ children }) {
             setclassNameSuperContainer('superContainer');
             setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
             setLogo(logoOption.lightLogo);
-            setBtnLanguage('btn-language');
             console.log('jiihi');
         }
         if (window.innerWidth < 768) {
@@ -149,11 +149,6 @@ function HeaderOnly({ children }) {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                {/* <NavLink style={styleForNavLink}>
-                                    <button className={btnLanguage} onClick={() => dispatch(changeLanguage())}>
-                                        {language || 'vi'}
-                                    </button>
-                                </NavLink> */}
                                 <div
                                     className="user_profile"
                                     onMouseOver={() => {
@@ -167,19 +162,27 @@ function HeaderOnly({ children }) {
                                         <div class="dropdown-content">
                                             <a href={configRoutes.login}>Login</a>
                                             <a href={configRoutes.register}>Register</a>
-                                            <a href="#">Link 3</a>
+                                            <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
+                                                {language || 'vi'}
+                                            </button>
                                         </div>
                                     )) ||
                                         (isDropdown && isLogin && (
                                             <div class="dropdown-content">
-                                                <a href="#">Profilee</a>
-                                                <a href="#">Link 2</a>
+                                                {isAdmin && <a href={configRoutes.admin}>Admin Page</a>}
+                                                <a href={configRoutes.profile}>Profile</a>
                                                 <button
                                                     onClick={() => {
                                                         handleLogoutBtn();
                                                     }}
                                                 >
                                                     Logout
+                                                </button>
+                                                <button
+                                                    className="btn-language"
+                                                    onClick={() => dispatch(changeLanguage())}
+                                                >
+                                                    {language || 'vi'}
                                                 </button>
                                             </div>
                                         ))}

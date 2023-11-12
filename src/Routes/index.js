@@ -8,6 +8,8 @@ import Handbook from '~/Pages/Handbook';
 import Login from '~/Pages/Login';
 import Register from '~/Pages/Register';
 import NewsDetail from '~/Pages/NewsDetail';
+import Admin from '~/Pages/Admin';
+import Profile from '~/Pages/Profile';
 
 const publicRoutes = [
     { path: configRoutes.home, component: Home, isHome: true },
@@ -19,6 +21,8 @@ const publicRoutes = [
     { path: configRoutes.register, component: Register},
     { path: configRoutes.newsDetail, component: NewsDetail },
     { path: configRoutes.newsCategory, component: News },
+    { path: configRoutes.admin, component: Admin },
+    { path: configRoutes.profile, component: Profile },
 ];
 const privateRoutes = [];
 export { publicRoutes, privateRoutes };

@@ -94,7 +94,15 @@ function Register() {
                             }}
                             className="btn-submit"
                         >
-                            {isHandlingRegister && <FontAwesomeIcon icon={faSpinner} />} &nbsp; ĐĂNG KÝ
+                            {isHandlingRegister && (
+                                <FontAwesomeIcon
+                                    icon={faSpinner}
+                                    spin
+                                    size="sm"
+                                    style={{ '--fa-primary-color': '#cd0aa9', '--fa-secondary-color': '#cd0aa9' }}
+                                />
+                            )}
+                            &nbsp; ĐĂNG KÝ
                             <Toastify />
                         </button>
 

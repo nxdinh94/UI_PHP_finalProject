@@ -244,7 +244,7 @@ const initialState = {
     value: {},
     status: 'idle',
 };
-export const fetchApiAsyn = createAsyncThunk('newsSlice/fetchApiAsyn', async () => {
+export const fetchNewsAsyn = createAsyncThunk('newsSlice/fetchApiAsyn', async () => {
     const response = await getApiNews();
     // console.log('....',response);
     return response;
@@ -255,10 +255,10 @@ export const newsSlice = createSlice({
     reducers: {},
     extraReducers: (builder) => {
         builder
-            .addCase(fetchApiAsyn.pending, (state) => {
+            .addCase(fetchNewsAsyn.pending, (state) => {
                 state.status = 'loading';
             })
-            .addCase(fetchApiAsyn.fulfilled, (state, action) => {
+            .addCase(fetchNewsAsyn.fulfilled, (state, action) => {
                 state.status = 'idle';
                 state.value = { ...action.payload };
             });

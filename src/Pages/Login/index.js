@@ -21,7 +21,10 @@ function Login() {
     const handleLogin = async (emaill, passwordd) => {
         setIsHandlingLogin(true);
         let res = await handleLoginApi(emaill, passwordd);
-        setIsHandlingLogin(false);
+        setTimeout(() => {
+            setIsHandlingLogin(false);
+        }, 800);
+
         if (res.status) {
             const userData = res.user_data;
             sessionStorage.setItem('user_data', JSON.stringify(userData));
@@ -73,7 +76,7 @@ function Login() {
                                 <FontAwesomeIcon
                                     icon={faSpinner}
                                     spin
-                                    style={{ '--fa-primary-color': '#cd0aa9', '--fa-secondary-color': '#cd0aa9' }}
+                                    size="sm"
                                 />
                             )}{' '}
                             &nbsp; ĐĂNG NHẬP
@@ -82,7 +85,7 @@ function Login() {
                         <button className="forgot-pass"> Quên mật khẩu</button>
                         <br />
                         <div className="register-btn">
-                            Bạn chưa có tài khoản? <a href="register.html"> Đăng ký</a>
+                            Bạn chưa có tài khoản? <a href="/register"> Đăng ký</a>
                         </div>
                     </div>
                 </div>
