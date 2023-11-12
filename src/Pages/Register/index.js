@@ -1,9 +1,9 @@
-import './Register.scss';
+// import './Register.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { handleLoginApi } from '~/service/userService';
+import { handleRegisterApi } from '~/service/userService';
 
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
@@ -16,6 +16,9 @@ function Register() {
     const [password, setPassword] = useState('');
     const [fullName, setFullName] = useState('');
     const [rePassword, setRePassword] = useState('');
+    const [isHandlingRegister, setIsHandlingRegister] = useState(false);
+
+    const navigate = useNavigate();
 
     const handleOnChangeEmail = (e) => {
         setEmail(e.target.value);
@@ -30,11 +33,27 @@ function Register() {
         setRePassword(e.target.value);
     };
 
+    const handleRegister = async (fullname, mail, pass, rePassword) => {
+        setIsHandlingRegister(true);
+        const res = await handleRegisterApi(fullname, mail, pass, rePassword);
+        setIsHandlingRegister(false);
+        if (res.status) {
+            toast.success(res.message);
+            toast.success('Giờ thì đăng nhập nhé!!');
+            setTimeout(() => {
+                navigate('/login');
+            }, 1000);
+        } else {
+            const error = { ...res };
+            Object.keys(error).map((item, index) => toast.error(res[item]));
+        }
+    };
+
     return (
         <div className="app">
             <div className="block">
                 <div className="content">
-                    <h1>ĐĂNG NHẬP</h1>
+                    <h1>ĐĂNG KÝ</h1>
                     <div className="login-form">
                         <input
                             type="text"
@@ -69,14 +88,19 @@ function Register() {
                             className="form-control"
                             placeholder="Xác nhận mật khẩu"
                         />
-                        <button className="btn-submit" type="submit">
-                            ĐĂNG NHẬP
+                        <button
+                            onClick={() => {
+                                handleRegister(fullName, email, password, rePassword);
+                            }}
+                            className="btn-submit"
+                        >
+                            {isHandlingRegister && <FontAwesomeIcon icon={faSpinner} />} &nbsp; ĐĂNG KÝ
                             <Toastify />
                         </button>
-                        <button className="forgot-pass"> Quên mật khẩu</button>
+
                         <br />
-                        <div className="register-btn">
-                            Bạn chưa có tài khoản? <a href="register.html"> Đăng ký</a>
+                        <div className="register-btn ps-0">
+                            Bạn đã có tài khoản? <a href="/login"> Đăng nhập</a>
                         </div>
                     </div>
                 </div>
