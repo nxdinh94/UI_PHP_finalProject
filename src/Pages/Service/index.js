@@ -1,4 +1,15 @@
 import './Service.scss';
+import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/react';
+import '~/components/Swiper/Swiper.scss';
+
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+import 'swiper/css/scrollbar';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-flip';
 import { Container, Row, Col } from 'reactstrap';
 function Service() {
     return (
@@ -42,10 +53,171 @@ function Service() {
                     </Row>
                 </Container>
             </Container>
+            <Container>
+                <Swiper
+                    // install Swiper modules
+                    modules={[Navigation, Scrollbar, A11y, Autoplay]}
+                    autoplay={{
+                        delay: 2500,
+                        disableOnInteraction: false,
+                    }}
+                    spaceBetween={30}
+                    slidesPerView={4}
+                    navigation
+                    loop={{ draggable: true }}
+                    pagination={{ clickable: true }}
+                    onSwiper={(swiper) => console.log(swiper)}
+                    // onSlideChange={() => console.log()}
+                    breakpoints={{
+                        0: {
+                            slidesPerView: 1,
+                        },
+                        450: {
+                            slidesPerView: 2,
+                        },
+                        800: {
+                            slidesPerView: 3,
+                        },
+                        1000: {
+                            slidesPerView: 4,
+                        },
+                    }}
+                >
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    <SwiperSlide>
+                        <div class="card-item-content">
+                            <img
+                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                src="/images/blog/blog-1.jpg"
+                                alt="alternation"
+                            />
+                            <div class="text text-center">
+                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className='p-text'>
+                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
+                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
+                                </p>
+                            </div>
+                        </div>
+                    </SwiperSlide>
+                    
+                </Swiper>
+            </Container>
             <Container fluid style={{ backgroundColor: 'antiquewhite', margin: '40px 0px', height: '460px' }}>
                 <Container>
                     <Row className="py-5">
-                        <Col md="12" lg="6" xl="6">
+                        <Col md="12" lg="6" className='col-img'>
                             <div class="img-contain">
                                 <div class="con-image">
                                     <img src="/images/dog/dogbg1.png" alt="alternation" />

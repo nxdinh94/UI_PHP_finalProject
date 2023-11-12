@@ -24,3 +24,36 @@
     padding-top: 40px;
 }
 
+.ser-service {
+    margin-bottom: 100px;
+    padding: 30px 0;
+    background-color: rgb(246, 246, 246);
+}
+.ser-img {
+    border-radius: 70% 30% 58% 42% / 30% 30% 70% 70%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+    }
+}
+
+.image-items {
+    border-radius: 70% 30% 58% 42% / 30% 30% 70% 70%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer;
+    &:hover {
+        border-radius: 35% 65% 74% 26% / 44% 49% 51% 56%;
+    }
+}
+
+.card-item-content {
+    padding: 20px;
+    background-color: #fdf3e2;
+    border-radius: 6px;
+}
+.col-img {
+    @media (max-width: 992px) {
+        display: none;
+    }
+}

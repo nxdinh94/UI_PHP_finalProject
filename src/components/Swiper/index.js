@@ -1,6 +1,6 @@
 import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './Swiper.scss';
+import './Swiper.scss'
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -26,7 +26,7 @@ export default ({ teamData }) => {
             loop={{ draggable: true }}
             pagination={{ clickable: true }}
             onSwiper={(swiper) => console.log(swiper)}
-            onSlideChange={() => console.log('slide change')}
+            // onSlideChange={() => console.log()}
             breakpoints={{
                 0: {
                     slidesPerView: 1,

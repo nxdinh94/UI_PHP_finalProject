@@ -1,5 +1,5 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
-import { getApiFake } from '~/actions/fetchApi';
+import { getApiNews } from '~/actions/fetchApi';
 
 // const data = {
 //     dog: [
@@ -245,7 +245,7 @@ const initialState = {
     status: 'idle',
 };
 export const fetchApiAsyn = createAsyncThunk('newsSlice/fetchApiAsyn', async () => {
-    const response = await getApiFake();
+    const response = await getApiNews();
     // console.log('....',response);
     return response;
 });
@@ -260,7 +260,7 @@ export const newsSlice = createSlice({
             })
             .addCase(fetchApiAsyn.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.value = {...action.payload};
+                state.value = { ...action.payload };
             });
     },
 });

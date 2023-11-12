@@ -2,6 +2,8 @@ import './NewsDetail.scss';
 import { Container, Col, Row } from 'reactstrap';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
+import { useEffect } from 'react';
+
 function NewsDetail({}) {
     let { slug, cate } = useParams();
     const dataCate = useSelector((state) => state.newsSlices.value);
@@ -10,7 +12,9 @@ function NewsDetail({}) {
     const dataDetail = dataByCate.filter((item) => {
         return item.slug == slug;
     });
-    
+    useEffect(()=>{
+        // window.location.reload();
+    },[]);
     return (
         <Container>
             <Row>

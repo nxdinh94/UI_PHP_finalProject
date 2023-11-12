@@ -3,9 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 import configRoutes from '~/config/routes';
 
-import React, { Fragment, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Navbar.scss';
-import { changeLanguage } from './languageSlice';
+import { Logout } from '~/service/userService';
+
 import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -23,13 +24,22 @@ function HeaderOnly({ children }) {
     const [styleForNavLink, setStyleForNavLink] = useState({ color: '#fff' });
     const [logo, setLogo] = useState(logoOption.lightLogo);
     const [btnLanguage, setBtnLanguage] = useState('btn-language');
+    const [isDropdown, setIsDropdown] = useState(false);
+    const [avatar, setAvatar] = useState('');
+
+    const isLogin = sessionStorage.isLogin;
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
-    console.log('language', language);
 
     const { t, i18n } = useTranslation();
 
+    useEffect(() => {
+        if (isLogin) {
+            const user_data = JSON.parse(sessionStorage.user_data);
+            setAvatar(user_data.thumbnail);
+        }
+    }, []);
     useEffect(() => {
         i18n.changeLanguage(language);
     }, [language]);
@@ -98,6 +108,11 @@ function HeaderOnly({ children }) {
         setIsOpen(!isOpen);
     };
 
+    const handleLogoutBtn = () => {
+        Logout();
+        window.location.href = '/';
+    };
+
     return (
         <div className={classNameSuperContainer}>
             <Container className="px-0">
@@ -134,11 +149,43 @@ function HeaderOnly({ children }) {
                                 </NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink style={styleForNavLink}>
+                                {/* <NavLink style={styleForNavLink}>
                                     <button className={btnLanguage} onClick={() => dispatch(changeLanguage())}>
                                         {language || 'vi'}
                                     </button>
-                                </NavLink>
+                                </NavLink> */}
+                                <div
+                                    className="user_profile"
+                                    onMouseOver={() => {
+                                        setIsDropdown(true);
+                                    }}
+                                    onMouseLeave={() => {
+                                        setIsDropdown(false);
+                                    }}
+                                >
+                                    {(isDropdown && !isLogin && (
+                                        <div class="dropdown-content">
+                                            <a href={configRoutes.login}>Login</a>
+                                            <a href={configRoutes.register}>Register</a>
+                                            <a href="#">Link 3</a>
+                                        </div>
+                                    )) ||
+                                        (isDropdown && isLogin && (
+                                            <div class="dropdown-content">
+                                                <a href="#">Profilee</a>
+                                                <a href="#">Link 2</a>
+                                                <button
+                                                    onClick={() => {
+                                                        handleLogoutBtn();
+                                                    }}
+                                                >
+                                                    Logout
+                                                </button>
+                                            </div>
+                                        ))}
+
+                                    <img src={avatar || '/images/avt-girl-defaults.jpg'} className="avt" />
+                                </div>
                             </NavItem>
                         </Nav>
                     </Collapse>

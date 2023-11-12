@@ -6,6 +6,7 @@ import Contact from '~/Pages/Contact';
 import News from '~/Pages/News';
 import Handbook from '~/Pages/Handbook';
 import Login from '~/Pages/Login';
+import Register from '~/Pages/Register';
 import NewsDetail from '~/Pages/NewsDetail';
 
 const publicRoutes = [
@@ -14,7 +15,8 @@ const publicRoutes = [
     { path: configRoutes.contact, component: Contact },
     { path: configRoutes.news, component: News },
     { path: configRoutes.handbook, component: Handbook },
-    { path: configRoutes.login, component: Login, loginPage: true },
+    { path: configRoutes.login, component: Login },
+    { path: configRoutes.register, component: Register},
     { path: configRoutes.newsDetail, component: NewsDetail },
     { path: configRoutes.newsCategory, component: News },
 ];

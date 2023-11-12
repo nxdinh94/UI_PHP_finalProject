@@ -12,7 +12,7 @@ function NewsItem({ data, slug }) {
                 <div className="time_author">
                     <span>
                         <box-icon color="#89B73D" name="user"></box-icon>
-                        <sup className="p-text">{data.author}</sup>
+                        <sup className="p-text">{data.author || 'Admin'}</sup>
                     </span>
                     <span className="p-text">
                         <box-icon color="#89B73D" size="sx" name="stopwatch"></box-icon>
@@ -23,9 +23,9 @@ function NewsItem({ data, slug }) {
                     <h3>{data.title}</h3>
                 </div>
                 <div className="description p-text mb-3">{data.descr}</div>
-                <Link className="buttons" to={`/news/${slug}/${data.slug}/detail`}>
+                <a className="buttons" href={`/news/${slug}/${data.slug}/detail`}>
                     Load More
-                </Link>
+                </a>
             </div>
         </div>
     );

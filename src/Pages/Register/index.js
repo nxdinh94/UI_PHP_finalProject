@@ -1,4 +1,4 @@
-import './Login.scss';
+import './Register.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
@@ -11,39 +11,23 @@ import 'react-toastify/dist/ReactToastify.css';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-function Login() {
+function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isHandlingLogin, setIsHandlingLogin] = useState(false);
+    const [fullName, setFullName] = useState('');
+    const [rePassword, setRePassword] = useState('');
 
-    const navigate = useNavigate();
-
-    const handleLogin = async (emaill, passwordd) => {
-        setIsHandlingLogin(true);
-        let res = await handleLoginApi(emaill, passwordd);
-        setIsHandlingLogin(false);
-        if (res.status) {
-            const userData = res.user_data;
-            sessionStorage.setItem('user_data', JSON.stringify(userData));
-            sessionStorage.setItem('isLogin', res.status);
-            toast.success(res.message);
-            setTimeout(() => {
-                toast.success('Đưa bạn về trang chủ sau 3s');
-            }, 500);
-            setTimeout(() => {
-                navigate('/');
-            }, 3000);
-        } else {
-            toast.error(res.message);
-            sessionStorage.setItem('user_data', '{}');
-            sessionStorage.setItem('isLogin', res.status);
-        }
-    };
     const handleOnChangeEmail = (e) => {
         setEmail(e.target.value);
     };
     const handleOnChangePass = (e) => {
         setPassword(e.target.value);
+    };
+    const handleOnChangeFullName = (e) => {
+        setFullName(e.target.value);
+    };
+    const handleOnChangeRePass = (e) => {
+        setRePassword(e.target.value);
     };
 
     return (
@@ -52,6 +36,14 @@ function Login() {
                 <div className="content">
                     <h1>ĐĂNG NHẬP</h1>
                     <div className="login-form">
+                        <input
+                            type="text"
+                            onChange={handleOnChangeFullName}
+                            value={fullName}
+                            name="fullname"
+                            className="form-control"
+                            placeholder="Tên đầy đủ"
+                        />
                         <input
                             type="email"
                             onChange={handleOnChangeEmail}
@@ -68,15 +60,17 @@ function Login() {
                             className="form-control"
                             placeholder="Mật khẩu"
                         />
-                        <button onClick={() => handleLogin(email, password)} className="btn-submit" type="submit">
-                            {isHandlingLogin && (
-                                <FontAwesomeIcon
-                                    icon={faSpinner}
-                                    spin
-                                    style={{ '--fa-primary-color': '#cd0aa9', '--fa-secondary-color': '#cd0aa9' }}
-                                />
-                            )}{' '}
-                            &nbsp; ĐĂNG NHẬP
+
+                        <input
+                            type="password"
+                            onChange={handleOnChangeRePass}
+                            value={rePassword}
+                            name="password"
+                            className="form-control"
+                            placeholder="Xác nhận mật khẩu"
+                        />
+                        <button className="btn-submit" type="submit">
+                            ĐĂNG NHẬP
                             <Toastify />
                         </button>
                         <button className="forgot-pass"> Quên mật khẩu</button>
@@ -91,4 +85,4 @@ function Login() {
     );
 }
 
-export default Login;
+export default Register;

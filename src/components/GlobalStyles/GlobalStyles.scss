@@ -55,6 +55,9 @@ a[href] {
     font-weight: bolder;
     color: #0c1529;
     margin-bottom: 30px;
+    @media (max-width: $lg) {
+        font-size: 52px;
+    }
     @media (max-width: $md) {
         font-size: 40px;
     }

@@ -8,7 +8,7 @@
 }
 
 .app {
-    background-color: #FDF3E2;
+    background-color: #fdf3e2;
     width: 100%;
     height: 100vh;
     .block {
@@ -20,9 +20,10 @@
         width: 100%;
         .content {
             width: 42%;
-            height: 90%;
+            height: fit-content;
             border-radius: 10px;
-            background-color: #fee8c0;
+            background-color: #f8dba6;
+            padding: 40px 20px;
             .login-form {
                 width: 80%;
                 height: auto;
@@ -34,7 +35,9 @@
 
 h1 {
     text-align: center;
-    margin-top: 20px;
+    margin-bottom: 20px 0px;
+    color: #ec5078;
+    font-weight: bold;
 }
 
 .form-control {
@@ -48,10 +51,13 @@ h1 {
 
 .forgot-pass {
     font-size: 12px;
-    color: rgb(123, 196, 218);
+    color: #ec5078;
     float: right;
     padding-bottom: 12px;
     transition: 0.3s all;
+    background-color: transparent;
+    font-style: italic;
+    padding-right: 2px;
     &:hover {
         color: rgb(39, 184, 228);
         transition: 0.3s all;
@@ -60,24 +66,26 @@ h1 {
 
 .btn-submit {
     display: block;
-    margin: 15px auto;
+    margin: 10px auto;
     width: 100%;
     height: 50px;
-    background-color: rgb(152, 218, 238);
+    background-color: #f46f90;
+    color: white;
     transition: 0.3s all;
     cursor: pointer;
     border: none;
     border-radius: 6px;
     &:hover {
-        background-color: rgb(123, 196, 218);
-        transition: 0.3s all;
+        background-color: #ec5078;
+        transition: all 0.3s ease-in-out;
     }
 }
 
-h6 {
+.register-btn {
     font-size: 14px;
     text-align: center;
-    padding-bottom: 10px;
+    padding-left: 80px;
+    
 }
 
 .link-block {
@@ -100,10 +108,4 @@ h6 {
     }
 }
 
-svg {
-    position: absolute;
-    top: 50%;
-    left: 0%;
-    transform: translate(0%, -50%);
-    margin-left: 20px;
-}
+

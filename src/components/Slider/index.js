@@ -8,7 +8,6 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Modals from '~/components/Modal';
 
 function SliderCarousel({ settings, dataPet }) {
-    console.log('datapet', Array.isArray(dataPet) );
     return (
         <div className='slider-wrapper'>
             
