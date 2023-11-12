@@ -1,0 +1,49 @@
+.profile-container {
+    .profile-row {
+        .profile-col {
+            width: 100wh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 50px 0px;
+            .content {
+                width: 70%;
+                height: fit-content;
+                background-color: wheat;
+                border-radius: 10px;
+                padding-bottom: 20px;
+                .avt-container {
+                    padding: 10px;
+                    height: 200px;
+                    width: 100%;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    border-radius: 10px 10px 0px 0px;
+                    background-color: red;
+                    .avt-wrapper {
+                        width: 180px;
+                        height: 180px;
+                        border-radius: 50%;
+                        img {
+                            width: 100%;
+                            height: 100%;
+                            border-radius: 50%;
+                            object-fit: cover;
+                        }
+                    }
+                }
+                .profile-info {
+                    padding: 0px 20px;
+                    .button-wrapper {
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        padding-left: 100px;
+                        
+                    }
+                }
+            }
+        }
+    }
+}
