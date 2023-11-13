@@ -1,6 +1,6 @@
 import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import './Swiper.scss'
+import './Swiper.scss';
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -9,6 +9,9 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-flip';
 
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
+
 import 'boxicons';
 
 export default ({ teamData }) => {
@@ -16,10 +19,10 @@ export default ({ teamData }) => {
         <Swiper
             // install Swiper modules
             modules={[Navigation, Scrollbar, A11y, Autoplay]}
-            autoplay={{
-                delay: 2500,
-                disableOnInteraction: false,
-            }}
+            // autoplay={{
+            //     delay: 2500,
+            //     disableOnInteraction: false,
+            // }}
             spaceBetween={50}
             slidesPerView={4}
             navigation
@@ -56,31 +59,18 @@ export default ({ teamData }) => {
                         </div>
                         <div className="social">
                             <div className="social-icon">
-                                <box-icon
-                                    color="#7A7A7A"
-                                    border="circle"
-                                    size="md"
-                                    type="logo"
-                                    name="facebook-square"
-                                ></box-icon>
+                                <FontAwesomeIcon
+                                    icon={faFacebook}
+                                    className="fa-facebookfff"
+                                    size="lg"
+                                    style={{ color: 'Tomato' }}
+                                />
                             </div>
                             <div className="social-icon">
-                                <box-icon
-                                    color="#7A7A7A"
-                                    border="circle"
-                                    size="md"
-                                    name="instagram-alt"
-                                    type="logo"
-                                ></box-icon>
+                                <FontAwesomeIcon icon={faTiktok} size="lg" />
                             </div>
                             <div className="social-icon">
-                                <box-icon
-                                    color="#7A7A7A"
-                                    border="circle"
-                                    size="md"
-                                    type="logo"
-                                    name="tiktok"
-                                ></box-icon>
+                                <FontAwesomeIcon icon={faTwitter} size="lg" />
                             </div>
                         </div>
                     </div>

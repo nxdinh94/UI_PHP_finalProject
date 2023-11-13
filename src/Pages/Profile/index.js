@@ -11,10 +11,12 @@ function Profile() {
             setIsPreviewMode(!isPreviewMode);
         } else {
             //code
-            
+
             setIsPreviewMode(!isPreviewMode);
         }
     };
+    const userData = JSON.parse(sessionStorage.getItem('user_data'));
+
     return (
         <Container className="profile-container">
             <Row className="profile-row">
@@ -22,7 +24,7 @@ function Profile() {
                     <div className="content">
                         <div className="avt-container">
                             <div className="avt-wrapper">
-                                <img src="/images/team/team-1.jpg" />
+                                <img src={userData.thumbnail} />
                             </div>
                         </div>
                         <div className="profile-info">
@@ -37,7 +39,9 @@ function Profile() {
                                             id="fullname"
                                             name="fullname"
                                             type="text"
+                                            value={userData.fullname}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -48,7 +52,15 @@ function Profile() {
                                         Email
                                     </Label>
                                     <Col sm={10}>
-                                        <Input bsSize="md" id="email" name="email" type="text" disabled />
+                                        <Input
+                                            bsSize="md"
+                                            id="email"
+                                            name="email"
+                                            type="text"
+                                            value={userData.email}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
+                                            disabled
+                                        />
                                     </Col>
                                 </FormGroup>
                             </Row>
@@ -63,6 +75,7 @@ function Profile() {
                                             id="address"
                                             name="address"
                                             type="text"
+                                            value={userData.address}
                                             disabled={isPreviewMode}
                                         />
                                     </Col>
@@ -71,10 +84,18 @@ function Profile() {
                             <Row>
                                 <FormGroup row>
                                     <Label for="phonenumber" size="md" sm={2} style={{ paddingTop: 20 }}>
-                                        điện thoại
+                                        Điện thoại
                                     </Label>
                                     <Col sm={10}>
-                                        <Input bsSize="md" id="phonenumber" name="phonenumber" type="number" />
+                                        <Input
+                                            bsSize="md"
+                                            id="phonenumber"
+                                            name="phonenumber"
+                                            type="number"
+                                            disabled={isPreviewMode}
+                                            value={userData.phone}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
+                                        />
                                     </Col>
                                 </FormGroup>
                             </Row>
@@ -89,8 +110,9 @@ function Profile() {
                                             bsSize="md"
                                             id="dob"
                                             name="dob"
-                                            value={'2013-01-08'}
+                                            value={userData.dob}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -107,6 +129,8 @@ function Profile() {
                                             name="pinterest"
                                             type="text"
                                             disabled={isPreviewMode}
+                                            value={userData.contact_pinterest}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -122,7 +146,9 @@ function Profile() {
                                             id="linked"
                                             name="linked"
                                             type="text"
+                                            value={userData.contact_linkedin}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -138,7 +164,9 @@ function Profile() {
                                             id="twitter"
                                             name="twitter"
                                             type="text"
+                                            value={userData.contact_twitter}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -154,7 +182,9 @@ function Profile() {
                                             id="Facebook"
                                             name="Facebook"
                                             type="text"
+                                            value={userData.contact_facebook}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -170,7 +200,9 @@ function Profile() {
                                             id="about"
                                             name="about"
                                             type="text"
+                                            value={userData.about_content}
                                             disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -181,7 +213,7 @@ function Profile() {
                                         onClick={() => handleMode()}
                                         className={isPreviewMode ? 'btn btn-primary' : 'btn btn-success'}
                                     >
-                                        {isPreviewMode ? 'Chỉnh sửa': 'Lưu'}
+                                        {isPreviewMode ? 'Chỉnh sửa' : 'Lưu'}
                                     </button>
                                 </div>
                             </Row>

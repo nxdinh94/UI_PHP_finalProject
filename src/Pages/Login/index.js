@@ -21,10 +21,11 @@ function Login() {
     const handleLogin = async (emaill, passwordd) => {
         setIsHandlingLogin(true);
         let res = await handleLoginApi(emaill, passwordd);
+        console.log(res.user_data);
         setTimeout(() => {
             setIsHandlingLogin(false);
         }, 800);
-
+        console.log('res', res);
         if (res.status) {
             const userData = res.user_data;
             sessionStorage.setItem('user_data', JSON.stringify(userData));
@@ -72,14 +73,7 @@ function Login() {
                             placeholder="Mật khẩu"
                         />
                         <button onClick={() => handleLogin(email, password)} className="btn-submit" type="submit">
-                            {isHandlingLogin && (
-                                <FontAwesomeIcon
-                                    icon={faSpinner}
-                                    spin
-                                    size="sm"
-                                />
-                            )}{' '}
-                            &nbsp; ĐĂNG NHẬP
+                            {isHandlingLogin && <FontAwesomeIcon icon={faSpinner} spin size="sm" />} &nbsp; ĐĂNG NHẬP
                             <Toastify />
                         </button>
                         <button className="forgot-pass"> Quên mật khẩu</button>

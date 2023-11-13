@@ -187,7 +187,7 @@ function HeaderOnly({ children }) {
                                             </div>
                                         ))}
 
-                                    <img src={avatar || '/images/avt-girl-defaults.jpg'} className="avt" />
+                                    <img src={avatar || '/images/avt-boy.jpg'} className="avt" />
                                 </div>
                             </NavItem>
                         </Nav>
