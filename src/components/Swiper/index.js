@@ -19,10 +19,10 @@ export default ({ teamData }) => {
         <Swiper
             // install Swiper modules
             modules={[Navigation, Scrollbar, A11y, Autoplay]}
-            // autoplay={{
-            //     delay: 2500,
-            //     disableOnInteraction: false,
-            // }}
+            autoplay={{
+                delay: 2500,
+                disableOnInteraction: false,
+            }}
             spaceBetween={50}
             slidesPerView={4}
             navigation
