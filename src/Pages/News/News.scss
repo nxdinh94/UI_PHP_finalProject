@@ -2,50 +2,12 @@
     color: red;
 }
 
-
 .float-start {
     text-align: justify;
 }
 .boder {
     border: 1px solid black;
     padding: 10px;
-}
-
-.category {
-    i {
-        font-size: 17px;
-    }
-    sup {
-        font-size: 11px;
-        color: rgb(60, 89, 206);
-        &:hover {
-            color: rgb(39, 39, 237);
-        }
-    }
-    .cate {
-        scale: 1.3;
-        &:hover {
-            color: rgb(39, 39, 237);
-            cursor: pointer;
-        }
-    }
-    .begin {
-        margin-bottom: 100px;
-    }
-    .card {
-        height: 270px;
-        padding: 1px;
-        text-align: center;
-        position: relative;
-    }
-    a {
-        &.btn {
-            position: absolute;
-            bottom: 10px;
-            right: 30%;
-            margin-right: 5px;
-        }
-    }
 }
 
 .search {
@@ -66,16 +28,22 @@
             .item-cate {
                 padding: 22px 0px 15px 0px;
                 border-top: 1px solid #dcdada;
-                sup {
+                transition: all 0.3s ease-in-out;
+                span {
                     font-size: 15px;
                     font-weight: bold;
                     color: #0f2353;
+                    margin-left: 7px;
                 }
-                transition: all 0.3s ease-in-out;
+                svg {
+                    path {
+                        color: #a9a6a6;
+                    }
+                }
                 &:hover {
                     transform: translateX(8%);
                     cursor: pointer;
-                    sup {
+                    span {
                         color: #ec5078;
                     }
                 }
@@ -84,6 +52,5 @@
                 }
             }
         }
-        
     }
 }

@@ -12,7 +12,6 @@ import 'swiper/css/effect-flip';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 
-import 'boxicons';
 
 export default ({ teamData }) => {
     return (

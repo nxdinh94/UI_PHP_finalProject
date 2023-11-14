@@ -35,13 +35,14 @@ function Service() {
                                 <h2 className="topic2">THĂM KHÁM BỆNH ĐỊNH KÌ</h2>
                                 <div>
                                     <p className="p-text">
-                                        <bold className="fw-bold">
+                                        <span className="fw-bold">
                                             Các cuộc khám sức khỏe định kỳ để kiểm tra sức khỏe của thú cưng của bạn và
                                             phát hiện sớm các vấn đề sức khỏe trước khi chúng trở nên nghiêm trọng.
-                                        </bold>
+                                        </span>
                                         <br />
                                         Giúp phát hiện sớm các bệnh lý và điều trị chúng trước khi chúng trở nên nghiêm
-                                        trọng. <br />
+                                        trọng.
+                                        <br />
                                         Kiểm tra sức khỏe tổng thể của thú cưng của bạn và đảm bảo chúng được cung cấp
                                         đủ dinh dưỡng và các chất dinh dưỡng cần thiết. <br />
                                         Đưa ra các lời khuyên và hướng dẫn để giúp bạn chăm sóc thú cưng của mình tốt
@@ -84,15 +85,15 @@ function Service() {
                     }}
                 >
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -100,15 +101,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -116,15 +117,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -132,15 +133,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -148,15 +149,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -164,15 +165,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -180,15 +181,15 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
@@ -196,38 +197,37 @@ function Service() {
                         </div>
                     </SwiperSlide>
                     <SwiperSlide>
-                        <div class="card-item-content">
+                        <div className="card-item-content">
                             <img
-                                class="img-fluid image-items mx-auto d-block card-img mb-4"
+                                className="img-fluid image-items mx-auto d-block card-img mb-4"
                                 src="/images/blog/blog-1.jpg"
                                 alt="alternation"
                             />
-                            <div class="text text-center">
-                                <p class="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className='p-text'>
+                            <div className="text text-center">
+                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
+                                <p className="p-text">
                                     Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
                                     lông, chải lông, và các dịch vụ tạo kiểu lông khác.
                                 </p>
                             </div>
                         </div>
                     </SwiperSlide>
-                    
                 </Swiper>
             </Container>
             <Container fluid style={{ backgroundColor: 'antiquewhite', margin: '40px 0px', height: '460px' }}>
                 <Container>
                     <Row className="py-5">
-                        <Col md="12" lg="6" className='col-img'>
-                            <div class="img-contain">
-                                <div class="con-image">
+                        <Col md="12" lg="6" className="col-img">
+                            <div className="img-contain">
+                                <div className="con-image">
                                     <img src="/images/dog/dogbg1.png" alt="alternation" />
                                 </div>
                             </div>
                         </Col>
                         <Col md="12" lg="6">
-                            <div class="con-text text-center text-center">
-                                <p class="topic2">NHỮNG CHUYẾN ĐI THÚ VỊ</p>
-                                <p class="p-text">
+                            <div className="con-text text-center text-center">
+                                <p className="topic2">NHỮNG CHUYẾN ĐI THÚ VỊ</p>
+                                <p className="p-text">
                                     Những chuyến đi thú vị này sẽ giúp thú cưng của bạn có những trải nghiệm mới lạ và
                                     thú vị, và đồng thời cũng giúp bạn tăng cường mối quan hệ với chúng. Tuy nhiên, hãy
                                     nhớ luôn giữ an toàn và đảm bảo rằng thú cưng của bạn được tiêm phòng đầy đủ và có

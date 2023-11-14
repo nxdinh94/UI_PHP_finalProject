@@ -87,6 +87,11 @@ h1 {
         background-color: #ec5078;
         transition: all 0.3s ease-in-out;
     }
+    svg {
+        path {
+            color: pink;
+        }
+    }
 }
 
 .register-btn {

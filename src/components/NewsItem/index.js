@@ -1,7 +1,9 @@
 import './NewsItem.scss';
 
 import Image from '../Image';
-import { Link } from 'react-router-dom';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCalendarAlt, faUser } from '@fortawesome/free-solid-svg-icons';
+
 function NewsItem({ data, slug }) {
     return (
         <div className="blog-item">
@@ -11,12 +13,13 @@ function NewsItem({ data, slug }) {
             <div className="content-item">
                 <div className="time_author">
                     <span>
-                        <box-icon color="#89B73D" name="user"></box-icon>
-                        <sup className="p-text">{data.author || 'Admin'}</sup>
+                       
+                        <FontAwesomeIcon icon={faCalendarAlt} />
+                        <span className="p-text">{data.author || 'Admin'}</span>
                     </span>
                     <span className="p-text">
-                        <box-icon color="#89B73D" size="sx" name="stopwatch"></box-icon>
-                        <sup className="p-text">{data.create_at}</sup>
+                        <FontAwesomeIcon icon={faUser} />
+                        <span className="p-text">{data.create_at}</span>
                     </span>
                 </div>
                 <div className="title">

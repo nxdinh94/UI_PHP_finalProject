@@ -12,9 +12,6 @@ function NewsDetail({}) {
     const dataDetail = dataByCate.filter((item) => {
         return item.slug == slug;
     });
-    useEffect(()=>{
-        // window.location.reload();
-    },[]);
     return (
         <Container>
             <Row>
@@ -26,9 +23,7 @@ function NewsDetail({}) {
                         <div className="newDetail-detail"></div>
                         <div className="newDetail-title">
                             <h2 className="topic2">{dataDetail[0].title}</h2>
-                            <p className="p-text">
-                                <p className="p-text">{dataDetail[0].content}</p>
-                            </p>
+                            <p className="p-text">{dataDetail[0].content}</p>
                         </div>
                     </div>
                 </Col>

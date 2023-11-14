@@ -19,7 +19,12 @@
             justify-content: space-between;
             span {
                 margin-bottom: 5px;
-                sup {
+                svg {
+                    path {
+                        color: #8dce25;
+                    }
+                }
+                span {
                     font-size: 14px;
                     margin: 0 6px;
                 }

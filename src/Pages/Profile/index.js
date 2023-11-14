@@ -1,21 +1,85 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Input, Label, FormGroup } from 'reactstrap';
+import { Container, Row, Col, Input, Label, FormGroup, FormText } from 'reactstrap';
 
 import './Profile.scss';
 import { useState } from 'react';
 
+import { handleUpdateProfileApi } from '~/service/userService';
+
 function Profile() {
     const [isPreviewMode, setIsPreviewMode] = useState(true);
-    const handleMode = () => {
+
+    const userData = JSON.parse(sessionStorage.getItem('user_data'));
+    const userId = userData.id;
+    const email = userData.email;
+    const [fullname, setFullname] = useState(userData.fullname);
+    const [address, setAddress] = useState(userData.address);
+    const [phone, setPhone] = useState(userData.phone);
+    const [dob, setDob] = useState(userData.dob);
+    const [pinterest, setPinterest] = useState(userData.contact_pinterest);
+    const [linkedin, setLinkedin] = useState(userData.contact_linkedin);
+    const [twitter, setTwitter] = useState(userData.contact_twitter);
+    const [facebook, setFacebook] = useState(userData.contact_facebook);
+    const [aboutContent, setAboutContent] = useState(userData.about_content);
+
+    const handleOnChangeInput = (e) => {
+        let inputName = e.target.name;
+        console.log(inputName);
+        switch (inputName) {
+            case 'fullname':
+                setFullname(e.target.value);
+                break;
+            case 'address':
+                setAddress(e.target.value);
+                break;
+            case 'phone':
+                setPhone(e.target.value);
+                break;
+            case 'dob':
+                setDob(e.target.value);
+                break;
+            case 'pinterest':
+                setPinterest(e.target.value);
+                break;
+            case 'linkedin':
+                setLinkedin(e.target.value);
+                break;
+            case 'twitter':
+                setTwitter(e.target.value);
+                break;
+            case 'facebook':
+                setFacebook(e.target.value);
+                break;
+            case 'about':
+                setAboutContent(e.target.value);
+                break;
+        }
+    };
+
+    const handleMode = async () => {
         if (isPreviewMode) {
             setIsPreviewMode(!isPreviewMode);
         } else {
             //code
+            const res = await handleUpdateProfileApi({
+                userId,
+                email,
+                fullname,
+                address,
+                phone,
+                dob,
+                pinterest,
+                linkedin,
+                twitter,
+                facebook,
+                aboutContent,
+            });
+            // Update new in4 into sessionStorage
+            sessionStorage.setItem('user_data', JSON.stringify(res.user_data));
 
             setIsPreviewMode(!isPreviewMode);
         }
     };
-    const userData = JSON.parse(sessionStorage.getItem('user_data'));
 
     return (
         <Container className="profile-container">
@@ -39,7 +103,8 @@ function Profile() {
                                             id="fullname"
                                             name="fullname"
                                             type="text"
-                                            value={userData.fullname}
+                                            value={fullname}
+                                            onChange={handleOnChangeInput}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -57,7 +122,8 @@ function Profile() {
                                             id="email"
                                             name="email"
                                             type="text"
-                                            value={userData.email}
+                                            onChange={handleOnChangeInput}
+                                            value={email}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             disabled
                                         />
@@ -74,8 +140,9 @@ function Profile() {
                                             bsSize="md"
                                             id="address"
                                             name="address"
+                                            onChange={handleOnChangeInput}
                                             type="text"
-                                            value={userData.address}
+                                            value={address}
                                             disabled={isPreviewMode}
                                         />
                                     </Col>
@@ -91,9 +158,10 @@ function Profile() {
                                             bsSize="md"
                                             id="phonenumber"
                                             name="phonenumber"
-                                            type="number"
+                                            type="text"
                                             disabled={isPreviewMode}
-                                            value={userData.phone}
+                                            onChange={handleOnChangeInput}
+                                            value={phone}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
@@ -110,7 +178,8 @@ function Profile() {
                                             bsSize="md"
                                             id="dob"
                                             name="dob"
-                                            value={userData.dob}
+                                            onChange={handleOnChangeInput}
+                                            value={dob}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -129,7 +198,8 @@ function Profile() {
                                             name="pinterest"
                                             type="text"
                                             disabled={isPreviewMode}
-                                            value={userData.contact_pinterest}
+                                            onChange={handleOnChangeInput}
+                                            value={pinterest}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
@@ -144,9 +214,10 @@ function Profile() {
                                         <Input
                                             bsSize="md"
                                             id="linked"
-                                            name="linked"
+                                            name="linkedin"
                                             type="text"
-                                            value={userData.contact_linkedin}
+                                            onChange={handleOnChangeInput}
+                                            value={linkedin}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -164,7 +235,8 @@ function Profile() {
                                             id="twitter"
                                             name="twitter"
                                             type="text"
-                                            value={userData.contact_twitter}
+                                            onChange={handleOnChangeInput}
+                                            value={twitter}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -180,9 +252,10 @@ function Profile() {
                                         <Input
                                             bsSize="md"
                                             id="Facebook"
-                                            name="Facebook"
+                                            name="facebook"
                                             type="text"
-                                            value={userData.contact_facebook}
+                                            onChange={handleOnChangeInput}
+                                            value={facebook}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -200,7 +273,8 @@ function Profile() {
                                             id="about"
                                             name="about"
                                             type="text"
-                                            value={userData.about_content}
+                                            onChange={handleOnChangeInput}
+                                            value={aboutContent}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />

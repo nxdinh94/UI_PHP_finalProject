@@ -25,7 +25,7 @@ function Login() {
         setTimeout(() => {
             setIsHandlingLogin(false);
         }, 800);
-        console.log('res', res);
+
         if (res.status) {
             const userData = res.user_data;
             sessionStorage.setItem('user_data', JSON.stringify(userData));
@@ -74,8 +74,8 @@ function Login() {
                         />
                         <button onClick={() => handleLogin(email, password)} className="btn-submit" type="submit">
                             {isHandlingLogin && <FontAwesomeIcon icon={faSpinner} spin size="sm" />} &nbsp; ĐĂNG NHẬP
-                            <Toastify />
                         </button>
+                        <Toastify />
                         <button className="forgot-pass"> Quên mật khẩu</button>
                         <br />
                         <div className="register-btn">
