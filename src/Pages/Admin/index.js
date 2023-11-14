@@ -1,5 +1,7 @@
+import './Admin.scss';
+
 function Admin() {
-    return <h2>Admin</h2>;
+    return <div>Admin</div>;
 }
 
 export default Admin;

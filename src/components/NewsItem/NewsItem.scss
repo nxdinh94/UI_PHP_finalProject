@@ -1,17 +1,20 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
 .blog-item {
     margin-bottom: 20px;
+    .blog-image {
+        width: 100%;
+        height: auto;
+        .my-image {
+            width: 100%;
+            height: auto;
+            object-fit: cover;
+            cursor: pointer;
+            
+        }
+    }
     .content-item {
         padding: 30px;
         background-color: #f7f7f5;
-        .blog-image {
-            width: 100%;
-            height: auto;
-        }
+
         .time_author {
             width: 100%;
             height: fit-content;

@@ -11,8 +11,6 @@ import 'swiper/css/effect-flip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-
-
 export default ({ teamData }) => {
     return (
         <Swiper
@@ -60,9 +58,9 @@ export default ({ teamData }) => {
                             <div className="social-icon">
                                 <FontAwesomeIcon
                                     icon={faFacebook}
-                                    className="fa-facebookfff"
                                     size="lg"
-                                    style={{ color: 'Tomato' }}
+                                    className="facebook-icon"
+                                    style={{ color: 'red' }}
                                 />
                             </div>
                             <div className="social-icon">

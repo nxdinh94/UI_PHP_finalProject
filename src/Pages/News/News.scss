@@ -1,16 +1,9 @@
-#icon {
-    color: red;
-}
-
-.float-start {
-    text-align: justify;
-}
-.boder {
-    border: 1px solid black;
-    padding: 10px;
-}
-
 .search {
+    .btn-success {
+        box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+        -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+        -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+    }
     .right-sidebar {
         background-color: #f7f7f5;
         width: 100%;

@@ -1,6 +1,4 @@
 import './NewsItem.scss';
-
-import Image from '../Image';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt, faUser } from '@fortawesome/free-solid-svg-icons';
 
@@ -8,7 +6,7 @@ function NewsItem({ data, slug }) {
     return (
         <div className="blog-item">
             <div className="blog-image">
-                <Image width="100%" height="auto" src={data.thumbnail} />
+                <img className='my-image'src={data.thumbnail} />
             </div>
             <div className="content-item">
                 <div className="time_author">

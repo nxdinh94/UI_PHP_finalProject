@@ -25,7 +25,7 @@ function News() {
                 <div className="col-7 m-auto mb-5">
                     <div className="input-group">
                         <input type="text" className="form-control my-0" placeholder="Search" />
-                        <button className="btn btn-success shadow " type="submit">
+                        <button className="btn btn-success" type="submit">
                             Go
                         </button>
                     </div>
