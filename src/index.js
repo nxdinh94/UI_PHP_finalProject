@@ -9,15 +9,18 @@ import './i18n';
 // import IntlProviderWrapper from '~/hoc/IntlProviderWrapper';
 import GlobalStyles from '~/components/GlobalStyles';
 
+import CustomCursor from './components/AnimatedCursor';
+
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
     <React.StrictMode>
         <Provider store={store}>
             <PersistGate loading={null} persistor={persistor}>
                 {/* <IntlProviderWrapper> */}
-                    <GlobalStyles>
-                        <App />
-                    </GlobalStyles>
+                <GlobalStyles>
+                    <App />
+                    {/* <CustomCursor /> */}
+                </GlobalStyles>
                 {/* </IntlProviderWrapper> */}
             </PersistGate>
         </Provider>

@@ -13,6 +13,7 @@ import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useTranslation } from 'react-i18next';
+import routes from '~/config/routes';
 
 const logoOption = {
     lightLogo: 'https://nxdinh94.github.io/dacs1/img/logo-light.png',
@@ -169,7 +170,7 @@ function HeaderOnly({ children }) {
                                     )) ||
                                         (isDropdown && isLogin && (
                                             <div class="dropdown-content">
-                                                {isAdmin && <a href={configRoutes.admin}>Admin Page</a>}
+                                                {isAdmin && <a href={routes.adminHomePage}>Admin Page</a>}
                                                 <a href={configRoutes.profile}>Profile</a>
                                                 <button
                                                     onClick={() => {

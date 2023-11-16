@@ -1,13 +1,11 @@
-
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import HomeLayout from './components/Layout/HomeLayout';
 import AnotherLayout from './components/Layout/AnotherLayout';
+import AdminLayout from './components/Layout/AdminLayout';
 import { publicRoutes } from './Routes';
 
-
 function App() {
-    
     return (
         <Router>
             <div className="App">
@@ -17,14 +15,19 @@ function App() {
                         if (route.isHome) {
                             Layout = HomeLayout;
                         }
+
+                        if (route.path.substring(0, 6) === '/admin') {
+                            Layout = AdminLayout;
+                        }
+
                         let Page = route.component;
                         return (
                             <Route
                                 key={index}
                                 path={route.path}
                                 element={
-                                    <Layout isloginPage={route.loginPage}>
-                                        <Page/>
+                                    <Layout>
+                                        <Page />
                                     </Layout>
                                 }
                             ></Route>

@@ -1,0 +1,27 @@
+.content {
+    width: 100%;
+    height: 95%;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    .div-title {
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #e8e5e5;
+
+        padding-top: 11px;
+        padding-left: 10px;
+        p {
+            font-weight: bold;
+            color: rgb(54, 105, 244);
+        }
+    }
+    .div-content {
+        padding: 0px 50px;
+        h1 {
+            margin-bottom: 20px;
+        }
+    }
+}

@@ -8,7 +8,10 @@ const routes = {
     contact: '/contact',
     login: '/login',
     register: '/register',
-    admin: '/admin',
     profile: '/profile',
+    admin: '/admin/:slug',
+    adminHomePage: '/admin/homepage',
+    adminQlsq: '/admin/qlsp',
+    adminQllsq: '/admin/qllsp',
 };
 export default routes;

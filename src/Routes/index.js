@@ -21,7 +21,7 @@ const publicRoutes = [
     { path: configRoutes.register, component: Register},
     { path: configRoutes.newsDetail, component: NewsDetail },
     { path: configRoutes.newsCategory, component: News },
-    { path: configRoutes.admin, component: Admin },
+    { path: configRoutes.admin, component: Admin, isAdmin: true },
     { path: configRoutes.profile, component: Profile },
 ];
 const privateRoutes = [];
