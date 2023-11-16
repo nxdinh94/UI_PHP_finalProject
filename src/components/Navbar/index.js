@@ -27,8 +27,10 @@ function HeaderOnly({ children }) {
     const [styleForNavLink, setStyleForNavLink] = useState({ color: '#fff' });
     const [logo, setLogo] = useState(logoOption.lightLogo);
     const [isDropdown, setIsDropdown] = useState(false);
+    const [isOnPageTag, setIsOnPageTag] = useState(false);
     const [avatar, setAvatar] = useState('');
     const [isAdmin, setIsAdmin] = useState(true);
+
     const isLogin = sessionStorage.isLogin;
 
     // const [language, setLanguage] = useState('vi');
@@ -134,15 +136,29 @@ function HeaderOnly({ children }) {
                                     {t('service')}
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink style={styleForNavLink} href="/handbook">
-                                    {t('handbook')}
-                                </NavLink>
-                            </NavItem>
+
                             <NavItem>
                                 <NavLink style={styleForNavLink} href={configRoutes.news}>
                                     {t('news')}
                                 </NavLink>
+                            </NavItem>
+                            <NavItem
+                                className="pageTag"
+                                onMouseLeave={() => setIsOnPageTag(false)}
+                                onMouseOver={() => {
+                                    setIsOnPageTag(true);
+                                }}
+                            >
+                                <NavLink style={styleForNavLink} href="/handbook">
+                                    {t('page')}
+                                </NavLink>
+                                {isOnPageTag && (
+                                    <div class="dropdown-content">
+                                        <a href={configRoutes.login}>{t('store')}</a>
+                                        <a href={configRoutes.register}>{t('gallery')}</a>
+                                        <a href={configRoutes.register}>{t('team')}</a>
+                                    </div>
+                                )}
                             </NavItem>
                             <NavItem>
                                 <NavLink style={styleForNavLink} href="/contact">

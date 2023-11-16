@@ -24,7 +24,8 @@
         .nav-link {
             color: white;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            font-size: 16px;
+            font-size: 13px;
+            padding: 2px 16px;
         }
     }
 }
@@ -43,6 +44,7 @@
         .navItem {
             padding: 17px;
             background-color: transparent;
+            
         }
         .divItem {
             padding: 10px;
@@ -55,6 +57,12 @@
                 border-radius: 50%;
                 &:hover {
                     cursor: pointer;
+                }
+                img{
+                    width: 100%;
+                    height: auto;
+                    object-fit: contain;
+                    border-radius: 50%;
                 }
             }
             span {

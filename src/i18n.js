@@ -1,7 +1,6 @@
 import i18n from 'i18next';
 import { initReactI18next } from 'react-i18next';
 
-
 i18n.use(initReactI18next).init({
     debug: true,
     fallbackLng: 'vi',
@@ -21,6 +20,10 @@ i18n.use(initReactI18next).init({
                 slogan2: "I'm always available to take care of your pets!",
                 idiom: 'A dog is the only thing on earth that loves you more than it loves itself - Josh Billings',
                 contactnow: 'Contact now',
+                page: 'Page',
+                store: 'store',
+                gallery: 'gallery',
+                team: 'team',
                 contactPage: {
                     title: 'Contact',
                 },
@@ -37,6 +40,10 @@ i18n.use(initReactI18next).init({
                 slogan2: 'Tôi luôn sẵn sàng chăm sóc thú cưng của bạn!',
                 idiom: 'Chó là điều duy nhất trên trái đất yêu bạn hơn yêu chính nó - Josh Billings',
                 contactnow: 'Liên hệ ngay',
+                page: 'Trang',
+                store: 'Cửa hàng',
+                gallery: 'Thư viện',
+                team: 'Đội ngũ',
                 contactPage: {
                     title: 'Liên hệ',
                 },

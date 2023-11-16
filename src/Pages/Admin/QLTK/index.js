@@ -1,16 +1,23 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Row, Col, Table } from 'reactstrap';
-import './QLSP.scss';
+import { Table, Input, Label } from 'reactstrap';
 
-function QLSP() {
+import './QLTK.scss';
+
+function QLTK() {
     return (
         <div className="content">
             <div className="div-title">
                 <p className="my-0"> Database hoa don</p>
             </div>
             <div className="div-content">
-                <h1>Thống kê</h1>
-                <Table bordered>
+                <div className="div-action">
+                    <button className="btn btn-primary"> Thêm mới</button>
+                    <div className="div-search">
+                        <Input />
+                        <Label>Search</Label>
+                    </div>
+                </div>
+                <Table responsive>
                     <thead>
                         <tr>
                             <th>#</th>
@@ -18,7 +25,7 @@ function QLSP() {
                             <th>Last Name</th>
                             <th>Username</th>
                             <th>Username</th>
-                            <th>Username</th> 
+                            <th>Username</th>
                             <th>Username</th>
                         </tr>
                     </thead>
@@ -39,4 +46,4 @@ function QLSP() {
     );
 }
 
-export default QLSP;
+export default QLTK;

@@ -1,5 +1,7 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
+
+import './QLLSP.scss';
 
 function QLSP() {
     return (

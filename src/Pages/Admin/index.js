@@ -13,6 +13,7 @@ import { useParams } from 'react-router-dom';
 import HomeAdmin from '~/Pages/Admin/HomeAdmin';
 import QLSP from '~/Pages/Admin/QLSP';
 import QLLSP from '~/Pages/Admin/QLLSP';
+import QLTK from '~/Pages/Admin/QLTK';
 
 import routes from '~/config/routes';
 
@@ -22,6 +23,8 @@ function Admin() {
 
     const [path, setPath] = useState(window.location.pathname);
     let { slug } = useParams();
+    const adminIn4String = sessionStorage.getItem('user_data');
+    const adminIn4Object = JSON.parse(adminIn4String);
 
     return (
         <div>
@@ -34,6 +37,9 @@ function Admin() {
                         <Nav vertical>
                             <NavItem>
                                 <NavLink href={routes.adminHomePage}>Home Page</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href={routes.adminQltk}>Quản lý tài khoản</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href={routes.adminQlsq}>Quản lý sản phẩm</NavLink>
@@ -72,8 +78,10 @@ function Admin() {
                                     setIsDropdown(true);
                                 }}
                             >
-                                <div className="avt-wrapper"></div>
-                                <span>nxdinh94</span>
+                                <div className="avt-wrapper">
+                                    <img src={adminIn4Object.thumbnail}/>
+                                </div>
+                                <span>{adminIn4Object.fullname}</span>
                                 {isDropdown && (
                                     <div class="dropdown-content2">
                                         <a href={configRoutes.home}>Home</a>
@@ -86,6 +94,7 @@ function Admin() {
                         <div className="wrapper-content">
                             <h3 style={{ color: '#5A5C69' }}>Tables</h3>
                             {slug === 'homepage' ? <HomeAdmin /> : <></>}
+                            {slug === 'qltk' ? <QLTK /> : <></>}
                             {slug === 'qlsp' ? <QLSP /> : <></>}
                             {slug === 'qllsp' ? <QLLSP /> : <></>}
                         </div>
