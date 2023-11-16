@@ -1,15 +1,26 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Input, Label } from 'reactstrap';
 
+import { handleStatusAccountApi } from '~/service/adminService';
+
 import { useSelector } from 'react-redux';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
 
 import './QLTK.scss';
 
 function QLTK() {
     const accountData = useSelector((state) => state.QLTKSlice.value);
-    console.log(accountData);
+
+    const handleStatusAccount = async (id, status) => {
+        const res = await handleStatusAccountApi(id, status);
+        toast(res.message);
+        window.location.reload();
+    };
+
     return (
         <div className="content">
+            <Toastify />
             <div className="div-title">
                 <p className="my-0"> Database hoa don</p>
             </div>
@@ -44,7 +55,21 @@ function QLTK() {
                                 <td>
                                     <button className="btn btn-success">Xem</button>
                                     <button className="btn btn-warning mx-1">Sửa</button>
-                                    <button className="btn btn-danger">Cấm</button>
+                                    {item.status === 1 ? (
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleStatusAccount(item.id, '2')}
+                                        >
+                                            Cấm
+                                        </button>
+                                    ) : (
+                                        <button
+                                            className="btn btn-danger"
+                                            onClick={() => handleStatusAccount(item.id, '1')}
+                                        >
+                                            Hủy cấm
+                                        </button>
+                                    )}
                                 </td>
                             </tr>
                         ))}
