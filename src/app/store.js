@@ -8,7 +8,10 @@ import { fetchNewsAsyn } from '../Pages/News/NewsSlice';
 import newsSlices from '../Pages/News/NewsSlice';
 import languageReducer from '~/components/Navbar/languageSlice';
 
-import { changeLanguage } from '~/components/Navbar/languageSlice';
+import QLTKSlice from '~/Pages/Admin/QLTK/QLTKSlices';
+import { handleFetchAccountData } from '~/Pages/Admin/QLTK/QLTKSlices';
+
+// import { changeLanguage } from '~/components/Navbar/languageSlice';
 
 const persistConfig = {
     key: 'root',
@@ -18,6 +21,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     newsSlices: newsSlices,
     language: languageReducer,
+    QLTKSlice: QLTKSlice,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -30,4 +34,4 @@ export const persistor = persistStore(store);
 
 //dispatch immediately when bootstrap app
 store.dispatch(fetchNewsAsyn());
-// store.dispatch(changeLanguage());
+store.dispatch(handleFetchAccountData());

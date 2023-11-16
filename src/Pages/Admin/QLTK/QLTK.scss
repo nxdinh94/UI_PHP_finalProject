@@ -26,21 +26,28 @@
             padding: 15px 0px;
             display: flex;
             justify-content: space-between;
-            .div-search{
+            .div-search {
                 display: flex;
-                .form-control{
+                .form-control {
                     margin: 0;
                     padding: 0;
                 }
-                .form-label{
+                .form-label {
                     margin: 7px 0px 6px 10px;
                     font-size: 17px;
                     color: #333;
                 }
             }
         }
-        .table-responsive{
+        .table-responsive {
             margin-top: 20px;
+            tbody {
+                tr {
+                    td {
+                        color: #858796;
+                    }
+                }
+            }
         }
     }
 }

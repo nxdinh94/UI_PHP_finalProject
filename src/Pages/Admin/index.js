@@ -20,6 +20,7 @@ import routes from '~/config/routes';
 function Admin() {
     // const [isOpen, setIsOpen] = useState(false);
     const [isDropdown, setIsDropdown] = useState(false);
+    const [isDropDownAccount, setIsDropDownAccount] = useState(false);
 
     const [path, setPath] = useState(window.location.pathname);
     let { slug } = useParams();
@@ -39,7 +40,11 @@ function Admin() {
                                 <NavLink href={routes.adminHomePage}>Home Page</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={routes.adminQltk}>Quản lý tài khoản</NavLink>
+                                <NavLink href='#' onClick={()=>setIsDropDownAccount(!isDropDownAccount) }>Quản lý tài khoản</NavLink>
+                                {isDropDownAccount && (<NavItem className='ms-3'>
+                                    <NavLink href={routes.adminQltk}>+ Tài khoản chức danh</NavLink>
+                                    <NavLink href={routes.adminQltk}>+ Tài khoản người dùng</NavLink>
+                                </NavItem>)}
                             </NavItem>
                             <NavItem>
                                 <NavLink href={routes.adminQlsq}>Quản lý sản phẩm</NavLink>
@@ -79,11 +84,11 @@ function Admin() {
                                 }}
                             >
                                 <div className="avt-wrapper">
-                                    <img src={adminIn4Object.thumbnail}/>
+                                    <img src={adminIn4Object.thumbnail} />
                                 </div>
                                 <span>{adminIn4Object.fullname}</span>
                                 {isDropdown && (
-                                    <div class="dropdown-content2">
+                                    <div className="dropdown-content2">
                                         <a href={configRoutes.home}>Home</a>
                                         <button>Logout</button>
                                         <a href={configRoutes.profile}>Profile</a>

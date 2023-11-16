@@ -153,7 +153,7 @@ function HeaderOnly({ children }) {
                                     {t('page')}
                                 </NavLink>
                                 {isOnPageTag && (
-                                    <div class="dropdown-content">
+                                    <div className="dropdown-content">
                                         <a href={configRoutes.store}>{t('store')}</a>
                                         <a href={configRoutes.gallery}>{t('gallery')}</a>
                                         <a href={configRoutes.team}>{t('team')}</a>
@@ -176,7 +176,7 @@ function HeaderOnly({ children }) {
                                     }}
                                 >
                                     {(isDropdown && !isLogin && (
-                                        <div class="dropdown-content">
+                                        <div className="dropdown-content">
                                             <a href={configRoutes.login}>Login</a>
                                             <a href={configRoutes.register}>Register</a>
                                             <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
@@ -185,7 +185,7 @@ function HeaderOnly({ children }) {
                                         </div>
                                     )) ||
                                         (isDropdown && isLogin && (
-                                            <div class="dropdown-content">
+                                            <div className="dropdown-content">
                                                 {isAdmin && <a href={routes.adminHomePage}>Admin Page</a>}
                                                 <a href={configRoutes.profile}>Profile</a>
                                                 <button
