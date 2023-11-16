@@ -9,6 +9,8 @@ const routes = {
     register: '/register',
     profile: '/profile',
     store: '/store',
+    team: '/team',
+    gallery: '/gallery',
 
     page404: '*',
 

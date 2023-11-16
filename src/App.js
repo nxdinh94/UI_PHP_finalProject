@@ -2,7 +2,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 
 import HomeLayout from './components/Layout/HomeLayout';
 import AnotherLayout from './components/Layout/AnotherLayout';
-import AdminLayout from './components/Layout/AdminLayout';
+import EmptyLayout from './components/Layout/EmptyLayout';
 import { publicRoutes } from './Routes';
 
 function App() {
@@ -17,7 +17,10 @@ function App() {
                         }
 
                         if (route.path.substring(0, 6) === '/admin') {
-                            Layout = AdminLayout;
+                            Layout = EmptyLayout;
+                        }
+                        if (route.isPage404) {
+                            Layout = EmptyLayout;
                         }
 
                         let Page = route.component;

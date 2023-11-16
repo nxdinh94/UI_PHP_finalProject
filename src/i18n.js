@@ -24,6 +24,9 @@ i18n.use(initReactI18next).init({
                 store: 'store',
                 gallery: 'gallery',
                 team: 'team',
+                servicePage: {
+                    title: 'Services',
+                },
                 contactPage: {
                     title: 'Contact',
                 },
@@ -44,6 +47,9 @@ i18n.use(initReactI18next).init({
                 store: 'Cửa hàng',
                 gallery: 'Thư viện',
                 team: 'Đội ngũ',
+                servicePage: {
+                    title: 'Dịch vụ',
+                },
                 contactPage: {
                     title: 'Liên hệ',
                 },

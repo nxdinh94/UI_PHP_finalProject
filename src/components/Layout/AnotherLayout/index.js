@@ -11,10 +11,27 @@ function AnotherLayout({ children }) {
     let isLoginPage = false;
     const loginURL = window.location.pathname;
     if (loginURL === '/login' || loginURL === '/register' || loginURL === '/admin') {
-        isLoginPage =true;
+        isLoginPage = true;
     }
     const { t } = useTranslation();
-    
+
+    const pathName = window.location.pathname;
+    let headtitle = t('contact');
+    if (pathName === '/services') {
+        headtitle = t('service');
+    }
+    if (pathName.substring(0, 5) === '/news') {
+        headtitle = t('news');
+    }
+    if (pathName === '/store') {
+        headtitle = t('store');
+    }
+    if (pathName === '/gallery') {
+        headtitle = t('gallery');
+    }
+    if (pathName === '/team') {
+        headtitle = t('team');
+    }
     return (
         <Fragment>
             <Container fluid className="alayout-wrapper">
@@ -25,12 +42,12 @@ function AnotherLayout({ children }) {
                         </div>
                         <div className="banner-title">
                             <div className="wrap-title">
-                                <h1 className="title">{t('contactPage.title')}</h1>
+                                <h1 className="title">{headtitle}</h1>
                                 <div className="d-flex">
                                     <Link className="p-link" to={configRoutes.home}>
                                         {t('home')}
                                     </Link>
-                                    <span>{' / ' + t('contactPage.title')}</span>
+                                    <span>{' / ' + headtitle}</span>
                                 </div>
                             </div>
                         </div>

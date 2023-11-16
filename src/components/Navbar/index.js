@@ -149,14 +149,14 @@ function HeaderOnly({ children }) {
                                     setIsOnPageTag(true);
                                 }}
                             >
-                                <NavLink style={styleForNavLink} href="/handbook">
+                                <NavLink style={styleForNavLink} href="#">
                                     {t('page')}
                                 </NavLink>
                                 {isOnPageTag && (
                                     <div class="dropdown-content">
-                                        <a href={configRoutes.login}>{t('store')}</a>
-                                        <a href={configRoutes.register}>{t('gallery')}</a>
-                                        <a href={configRoutes.register}>{t('team')}</a>
+                                        <a href={configRoutes.store}>{t('store')}</a>
+                                        <a href={configRoutes.gallery}>{t('gallery')}</a>
+                                        <a href={configRoutes.team}>{t('team')}</a>
                                     </div>
                                 )}
                             </NavItem>
