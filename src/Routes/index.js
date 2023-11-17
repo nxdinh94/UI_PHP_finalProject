@@ -12,6 +12,7 @@ import Profile from '~/Pages/Profile';
 import Store from '~/Pages/Store';
 import Gallery from '~/Pages/Gallery';
 import Team from '~/Pages//Team';
+import TeamDetail from '~/Pages/TeamDetail';
 import Page404 from '~/Pages/Page404';
 const publicRoutes = [
     { path: configRoutes.home, component: Home, isHome: true },
@@ -27,6 +28,7 @@ const publicRoutes = [
     { path: configRoutes.store, component: Store },
     { path: configRoutes.gallery, component: Gallery },
     { path: configRoutes.team, component: Team },
+    { path: configRoutes.teamDetail, component: TeamDetail },
     { path: configRoutes.page404, component: Page404, isPage404: true },
 ];
 const privateRoutes = [];

@@ -4,8 +4,9 @@ import { Container, Row, Col } from 'reactstrap';
 import React, { useEffect, useState } from 'react';
 import Slider from '../../components/Slider';
 import './Home.scss';
-import { getAllPetsAction, getAllInTeamAction } from '../../actions';
+import { getAllPetsAction } from '../../actions';
 import Swiper from '~/components/Swiper';
+import { useSelector } from 'react-redux';
 
 var settings = {
     dots: false,
@@ -46,6 +47,8 @@ function Home() {
     const [handleDataPet, setHandleDataPet] = useState([]);
     const [handleDataTeam, setHandleDataTeam] = useState([]);
 
+    const teamData = useSelector((state) => state.teamSlices.value);
+
     useEffect(() => {
         const fetchAllPets = async () => {
             try {
@@ -59,15 +62,7 @@ function Home() {
         fetchAllPets();
     }, []);
     useEffect(() => {
-        const fetchAllInExpertTeam = async () => {
-            try {
-                let teamData = await getAllInTeamAction();
-                setHandleDataTeam(teamData);
-            } catch (error) {
-                console.log('Error fetching data:', error);
-            }
-        };
-        fetchAllInExpertTeam();
+        setHandleDataTeam(teamData);
     }, []);
     return (
         <Container fluid className="px-0">

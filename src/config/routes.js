@@ -10,6 +10,7 @@ const routes = {
     profile: '/profile',
     store: '/store',
     team: '/team',
+    teamDetail: '/team/:slug/detail',
     gallery: '/gallery',
 
     page404: '*',
