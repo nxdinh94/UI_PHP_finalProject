@@ -24,6 +24,7 @@ i18n.use(initReactI18next).init({
                 store: 'store',
                 gallery: 'gallery',
                 team: 'team',
+                profile: 'Profile',
                 servicePage: {
                     title: 'Services',
                 },
@@ -46,6 +47,7 @@ i18n.use(initReactI18next).init({
                 page: 'Trang',
                 store: 'Cửa hàng',
                 gallery: 'Thư viện',
+                profile: 'Trang cá nhân',
                 team: 'Đội ngũ',
                 servicePage: {
                     title: 'Dịch vụ',

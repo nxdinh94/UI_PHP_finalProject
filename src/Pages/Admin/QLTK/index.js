@@ -4,6 +4,7 @@ import { Table, Input, Label } from 'reactstrap';
 import { handleStatusAccountApi } from '~/service/adminService';
 
 import { useSelector } from 'react-redux';
+import { useState } from 'react';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
 
@@ -11,11 +12,17 @@ import './QLTK.scss';
 
 function QLTK() {
     const accountData = useSelector((state) => state.QLTKSlice.value);
+    const [searchValue, setSearchValue] = useState('');
 
+    const handleOnChangeSearchValue = (e) => {
+        setSearchValue(e.target.value);
+    };
     const handleStatusAccount = async (id, status) => {
         const res = await handleStatusAccountApi(id, status);
-        toast(res.message);
-        window.location.reload();
+        toast(res.message, {
+            hideProgressBar: true,
+        });
+        // window.location.reload();
     };
 
     return (
@@ -28,7 +35,12 @@ function QLTK() {
                 <div className="div-action">
                     <button className="btn btn-primary"> Thêm mới</button>
                     <div className="div-search">
-                        <Input placeholder="Search" className="ps-2" />
+                        <Input
+                            placeholder="Search"
+                            className="ps-2"
+                            value={searchValue}
+                            onChange={handleOnChangeSearchValue}
+                        />
                     </div>
                 </div>
                 <Table responsive>
@@ -67,7 +79,7 @@ function QLTK() {
                                             className="btn btn-danger"
                                             onClick={() => handleStatusAccount(item.id, '1')}
                                         >
-                                            Hủy cấm
+                                            Hủy
                                         </button>
                                     )}
                                 </td>

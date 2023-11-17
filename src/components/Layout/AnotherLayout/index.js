@@ -32,6 +32,9 @@ function AnotherLayout({ children }) {
     if (pathName === '/team') {
         headtitle = t('team');
     }
+    if (pathName === '/profile') {
+        headtitle = t('profile');
+    }
     return (
         <Fragment>
             <Container fluid className="alayout-wrapper">
