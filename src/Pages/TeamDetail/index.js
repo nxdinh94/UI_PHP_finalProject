@@ -2,7 +2,8 @@ import { Container, Col, Row } from 'reactstrap';
 import './TeamDetail.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTiktok, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTiktok, faTwitter, faPinterest, faUsers, faAward } from '@fortawesome/free-brands-svg-icons';
+import { faHandHoldingHeart, faHandshake } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Tooltip } from 'react-tippy';
@@ -10,7 +11,10 @@ import { useState } from 'react';
 import Toastify from '~/components/Toastify';
 import { toast } from 'react-toastify';
 function TeamDetail() {
-    const [isShowTooltip, setIsShowTooltip] = useState(false);
+    const [isShowFbTooltip, setIsFbShowTooltip] = useState(false);
+    const [isTiktokShowTooltip, setIsTiktokShowTooltip] = useState(false);
+    const [isTwitterShowTooltip, setIsTwitterShowTooltip] = useState(false);
+    const [isPinterestShowTooltip, setIsPinterestShowTooltip] = useState(false);
 
     const { slug } = useParams();
 
@@ -18,7 +22,7 @@ function TeamDetail() {
     let specificPerson = dataSlices.filter((item) => {
         return item.id.toString() === slug;
     });
-    // console.log(specificPerson);
+    console.log(specificPerson);
     return (
         <Container className="my-5">
             <Toastify />
@@ -60,38 +64,144 @@ function TeamDetail() {
                             <Tooltip
                                 title="Welcome to React"
                                 position="bottom"
-                                trigger="click focus"
+                                trigger="manual"
                                 interactive
-                                open={isShowTooltip}
-                                duration={3000}
+                                open={isShowFbTooltip}
                                 html={
-                                    <span
-                                        style={{ color: ' #ec5078', cursor: 'pointer' }}
-                                        onClick={() => {
-                                            navigator.clipboard.writeText('https://facebook.com/huyln11');
-                                            toast('Copied to clipboard', { hideProgressBar: true , autoClose: 1000});
-                                        }}
-                                    >
-                                        https://facebook.com/huyln11
-                                    </span>
+                                    <div className="div-tippy">
+                                        <span
+                                            style={{ color: ' #ec5078', cursor: 'pointer' }}
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(specificPerson[0].facebook);
+                                                toast.success('Copied to clipboard', {
+                                                    hideProgressBar: true,
+                                                    autoClose: 1000,
+                                                });
+                                            }}
+                                        >
+                                            {specificPerson[0].facebook}
+                                        </span>
+                                    </div>
                                 }
                             >
+                                <div className="wrap-icon"></div>
                                 <FontAwesomeIcon
                                     icon={faFacebook}
                                     size="xl"
                                     className="icon"
-                                    onMouseOver={() => setIsShowTooltip(true)}
+                                    onMouseOver={() => setIsFbShowTooltip(true)}
                                     onMouseOut={() =>
                                         setTimeout(() => {
-                                            setIsShowTooltip(false);
-                                        }, 3000)
+                                            setIsFbShowTooltip(false);
+                                        }, 800)
                                     }
                                 />
                             </Tooltip>
-
-                            <FontAwesomeIcon icon={faTiktok} size="xl" className="icon" />
-                            <FontAwesomeIcon icon={faTwitter} size="xl" className="icon" />
-                            <FontAwesomeIcon icon={faPinterest} size="xl" className="icon" />
+                            <Tooltip
+                                title="Welcome to React"
+                                position="bottom"
+                                trigger="click focus"
+                                interactive
+                                open={isTiktokShowTooltip}
+                                html={
+                                    <div className="div-tippy">
+                                        <span
+                                            style={{ color: ' #ec5078', cursor: 'pointer' }}
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(specificPerson[0].tiktok);
+                                                toast.success('Copied to clipboard', {
+                                                    hideProgressBar: true,
+                                                    autoClose: 1000,
+                                                });
+                                            }}
+                                        >
+                                            {specificPerson[0].tiktok}
+                                        </span>
+                                    </div>
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={faTiktok}
+                                    size="xl"
+                                    className="icon"
+                                    onMouseOver={() => setIsTiktokShowTooltip(true)}
+                                    onMouseOut={() =>
+                                        setTimeout(() => {
+                                            setIsTiktokShowTooltip(false);
+                                        }, 800)
+                                    }
+                                />
+                            </Tooltip>
+                            <Tooltip
+                                title="Welcome to React"
+                                position="bottom"
+                                trigger="click focus"
+                                interactive
+                                open={isTwitterShowTooltip}
+                                html={
+                                    <div className="div-tippy">
+                                        <span
+                                            style={{ color: ' #ec5078', cursor: 'pointer' }}
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(specificPerson[0].twitter);
+                                                toast.success('Copied to clipboard', {
+                                                    hideProgressBar: true,
+                                                    autoClose: 1000,
+                                                });
+                                            }}
+                                        >
+                                            {specificPerson[0].twitter}
+                                        </span>
+                                    </div>
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={faTwitter}
+                                    size="xl"
+                                    className="icon"
+                                    onMouseOver={() => setIsTwitterShowTooltip(true)}
+                                    onMouseOut={() =>
+                                        setTimeout(() => {
+                                            setIsTwitterShowTooltip(false);
+                                        }, 800)
+                                    }
+                                />
+                            </Tooltip>
+                            <Tooltip
+                                title="Welcome to React"
+                                position="bottom"
+                                trigger="click focus"
+                                interactive
+                                open={isPinterestShowTooltip}
+                                html={
+                                    <div className="div-tippy">
+                                        <span
+                                            style={{ color: ' #ec5078', cursor: 'pointer' }}
+                                            onClick={() => {
+                                                navigator.clipboard.writeText(specificPerson[0].pinterest);
+                                                toast.success('Copied to clipboard', {
+                                                    hideProgressBar: true,
+                                                    autoClose: 1000,
+                                                });
+                                            }}
+                                        >
+                                            {specificPerson[0].pinterest}
+                                        </span>
+                                    </div>
+                                }
+                            >
+                                <FontAwesomeIcon
+                                    icon={faPinterest}
+                                    size="xl"
+                                    className="icon"
+                                    onMouseOver={() => setIsPinterestShowTooltip(true)}
+                                    onMouseOut={() =>
+                                        setTimeout(() => {
+                                            setIsPinterestShowTooltip(false);
+                                        }, 800)
+                                    }
+                                />
+                            </Tooltip>
                         </div>
                     </div>
                 </Col>
@@ -102,19 +212,7 @@ function TeamDetail() {
                         <h2>Experience about me</h2>
                     </div>
                     <div className="about-content">
-                        <p className="p-text py-4">
-                            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco
-                            laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in
-                            voluptate velit esse cillum dolore eu fugiat nulla pariatur. <br />
-                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
-                            anim id est laborum Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
-                            tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud
-                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor
-                            in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur
-                            sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-                            laborum
-                        </p>
+                        <p className="p-text py-4">{specificPerson[0].about}</p>
                     </div>
                 </div>
             </Row>
