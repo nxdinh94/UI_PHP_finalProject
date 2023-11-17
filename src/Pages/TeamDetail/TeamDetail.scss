@@ -1,0 +1,104 @@
+.team-avt {
+    img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: 100% 20%;
+        border-radius: 10px;
+    }
+}
+.team-infor {
+    width: 100%;
+    height: fit-content;
+    background-color: #f7f7f5;
+    padding: 40px;
+    border-radius: 5px;
+    .team-name {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0px;
+            bottom: -2px;
+            width: 70px;
+            height: 2px;
+            background-color: #ec5078;
+        }
+        h3 {
+            color: #0c1529;
+            font-weight: bolder;
+        }
+        p {
+            color: #82b440;
+        }
+    }
+    .detail-infor {
+        padding: 30px 0px;
+        border-bottom: 1px solid #ddd;
+        .list-in4 {
+            list-style-type: none;
+            padding: 0px;
+            .specific-in4 {
+                padding: 10px 0px;
+                .label {
+                    margin-right: 15px;
+                    width: 120px;
+                    display: inline-block;
+                    font-weight: bold;
+
+                    &::after {
+                        content: ':';
+                        margin: 0px 10px;
+                        float: right;
+                    }
+                }
+            }
+        }
+    }
+    .team-social {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 100px 0px 0px;
+        h3 {
+            font-weight: bold;
+            color: #0c1529;
+        }
+        .icon {
+            padding-top: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease-out;
+            path {
+                color: #757575;
+            }
+            &:hover{
+                scale: 1.3;
+                path{
+                    color: #82b440;
+                }
+            }
+        }
+    }
+}
+.team-descript {
+    margin: 30px 0px;
+    .about-header {
+        padding: 10px 0px;
+        border-bottom: 3px solid #ddd;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0px;
+            bottom: -2px;
+            width: 140px;
+            height: 2px;
+            background-color: #ec5078;
+        }
+        h2 {
+            color: #0c1529;
+            font-weight: bold;
+        }
+    }
+}

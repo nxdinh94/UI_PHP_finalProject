@@ -4,6 +4,8 @@ import { Container, Row, Col, Nav, NavItem, NavLink } from 'reactstrap';
 
 import configRoutes from '~/config/routes';
 
+import { Logout } from '~/service/userService';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope, faBell } from '@fortawesome/free-solid-svg-icons';
 
@@ -22,10 +24,14 @@ function Admin() {
     const [isDropdown, setIsDropdown] = useState(false);
     const [isDropDownAccount, setIsDropDownAccount] = useState(false);
 
-    const [path, setPath] = useState(window.location.pathname);
     let { slug } = useParams();
     const adminIn4String = sessionStorage.getItem('user_data');
     const adminIn4Object = JSON.parse(adminIn4String);
+
+    const handleLogoutBtn = () =>{
+        Logout();
+        window.location.href = '/';
+    }
 
     return (
         <div>
@@ -90,7 +96,9 @@ function Admin() {
                                 {isDropdown && (
                                     <div className="dropdown-content2">
                                         <a href={configRoutes.home}>Home</a>
-                                        <button>Logout</button>
+                                        <button onClick={()=>{
+                                            handleLogoutBtn();
+                                        }}>Logout</button>
                                         <a href={configRoutes.profile}>Profile</a>
                                     </div>
                                 )}

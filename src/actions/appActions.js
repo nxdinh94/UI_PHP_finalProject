@@ -1,5 +1,5 @@
-import { getAllPets, getAllInTeam } from '~/service/appServices';
+import { getAllPets } from '~/service/appServices';
 
-export const getAllPetsAction = () =>{
-    return  getAllPets();
-}
+export const getAllPetsAction = () => {
+    return getAllPets();
+};
