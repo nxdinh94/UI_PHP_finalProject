@@ -2,7 +2,8 @@ import { Container, Col, Row } from 'reactstrap';
 import './TeamDetail.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFacebook, faTiktok, faTwitter, faPinterest, faUsers, faAward } from '@fortawesome/free-brands-svg-icons';
+import { faFacebook, faTiktok, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
+import { faUsers, faAward } from '@fortawesome/free-solid-svg-icons';
 import { faHandHoldingHeart, faHandshake } from '@fortawesome/free-solid-svg-icons';
 import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
@@ -216,12 +217,71 @@ function TeamDetail() {
                     </div>
                 </div>
             </Row>
-            <Row>
+            <Row className="my-4">
                 <Col lg="6">
-                    <div className="team-skill">skill</div>
+                    <div className="team-skill">
+                        <div className="header-skill">
+                            <h4> Personal skill care</h4>
+                        </div>
+                        <div className="allskill">
+                            <div className="skill skill1">
+                                <span className="value p-text fw-bold">Pet Rooming</span>
+                                <span className="value p-text fw-bold">85%</span>
+                            </div>
+                            <div className="skill skill2">
+                                <span className="value p-text fw-bold">Pet Rooming</span>
+                                <span className="value p-text fw-bold">75%</span>
+                            </div>
+                            <div className="skill skill3">
+                                <span className="value p-text fw-bold">Pet Rooming</span>
+                                <span className="value p-text fw-bold">80%</span>
+                            </div>
+                            <div className="skill skill4">
+                                <span className="value p-text fw-bold">Pet Rooming</span>
+                                <span className="value p-text fw-bold">99%</span>
+                            </div>
+                        </div>
+                    </div>
                 </Col>
                 <Col lg="6">
-                    <div className="team-award">award</div>
+                    <div className="team-achieve">
+                        <div className="team team-group">
+                            <div className="wrapper-icon">
+                                <FontAwesomeIcon icon={faUsers} className="team-achieve-icon" />
+                            </div>
+                            <div className="team-content">
+                                <h2>12k</h2>
+                                <p>Happy Client</p>
+                            </div>
+                        </div>
+                        <div className="team team-group">
+                            <div className="wrapper-icon2">
+                                <FontAwesomeIcon icon={faAward} className="team-achieve-icon" />
+                            </div>
+                            <div className="team-content">
+                                <h2>79+</h2>
+                                <p>Nation Award</p>
+                            </div>
+                        </div>
+                        <div className="team team-group">
+                            <div className="wrapper-icon" style={{ backgroundColor: '#FEB942' }}>
+                                <FontAwesomeIcon icon={faHandshake} className="team-achieve-icon" />
+                            </div>
+                            <div className="team-content">
+                                <h2>2k+</h2>
+                                <p>Professional</p>
+                            </div>
+                        </div>
+                        <div className="team team-group">
+                            <div className="wrapper-icon4">
+                                <FontAwesomeIcon icon={faHandHoldingHeart} className="team-achieve-icon" />
+                            </div>
+                            <div className="team-content">
+                                <h2>12k</h2>
+                                <p>Adopted Pet</p>
+                            </div>
+                        </div>
+                    </div>
                 </Col>
             </Row>
         </Container>
