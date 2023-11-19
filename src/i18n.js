@@ -21,9 +21,9 @@ i18n.use(initReactI18next).init({
                 idiom: 'A dog is the only thing on earth that loves you more than it loves itself - Josh Billings',
                 contactnow: 'Contact now',
                 page: 'Page',
-                store: 'store',
-                gallery: 'gallery',
-                team: 'team',
+                store: 'Store',
+                gallery: 'Gallery',
+                team: 'Team',
                 profile: 'Profile',
                 servicePage: {
                     title: 'Services',

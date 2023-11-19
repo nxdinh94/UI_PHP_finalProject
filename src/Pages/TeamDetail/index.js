@@ -243,7 +243,8 @@ function TeamDetail() {
                         </div>
                     </div>
                 </Col>
-                <Col lg="6">
+                <Col lg="6" className='pt-3'>
+                    
                     <div className="team-achieve">
                         <div className="team team-group">
                             <div className="wrapper-icon">

@@ -1,12 +1,11 @@
 import './Team.scss';
 
+import { faFacebook, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-import { Col, Row, Container } from 'reactstrap';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import routes from '~/config/routes';
+import { Col, Container, Row } from 'reactstrap';
 function Team() {
     let dataSlices = useSelector((state) => state.teamSlices.value);
 

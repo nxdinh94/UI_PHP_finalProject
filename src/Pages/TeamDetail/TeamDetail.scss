@@ -121,9 +121,11 @@
             width: 100%;
             display: flex;
             justify-content: space-between;
+            padding: 15px 0px;
+            margin-bottom: 5px;
+            background-color: rgb(253, 245, 229);
+            border-radius: 5px;
             &.skill1 {
-                padding: 15px 0px;
-
                 position: relative;
                 &::after {
                     position: absolute;
@@ -137,7 +139,7 @@
                 }
             }
             &.skill2 {
-                padding: 15px 0px;
+                
 
                 position: relative;
                 &::after {
@@ -152,7 +154,7 @@
                 }
             }
             &.skill3 {
-                padding: 15px 0px;
+                
 
                 position: relative;
                 &::after {
@@ -167,7 +169,7 @@
                 }
             }
             &.skill4 {
-                padding: 15px 0px;
+                
 
                 position: relative;
                 &::after {
@@ -253,15 +255,6 @@
                 font-size: 17px;
                 font-weight: bolder;
             }
-        }
-        &.team-group {
-        }
-
-        &.team-award {
-        }
-        &.team-shakeHand {
-        }
-        &.team-holdHeart {
         }
     }
 }
