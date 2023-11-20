@@ -1,25 +1,14 @@
 .ser-img {
+    width: 90%;
+    object-fit: contain;
     border-radius: 70% 30% 58% 42% / 30% 30% 70% 70%;
     transition: all 0.3s ease-in-out;
-    margin: 0px 80px;
     cursor: pointer;
     &:hover {
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     }
 }
-.con-image {
-    position: absolute;
-    left: 125px;
-    top: -92px;
-    transition: all 0.3s ease-out;
-}
-.con-image:hover {
-    scale: 1.03;
-}
-.img-contain {
-    height: 460px;
-    position: relative;
-}
+
 .con-text {
     padding-top: 40px;
 }
@@ -30,21 +19,33 @@
     background-color: rgb(246, 246, 246);
 }
 
-.image-items {
-    border-radius: 45% 55% 56% 44% / 33% 44% 56% 67% ;
-    transition: all 0.3s ease-in-out;
-    cursor: pointer;
-    &:hover {
-        border-radius: 35% 65% 74% 26% / 44% 49% 51% 56%;
-    }
-}
-
 .card-item-content {
     padding: 20px;
     background-color: #fdf3e2;
     border-radius: 6px;
+    .image-items {
+        border-radius: 45% 55% 56% 44% / 33% 44% 56% 67%;
+        transition: all 0.3s ease-in-out;
+        cursor: pointer;
+        &:hover {
+            border-radius: 35% 65% 74% 26% / 44% 49% 51% 56%;
+        }
+    }
 }
 .col-img {
+    .img-contain {
+        height: 460px;
+        position: relative;
+        .con-image {
+            position: absolute;
+            left: 125px;
+            top: -92px;
+            transition: all 0.3s ease-out;
+            &:hover {
+                scale: 1.03;
+            }
+        }
+    }
     @media (max-width: 992px) {
         display: none;
     }

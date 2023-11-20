@@ -63,7 +63,7 @@ function Home() {
     }, []);
     useEffect(() => {
         setHandleDataTeam(teamData);
-    }, []);
+    }, [teamData]);
     return (
         <Container fluid className="px-0">
             <div className="container">

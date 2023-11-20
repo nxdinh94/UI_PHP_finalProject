@@ -47,25 +47,25 @@ function News() {
                             <h4>Categories</h4>
                             <u className="list-cate">
                                 <li className="item-cate">
-                                    <FontAwesomeIcon icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
                                     <Link to="/news/dog/category">
                                         <span>Dog</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
                                     <Link to="/news/cat/category">
                                         <span>Cat</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
                                     <Link to="/news/petnews/category">
                                         <span>Pet News</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
                                     <Link to="/news/catnews/category">
                                         <span>Cat News</span>
                                     </Link>

@@ -1,3 +1,16 @@
+$lg: 992px;
+$surfacepro7: 913px;
+$ipadair: 821px;
+$ipadmini: 769px;
+$ip14prm: 431px;
+$ipxr: 415px;
+$ip12pro: 391px;
+$ipse: 376px;
+$sss8: 361px;
+
+.co-text {
+    text-align: justify;
+}
 .co-contact {
     margin: 100px 0px;
     p {
@@ -13,15 +26,19 @@
                 font-size: 42px;
             }
         }
-    }
-    .discipt {
-        color: rgb(137, 137, 134);
-        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        margin-left: 30px;
-        @media (max-width: 580px) {
-            font-size: 14px;
+        &.discipt {
+            color: rgb(137, 137, 134);
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin-left: 30px;
+            @media (max-width: 580px) {
+                font-size: 14px;
+            }
+            @media (max-width: $ipse) {
+                margin: 0px 10px 10px 10px;
+            }
         }
     }
+
     animation: 0.8s ease-in-out co-contact;
     @keyframes co-contact {
         from {
@@ -65,36 +82,42 @@
             width: 100%;
             padding: 45px;
             height: 151px;
-            &:first-child {
-                img {
-                    left: 313px !important;
-                }
-            }
-            &:nth-child(2) {
-                img {
-                    left: 313px !important;
-                }
-            }
+            &:first-child,
+            &:nth-child(2),
             &:last-child {
                 img {
                     left: 313px !important;
                 }
             }
         }
-        @media (max-width: 772px) {
-            &:first-child {
-                img {
-                    left: 224px !important;
-                }
-            }
-            &:nth-child(2) {
-                img {
-                    left: 224px !important;
-                }
-            }
+
+        @media (max-width: $surfacepro7) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
             &:last-child {
                 img {
-                    left: 224px !important;
+                    left: 325px !important;
+                }
+            }
+        }
+        @media (max-width: $ipadair) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 325px !important;
+                }
+            }
+        }
+        @media (max-width: $ipadmini) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 325px !important;
                 }
             }
         }
@@ -132,20 +155,57 @@
                 }
             }
         }
-        @media (max-width: 510px) {
-            &:first-child {
-                img {
-                    left: 199px !important;
-                }
-            }
-            &:nth-child(2) {
-                img {
-                    left: 199px !important;
-                }
-            }
+        @media (max-width: $ip14prm) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
             &:last-child {
                 img {
-                    left: 199px !important;
+                    left: 180px !important;
+                }
+            }
+        }
+        @media (max-width: $ipxr) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 172px !important;
+                }
+            }
+        }
+        @media (max-width: $ip12pro) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 160px !important;
+                }
+            }
+        }
+        @media (max-width: $ipse) {
+            margin: 20px 0px;
+            &:first-child {
+                img {
+                    left: 154px !important;
+                }
+            }
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 152px !important;
+                }
+            }
+        }
+        @media (max-width: $ipse) {
+            margin: 20px 0px;
+            &:first-child,
+            &:nth-child(2),
+            &:last-child {
+                img {
+                    left: 145px !important;
                 }
             }
         }

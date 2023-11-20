@@ -1,5 +1,6 @@
 import './Gallery.scss';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import { useState } from 'react';
 import { Container, Row, Col } from 'reactstrap';
 function Gallery() {
     const imageStore = [
@@ -61,22 +62,39 @@ function Gallery() {
         '/images/team/team-alt-3.jpg',
         '/images/team/team-alt-4.jpg',
     ];
+    const [onHover, setOnhover] = useState(false);
+    console.log(onHover);
     return (
         <Container className="my-4">
             <Row>
                 <Col className="col-4 col-gallery">
                     {imageStore.map((item, index) => (
-                        <img className="gallery-img" src={item} key={index} />
+                        <div
+                            key={index}
+                            onMouseOver={() => {
+                                setOnhover(true);
+                            }}
+                            onMouseLeave={() => {
+                                setOnhover(false);
+                            }}
+                        >
+                            <div className="overlayer"></div>
+                            <img className="gallery-img" src={item} />
+                        </div>
                     ))}
                 </Col>
                 <Col className="col-4 col-gallery">
                     {imageStore2.map((item, index) => (
-                        <img className="gallery-img" src={item} key={index} />
+                        <div>
+                            <img className="gallery-img" src={item} key={index} />
+                        </div>
                     ))}
                 </Col>
                 <Col className="col-4 col-gallery">
                     {imageStore3.map((item, index) => (
-                        <img className="gallery-img" src={item} key={index} />
+                        <div>
+                            <img className="gallery-img" src={item} key={index} />
+                        </div>
                     ))}
                 </Col>
             </Row>

@@ -22,7 +22,7 @@ function Login() {
     const handleLogin = async (emaill, passwordd) => {
         setIsHandlingLogin(true);
         let res = await handleLoginApi(emaill, passwordd);
-        console.log(res);
+        // console.log(res);
         setTimeout(() => {
             setIsHandlingLogin(false);
         }, 800);

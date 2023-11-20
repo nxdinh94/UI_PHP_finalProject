@@ -25,6 +25,7 @@ i18n.use(initReactI18next).init({
                 gallery: 'Gallery',
                 team: 'Team',
                 profile: 'Profile',
+                otherMem: 'Other members',
                 servicePage: {
                     title: 'Services',
                 },
@@ -49,6 +50,7 @@ i18n.use(initReactI18next).init({
                 gallery: 'Thư viện',
                 profile: 'Trang cá nhân',
                 team: 'Đội ngũ',
+                otherMem: 'Thành viên khác',
                 servicePage: {
                     title: 'Dịch vụ',
                 },

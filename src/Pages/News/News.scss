@@ -18,6 +18,7 @@
         }
         .list-cate {
             list-style-type: none;
+
             .item-cate {
                 padding: 22px 0px 15px 0px;
                 border-top: 1px solid #dcdada;
@@ -38,6 +39,11 @@
                     cursor: pointer;
                     span {
                         color: #ec5078;
+                    }
+                    .arrow-news {
+                        path {
+                            color: #ec5078;
+                        }
                     }
                 }
                 &:last-child {

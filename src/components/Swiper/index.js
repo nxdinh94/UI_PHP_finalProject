@@ -11,12 +11,12 @@ import 'swiper/css/effect-flip';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
-export default ({ teamData }) => {
+export default ({ teamData, autoplay }) => {
     return (
         <Swiper
             // install Swiper modules
             modules={[Navigation, Scrollbar, A11y, Autoplay]}
-            autoplay={{
+            autoplay={autoplay|| {
                 delay: 2500,
                 disableOnInteraction: false,
             }}

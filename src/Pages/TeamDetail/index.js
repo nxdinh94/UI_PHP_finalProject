@@ -1,6 +1,8 @@
 import { Container, Col, Row } from 'reactstrap';
 import './TeamDetail.scss';
 
+import Swiper from '~/components/Swiper';
+
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebook, faTiktok, faTwitter, faPinterest } from '@fortawesome/free-brands-svg-icons';
 import { faUsers, faAward } from '@fortawesome/free-solid-svg-icons';
@@ -11,14 +13,17 @@ import { Tooltip } from 'react-tippy';
 import { useState } from 'react';
 import Toastify from '~/components/Toastify';
 import { toast } from 'react-toastify';
+import { useTranslation } from 'react-i18next';
 function TeamDetail() {
     const [isShowFbTooltip, setIsFbShowTooltip] = useState(false);
     const [isTiktokShowTooltip, setIsTiktokShowTooltip] = useState(false);
     const [isTwitterShowTooltip, setIsTwitterShowTooltip] = useState(false);
     const [isPinterestShowTooltip, setIsPinterestShowTooltip] = useState(false);
 
-    const { slug } = useParams();
+    const teamData = useSelector((state) => state.teamSlices.value);
 
+    const { slug } = useParams();
+    const { t } = useTranslation();
     let dataSlices = useSelector((state) => state.teamSlices.value);
     let specificPerson = dataSlices.filter((item) => {
         return item.id.toString() === slug;
@@ -243,8 +248,7 @@ function TeamDetail() {
                         </div>
                     </div>
                 </Col>
-                <Col lg="6" className='pt-3'>
-                    
+                <Col lg="6" className="pt-3">
                     <div className="team-achieve">
                         <div className="team team-group">
                             <div className="wrapper-icon">
@@ -284,6 +288,24 @@ function TeamDetail() {
                         </div>
                     </div>
                 </Col>
+            </Row>
+            <Row>
+                <div className="other-members">
+                    <div className="slider-title">
+                        <p>
+                            <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
+                            <span className="topic1">{t('otherMem')}</span>
+                        </p>
+                        <h2 className="topic2">{t('otherMem')}</h2>
+                    </div>
+                    <Swiper
+                        teamData={teamData}
+                        autoplay={{
+                            delay: 1500,
+                            disableOnInteraction: false,
+                        }}
+                    />
+                </div>
             </Row>
         </Container>
     );

@@ -2,6 +2,7 @@ $sm: 576px;
 $md: 768px;
 $lg: 992px;
 $xl: 1200px;
+$pixel7: 413px;
 @import 'https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Roboto+Condensed:wght@300&display=swap';
 .container {
     background-color: transparent;
@@ -14,14 +15,17 @@ $xl: 1200px;
     }
     .container-fluid {
         padding: 0px !important;
+        display: flex;
+        justify-content: space-around;
     }
 }
 
 .nav-item {
     font-size: 20px !important;
     margin: 0 8px;
+    text-align: center;
 
-    &.pageTag {
+    .pageTag {
         position: relative;
         .dropdown-content {
             position: absolute;
@@ -42,6 +46,10 @@ $xl: 1200px;
                 border-right: 10px solid transparent;
                 border-bottom: 20px solid transparent;
                 transform: translateX(-50%);
+            }
+            @media (max-width: $pixel7) {
+                top: 16px;
+                right: 0px;
             }
             button,
             a {
@@ -101,6 +109,10 @@ $xl: 1200px;
                 border-right: 10px solid transparent;
                 border-bottom: 20px solid transparent;
                 transform: translateX(-50%);
+            }
+            @media (max-width: $pixel7) {
+                top: 0px;
+                right: -170px;
             }
             button,
             a {

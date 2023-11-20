@@ -143,22 +143,23 @@ function HeaderOnly({ children }) {
                                 </NavLink>
                             </NavItem>
                             <NavItem
-                                className="pageTag"
                                 onMouseLeave={() => setIsOnPageTag(false)}
                                 onMouseOver={() => {
                                     setIsOnPageTag(true);
                                 }}
                             >
-                                <NavLink style={styleForNavLink} href="#">
-                                    {t('page')}
-                                </NavLink>
-                                {isOnPageTag && (
-                                    <div className="dropdown-content">
-                                        <a href={configRoutes.store}>{t('store')}</a>
-                                        <a href={configRoutes.gallery}>{t('gallery')}</a>
-                                        <a href={configRoutes.team}>{t('team')}</a>
-                                    </div>
-                                )}
+                                <div className="pageTag">
+                                    <NavLink style={styleForNavLink} href="#">
+                                        {t('page')}
+                                    </NavLink>
+                                    {isOnPageTag && (
+                                        <div className="dropdown-content">
+                                            <a href={configRoutes.store}>{t('store')}</a>
+                                            <a href={configRoutes.gallery}>{t('gallery')}</a>
+                                            <a href={configRoutes.team}>{t('team')}</a>
+                                        </div>
+                                    )}
+                                </div>
                             </NavItem>
                             <NavItem>
                                 <NavLink style={styleForNavLink} href="/contact">
@@ -204,10 +205,7 @@ function HeaderOnly({ children }) {
                                             </div>
                                         ))}
 
-                                    <img
-                                        src={avatar || '/images/favicon/apple-icon-57x57.png'}
-                                        className="avt"
-                                    />
+                                    <img src={avatar || '/images/favicon/apple-icon-57x57.png'} className="avt" />
                                 </div>
                             </NavItem>
                         </Nav>
