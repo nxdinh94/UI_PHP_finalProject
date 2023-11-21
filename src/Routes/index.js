@@ -10,7 +10,7 @@ import NewsDetail from '~/Pages/NewsDetail';
 import Admin from '~/Pages/Admin';
 import Profile from '~/Pages/Profile';
 import Store from '~/Pages/Store';
-import Gallery from '~/Pages/Gallery';
+import Gallery from '~/Pages/Gallery/';
 import Team from '~/Pages//Team';
 import TeamDetail from '~/Pages/TeamDetail';
 import Page404 from '~/Pages/Page404';
