@@ -9,6 +9,7 @@ const routes = {
     register: '/register',
     profile: '/profile',
     store: '/store',
+    storeDetail: '/storeDetail/:slug',
     team: '/team',
     teamDetail: '/team/:slug/detail',
     gallery: '/gallery',

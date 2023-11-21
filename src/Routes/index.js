@@ -10,6 +10,7 @@ import NewsDetail from '~/Pages/NewsDetail';
 import Admin from '~/Pages/Admin';
 import Profile from '~/Pages/Profile';
 import Store from '~/Pages/Store';
+import StoreDetail from '~/Pages/StoreDetail';
 import Gallery from '~/Pages/Gallery/';
 import Team from '~/Pages//Team';
 import TeamDetail from '~/Pages/TeamDetail';
@@ -26,6 +27,7 @@ const publicRoutes = [
     { path: configRoutes.admin, component: Admin, isAdmin: true },
     { path: configRoutes.profile, component: Profile },
     { path: configRoutes.store, component: Store },
+    { path: configRoutes.storeDetail, component: StoreDetail },
     { path: configRoutes.gallery, component: Gallery },
     { path: configRoutes.team, component: Team },
     { path: configRoutes.teamDetail, component: TeamDetail },
