@@ -26,6 +26,7 @@ i18n.use(initReactI18next).init({
                 team: 'Team',
                 profile: 'Profile',
                 otherMem: 'Other members',
+                registedService: 'Registed services',
                 servicePage: {
                     title: 'Services',
                 },
@@ -51,6 +52,9 @@ i18n.use(initReactI18next).init({
                 profile: 'Trang cá nhân',
                 team: 'Đội ngũ',
                 otherMem: 'Thành viên khác',
+
+                registedService: 'Dịch vụ đã đăng ký',
+
                 servicePage: {
                     title: 'Dịch vụ',
                 },

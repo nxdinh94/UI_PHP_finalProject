@@ -43,6 +43,14 @@ export function handleUpdateProfileApi(...params) {
     );
 }
 
+export function handleGetRegistedServices(userId) {
+    return axios.post('/backend_pettu/api/users/getService', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
+
 export function Logout() {
     sessionStorage.clear();
 }

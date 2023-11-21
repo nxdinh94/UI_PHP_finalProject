@@ -1,13 +1,16 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Input, Label, FormGroup, FormText } from 'reactstrap';
+import { Container, Row, Col, Input, Label, FormGroup, Table } from 'reactstrap';
 
 import './Profile.scss';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
-import { handleUpdateProfileApi } from '~/service/userService';
+import { useTranslation } from 'react-i18next';
+
+import { handleUpdateProfileApi, handleGetRegistedServices } from '~/service/userService';
 
 function Profile() {
     const [isPreviewMode, setIsPreviewMode] = useState(true);
+    const [listRegistedServces, setListRegistedServces] = useState([]);
 
     const userData = JSON.parse(sessionStorage.getItem('user_data'));
     const userId = userData.id;
@@ -81,6 +84,15 @@ function Profile() {
         }
     };
 
+    const [t] = useTranslation();
+
+    useEffect(() => {
+        const handle = async () => {
+            const res = await handleGetRegistedServices(userId);
+            setListRegistedServces(res);
+        };
+        handle();
+    }, []);
     return (
         <Container className="profile-container">
             <Row className="profile-row">
@@ -294,6 +306,40 @@ function Profile() {
                         </div>
                     </div>
                 </Col>
+            </Row>
+            <Row>
+                <div className="registed-services-wrapper">
+                    <div className="slider-title">
+                        <p>
+                            <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
+                            <span className="topic1">{t('registedService')}</span>
+                        </p>
+                        <h2 className="topic2">{t('registedService')}</h2>
+                    </div>
+                    <div className="registed-item">
+                        <Table responsive>
+                            <thead>
+                                <tr>
+                                    <th className="fw-bold">STT</th>
+                                    <th className="fw-bold">Tên dịch vụ</th>
+                                    <th className="fw-bold">Hành động</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {listRegistedServces.map((item) => (
+                                    <tr key={item.id}>
+                                        <th scope="row">{item.id}</th>
+                                        <td>{item.name}</td>
+                                        <td>
+                                            <button className="btn btn-success">Xem chi tiết</button>
+                                            <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </Table>
+                    </div>
+                </div>
             </Row>
         </Container>
     );
