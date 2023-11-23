@@ -21,14 +21,36 @@
 
 .card-item-content {
     padding: 20px;
+    height: 380px;
     background-color: #fdf3e2;
     border-radius: 6px;
     .image-items {
+        max-width: 220px;
         border-radius: 45% 55% 56% 44% / 33% 44% 56% 67%;
         transition: all 0.3s ease-in-out;
         cursor: pointer;
         &:hover {
             border-radius: 35% 65% 74% 26% / 44% 49% 51% 56%;
+        }
+    }
+    .services-action {
+        display: flex;
+        justify-content: space-around;
+        .btn-detail {
+            background-color: #7fb432;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                background-color: #6ea51a;
+            }
+        }
+        .btn-register {
+            background-color: #ec5078;
+            color: white;
+            transition: all 0.3s ease-in-out;
+            &:hover {
+                background-color: #f03765;
+            }
         }
     }
 }

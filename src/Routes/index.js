@@ -2,6 +2,7 @@ import configRoutes from '~/config/routes';
 
 import Home from '~/Pages/Home';
 import Service from '~/Pages/Service';
+import ServiceDetail from '~/Pages/ServiceDetail';
 import Contact from '~/Pages/Contact';
 import News from '~/Pages/News';
 import Login from '~/Pages/Login';
@@ -18,6 +19,7 @@ import Page404 from '~/Pages/Page404';
 const publicRoutes = [
     { path: configRoutes.home, component: Home, isHome: true },
     { path: configRoutes.services, component: Service },
+    { path: configRoutes.servicesDetail, component: ServiceDetail },
     { path: configRoutes.contact, component: Contact },
     { path: configRoutes.news, component: News },
     { path: configRoutes.login, component: Login },

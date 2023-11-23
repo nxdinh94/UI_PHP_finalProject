@@ -3,7 +3,8 @@ import { Gallery } from 'react-grid-gallery';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { images, CustomImage } from './images.js';
-
+import { Container } from 'reactstrap';
+import './Gallery.scss';
 export default function App() {
     const [index, setIndex] = useState(-1);
 
@@ -19,7 +20,15 @@ export default function App() {
     const handleMoveNext = () => setIndex(nextIndex);
 
     return (
-        <div>
+        <Container className="my-5">
+            <div className="text-center">
+                <p className="my-1">
+                    <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
+                    <span className="topic1">My gallery</span>
+                </p>
+                <h2 className="topic2">My gallery</h2>
+            </div>
+            
             <Gallery images={images} onClick={handleClick} enableImageSelection={false} />
             {!!currentImage && (
                 /* @ts-ignore */
@@ -36,6 +45,6 @@ export default function App() {
                     onMoveNextRequest={handleMoveNext}
                 />
             )}
-        </div>
+        </Container>
     );
 }

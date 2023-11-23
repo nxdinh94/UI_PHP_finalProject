@@ -13,6 +13,10 @@ import { handleFetchAccountData } from '~/Pages/Admin/QLTK/QLTKSlices';
 
 import TeamSlices from '~/Pages/Team/TeamSlices';
 import { handleFetchAllTeamThunk } from '~/Pages/Team/TeamSlices';
+
+import ServicesSlices from '~/Pages/Service/ServicesSlice';
+import { handleGetAllServicesThunk } from '~/Pages/Service/ServicesSlice';
+
 // import { changeLanguage } from '~/components/Navbar/languageSlice';
 
 const persistConfig = {
@@ -25,6 +29,7 @@ const rootReducer = combineReducers({
     language: languageReducer,
     QLTKSlice: QLTKSlice,
     teamSlices: TeamSlices,
+    servicesSlices: ServicesSlices,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -39,3 +44,4 @@ export const persistor = persistStore(store);
 store.dispatch(fetchNewsAsyn());
 store.dispatch(handleFetchAccountData());
 store.dispatch(handleFetchAllTeamThunk());
+store.dispatch(handleGetAllServicesThunk());

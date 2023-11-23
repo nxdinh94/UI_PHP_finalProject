@@ -1,6 +1,7 @@
 const routes = {
     home: '/',
     services: '/services',
+    servicesDetail: '/services/:slug/detail',
     news: '/news/dog/category',
     newsDetail: '/news/:cate/:slug/detail',
     newsCategory: '/news/:slug/category',

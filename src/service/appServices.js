@@ -6,3 +6,6 @@ export const getAllPets = () => {
 export const getAllInTeam = () => {
     return axios.get('/backend_pettu/api/expert_team/teamInfo');
 };
+export const getAllServices = () => {
+    return axios.get('/backend_pettu/api/services/servicesInfo');
+}

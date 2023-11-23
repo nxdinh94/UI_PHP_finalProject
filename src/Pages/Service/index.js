@@ -1,7 +1,11 @@
 import './Service.scss';
 import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+
+import { useSelector } from 'react-redux';
 import '~/components/Swiper/Swiper.scss';
+
+import { Link } from 'react-router-dom';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -11,7 +15,14 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-flip';
 import { Container, Row, Col } from 'reactstrap';
+import { useEffect, useState } from 'react';
 function Service() {
+    const servicesDataRedux = useSelector((state) => state.servicesSlices.value);
+    const [servicesData, setServicesData] = useState([]);
+    console.log(servicesDataRedux);
+    useEffect(() => {
+        setServicesData(servicesDataRedux);
+    }, [servicesDataRedux]);
     return (
         <div className="container-fluid" style={{ padding: '10px 0px' }}>
             <Container fluid style={{ backgroundColor: '#F6F6F6', margin: '40px 0px' }}>
@@ -54,13 +65,13 @@ function Service() {
                     </Row>
                 </Container>
             </Container>
-            <Container>
+            <Container className="mb-5">
                 <Swiper
                     // install Swiper modules
                     modules={[Navigation, Scrollbar, A11y, Autoplay]}
                     autoplay={{
-                        delay: 2500,
-                        disableOnInteraction: false,
+                        delay: 3500,
+                        disableOnInteraction: true,
                     }}
                     spaceBetween={30}
                     slidesPerView={4}
@@ -84,134 +95,34 @@ function Service() {
                         },
                     }}
                 >
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
+                    {servicesData.map((item, key) => (
+                        <SwiperSlide key={key}>
+                            <div className="card-item-content">
+                                <img
+                                    className="img-fluid image-items mx-auto d-block card-img mb-4"
+                                    src={item.icon}
+                                    alt="alternation"
+                                />
+                                <div className="text text-center">
+                                    <p className="h4 fw-bolder">{item.name}</p>
+                                    <p className="p-text">{item.dersc}</p>
+                                </div>
+                                <div className="services-action">
+                                    <Link to={`/services/${item.slug}/detail`} className="btn btn-detail">
+                                        Chi tiết
+                                    </Link>
+                                    <button
+                                        onClick={() => {
+                                            alert('hello');
+                                        }}
+                                        className="btn btn-register"
+                                    >
+                                        Đăng kí
+                                    </button>
+                                </div>
                             </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
-                    <SwiperSlide>
-                        <div className="card-item-content">
-                            <img
-                                className="img-fluid image-items mx-auto d-block card-img mb-4"
-                                src="/images/blog/blog-1.jpg"
-                                alt="alternation"
-                            />
-                            <div className="text text-center">
-                                <p className="h4 fw-bolder">Dịch vụ tắm rửa và chăm sóc lông</p>
-                                <p className="p-text">
-                                    Dịch vụ giúp giữ cho bộ lông của thú cưng sạch sẽ và khỏe mạnh: tắm rửa, cắt tỉa
-                                    lông, chải lông, và các dịch vụ tạo kiểu lông khác.
-                                </p>
-                            </div>
-                        </div>
-                    </SwiperSlide>
+                        </SwiperSlide>
+                    ))}
                 </Swiper>
             </Container>
             <Container fluid style={{ backgroundColor: 'antiquewhite', margin: '40px 0px', height: '460px' }}>
