@@ -33,17 +33,15 @@
             border-radius: 35% 65% 74% 26% / 44% 49% 51% 56%;
         }
     }
+    .text {
+        .h4 {
+            color: #041d3c;
+        }
+    }
     .services-action {
         display: flex;
         justify-content: space-around;
-        .btn-detail {
-            background-color: #7fb432;
-            color: white;
-            transition: all 0.3s ease-in-out;
-            &:hover {
-                background-color: #6ea51a;
-            }
-        }
+        
         .btn-register {
             background-color: #ec5078;
             color: white;

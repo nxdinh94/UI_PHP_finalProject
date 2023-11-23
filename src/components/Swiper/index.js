@@ -9,6 +9,7 @@ import 'swiper/css/scrollbar';
 import 'swiper/css/autoplay';
 import 'swiper/css/effect-flip';
 
+import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 export default ({ teamData, autoplay }) => {
@@ -16,10 +17,12 @@ export default ({ teamData, autoplay }) => {
         <Swiper
             // install Swiper modules
             modules={[Navigation, Scrollbar, A11y, Autoplay]}
-            autoplay={autoplay|| {
-                delay: 2500,
-                disableOnInteraction: false,
-            }}
+            autoplay={
+                autoplay || {
+                    delay: 2500,
+                    disableOnInteraction: false,
+                }
+            }
             spaceBetween={50}
             slidesPerView={4}
             navigation
@@ -49,7 +52,9 @@ export default ({ teamData, autoplay }) => {
                             <img src={data.avatar} />
                         </div>
                         <div className="name">
-                            <h4>{data.fullname}</h4>
+                            <a href={`/team/${data.id}/detail`} className="h4">
+                                {data.fullname}
+                            </a>
                         </div>
                         <div className="position">
                             <h6>{data.name}</h6>
@@ -59,15 +64,15 @@ export default ({ teamData, autoplay }) => {
                                 <FontAwesomeIcon
                                     icon={faFacebook}
                                     size="lg"
-                                    className="facebook-icon"
+                                    className="icon"
                                     style={{ color: 'red' }}
                                 />
                             </div>
                             <div className="social-icon">
-                                <FontAwesomeIcon icon={faTiktok} size="lg" />
+                                <FontAwesomeIcon icon={faTiktok} size="lg" className="icon" />
                             </div>
                             <div className="social-icon">
-                                <FontAwesomeIcon icon={faTwitter} size="lg" />
+                                <FontAwesomeIcon icon={faTwitter} size="lg" className="icon" />
                             </div>
                         </div>
                     </div>

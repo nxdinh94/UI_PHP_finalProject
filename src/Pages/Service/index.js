@@ -108,17 +108,9 @@ function Service() {
                                     <p className="p-text">{item.dersc}</p>
                                 </div>
                                 <div className="services-action">
-                                    <Link to={`/services/${item.slug}/detail`} className="btn btn-detail">
-                                        Chi tiết
+                                    <Link to={`/services/${item.slug}/detail`} className="btn btn-register">
+                                        Đăng ký
                                     </Link>
-                                    <button
-                                        onClick={() => {
-                                            alert('hello');
-                                        }}
-                                        className="btn btn-register"
-                                    >
-                                        Đăng kí
-                                    </button>
                                 </div>
                             </div>
                         </SwiperSlide>

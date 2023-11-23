@@ -16,8 +16,8 @@ import { useTranslation } from 'react-i18next';
 import routes from '~/config/routes';
 
 const logoOption = {
-    lightLogo: 'https://nxdinh94.github.io/dacs1/img/logo-light.png',
-    darkLogo: 'https://nxdinh94.github.io/dacs1/img/logo-dark.png',
+    lightLogo: '/images/logo/logo-light.png',
+    darkLogo: '/images/logo/logo-dark.png',
 };
 
 function HeaderOnly({ children }) {
