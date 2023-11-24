@@ -32,6 +32,7 @@ const publicRoutes = [
     { path: configRoutes.storeDetail, component: StoreDetail },
     { path: configRoutes.gallery, component: Gallery },
     { path: configRoutes.team, component: Team },
+    { path: configRoutes.teamCategory, component: Team },
     { path: configRoutes.teamDetail, component: TeamDetail },
     { path: configRoutes.page404, component: Page404, isPage404: true },
 ];

@@ -9,3 +9,6 @@ export const getAllInTeam = () => {
 export const getAllServices = () => {
     return axios.get('/backend_pettu/api/services/servicesInfo');
 }
+export const getTimeUsingService = () => {
+    return axios.get('/backend_pettu/api/services/getTimeWorking');
+}

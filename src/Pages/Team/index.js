@@ -4,15 +4,22 @@ import { faFacebook, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-ic
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
+import { Link, useParams } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 function Team() {
     let dataSlices = useSelector((state) => state.teamSlices.value);
-
+    console.log(dataSlices);
+    const { category } = useParams();
+    // console.log(category);
     const [dataTeam, setDataTeam] = useState([dataSlices]);
     useEffect(() => {
-        setDataTeam(dataSlices);
-    }, []);
+        if(category){
+            let dataByCate = dataSlices.filter((item)=>{
+                return item.position_id == category;
+            });
+            setDataTeam(dataByCate);
+        }else setDataTeam(dataSlices);
+    }, [dataSlices]);
     return (
         <Container className="my-5">
             <Row>

@@ -16,15 +16,29 @@ import 'swiper/css/autoplay';
 import 'swiper/css/effect-flip';
 import { Container, Row, Col } from 'reactstrap';
 import { useEffect, useState } from 'react';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
+import { useTranslation } from 'react-i18next';
 function Service() {
     const servicesDataRedux = useSelector((state) => state.servicesSlices.value);
     const [servicesData, setServicesData] = useState([]);
-    console.log(servicesDataRedux);
+
+    const { t } = useTranslation();
+
+    const isLogin = sessionStorage.getItem('isLogin');
+    const handleOnRegisterBtn = (slug) => {
+        if (isLogin) {
+            window.location.href = `/services/${slug}/detail`;
+        } else {
+            toast.error(t('requestLogin'));
+        }
+    };
     useEffect(() => {
         setServicesData(servicesDataRedux);
     }, [servicesDataRedux]);
     return (
         <div className="container-fluid" style={{ padding: '10px 0px' }}>
+            <Toastify />
             <Container fluid style={{ backgroundColor: '#F6F6F6', margin: '40px 0px' }}>
                 <Container>
                     <Row className="py-5">
@@ -108,9 +122,14 @@ function Service() {
                                     <p className="p-text">{item.dersc}</p>
                                 </div>
                                 <div className="services-action">
-                                    <Link to={`/services/${item.slug}/detail`} className="btn btn-register">
+                                    <button
+                                        onClick={() => {
+                                            handleOnRegisterBtn(item.slug);
+                                        }}
+                                        className="btn btn-register"
+                                    >
                                         Đăng ký
-                                    </Link>
+                                    </button>
                                 </div>
                             </div>
                         </SwiperSlide>

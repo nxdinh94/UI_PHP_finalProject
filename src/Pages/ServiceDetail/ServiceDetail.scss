@@ -1,0 +1,135 @@
+.service-avt {
+    img {
+        width: 100%;
+        height: 500px;
+        object-fit: cover;
+        object-position: 100% 20%;
+        border-radius: 10px;
+    }
+}
+.service-infor,
+.register-service {
+    width: 100%;
+    height: fit-content;
+    background-color: #f7f7f5;
+    padding: 40px;
+    border-radius: 5px;
+}
+.service-infor {
+    .service-name {
+        border-bottom: 1px solid #ddd;
+        padding-bottom: 20px;
+        position: relative;
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0px;
+            bottom: -2px;
+            width: 70px;
+            height: 2px;
+            background-color: #ec5078;
+        }
+        h3 {
+            color: #0c1529;
+            font-weight: bolder;
+        }
+        p {
+            color: #82b440;
+        }
+    }
+
+    // .service-content{
+
+    // }
+    .service-cost,
+    .service-team {
+        display: flex;
+        h5 {
+            color: #0c1529;
+            &::after {
+                content: ':';
+                margin-left: 20px;
+                margin-right: 10px;
+            }
+        }
+        .p {
+            margin-bottom: 0px;
+            // margin-top: 3px;
+            font-weight: bold;
+            color: #ec5078;
+            font-size: 18px;
+            &::after {
+                content: 'vnd';
+                font-weight: bold;
+            }
+        }
+    }
+    .service-team {
+        h5 {
+            &::after {
+                margin-left: 10px;
+            }
+        }
+        .p {
+            cursor: pointer;
+            &::after {
+                content: '';
+            }
+        }
+    }
+}
+.register-service {
+    margin-top: 30px;
+    .services-option {
+        .choose-date,
+        .choose-period {
+            display: flex;
+            label {
+                font-size: 15px;
+                margin-top: 5px;
+            }
+            input {
+                margin-top: 8px;
+            }
+            .form-select {
+                height: 42px;
+                box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+            }
+        }
+        .choose-period{
+            label{
+                margin-top: 0px;
+            }
+        }
+        .total-cost {
+            display: flex;
+            justify-content: end;
+            span {
+                &:first-child {
+                    color: #0c1529;
+                    font-style: italic;
+                    font-weight: bold;
+
+                    &::after {
+                        content: ' :';
+                        margin-right: 4px;
+                    }
+                }
+            }
+            span {
+                &:last-child {
+                    color: #ec5078;
+                    &::after {
+                        content: 'vnd';
+                    }
+                }
+            }
+        }
+        .submit-area {
+            display: flex;
+            justify-content: center;
+        }
+    }
+}

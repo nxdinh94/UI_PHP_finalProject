@@ -29,7 +29,6 @@ function Profile() {
 
     const handleOnChangeInput = (e) => {
         let inputName = e.target.name;
-        console.log(inputName);
         switch (inputName) {
             case 'fullname':
                 setFullname(e.target.value);
@@ -93,8 +92,9 @@ function Profile() {
             const res = await handleGetRegistedServices(userId);
             setListRegistedServces(res);
         };
-        handle(); 
+        handle();
     }, []);
+    console.log('list registed ', listRegistedServces);
     return (
         <Container className="profile-container">
             <Row className="profile-row">
@@ -324,7 +324,7 @@ function Profile() {
                                 <tr>
                                     <th className="fw-bold">STT</th>
                                     <th className="fw-bold">Tên dịch vụ</th>
-                                    <th className="fw-bold">T/G còn lại</th>
+                                    <th className="fw-bold">Ngày đăng ký</th>
                                     <th className="fw-bold">Hành động</th>
                                 </tr>
                             </thead>
@@ -333,7 +333,7 @@ function Profile() {
                                     <tr key={item.id}>
                                         <th scope="row">{item.id}</th>
                                         <td>{item.name}</td>
-                                        <td>{item.register_time}</td>
+                                        <td>{item.register_day}</td>
                                         <td>
                                             <Link
                                                 to={`/services/${item.slug}/detail`}
@@ -355,3 +355,4 @@ function Profile() {
 }
 
 export default Profile;
+  

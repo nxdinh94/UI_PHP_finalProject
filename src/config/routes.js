@@ -12,6 +12,7 @@ const routes = {
     store: '/store',
     storeDetail: '/storeDetail/:slug',
     team: '/team',
+    teamCategory: '/team/:category',
     teamDetail: '/team/:slug/detail',
     gallery: '/gallery',
 

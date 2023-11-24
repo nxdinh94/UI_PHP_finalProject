@@ -27,6 +27,9 @@ i18n.use(initReactI18next).init({
                 profile: 'Profile',
                 otherMem: 'Other members',
                 registedService: 'Registed services',
+                registerService: 'Register services',
+                requestLogin: 'Please login to use services!!!',
+                register: 'Register',
                 servicePage: {
                     title: 'Services',
                 },
@@ -52,8 +55,10 @@ i18n.use(initReactI18next).init({
                 profile: 'Trang cá nhân',
                 team: 'Đội ngũ',
                 otherMem: 'Thành viên khác',
-
+                register: 'Đăng ký',
+                requestLogin: 'Bạn hãy đăng nhập để sử dụng dịch vụ!!!',
                 registedService: 'Dịch vụ đã đăng ký',
+                registerService: 'Đăng ký dịch vụ',
 
                 servicePage: {
                     title: 'Dịch vụ',
