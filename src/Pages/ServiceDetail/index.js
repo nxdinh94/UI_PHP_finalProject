@@ -7,20 +7,27 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import { Link } from 'react-router-dom';
 import { getTimeUsingService } from '~/service/appServices';
+import { handleRegisterService } from '~/service/userService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
 
 function ServiceDetail() {
     const { t } = useTranslation();
     const [chooseDate, setChooseDate] = useState('');
     const [choosePeriod, setChoosePeriod] = useState(1);
     const [totalPrice, setTotalprice] = useState(0);
-    const [timeUsingService, setTimeUsingService] = useState([]);
+    const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
 
     const servicesData = useSelector((state) => state.servicesSlices.value);
+    const [isHandlingRegister, setIsHandlingRegister] = useState(false);
 
     const { slug } = useParams();
     const detailService = servicesData.filter((item) => {
         return item.slug.includes(slug);
     });
+    // console.log('detailService', detailService);
     useEffect(() => {
         let cost = detailService[0].cost;
         if (choosePeriod === 1 || choosePeriod === 2) {
@@ -31,7 +38,7 @@ function ServiceDetail() {
         const getPriodTime = async () => {
             const res = await getTimeUsingService();
             if (res) {
-                setTimeUsingService(res);
+                setTimeUsingServiceAPI(res);
             }
         };
         getPriodTime();
@@ -52,9 +59,25 @@ function ServiceDetail() {
                 throw new Error('Invalid form');
         }
     };
+    const userData = JSON.parse(sessionStorage.getItem('user_data'));
+    const userId = userData.id;
 
+    const handleRegisterServiceBtn = async (userId, serviceId, register_day, periodTime) => {
+        setIsHandlingRegister(true);
+        const res = await handleRegisterService(userId, serviceId, register_day, periodTime);
+        console.log(res);
+        setTimeout(() => {
+            setIsHandlingRegister(false);
+        }, 800);
+        if (res.status) {
+            toast.success(res.message);
+        } else {
+            toast.error('Bạn đã đăng ký dịch vụ này');
+        }
+    };
     return (
         <Container className="my-5">
+            <Toastify />
             <Row>
                 <Col lg="6" sm="12">
                     <div className="service-avt">
@@ -78,7 +101,7 @@ function ServiceDetail() {
                         </div>
                         <div className="service-cost mt-3">
                             <h5>Cost</h5>
-                            <p className='p'>{detailService[0].cost}</p>
+                            <p className="p">{detailService[0].cost}</p>
                         </div>
                     </div>
                     <div className="register-service">
@@ -107,8 +130,10 @@ function ServiceDetail() {
                                     style={{ width: '100%' }}
                                     className="py-0"
                                 >
-                                    {timeUsingService.map((item, index) => (
-                                        <option key={index} id={item.id}>{item.timeworking} </option>
+                                    {timeUsingServiceAPI.map((item, index) => (
+                                        <option key={index} id={item.id}>
+                                            {item.timeworking}{' '}
+                                        </option>
                                     ))}
                                 </Input>
                             </div>
@@ -116,8 +141,18 @@ function ServiceDetail() {
                                 <span>Tổng</span>
                                 <span>{totalPrice}</span>
                             </div>
-                            <div className='submit-area'>
-                                <button className='btn btn-primary'>{t('register')}</button>
+                            <div className="submit-area">
+                                <button
+                                    onClick={() => {
+                                        handleRegisterServiceBtn(userId, detailService[0].id, chooseDate, choosePeriod);
+                                    }}
+                                    className="btn btn-primary"
+                                >
+                                    {isHandlingRegister && (
+                                        <FontAwesomeIcon icon={faSpinner} className="faSpinner" spin size="sm" />
+                                    )}
+                                    &nbsp;{t('register')}
+                                </button>
                             </div>
                         </div>
                     </div>

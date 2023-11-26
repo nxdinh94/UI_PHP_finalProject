@@ -9,6 +9,7 @@ import { useTranslation } from 'react-i18next';
 import { handleUpdateProfileApi, handleGetRegistedServices } from '~/service/userService';
 
 import { Link } from 'react-router-dom';
+import { getTimeUsingService } from '~/service/appServices';
 
 function Profile() {
     const [isPreviewMode, setIsPreviewMode] = useState(true);
@@ -94,7 +95,54 @@ function Profile() {
         };
         handle();
     }, []);
-    console.log('list registed ', listRegistedServces);
+    // console.log('list registed ', listRegistedServces);
+    const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
+
+    const handleUpdateServiceBtn = (key) => {
+        const newShowDiv = [...isShowAnounce];
+        newShowDiv[key] = !newShowDiv[key];
+        setIsShowAnounce(newShowDiv);
+    };
+    const handleSaveServiceBtn = (key) => {
+        const newShowDiv = [...isShowAnounce];
+        newShowDiv[key] = !newShowDiv[key];
+        setIsShowAnounce(newShowDiv);
+    };
+
+    //jfdfd
+
+    const [chooseDate, setChooseDate] = useState('');
+    const [isOnChangeDate, setIsOnChangeDate] = useState(false);
+    const [choosePeriod, setChoosePeriod] = useState(1);
+    const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
+    console.log('dfd', chooseDate, choosePeriod);
+    useEffect(() => {
+        const getPriodTime = async () => {
+            const res = await getTimeUsingService();
+            if (res) {
+                setTimeUsingServiceAPI(res);
+            }
+        };
+        getPriodTime();
+    }, []);
+    const handleOnchangeInput = (e) => {
+        let name = e.target.name;
+        switch (name) {
+            case 'chooseDate':
+                setIsOnChangeDate(true);
+                setChooseDate(e.target.value);
+                break;
+            case 'choosePeriod':
+                const index = e.target.selectedIndex;
+                const el = e.target.childNodes[index];
+                const option = el.getAttribute('id');
+                setChoosePeriod(+option);
+                break;
+            default:
+                throw new Error('Invalid form');
+        }
+    };
+
     return (
         <Container className="profile-container">
             <Row className="profile-row">
@@ -329,20 +377,97 @@ function Profile() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listRegistedServces.map((item) => (
-                                    <tr key={item.id}>
-                                        <th scope="row">{item.id}</th>
-                                        <td>{item.name}</td>
-                                        <td>{item.register_day}</td>
-                                        <td>
-                                            <Link
-                                                to={`/services/${item.slug}/detail`}
-                                                className="btn btn-success text-white"
-                                            >
-                                                Xem chi tiết
-                                            </Link>
-                                            <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
-                                        </td>
+                                {listRegistedServces.map((listRegistedServce, key) => (
+                                    <tr key={key}>
+                                        <th scope="row">{listRegistedServce.id}</th>
+                                        <td>{listRegistedServce.name}</td>
+                                        <td>{listRegistedServce.register_day}</td>
+                                        {listRegistedServce.status == 1 ? (
+                                            <td>
+                                                <Link
+                                                    to={`/services/${listRegistedServce.slug}/detail`}
+                                                    className="btn btn-success text-white"
+                                                >
+                                                    Xem chi tiết
+                                                </Link>
+                                                <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
+                                            </td>
+                                        ) : (
+                                            <td>
+                                                <Link
+                                                    to={`/services/${listRegistedServce.slug}/detail`}
+                                                    className="btn btn-default"
+                                                    style={{ pointerEvents: 'none', border: '1px solid black' }}
+                                                >
+                                                    Xem chi tiết
+                                                </Link>
+                                                <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
+                                                {isShowAnounce[key] ? (
+                                                    <button
+                                                        onClick={() => {
+                                                            handleUpdateServiceBtn(key);
+                                                        }}
+                                                        className="btn btn-primary me-2"
+                                                    >
+                                                        Sửa dịch vụ
+                                                    </button>
+                                                ) : (
+                                                    <div className="services-option">
+                                                        <div className="choose-date">
+                                                            <Label>Chọn ngày</Label>
+                                                            <Input
+                                                                onChange={handleOnchangeInput}
+                                                                name="chooseDate"
+                                                                type="date"
+                                                                value={
+                                                                    isOnChangeDate
+                                                                        ? chooseDate
+                                                                        : listRegistedServce.register_day
+                                                                }
+                                                                style={{ width: '100%' }}
+                                                            />
+                                                        </div>
+                                                        <div className="choose-period">
+                                                            <Label>Chọn buổi</Label>
+                                                            <Input
+                                                                onChange={handleOnchangeInput}
+                                                                name="choosePeriod"
+                                                                type="select"
+                                                                style={{ width: '100%' }}
+                                                                className="py-0"
+                                                            >
+                                                                {timeUsingServiceAPI.map((item, index) => (
+                                                                    <option
+                                                                        key={index}
+                                                                        selected={
+                                                                            item.id == listRegistedServce.periodTime
+                                                                        }
+                                                                        id={item.id}
+                                                                    >
+                                                                        {item.timeworking}{' '}
+                                                                    </option>
+                                                                ))}
+                                                            </Input>
+                                                        </div>
+                                                        <div className="submit-area">
+                                                            <button
+                                                                onClick={() => {
+                                                                    handleSaveServiceBtn(key);
+                                                                }}
+                                                                className="btn btn-primary"
+                                                            >
+                                                                {t('save')}
+                                                            </button>
+                                                        </div>
+                                                    </div>
+                                                )}
+                                                {isShowAnounce[key] && (
+                                                    <span className="anounce">
+                                                        Yêu cầu đang được hệ thống xác nhận!!!
+                                                    </span>
+                                                )}
+                                            </td>
+                                        )}
                                     </tr>
                                 ))}
                             </tbody>
@@ -355,4 +480,3 @@ function Profile() {
 }
 
 export default Profile;
-  

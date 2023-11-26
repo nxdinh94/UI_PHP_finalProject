@@ -51,6 +51,18 @@ export function handleGetRegistedServices(userId) {
     });
 }
 
+export function handleRegisterService(userId, serviceId, register_day, periodTime) {
+    return axios.post(
+        '/backend_pettu/api/users/registerService',
+        `userId=${userId}&serviceId=${serviceId}&register_day=${register_day}&periodTime=${periodTime}`,
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        },
+    );
+}
+
 export function Logout() {
     sessionStorage.clear();
 }

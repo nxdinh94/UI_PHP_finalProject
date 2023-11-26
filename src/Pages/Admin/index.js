@@ -62,13 +62,19 @@ function Admin() {
                                 <NavLink href="#">Xét duyệt hóa đơn</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Quản lý danh mục sản phẩm</NavLink>
+                                <NavLink href="#">Quản lý tin tức</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="#">Quản lý banner</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Quản lý khuyến mãi</NavLink>
+                                <NavLink href="#">Quản lý dịch vụ</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="#">Xét duyệt dịch vụ</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href="#">Quản lý thời gian làm việc</NavLink>
                             </NavItem>
                         </Nav>
                     </Col>

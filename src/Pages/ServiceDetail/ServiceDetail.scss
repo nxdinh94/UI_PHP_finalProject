@@ -130,6 +130,11 @@
         .submit-area {
             display: flex;
             justify-content: center;
+            .faSpinner{
+                path{
+                    color: white;
+                }
+            }
         }
     }
 }

@@ -10,7 +10,7 @@ import Toastify from '~/components/Toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useState } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 function Login() {
     const [email, setEmail] = useState('');
@@ -18,6 +18,7 @@ function Login() {
     const [isHandlingLogin, setIsHandlingLogin] = useState(false);
 
     const navigate = useNavigate();
+    const btnRef = useRef();
 
     const handleLogin = async (emaill, passwordd) => {
         setIsHandlingLogin(true);
@@ -50,9 +51,9 @@ function Login() {
     const handleOnChangePass = (e) => {
         setPassword(e.target.value);
     };
-
     return (
         <div className="app">
+            <Toastify />
             <div className="block">
                 <div className="content">
                     <h1>ĐĂNG NHẬP</h1>
@@ -73,10 +74,14 @@ function Login() {
                             className="form-control"
                             placeholder="Mật khẩu"
                         />
-                        <button onClick={() => handleLogin(email, password)} className="btn-submit" type="submit">
+                        <button
+                            ref={btnRef}
+                            onClick={() => handleLogin(email, password)}
+                            className="btn-submit"
+                            type="submit"
+                        >
                             {isHandlingLogin && <FontAwesomeIcon icon={faSpinner} spin size="sm" />} &nbsp; ĐĂNG NHẬP
                         </button>
-                        <Toastify />
                         <button className="forgot-pass"> Quên mật khẩu</button>
                         <br />
                         <div className="register-btn">

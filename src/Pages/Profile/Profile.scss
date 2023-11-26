@@ -53,9 +53,65 @@
             }
         }
     }
-    // .registed-services-wrapper {
-    //     .registed-item {
-            
-    //     }
-    // }
+    .registed-services-wrapper {
+        .registed-item {
+            .anounce {
+                color: #EC5078;
+                font-size: 14px;
+                font-style: italic;
+            }
+        }
+        .services-option {
+        .choose-date,
+        .choose-period {
+            display: flex;
+            label {
+                font-size: 15px;
+                margin-top: 5px;
+            }
+            input {
+                margin-top: 8px;
+            }
+            .form-select {
+                height: 42px;
+                box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+            }
+        }
+        .choose-period{
+            label{
+                margin-top: 0px;
+            }
+        }
+        .total-cost {
+            display: flex;
+            justify-content: end;
+            span {
+                &:first-child {
+                    color: #0c1529;
+                    font-style: italic;
+                    font-weight: bold;
+
+                    &::after {
+                        content: ' :';
+                        margin-right: 4px;
+                    }
+                }
+            }
+            span {
+                &:last-child {
+                    color: #ec5078;
+                    &::after {
+                        content: 'vnd';
+                    }
+                }
+            }
+        }
+        .submit-area {
+            display: flex;
+            justify-content: center;
+        }
+    }
+    }
 }

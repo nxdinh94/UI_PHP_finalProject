@@ -13,6 +13,7 @@ i18n.use(initReactI18next).init({
             translation: {
                 home: 'Home',
                 service: 'Service',
+                save: 'Save',
                 handbook: 'Handbook',
                 news: 'News',
                 contact: 'Contact',
@@ -42,6 +43,8 @@ i18n.use(initReactI18next).init({
             translation: {
                 home: 'Trang chủ',
                 service: 'Dịch vụ',
+                save: 'Lưu',
+
                 handbook: 'Cẩm nang',
                 news: 'Tin tức',
                 contact: 'Liên hệ',
