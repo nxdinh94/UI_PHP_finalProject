@@ -115,7 +115,7 @@ function Profile() {
     const [isOnChangeDate, setIsOnChangeDate] = useState(false);
     const [choosePeriod, setChoosePeriod] = useState(1);
     const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
-    console.log('dfd', chooseDate, choosePeriod);
+    // console.log('dfd', chooseDate, choosePeriod);
     useEffect(() => {
         const getPriodTime = async () => {
             const res = await getTimeUsingService();

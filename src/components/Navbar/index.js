@@ -32,6 +32,8 @@ function HeaderOnly({ children }) {
     const [isAdmin, setIsAdmin] = useState(true);
 
     const isLogin = sessionStorage.isLogin;
+    let user_data = '';
+    let userId = user_data.id;
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
@@ -40,7 +42,7 @@ function HeaderOnly({ children }) {
 
     useEffect(() => {
         if (isLogin) {
-            const user_data = JSON.parse(sessionStorage.user_data);
+            user_data = JSON.parse(sessionStorage.user_data);
             setAvatar(user_data.thumbnail);
             const decentralization_id = user_data.decentralization_id;
             if (decentralization_id === 1) {
@@ -111,8 +113,8 @@ function HeaderOnly({ children }) {
         setIsOpen(!isOpen);
     };
 
-    const handleLogoutBtn = () => {
-        Logout();
+    const handleLogoutBtn = async () => {
+        await Logout(userId);
         window.location.href = '/';
     };
 

@@ -63,6 +63,14 @@ export function handleRegisterService(userId, serviceId, register_day, periodTim
     );
 }
 
-export function Logout() {
+export function Logout(userId) {
     sessionStorage.clear();
+    return axios.post('/backend_pettu/api/logout', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
 }
+// export function Logout() {
+//     sessionStorage.clear();
+// }
