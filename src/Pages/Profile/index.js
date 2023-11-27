@@ -95,7 +95,7 @@ function Profile() {
         };
         handle();
     }, []);
-    // console.log('list registed ', listRegistedServces);
+    console.log('list registed ', listRegistedServces);
     const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
     const handleUpdateServiceBtn = (key) => {
@@ -142,7 +142,7 @@ function Profile() {
                 throw new Error('Invalid form');
         }
     };
-
+    console.log('Select', listRegistedServces);
     return (
         <Container className="profile-container">
             <Row className="profile-row">
@@ -357,7 +357,7 @@ function Profile() {
                     </div>
                 </Col>
             </Row>
-            <Row>
+            {listRegistedServces.data ? <Row>
                 <div className="registed-services-wrapper">
                     <div className="slider-title">
                         <p>
@@ -377,7 +377,7 @@ function Profile() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {listRegistedServces.map((listRegistedServce, key) => (
+                                {listRegistedServces.status && listRegistedServces.data.map((listRegistedServce, key) => (
                                     <tr key={key}>
                                         <th scope="row">{listRegistedServce.id}</th>
                                         <td>{listRegistedServce.name}</td>
@@ -397,7 +397,6 @@ function Profile() {
                                                 <Link
                                                     to={`/services/${listRegistedServce.slug}/detail`}
                                                     className="btn btn-default"
-                                                    style={{ pointerEvents: 'none', border: '1px solid black' }}
                                                 >
                                                     Xem chi tiết
                                                 </Link>
@@ -474,7 +473,7 @@ function Profile() {
                         </Table>
                     </div>
                 </div>
-            </Row>
+            </Row> : ''}
         </Container>
     );
 }
