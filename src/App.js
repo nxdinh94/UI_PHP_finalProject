@@ -12,7 +12,7 @@ function App() {
         useData = JSON.parse(sessionStorage['user_data']);
         decentralization_id = useData.decentralization_id;
     }
-    console.log('fdsf', useData);
+    // console.log('fdsf', useData);
     return (
         <Router>
             <div className="App">

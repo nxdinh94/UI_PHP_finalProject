@@ -1,7 +1,7 @@
 import './Login.scss';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { faSpinner, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { handleLoginApi } from '~/service/userService';
 
@@ -16,6 +16,8 @@ function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [isHandlingLogin, setIsHandlingLogin] = useState(false);
+
+    const [isShowPassWord, setIsShowPassword] = useState(false);
 
     const navigate = useNavigate();
     const btnRef = useRef();
@@ -66,14 +68,24 @@ function Login() {
                             className="form-control"
                             placeholder="Email"
                         />
-                        <input
-                            type="password"
-                            onChange={handleOnChangePass}
-                            value={password}
-                            name="password"
-                            className="form-control"
-                            placeholder="Mật khẩu"
-                        />
+                        <div className="wrapper-password">
+                            <input
+                                type={isShowPassWord ? 'text' : 'password'}
+                                onChange={handleOnChangePass}
+                                value={password}
+                                name="password"
+                                className="form-control"
+                                placeholder="Mật khẩu"
+                            />
+                            <button onClick={() => setIsShowPassword(!isShowPassWord)}>
+                                {isShowPassWord ? (
+                                    <FontAwesomeIcon icon={faEye} className="show-hide-pass" />
+                                ) : (
+                                    <FontAwesomeIcon icon={faEyeSlash} className="show-hide-pass" />
+                                )}
+                            </button>
+                        </div>
+
                         <button
                             ref={btnRef}
                             onClick={() => handleLogin(email, password)}

@@ -95,7 +95,7 @@ function Profile() {
         };
         handle();
     }, []);
-    console.log('list registed ', listRegistedServces);
+    // console.log('list registed ', listRegistedServces);
     const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
     const handleUpdateServiceBtn = (key) => {
@@ -142,7 +142,7 @@ function Profile() {
                 throw new Error('Invalid form');
         }
     };
-    console.log('Select', listRegistedServces);
+    // console.log('Select', listRegistedServces);
     return (
         <Container className="profile-container">
             <Row className="profile-row">
