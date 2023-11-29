@@ -6,10 +6,12 @@ import { useEffect, useState } from 'react';
 
 import { useTranslation } from 'react-i18next';
 
-import { handleUpdateProfileApi, handleGetRegistedServices } from '~/service/userService';
+import { handleUpdateProfileApi, handleGetRegistedServices, cancelService } from '~/service/userService';
 
 import { Link } from 'react-router-dom';
 import { getTimeUsingService } from '~/service/appServices';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
 
 function Profile() {
     const [isPreviewMode, setIsPreviewMode] = useState(true);
@@ -94,7 +96,7 @@ function Profile() {
             setListRegistedServces(res);
         };
         handle();
-    }, []);
+    }, [listRegistedServces]);
     // console.log('list registed ', listRegistedServces);
     const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
@@ -143,8 +145,15 @@ function Profile() {
         }
     };
     // console.log('Select', listRegistedServces);
+    const handleCancelService = async (userid, serviceid) => {
+        const res = await cancelService(userid, serviceid);
+        if (res.status) {
+            toast.success(res.message);
+        } else toast.error(res.message);
+    };
     return (
         <Container className="profile-container">
+            <Toastify />
             <Row className="profile-row">
                 <Col className="profile-col">
                     <div className="content">
@@ -357,123 +366,135 @@ function Profile() {
                     </div>
                 </Col>
             </Row>
-            {listRegistedServces.data ? <Row>
-                <div className="registed-services-wrapper">
-                    <div className="slider-title">
-                        <p>
-                            <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                            <span className="topic1">{t('registedService')}</span>
-                        </p>
-                        <h2 className="topic2">{t('registedService')}</h2>
-                    </div>
-                    <div className="registed-item">
-                        <Table responsive>
-                            <thead>
-                                <tr>
-                                    <th className="fw-bold">STT</th>
-                                    <th className="fw-bold">Tên dịch vụ</th>
-                                    <th className="fw-bold">Ngày đăng ký</th>
-                                    <th className="fw-bold">Hành động</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                {listRegistedServces.status && listRegistedServces.data.map((listRegistedServce, key) => (
-                                    <tr key={key}>
-                                        <th scope="row">{listRegistedServce.id}</th>
-                                        <td>{listRegistedServce.name}</td>
-                                        <td>{listRegistedServce.register_day}</td>
-                                        {listRegistedServce.status == 1 ? (
-                                            <td>
-                                                <Link
-                                                    to={`/services/${listRegistedServce.slug}/detail`}
-                                                    className="btn btn-success text-white"
-                                                >
-                                                    Xem chi tiết
-                                                </Link>
-                                                <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
-                                            </td>
-                                        ) : (
-                                            <td>
-                                                <Link
-                                                    to={`/services/${listRegistedServce.slug}/detail`}
-                                                    className="btn btn-default"
-                                                >
-                                                    Xem chi tiết
-                                                </Link>
-                                                <button className="btn btn-danger mx-2">Hủy dịch vụ</button>
-                                                {isShowAnounce[key] ? (
-                                                    <button
-                                                        onClick={() => {
-                                                            handleUpdateServiceBtn(key);
-                                                        }}
-                                                        className="btn btn-primary me-2"
-                                                    >
-                                                        Sửa dịch vụ
-                                                    </button>
+            {listRegistedServces.data ? (
+                <Row>
+                    <div className="registed-services-wrapper">
+                        <div className="slider-title">
+                            <p>
+                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
+                                <span className="topic1">{t('registedService')}</span>
+                            </p>
+                            <h2 className="topic2">{t('registedService')}</h2>
+                        </div>
+                        <div className="registed-item">
+                            <Table responsive>
+                                <thead>
+                                    <tr>
+                                        <th className="fw-bold">STT</th>
+                                        <th className="fw-bold">Tên dịch vụ</th>
+                                        <th className="fw-bold">Ngày đăng ký</th>
+                                        <th className="fw-bold">Hành động</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {listRegistedServces.status &&
+                                        listRegistedServces.data.map((listRegistedServce, key) => (
+                                            <tr key={key}>
+                                                <th scope="row">{listRegistedServce.id}</th>
+                                                <td>{listRegistedServce.name}</td>
+                                                <td>{listRegistedServce.register_day}</td>
+                                                {listRegistedServce.status == 1 ? (
+                                                    <td>
+                                                        <Link
+                                                            to={`/services/${listRegistedServce.slug}/detail`}
+                                                            className="btn btn-success text-white"
+                                                        >
+                                                            Xem chi tiết
+                                                        </Link>
+                                                    </td>
                                                 ) : (
-                                                    <div className="services-option">
-                                                        <div className="choose-date">
-                                                            <Label>Chọn ngày</Label>
-                                                            <Input
-                                                                onChange={handleOnchangeInput}
-                                                                name="chooseDate"
-                                                                type="date"
-                                                                value={
-                                                                    isOnChangeDate
-                                                                        ? chooseDate
-                                                                        : listRegistedServce.register_day
-                                                                }
-                                                                style={{ width: '100%' }}
-                                                            />
-                                                        </div>
-                                                        <div className="choose-period">
-                                                            <Label>Chọn buổi</Label>
-                                                            <Input
-                                                                onChange={handleOnchangeInput}
-                                                                name="choosePeriod"
-                                                                type="select"
-                                                                style={{ width: '100%' }}
-                                                                className="py-0"
-                                                            >
-                                                                {timeUsingServiceAPI.map((item, index) => (
-                                                                    <option
-                                                                        key={index}
-                                                                        selected={
-                                                                            item.id == listRegistedServce.periodTime
-                                                                        }
-                                                                        id={item.id}
-                                                                    >
-                                                                        {item.timeworking}{' '}
-                                                                    </option>
-                                                                ))}
-                                                            </Input>
-                                                        </div>
-                                                        <div className="submit-area">
+                                                    <td>
+                                                        <Link
+                                                            to={`/services/${listRegistedServce.slug}/detail`}
+                                                            className="btn btn-success text-white"
+                                                        >
+                                                            Xem chi tiết
+                                                        </Link>
+                                                        <button
+                                                            className="btn btn-danger mx-2"
+                                                            onClick={() =>
+                                                                handleCancelService(userId, listRegistedServce.id)
+                                                            }
+                                                        >
+                                                            Hủy dịch vụ
+                                                        </button>
+                                                        {isShowAnounce[key] ? (
                                                             <button
                                                                 onClick={() => {
-                                                                    handleSaveServiceBtn(key);
+                                                                    handleUpdateServiceBtn(key);
                                                                 }}
-                                                                className="btn btn-primary"
+                                                                className="btn btn-primary me-2"
                                                             >
-                                                                {t('save')}
+                                                                Sửa dịch vụ
                                                             </button>
-                                                        </div>
-                                                    </div>
+                                                        ) : (
+                                                            <div className="services-option">
+                                                                <div className="choose-date">
+                                                                    <Label>Chọn ngày</Label>
+                                                                    <Input
+                                                                        onChange={handleOnchangeInput}
+                                                                        name="chooseDate"
+                                                                        type="date"
+                                                                        value={
+                                                                            isOnChangeDate
+                                                                                ? chooseDate
+                                                                                : listRegistedServce.register_day
+                                                                        }
+                                                                        style={{ width: '100%' }}
+                                                                    />
+                                                                </div>
+                                                                <div className="choose-period">
+                                                                    <Label>Chọn buổi</Label>
+                                                                    <Input
+                                                                        onChange={handleOnchangeInput}
+                                                                        name="choosePeriod"
+                                                                        type="select"
+                                                                        style={{ width: '100%' }}
+                                                                        className="py-0"
+                                                                    >
+                                                                        {timeUsingServiceAPI.map((item, index) => (
+                                                                            <option
+                                                                                key={index}
+                                                                                selected={
+                                                                                    item.id ==
+                                                                                    listRegistedServce.periodTime
+                                                                                }
+                                                                                id={item.id}
+                                                                            >
+                                                                                {item.timeworking}{' '}
+                                                                            </option>
+                                                                        ))}
+                                                                    </Input>
+                                                                </div>
+                                                                <div className="submit-area">
+                                                                    <button
+                                                                        onClick={() => {
+                                                                            handleSaveServiceBtn(key);
+                                                                        }}
+                                                                        className="btn btn-primary"
+                                                                    >
+                                                                        {t('save')}
+                                                                    </button>
+                                                                </div>
+                                                            </div>
+                                                        )}
+                                                        {isShowAnounce[key] && (
+                                                            <span className="anounce">
+                                                                Yêu cầu đang được hệ thống xác nhận!!!
+                                                            </span>
+                                                        )}
+                                                    </td>
                                                 )}
-                                                {isShowAnounce[key] && (
-                                                    <span className="anounce">
-                                                        Yêu cầu đang được hệ thống xác nhận!!!
-                                                    </span>
-                                                )}
-                                            </td>
-                                        )}
-                                    </tr>
-                                ))}
-                            </tbody>
-                        </Table>
+                                            </tr>
+                                        ))}
+                                </tbody>
+                            </Table>
+                        </div>
                     </div>
-                </div>
-            </Row> : ''}
+                </Row>
+            ) : (
+                ''
+            )}
         </Container>
     );
 }

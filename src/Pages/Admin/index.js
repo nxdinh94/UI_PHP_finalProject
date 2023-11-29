@@ -16,6 +16,7 @@ import HomeAdmin from '~/Pages/Admin/HomeAdmin';
 import QLSP from '~/Pages/Admin/QLSP';
 import QLLSP from '~/Pages/Admin/QLLSP';
 import QLTK from '~/Pages/Admin/QLTK';
+import DuyetDV from '~/Pages/Admin/DuyetDV';
 
 import routes from '~/config/routes';
 
@@ -28,10 +29,10 @@ function Admin() {
     const adminIn4String = sessionStorage.getItem('user_data');
     const adminIn4Object = JSON.parse(adminIn4String);
 
-    const handleLogoutBtn = () =>{
+    const handleLogoutBtn = () => {
         Logout();
         window.location.href = '/';
-    }
+    };
 
     return (
         <div>
@@ -46,11 +47,15 @@ function Admin() {
                                 <NavLink href={routes.adminHomePage}>Home Page</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href='#' onClick={()=>setIsDropDownAccount(!isDropDownAccount) }>Quản lý tài khoản</NavLink>
-                                {isDropDownAccount && (<NavItem className='ms-3'>
-                                    <NavLink href={routes.adminQltk}>+ Tài khoản chức danh</NavLink>
-                                    <NavLink href={routes.adminQltk}>+ Tài khoản người dùng</NavLink>
-                                </NavItem>)}
+                                <NavLink href="#" onClick={() => setIsDropDownAccount(!isDropDownAccount)}>
+                                    Quản lý tài khoản
+                                </NavLink>
+                                {isDropDownAccount && (
+                                    <NavItem className="ms-3">
+                                        <NavLink href={routes.adminQltkPersonnel}>+ Tài khoản chức danh</NavLink>
+                                        <NavLink href={routes.adminQltkUsers}>+ Tài khoản người dùng</NavLink>
+                                    </NavItem>
+                                )}
                             </NavItem>
                             <NavItem>
                                 <NavLink href={routes.adminQlsq}>Quản lý sản phẩm</NavLink>
@@ -71,7 +76,7 @@ function Admin() {
                                 <NavLink href="#">Quản lý dịch vụ</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Xét duyệt dịch vụ</NavLink>
+                                <NavLink href={routes.adminduyetdichvu}>Xét duyệt dịch vụ</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href="#">Quản lý thời gian làm việc</NavLink>
@@ -102,9 +107,13 @@ function Admin() {
                                 {isDropdown && (
                                     <div className="dropdown-content2">
                                         <a href={configRoutes.home}>Home</a>
-                                        <button onClick={()=>{
-                                            handleLogoutBtn();
-                                        }}>Logout</button>
+                                        <button
+                                            onClick={() => {
+                                                handleLogoutBtn();
+                                            }}
+                                        >
+                                            Logout
+                                        </button>
                                         <a href={configRoutes.profile}>Profile</a>
                                     </div>
                                 )}
@@ -113,9 +122,10 @@ function Admin() {
                         <div className="wrapper-content">
                             <h3 style={{ color: '#5A5C69' }}>Tables</h3>
                             {slug === 'homepage' ? <HomeAdmin /> : <></>}
-                            {slug === 'qltk' ? <QLTK /> : <></>}
+                            {slug.includes('qltk') ? <QLTK /> : <></>}
                             {slug === 'qlsp' ? <QLSP /> : <></>}
                             {slug === 'qllsp' ? <QLLSP /> : <></>}
+                            {slug === 'duyetdichvu' ? <DuyetDV /> : <></>}
                         </div>
                     </Col>
                 </Row>

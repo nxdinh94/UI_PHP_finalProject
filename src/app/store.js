@@ -42,6 +42,6 @@ export const persistor = persistStore(store);
 
 //dispatch immediately when bootstrap app
 store.dispatch(fetchNewsAsyn());
-store.dispatch(handleFetchAccountData());
+
 store.dispatch(handleFetchAllTeamThunk());
 store.dispatch(handleGetAllServicesThunk());

@@ -77,13 +77,13 @@ function Login() {
                                 className="form-control"
                                 placeholder="Mật khẩu"
                             />
-                            <button onClick={() => setIsShowPassword(!isShowPassWord)}>
+                            <span className='m-0 p-0' onClick={() => setIsShowPassword(!isShowPassWord)}>
                                 {isShowPassWord ? (
                                     <FontAwesomeIcon icon={faEye} className="show-hide-pass" />
                                 ) : (
                                     <FontAwesomeIcon icon={faEyeSlash} className="show-hide-pass" />
                                 )}
-                            </button>
+                            </span>
                         </div>
 
                         <button

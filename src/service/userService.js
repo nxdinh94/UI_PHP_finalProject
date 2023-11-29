@@ -65,13 +65,18 @@ export function handleRegisterService(userId, serviceId, register_day, periodTim
 
 export function Logout(userId) {
     sessionStorage.clear();
-    
+
     return axios.post('/backend_pettu/api/logout', `userId=${userId}`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },
     });
 }
-// export function Logout() {
-//     sessionStorage.clear();
-// }
+export function cancelService(userId, serviceId) {
+    return axios.post('/backend_pettu/api/users/deleteService', `userId=${userId}&serviceId=${serviceId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
+

@@ -20,8 +20,10 @@ const routes = {
 
     admin: '/admin/:slug',
     adminHomePage: '/admin/homepage',
-    adminQltk: '/admin/qltk',
+    adminQltkPersonnel: '/admin/qltkpersonnel',
+    adminQltkUsers: '/admin/qltkusers',
     adminQlsq: '/admin/qlsp',
     adminQllsq: '/admin/qllsp',
+    adminduyetdichvu: '/admin/duyetdichvu',
 };
 export default routes;

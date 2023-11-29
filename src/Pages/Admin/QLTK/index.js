@@ -1,30 +1,49 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Table, Input, Label } from 'reactstrap';
-
+import { useParams } from 'react-router-dom';
 import { handleStatusAccountApi } from '~/service/adminService';
 
 import { useSelector } from 'react-redux';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
 
+import { useDispatch } from 'react-redux';
+import { handleFetchAccountDataCompetentPersonnelThunk, handleFetchAccountDataUsertsThunk } from './QLTKSlices';
 import './QLTK.scss';
 
 function QLTK() {
-    const accountData = useSelector((state) => state.QLTKSlice.value);
+    const accountPersonnel = useSelector((state) => state.QLTKSlice.value.competentPersonnel);
+    const accountUser = useSelector((state) => state.QLTKSlice.value.usersPersonnel);
     const [searchValue, setSearchValue] = useState('');
+    const [dataToMap, setDataToMap] = useState([]);
+    const dispatch = useDispatch();
+    const { slug } = useParams();
+    console.log('slug', slug);
 
     const handleOnChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
     };
     const handleStatusAccount = async (id, status) => {
         const res = await handleStatusAccountApi(id, status);
-        toast(res.message, {
+        dispatch(handleFetchAccountDataCompetentPersonnelThunk());
+        toast.success(res.message, {
             hideProgressBar: true,
         });
-        // window.location.reload();
     };
 
+    console.log('accountPersonnel', accountPersonnel);
+    useEffect(() => {
+        if (slug == 'qltkpersonnel') {
+            // console.log('qltkpersonnel');
+            dispatch(handleFetchAccountDataCompetentPersonnelThunk());
+            setDataToMap(accountPersonnel);
+        } else {
+            dispatch(handleFetchAccountDataUsertsThunk());
+            setDataToMap(accountUser);
+            // console.log('qltkusers');
+        }
+    }, []);
     return (
         <div className="content">
             <Toastify />
@@ -56,7 +75,7 @@ function QLTK() {
                         </tr>
                     </thead>
                     <tbody>
-                        {accountData.map((item) => (
+                        {dataToMap && dataToMap.map((item) => (
                             <tr key={item.id}>
                                 <th scope="row">{item.id}</th>
                                 <td>{item.fullname}</td>
