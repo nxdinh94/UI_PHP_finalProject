@@ -13,6 +13,8 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
 
+import { isRegisteredService } from '~/service/appServices';
+
 function ServiceDetail() {
     const { t } = useTranslation();
     const [chooseDate, setChooseDate] = useState('');
@@ -27,7 +29,18 @@ function ServiceDetail() {
     const detailService = servicesData.filter((item) => {
         return item.slug.includes(slug);
     });
+
+    const userData = JSON.parse(sessionStorage.getItem('user_data'));
+    const userId = userData.id;
+
     // console.log('detailService', detailService);
+    // console.log('userId', userId);
+
+    const handleIsRegistedService = async () => {
+        const res = await isRegisteredService(userId, detailService[0].id);
+        return res ? true : false;
+    };
+
     useEffect(() => {
         let cost = detailService[0].cost;
         if (choosePeriod === 1 || choosePeriod === 2) {
@@ -59,8 +72,6 @@ function ServiceDetail() {
                 throw new Error('Invalid form');
         }
     };
-    const userData = JSON.parse(sessionStorage.getItem('user_data'));
-    const userId = userData.id;
 
     const handleRegisterServiceBtn = async (userId, serviceId, register_day, periodTime) => {
         setIsHandlingRegister(true);
@@ -118,58 +129,83 @@ function ServiceDetail() {
                             <p className="p">{detailService[0].cost}</p>
                         </div>
                     </div>
-                    <div className="register-service">
-                        <div className="slider-title">
-                            <p>
-                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} alt="img" />
-                                <span className="topic1">{t('registerService')}</span>
-                            </p>
+
+                    {!handleIsRegistedService() ? (
+                        <div className="register-service">
+                            <div className="slider-title">
+                                <p className="my-0">
+                                    <img
+                                        className="iconCat"
+                                        src={'/images/icons8/icons8-cat-footprint-16.png'}
+                                        alt="img"
+                                    />
+                                    <span className="topic1">{t('registerService')}</span>
+                                </p>
+                            </div>
+                            <div className="services-option">
+                                <div className="choose-date">
+                                    <Label>Chọn ngày</Label>
+                                    <Input
+                                        onChange={handleOnchangeInput}
+                                        name="chooseDate"
+                                        type="date"
+                                        style={{ width: '100%' }}
+                                    />
+                                </div>
+                                <div className="choose-period">
+                                    <Label>Chọn buổi</Label>
+                                    <Input
+                                        onChange={handleOnchangeInput}
+                                        name="choosePeriod"
+                                        type="select"
+                                        style={{ width: '100%' }}
+                                        className="py-0"
+                                    >
+                                        {timeUsingServiceAPI.map((item, index) => (
+                                            <option key={index} id={item.id}>
+                                                {item.timeworking}{' '}
+                                            </option>
+                                        ))}
+                                    </Input>
+                                </div>
+                                <div className="total-cost mt-3">
+                                    <span>Tổng</span>
+                                    <span>{totalPrice}</span>
+                                </div>
+                                <div className="submit-area">
+                                    <button
+                                        onClick={() => {
+                                            handleRegisterServiceBtn(
+                                                userId,
+                                                detailService[0].id,
+                                                chooseDate,
+                                                choosePeriod,
+                                            );
+                                        }}
+                                        className="btn btn-primary"
+                                    >
+                                        {isHandlingRegister && (
+                                            <FontAwesomeIcon icon={faSpinner} className="faSpinner" spin size="sm" />
+                                        )}
+                                        &nbsp;{t('register')}
+                                    </button>
+                                </div>
+                            </div>
                         </div>
-                        <div className="services-option">
-                            <div className="choose-date">
-                                <Label>Chọn ngày</Label>
-                                <Input
-                                    onChange={handleOnchangeInput}
-                                    name="chooseDate"
-                                    type="date"
-                                    style={{ width: '100%' }}
-                                />
-                            </div>
-                            <div className="choose-period">
-                                <Label>Chọn buổi</Label>
-                                <Input
-                                    onChange={handleOnchangeInput}
-                                    name="choosePeriod"
-                                    type="select"
-                                    style={{ width: '100%' }}
-                                    className="py-0"
-                                >
-                                    {timeUsingServiceAPI.map((item, index) => (
-                                        <option key={index} id={item.id}>
-                                            {item.timeworking}{' '}
-                                        </option>
-                                    ))}
-                                </Input>
-                            </div>
-                            <div className="total-cost mt-3">
-                                <span>Tổng</span>
-                                <span>{totalPrice}</span>
-                            </div>
-                            <div className="submit-area">
-                                <button
-                                    onClick={() => {
-                                        handleRegisterServiceBtn(userId, detailService[0].id, chooseDate, choosePeriod);
-                                    }}
-                                    className="btn btn-primary"
-                                >
-                                    {isHandlingRegister && (
-                                        <FontAwesomeIcon icon={faSpinner} className="faSpinner" spin size="sm" />
-                                    )}
-                                    &nbsp;{t('register')}
-                                </button>
+                    ) : (
+                        <div className="register-service " style={{ padding: 20 }}>
+                            <div className="slider-title">
+                                <p className="my-0">
+                                    <img
+                                        className="iconCat"
+                                        src={'/images/icons8/icons8-cat-footprint-16.png'}
+                                        alt="img"
+                                    />
+                                    <span className="topic1">{t('registedService')}</span>
+                                </p>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </Col>
             </Row>
         </Container>

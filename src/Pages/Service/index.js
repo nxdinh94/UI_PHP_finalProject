@@ -38,10 +38,7 @@ function Service() {
     useEffect(() => {
         setServicesData(servicesDataRedux);
     }, [servicesDataRedux]);
-    const handleIsRegistedService = async (userId, serviceId) => {
-        const res = await handleIsRegistedService(userId, serviceId);
-        console.log(res);
-    };
+    
     return (
         <div className="container-fluid" style={{ padding: '10px 0px' }}>
             <Toastify />
@@ -130,7 +127,7 @@ function Service() {
                                     </div>
                                 </div>
                                 <div className="services-action">
-                                    {/* {handleIsRegistedService(7, item.id)} */}
+                                    
                                     <button
                                         onClick={() => {
                                             handleOnRegisterBtn(item.slug);

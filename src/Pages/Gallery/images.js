@@ -63,10 +63,10 @@ export const images = [
     {
         src: '/images/blog/blog-3.jpg',
         original: '/images/blog/blog-3.jpg',
-        width: 340,
+        width: 470,
         height: 294,
         tags: [
-            { value: 'Nature', title: 'Nature' },
+            { value: 'Expert Team', title: 'Expert Team' },
             { value: 'Flora', title: 'Flora' },
         ],
         caption: 'After Rain (Jeshu John - designerspics.com)',
@@ -134,7 +134,7 @@ export const images = [
         original: '/images/dog/gallery1.jpg',
         alt: 'Big Ben - London',
         width: 248,
-        height: 320,
+        height: 220,
         caption: 'Big Ben (Tom Eversley - isorepublic.com)',
     },
     {
@@ -186,7 +186,7 @@ export const images = [
     {
         src: '/images/team/team-2.jpg',
         original: '/images/team/team-2.jpg',
-        width: 320,
+        width: 300,
         height: 213,
         tags: [
             { value: 'Nature', title: 'Nature' },
@@ -208,7 +208,7 @@ export const images = [
     {
         src: '/images/team/team-4.jpg',
         original: '/images/team/team-4.jpg',
-        width: 320,
+        width: 300,
         height: 213,
         caption: 'Ropeman - Thailand (Tom Eversley - isorepublic.com)',
     },
@@ -307,8 +307,8 @@ export const images = [
     {
         src: '/images/dog/gallery-3.jpg',
         original: '/images/dog/gallery-3.jpg',
-        width: 320,
-        height: 379,
+        width: 300,
+        height: 369,
         tags: [
             { value: 'Nature', title: 'Nature' },
             { value: 'Fauna', title: 'Fauna' },
@@ -345,7 +345,7 @@ export const images = [
     {
         src: '/images/services/service_details-2.jpg',
         original: '/images/services/service_details-2.jpg',
-        width: 257,
+        width: 457,
         height: 320,
         caption: 'A photo by 贝莉儿 NG. (unsplash.com)',
     },
@@ -381,14 +381,14 @@ export const images = [
     {
         src: '/images/team/team-alt-4.jpg',
         original: '/images/team/team-alt-4.jpg',
-        width: 1057,
+        width: 990,
         height: 720,
         caption: 'A photo by 贝莉儿 NG. (unsplash.com)',
     },
     {
         src: '/images/team/team-alt-3.jpg',
         original: '/images/team/team-alt-3.jpg',
-        width: 626,
+        width: 570,
         height: 420,
         caption: 'A photo by Matthew Wiebe. (unsplash.com)',
     },

@@ -20,7 +20,7 @@ export function handleGetPendingService() {
     });
 }
 export function handleAcceptRegisterServiceApi(userId, serviceId) {
-    console.log(userId, serviceId);
+    
     return axios.post('/backend_pettu/api/dashboard/confirmRegisterService',`userId=${userId}&serviceId=${serviceId}`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

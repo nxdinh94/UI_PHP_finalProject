@@ -31,6 +31,7 @@ i18n.use(initReactI18next).init({
                 registerService: 'Register services',
                 requestLogin: 'Please login to use services!!!',
                 register: 'Register',
+                registedService: 'You have registered this services',
                 servicePage: {
                     title: 'Services',
                 },
@@ -62,6 +63,7 @@ i18n.use(initReactI18next).init({
                 requestLogin: 'Bạn hãy đăng nhập để sử dụng dịch vụ!!!',
                 registedService: 'Dịch vụ đã đăng ký',
                 registerService: 'Đăng ký dịch vụ',
+                registedService: 'Bạn đã đăng kí dịch vụ này',
 
                 servicePage: {
                     title: 'Dịch vụ',
