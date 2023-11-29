@@ -19,31 +19,36 @@ function QLTK() {
     const [dataToMap, setDataToMap] = useState([]);
     const dispatch = useDispatch();
     const { slug } = useParams();
-    console.log('slug', slug);
+    // console.log('slug', slug);
 
     const handleOnChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
     };
     const handleStatusAccount = async (id, status) => {
         const res = await handleStatusAccountApi(id, status);
-        dispatch(handleFetchAccountDataCompetentPersonnelThunk());
-        toast.success(res.message, {
-            hideProgressBar: true,
-        });
-    };
-
-    console.log('accountPersonnel', accountPersonnel);
-    useEffect(() => {
         if (slug == 'qltkpersonnel') {
-            // console.log('qltkpersonnel');
             dispatch(handleFetchAccountDataCompetentPersonnelThunk());
             setDataToMap(accountPersonnel);
         } else {
             dispatch(handleFetchAccountDataUsertsThunk());
             setDataToMap(accountUser);
-            // console.log('qltkusers');
         }
-    }, []);
+        toast.success(res.message, {
+            hideProgressBar: true,
+        });
+    };
+
+    useEffect(() => {
+        if (slug === 'qltkpersonnel') {
+            dispatch(handleFetchAccountDataCompetentPersonnelThunk()).then(() => {
+                setDataToMap(accountPersonnel);
+            });
+        } else {
+            dispatch(handleFetchAccountDataUsertsThunk()).then(() => {
+                setDataToMap(accountUser);
+            });
+        }
+    }, [slug, accountPersonnel, accountUser]);
     return (
         <div className="content">
             <Toastify />
@@ -75,35 +80,36 @@ function QLTK() {
                         </tr>
                     </thead>
                     <tbody>
-                        {dataToMap && dataToMap.map((item) => (
-                            <tr key={item.id}>
-                                <th scope="row">{item.id}</th>
-                                <td>{item.fullname}</td>
-                                <td>{item.email}</td>
-                                <td>{item.phone}</td>
-                                <td>{item.address}</td>
-                                <td>Staff</td>
-                                <td>
-                                    <button className="btn btn-success">Xem</button>
-                                    <button className="btn btn-warning mx-1">Sửa</button>
-                                    {item.status === 1 ? (
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => handleStatusAccount(item.id, '2')}
-                                        >
-                                            Cấm
-                                        </button>
-                                    ) : (
-                                        <button
-                                            className="btn btn-danger"
-                                            onClick={() => handleStatusAccount(item.id, '1')}
-                                        >
-                                            Hủy
-                                        </button>
-                                    )}
-                                </td>
-                            </tr>
-                        ))}
+                        {dataToMap &&
+                            dataToMap.map((item) => (
+                                <tr key={item.id}>
+                                    <th scope="row">{item.id}</th>
+                                    <td>{item.fullname}</td>
+                                    <td>{item.email}</td>
+                                    <td>{item.phone}</td>
+                                    <td>{item.address}</td>
+                                    <td>Staff</td>
+                                    <td>
+                                        <button className="btn btn-success">Xem</button>
+                                        <button className="btn btn-warning mx-1">Sửa</button>
+                                        {item.status === 1 ? (
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleStatusAccount(item.id, '2')}
+                                            >
+                                                Cấm
+                                            </button>
+                                        ) : (
+                                            <button
+                                                className="btn btn-danger"
+                                                onClick={() => handleStatusAccount(item.id, '1')}
+                                            >
+                                                Hủy
+                                            </button>
+                                        )}
+                                    </td>
+                                </tr>
+                            ))}
                     </tbody>
                 </Table>
             </div>

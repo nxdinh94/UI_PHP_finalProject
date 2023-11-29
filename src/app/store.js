@@ -9,7 +9,10 @@ import newsSlices from '../Pages/News/NewsSlice';
 import languageReducer from '~/components/Navbar/languageSlice';
 
 import QLTKSlice from '~/Pages/Admin/QLTK/QLTKSlices';
-import { handleFetchAccountData } from '~/Pages/Admin/QLTK/QLTKSlices';
+import {
+    handleFetchAccountDataCompetentPersonnelThunk,
+    handleFetchAccountDataUsertsThunk,
+} from '~/Pages/Admin/QLTK/QLTKSlices';
 
 import TeamSlices from '~/Pages/Team/TeamSlices';
 import { handleFetchAllTeamThunk } from '~/Pages/Team/TeamSlices';
@@ -42,6 +45,7 @@ export const persistor = persistStore(store);
 
 //dispatch immediately when bootstrap app
 store.dispatch(fetchNewsAsyn());
-
+store.dispatch(handleFetchAccountDataCompetentPersonnelThunk());
+store.dispatch(handleFetchAccountDataUsertsThunk());
 store.dispatch(handleFetchAllTeamThunk());
 store.dispatch(handleGetAllServicesThunk());
