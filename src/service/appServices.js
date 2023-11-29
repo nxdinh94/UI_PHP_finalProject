@@ -12,3 +12,6 @@ export const getAllServices = () => {
 export const getTimeUsingService = () => {
     return axios.get('/backend_pettu/api/services/getTimeWorking');
 }
+export const isRegistered = () => {
+    return axios.get('/backend_pettu/api/dashboard/isRegistered');
+}

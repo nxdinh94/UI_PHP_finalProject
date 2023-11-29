@@ -7,6 +7,8 @@ import '~/components/Swiper/Swiper.scss';
 
 import { Link } from 'react-router-dom';
 
+import { isRegistered } from '~/service/appServices';
+
 // Import Swiper styles
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -36,6 +38,10 @@ function Service() {
     useEffect(() => {
         setServicesData(servicesDataRedux);
     }, [servicesDataRedux]);
+    const handleIsRegistedService = async (userId, serviceId) => {
+        const res = await handleIsRegistedService(userId, serviceId);
+        console.log(res);
+    };
     return (
         <div className="container-fluid" style={{ padding: '10px 0px' }}>
             <Toastify />
@@ -119,9 +125,12 @@ function Service() {
                                 />
                                 <div className="text text-center">
                                     <p className="h4 fw-bolder">{item.name}</p>
-                                    <p className="p-text">{item.dersc}</p>
+                                    <div className="text-flow">
+                                        <p className="p-text my-0">{item.dersc}</p>
+                                    </div>
                                 </div>
                                 <div className="services-action">
+                                    {/* {handleIsRegistedService(7, item.id)} */}
                                     <button
                                         onClick={() => {
                                             handleOnRegisterBtn(item.slug);

@@ -8,7 +8,16 @@
         border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
     }
 }
-
+.text-flow {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* number of lines to show */
+    line-height: 1.4; /* fallback */
+    max-height: 1 * 2; /* fallback */
+    margin-bottom: 20px;
+}
 .con-text {
     padding-top: 40px;
 }
@@ -41,7 +50,7 @@
     .services-action {
         display: flex;
         justify-content: space-around;
-        
+
         .btn-register {
             background-color: #ec5078;
             color: white;
