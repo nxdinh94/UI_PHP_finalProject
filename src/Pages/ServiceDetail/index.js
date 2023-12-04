@@ -33,14 +33,11 @@ function ServiceDetail() {
     const userData = JSON.parse(sessionStorage.getItem('user_data'));
     const userId = userData.id;
 
-    // console.log('detailService', detailService);
-    // console.log('userId', userId);
-
-    const handleIsRegistedService = async () => {
-        const res = await isRegisteredService(userId, detailService[0].id);
-        return res ? true : false;
+    const handleIsRegistedService = async (userId, serviceId) => {
+        const res = await isRegisteredService(userId, serviceId);
+        setIsRegistedSer(res.status);
     };
-
+    const [isRegistedSer, setIsRegistedSer] = useState(handleIsRegistedService(userId, detailService[0].id));
     useEffect(() => {
         let cost = detailService[0].cost;
         if (choosePeriod === 1 || choosePeriod === 2) {
@@ -100,6 +97,7 @@ function ServiceDetail() {
             return;
         }
     };
+
     return (
         <Container className="my-5">
             <Toastify />
@@ -130,7 +128,20 @@ function ServiceDetail() {
                         </div>
                     </div>
 
-                    {!handleIsRegistedService() ? (
+                    {isRegistedSer ? (
+                        <div className="register-service " style={{ padding: 20 }}>
+                            <div className="slider-title">
+                                <p className="my-0">
+                                    <img
+                                        className="iconCat"
+                                        src={'/images/icons8/icons8-cat-footprint-16.png'}
+                                        alt="img"
+                                    />
+                                    <span className="topic1">{t('registedService')}</span>
+                                </p>
+                            </div>
+                        </div>
+                    ) : (
                         <div className="register-service">
                             <div className="slider-title">
                                 <p className="my-0">
@@ -190,19 +201,6 @@ function ServiceDetail() {
                                         &nbsp;{t('register')}
                                     </button>
                                 </div>
-                            </div>
-                        </div>
-                    ) : (
-                        <div className="register-service " style={{ padding: 20 }}>
-                            <div className="slider-title">
-                                <p className="my-0">
-                                    <img
-                                        className="iconCat"
-                                        src={'/images/icons8/icons8-cat-footprint-16.png'}
-                                        alt="img"
-                                    />
-                                    <span className="topic1">{t('registedService')}</span>
-                                </p>
                             </div>
                         </div>
                     )}

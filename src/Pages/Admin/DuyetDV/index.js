@@ -11,10 +11,10 @@ import { toast } from 'react-toastify';
 
 function DuyetDV() {
     const [data, setData] = useState([]);
+    console.log('data', data);
     useEffect(() => {
         const fetchData = async () => {
             const dt = await handleGetPendingService();
-            // console.log(dt);
             setData(dt);
         };
         fetchData();
@@ -24,10 +24,10 @@ function DuyetDV() {
         if (res.status) {
             toast.success(res.message);
             const dt = await handleGetPendingService();
-            // console.log(dt);
             setData(dt);
         }
     };
+
     return (
         <div className="content">
             <Toastify />
@@ -51,14 +51,14 @@ function DuyetDV() {
                         </thead>
                         <tbody>
                             {data.status &&
-                                data.map((item) => (
+                                data.data.map((item) => (
                                     <tr key={item.id}>
                                         <td>1</td>
                                         <td>{item.fullname}</td>
                                         <td>{item.email}</td>
                                         <td>{item.name}</td>
                                         <td>{item.register_day}</td>
-                                        <td> 
+                                        <td>
                                             {item.periodTime === 1 ? '7h-11h' : ''}
                                             {item.periodTime === 2 ? '13h-17h' : ''}
                                             {item.periodTime === 3 ? 'All day' : ''}

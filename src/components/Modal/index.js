@@ -20,7 +20,7 @@ function Model({ petDetail }) {
                 <ModalHeader toggle={toggle}></ModalHeader>
                 <ModalBody>
                     <div className="modal-body-content">
-                        <h2 className="pet-name">{petDetail.name}</h2>
+                        <h2 className="pet-name topic2 my-2">{petDetail.name}</h2>
                         <div className="list-in4">
                             <ul>
                                 <li>

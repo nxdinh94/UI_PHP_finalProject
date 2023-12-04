@@ -46,17 +46,19 @@ a[href] {
 
 .topic1 {
     color: #ec5078;
-    font-weight: bold;
+    font-weight: bolder;
     font-size: 18px;
     margin: 8px 0px;
+    font-family: oswald;
     line-height: 45px;
-}
+} 
 
 .topic2 {
     font-size: 3.4rem;
     font-weight: bolder;
     color: #0c1529;
     margin-bottom: 30px;
+    font-family: oswald;
     @media (max-width: $lg) {
         font-size: 52px;
     }

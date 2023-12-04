@@ -8,6 +8,11 @@ import { getAllPetsAction } from '../../actions';
 import Swiper from '~/components/Swiper';
 import { useSelector } from 'react-redux';
 
+import { useTranslation } from 'react-i18next';
+
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faUser, faAnglesRight } from '@fortawesome/free-solid-svg-icons';
+import routes from '~/config/routes';
 var settings = {
     dots: false,
     infinite: false,
@@ -46,8 +51,11 @@ var settings = {
 function Home() {
     const [handleDataPet, setHandleDataPet] = useState([]);
     const [handleDataTeam, setHandleDataTeam] = useState([]);
-
+    const { t } = useTranslation();
     const teamData = useSelector((state) => state.teamSlices.value);
+    const serviceData = useSelector((state) => state.servicesSlices.value);
+
+    const [openQuestionGuide, setOpenQuestionGuide] = useState(Array(5).fill(false));
 
     useEffect(() => {
         const fetchAllPets = async () => {
@@ -64,6 +72,19 @@ function Home() {
     useEffect(() => {
         setHandleDataTeam(teamData);
     }, [teamData]);
+    const handleToggleQuestionGuide = (key) => {
+        const newState = [...openQuestionGuide];
+
+        if (newState[key]) {
+            newState.fill(false);
+        } else {
+            newState.fill(false);
+            newState[key] = !newState[key];
+        }
+
+        setOpenQuestionGuide(newState);
+    };
+
     return (
         <Container fluid className="px-0">
             <div className="container">
@@ -179,7 +200,140 @@ function Home() {
                     </Col>
                 </Row>
             </div>
-            <div className="container">
+            <div className="ask-question-wrapper container">
+                <Row>
+                    <Col md="5">
+                        <div className="ask-question-right">
+                            <p className="topic1">Asked Questions</p>
+                            <h2 className="topic2" style={{ fontFamily: 'oswald', fontSize: '4rem' }}>
+                                We are always
+                                <br />
+                                Ready for your
+                                <br />
+                                Any question
+                            </h2>
+                            <p className="p-text my-4">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
+                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                            </p>
+                            <div className="btn-area">
+                                <button
+                                    onClick={() => {
+                                        window.location.href = '/contact';
+                                    }}
+                                    className="btn-discover"
+                                >
+                                    Contact now
+                                </button>
+                            </div>
+                        </div>
+                    </Col>
+                    <Col md="7" className="p-4">
+                        <div className="ask-question-left" key="0">
+                            <div
+                                className="item-open"
+                                onClick={() => {
+                                    handleToggleQuestionGuide(0);
+                                }}
+                            >
+                                How to contact with our customer featire?
+                            </div>
+                            {openQuestionGuide[0] && (
+                                <div
+                                    className="item-toggle p-text"
+                                    style={{ animation: `${openQuestionGuide[0] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                                >
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat explicabo, animi
+                                    soluta veniam aspernatur ut iusto incidunt hic quas sequi dolores neque quis, sit
+                                    odit minima modi nemo.
+                                </div>
+                            )}
+                        </div>
+                        <div className="ask-question-left" key="1">
+                            <div
+                                className="item-open"
+                                onClick={() => {
+                                    handleToggleQuestionGuide(1);
+                                }}
+                            >
+                                Is there any customer pricing system?
+                            </div>
+                            {openQuestionGuide[1] && (
+                                <div
+                                    className="item-toggle p-text"
+                                    style={{ animation: `${openQuestionGuide[1] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                                >
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat explicabo, animi
+                                    soluta veniam aspernatur ut iusto incidunt hic quas sequi dolores neque quis, sit
+                                    odit minima modi nemo.
+                                </div>
+                            )}
+                        </div>
+                        <div className="ask-question-left" key="2">
+                            <div
+                                className="item-open"
+                                onClick={() => {
+                                    handleToggleQuestionGuide(2);
+                                }}
+                            >
+                                Where is the edit options on deshboard?
+                            </div>
+                            {openQuestionGuide[2] && (
+                                <div
+                                    className="item-toggle p-text"
+                                    style={{ animation: `${openQuestionGuide[2] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                                >
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat explicabo, animi
+                                    soluta veniam aspernatur ut iusto incidunt hic quas sequi dolores neque quis, sit
+                                    odit minima modi nemo.
+                                </div>
+                            )}
+                        </div>
+                        <div className="ask-question-left" key="3">
+                            <div
+                                className="item-open"
+                                onClick={() => {
+                                    handleToggleQuestionGuide(3);
+                                }}
+                            >
+                                How to update the latest version?
+                            </div>
+                            {openQuestionGuide[3] && (
+                                <div
+                                    className="item-toggle p-text"
+                                    style={{ animation: `${openQuestionGuide[3] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                                >
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat explicabo, animi
+                                    soluta veniam aspernatur ut iusto incidunt hic quas sequi dolores neque quis, sit
+                                    odit minima modi nemo.
+                                </div>
+                            )}
+                        </div>
+                        <div className="ask-question-left" key="4">
+                            <div
+                                className="item-open"
+                                onClick={() => {
+                                    handleToggleQuestionGuide(4);
+                                }}
+                                style={{ animation: `${openQuestionGuide[4] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                            >
+                                How to contact with our customer featire?
+                            </div>
+                            {openQuestionGuide[4] && (
+                                <div
+                                    className="item-toggle p-text"
+                                    style={{ animation: `${openQuestionGuide[4] ? 'fadeIn' : 'fadeOut'} 1s` }}
+                                >
+                                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Placeat explicabo, animi
+                                    soluta veniam aspernatur ut iusto incidunt hic quas sequi dolores neque quis, sit
+                                    odit minima modi nemo.
+                                </div>
+                            )}
+                        </div>
+                    </Col>
+                </Row>
+            </div>
+            <div className="container mb-5">
                 <Row>
                     <Col lg="12" className="section-share ">
                         <div className="slider-title">
@@ -192,6 +346,113 @@ function Home() {
                         <Slider settings={settings} dataPet={handleDataPet}></Slider>
                     </Col>
                 </Row>
+            </div>
+            <div className="post-pet-care container">
+                <div className="post-pet-care-header">
+                    <Row>
+                        <Col lg="6" className="slider-title text-start">
+                            <p className="mb-0">
+                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
+                                <span className="topic1">Pets of the month</span>
+                            </p>
+                            <h2 className="topic2" style={{ fontFamily: 'oswald', fontSize: '4rem' }}>
+                                Every single day <br />
+                                Update
+                            </h2>
+                        </Col>
+                        <Col lg="6">
+                            <div className="btn-area">
+                                <a href={routes.services} className="btn-discover">
+                                    Discover more
+                                </a>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
+                <div className="post-pet-care-body">
+                    <Row>
+                        <Col lg="6" style={{ marginBottom: 24 }}>
+                            <div className="service-display-wrapper">
+                                <div className="service-display-image">
+                                    <img src={serviceData[0].icon} />
+                                </div>
+                                <div className="service-display-content">
+                                    <span className="p-text">
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span className="p-text ms-2">By {serviceData[0].author || 'Admin'}</span>
+                                    </span>
+                                    <h1 className="content-title">
+                                        <a>{serviceData[0].name}</a>
+                                    </h1>
+                                    <a className="loadmore" href={`/services/${serviceData[0].slug}/detail`}>
+                                        <span>Load More</span>
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </a>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg="6" style={{ marginBottom: 24 }}>
+                            <div className="service-display-wrapper">
+                                <div className="service-display-image">
+                                    <img src={serviceData[3].icon} />
+                                </div>
+                                <div className="service-display-content">
+                                    <span className="p-text">
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span className="p-text ms-2">By {serviceData[3].author || 'Admin'}</span>
+                                    </span>
+                                    <h1 className="content-title">
+                                        <a>{serviceData[3].name}</a>
+                                    </h1>
+                                    <a className="loadmore" href={`/services/${serviceData[3].slug}/detail`}>
+                                        <span>Load More</span>
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </a>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg="6" style={{ marginBottom: 24 }}>
+                            <div className="service-display-wrapper">
+                                <div className="service-display-image">
+                                    <img src={serviceData[1].icon} />
+                                </div>
+                                <div className="service-display-content">
+                                    <span className="p-text">
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span className="p-text ms-2">By {serviceData[1].author || 'Admin'}</span>
+                                    </span>
+                                    <h1 className="content-title">
+                                        <a>{serviceData[1].name}</a>
+                                    </h1>
+                                    <a className="loadmore" href={`/services/${serviceData[1].slug}/detail`}>
+                                        <span>Load More</span>
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </a>
+                                </div>
+                            </div>
+                        </Col>
+                        <Col lg="6" style={{ marginBottom: 24 }}>
+                            <div className="service-display-wrapper">
+                                <div className="service-display-image">
+                                    <img src={serviceData[2].icon} />
+                                </div>
+                                <div className="service-display-content">
+                                    <span className="p-text">
+                                        <FontAwesomeIcon icon={faUser} />
+                                        <span className="p-text ms-2">By {serviceData[2].author || 'Admin'}</span>
+                                    </span>
+                                    <h1 className="content-title">
+                                        <a>{serviceData[2].name}</a>
+                                    </h1>
+                                    <a className="loadmore" href={`/services/${serviceData[2].slug}/detail`}>
+                                        <span>Load More</span>
+                                        <FontAwesomeIcon icon={faAnglesRight} />
+                                    </a>
+                                </div>
+                            </div>
+                        </Col>
+                    </Row>
+                </div>
             </div>
         </Container>
     );

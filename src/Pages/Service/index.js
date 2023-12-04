@@ -38,7 +38,7 @@ function Service() {
     useEffect(() => {
         setServicesData(servicesDataRedux);
     }, [servicesDataRedux]);
-    
+
     return (
         <div className="container-fluid" style={{ padding: '10px 0px' }}>
             <Toastify />
@@ -60,7 +60,7 @@ function Service() {
                                     <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
                                     <span className="topic1">Chúng tôi cung cấp</span>
                                 </p>
-                                <h2 className="topic2">THĂM KHÁM BỆNH ĐỊNH KÌ</h2>
+                                <h2 className="topic2">Thăm khám bệnh định kì</h2>
                                 <div>
                                     <p className="p-text">
                                         <span className="fw-bold">
@@ -127,7 +127,6 @@ function Service() {
                                     </div>
                                 </div>
                                 <div className="services-action">
-                                    
                                     <button
                                         onClick={() => {
                                             handleOnRegisterBtn(item.slug);
