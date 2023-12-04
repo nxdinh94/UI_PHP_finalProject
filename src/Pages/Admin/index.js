@@ -61,9 +61,6 @@ function Admin() {
                                 <NavLink href={routes.adminQlsq}>Quản lý sản phẩm</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={routes.adminQllsq}>Quản lý loại sản phẩm</NavLink>
-                            </NavItem>
-                            <NavItem>
                                 <NavLink href="#">Xét duyệt hóa đơn</NavLink>
                             </NavItem>
                             <NavItem>

@@ -1,0 +1,93 @@
+.storeDetail-wrapper {
+    .product-thumpnail {
+        padding: 10px;
+        background-color: #ddd;
+        img {
+            width: 100%;
+            height: auto;
+            max-height: 370px;
+            object-fit: contain;
+            
+        }
+    }
+    .product-description {
+        padding: 20px;
+        .topic2 {
+            margin-bottom: 16px;
+            font-size: 50px;
+        }
+        .rank-review {
+            display: flex;
+            .rank {
+                .star {
+                    margin: 0px 3px;
+                    path {
+                        color: #f6af34;
+                    }
+                }
+            }
+            .review {
+                margin-left: 20px;
+            }
+        }
+        .price {
+            h6 {
+                color: #f33666;
+                margin-bottom: 15px;
+                font-weight: bolder;
+                font-family: oswald;
+                font-size: 20px;
+            }
+        }
+        .product-action {
+            display: flex;
+            justify-content: space-around;
+            .modify-quantity,
+            .add-cart {
+                width: 180px;
+                height: 57px;
+                background-color: #ddd;
+                border-radius: 100px;
+                display: flex;
+                justify-content: space-around;
+                align-items: center;
+
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+            }
+            .modify-quantity {
+                svg {
+                    cursor: pointer;
+                    path {
+                        color: #0c1529;
+                    }
+                }
+                span {
+                    font-weight: light;
+                    font-size: 20px;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                }
+            }
+            .add-cart {
+                background-color: #82b440;
+                justify-content: center;
+                svg {
+                    cursor: pointer;
+                    path {
+                        color: #ffffff;
+                    }
+                }
+                p {
+                    margin: 0px 5px;
+                    color: white;
+                    font-weight: bold;
+                    cursor: pointer;
+                }
+            }
+        }
+    }
+}

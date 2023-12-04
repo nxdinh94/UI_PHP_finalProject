@@ -21,9 +21,9 @@ function Store() {
                             <FontAwesomeIcon icon={faStar} className="star" size="sm" />
                         </div>
                         <div className="topic2 name fw-bolder" style={{ fontSize: 17, marginTop: 10, marginBottom: 5 }}>
-                            <Link to="/storeDetail/1">
+                            <a href="/storeDetail/1">
                                 <h4>Artikel products-pet</h4>
-                            </Link>
+                            </a>
                         </div>
                         <div className="price">
                             <h6>$112.00</h6>
