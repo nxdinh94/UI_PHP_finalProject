@@ -1,5 +1,8 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Input, Label, FormGroup, Table } from 'reactstrap';
+import { Container, Row, Col, Input, Label, FormGroup, Table, Tooltip } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faXmark, faPenToSquare, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import { Tooltip as Tooltip2 } from 'react-tippy';
 
 import './Profile.scss';
 import { useEffect, useState } from 'react';
@@ -12,6 +15,8 @@ import { Link } from 'react-router-dom';
 import { getTimeUsingService } from '~/service/appServices';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
+
+import CountDown from '~/components/CountDown';
 
 function Profile() {
     const [isPreviewMode, setIsPreviewMode] = useState(true);
@@ -89,15 +94,13 @@ function Profile() {
     };
 
     const [t] = useTranslation();
-
+    const handle = async () => {
+        const res = await handleGetRegistedServices(userId);
+        setListRegistedServces(res);
+    };
     useEffect(() => {
-        const handle = async () => {
-            const res = await handleGetRegistedServices(userId);
-            setListRegistedServces(res);
-        };
         handle();
-    }, [listRegistedServces]);
-    // console.log('list registed ', listRegistedServces);
+    }, []);
     const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
     const handleUpdateServiceBtn = (key) => {
@@ -117,7 +120,9 @@ function Profile() {
     const [isOnChangeDate, setIsOnChangeDate] = useState(false);
     const [choosePeriod, setChoosePeriod] = useState(1);
     const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
+    const [isShowTooltip, setIsShowTooltip] = useState(false);
     // console.log('dfd', chooseDate, choosePeriod);
+
     useEffect(() => {
         const getPriodTime = async () => {
             const res = await getTimeUsingService();
@@ -147,10 +152,12 @@ function Profile() {
     // console.log('Select', listRegistedServces);
     const handleCancelService = async (userid, serviceid) => {
         const res = await cancelService(userid, serviceid);
+        handle();
         if (res.status) {
             toast.success(res.message);
         } else toast.error(res.message);
     };
+
     return (
         <Container className="profile-container">
             <Toastify />
@@ -368,6 +375,7 @@ function Profile() {
             </Row>
             {listRegistedServces.data ? (
                 <Row>
+                    <div className="content"></div>
                     <div className="registed-services-wrapper">
                         <div className="slider-title">
                             <p>
@@ -377,12 +385,13 @@ function Profile() {
                             <h2 className="topic2">{t('registedService')}</h2>
                         </div>
                         <div className="registed-item">
-                            <Table responsive>
+                            <Table responsive bordered>
                                 <thead>
                                     <tr>
-                                        <th className="fw-bold">STT</th>
                                         <th className="fw-bold">Tên dịch vụ</th>
                                         <th className="fw-bold">Ngày đăng ký</th>
+                                        <th className="fw-bold">Buổi</th>
+                                        <th className="fw-bold">Thời gian còn lại</th>
                                         <th className="fw-bold">Hành động</th>
                                     </tr>
                                 </thead>
@@ -390,33 +399,31 @@ function Profile() {
                                     {listRegistedServces.status &&
                                         listRegistedServces.data.map((listRegistedServce, key) => (
                                             <tr key={key}>
-                                                <th scope="row">{listRegistedServce.id}</th>
-                                                <td>{listRegistedServce.name}</td>
+                                                <td>
+                                                    <a href={`/services/${listRegistedServce.slug}/detail`}>
+                                                        {listRegistedServce.name}
+                                                    </a>
+                                                </td>
                                                 <td>{listRegistedServce.register_day}</td>
+                                                <td>
+                                                    {listRegistedServce.periodTime === 1 ? '7h-11h' : ''}
+                                                    {listRegistedServce.periodTime === 2 ? '13h-17h' : ''}
+                                                    {listRegistedServce.periodTime === 3 ? 'Cả ngày' : ''}
+                                                </td>
+                                                <td>
+                                                    <CountDown countDownDate={1704846169912} />
+                                                </td>
                                                 {listRegistedServce.status == 1 ? (
-                                                    <td>
-                                                        <Link
-                                                            to={`/services/${listRegistedServce.slug}/detail`}
-                                                            className="btn btn-success text-white"
-                                                        >
-                                                            Xem chi tiết
-                                                        </Link>
-                                                    </td>
+                                                    <td></td>
                                                 ) : (
                                                     <td>
-                                                        <Link
-                                                            to={`/services/${listRegistedServce.slug}/detail`}
-                                                            className="btn btn-success text-white"
-                                                        >
-                                                            Xem chi tiết
-                                                        </Link>
                                                         <button
                                                             className="btn btn-danger mx-2"
                                                             onClick={() =>
                                                                 handleCancelService(userId, listRegistedServce.id)
                                                             }
                                                         >
-                                                            Hủy dịch vụ
+                                                            <FontAwesomeIcon icon={faXmark} className="profile-icon" />
                                                         </button>
                                                         {isShowAnounce[key] ? (
                                                             <button
@@ -425,7 +432,10 @@ function Profile() {
                                                                 }}
                                                                 className="btn btn-primary me-2"
                                                             >
-                                                                Sửa dịch vụ
+                                                                <FontAwesomeIcon
+                                                                    icon={faPenToSquare}
+                                                                    className="profile-icon"
+                                                                />
                                                             </button>
                                                         ) : (
                                                             <div className="services-option">
@@ -461,7 +471,7 @@ function Profile() {
                                                                                 }
                                                                                 id={item.id}
                                                                             >
-                                                                                {item.timeworking}{' '}
+                                                                                {item.timeworking}
                                                                             </option>
                                                                         ))}
                                                                     </Input>
@@ -479,9 +489,38 @@ function Profile() {
                                                             </div>
                                                         )}
                                                         {isShowAnounce[key] && (
-                                                            <span className="anounce">
-                                                                Yêu cầu đang được hệ thống xác nhận!!!
-                                                            </span>
+                                                            <Tooltip2
+                                                                position="right"
+                                                                trigger="manual"
+                                                                interactive
+                                                                open={isShowTooltip}
+                                                                html={
+                                                                    <div className="div-tippy2">
+                                                                        <span
+                                                                            style={{
+                                                                                color: ' #ec5078',
+                                                                            }}
+                                                                        >
+                                                                            Yêu cầu của quý khách đang được xử lý
+                                                                        </span>
+                                                                    </div>
+                                                                }
+                                                            >
+                                                                <button
+                                                                    className="btn btn-success"
+                                                                    onMouseOver={() => {
+                                                                        setIsShowTooltip(true);
+                                                                    }}
+                                                                    onMouseLeave={() => {
+                                                                        setIsShowTooltip(false);
+                                                                    }}
+                                                                >
+                                                                    <FontAwesomeIcon
+                                                                        icon={faCircleInfo}
+                                                                        className="profile-icon"
+                                                                    />
+                                                                </button>
+                                                            </Tooltip2>
                                                         )}
                                                     </td>
                                                 )}

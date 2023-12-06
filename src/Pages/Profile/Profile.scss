@@ -56,62 +56,74 @@
     .registed-services-wrapper {
         .registed-item {
             .anounce {
-                color: #EC5078;
+                color: #ec5078;
                 font-size: 14px;
                 font-style: italic;
             }
         }
         .services-option {
-        .choose-date,
-        .choose-period {
-            display: flex;
-            label {
-                font-size: 15px;
-                margin-top: 5px;
+            .choose-date,
+            .choose-period {
+                display: flex;
+                label {
+                    font-size: 15px;
+                    margin-top: 5px;
+                }
+                input {
+                    margin-top: 8px;
+                }
+                .form-select {
+                    height: 42px;
+                    box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                    -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                    -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                }
             }
-            input {
-                margin-top: 8px;
+            .choose-period {
+                label {
+                    margin-top: 0px;
+                }
             }
-            .form-select {
-                height: 42px;
-                box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
-                -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
-                -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
-            }
-        }
-        .choose-period{
-            label{
-                margin-top: 0px;
-            }
-        }
-        .total-cost {
-            display: flex;
-            justify-content: end;
-            span {
-                &:first-child {
-                    color: #0c1529;
-                    font-style: italic;
-                    font-weight: bold;
+            .total-cost {
+                display: flex;
+                justify-content: end;
+                span {
+                    &:first-child {
+                        color: #0c1529;
+                        font-style: italic;
+                        font-weight: bold;
 
-                    &::after {
-                        content: ' :';
-                        margin-right: 4px;
+                        &::after {
+                            content: ' :';
+                            margin-right: 4px;
+                        }
+                    }
+                }
+                span {
+                    &:last-child {
+                        color: #ec5078;
+                        &::after {
+                            content: 'vnd';
+                        }
                     }
                 }
             }
-            span {
-                &:last-child {
-                    color: #ec5078;
-                    &::after {
-                        content: 'vnd';
-                    }
-                }
+            .submit-area {
+                display: flex;
+                justify-content: center;
             }
         }
-        .submit-area {
-            display: flex;
-            justify-content: center;
-        }
     }
+}
+.profile-icon {
+    path {
+        color: white;
     }
+}
+.div-tippy2 {
+    width: 100px;
+    background-color: rgb(245, 222, 179);
+    font-style: italic;
+    padding: 10px 10px;
+    border-radius: 9px;
 }

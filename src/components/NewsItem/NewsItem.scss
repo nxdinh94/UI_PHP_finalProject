@@ -8,13 +8,17 @@
             height: auto;
             object-fit: cover;
             cursor: pointer;
-            
         }
     }
     .content-item {
         padding: 30px;
         background-color: #f7f7f5;
-
+        .description {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 4;
+            overflow: hidden;
+        }
         .time_author {
             width: 100%;
             height: fit-content;
@@ -38,6 +42,10 @@
                 color: #0e2352;
                 font-weight: bolder;
                 margin-bottom: 15px;
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 1;
+                overflow: hidden;
                 &:hover {
                     cursor: pointer;
                     color: rgb(7, 166, 41);
