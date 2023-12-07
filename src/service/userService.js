@@ -79,4 +79,14 @@ export function cancelService(userId, serviceId) {
         },
     });
 }
-
+export function updateRegistedService(userId, serviceId, usingDate, periodTime) {
+    return axios.post(
+        '/backend_pettu/api/users/updatePeriodTime',
+        `userId=${userId}&serviceId=${serviceId}&periodTime=${periodTime}&usingDate=${usingDate}`,
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        },
+    );
+}

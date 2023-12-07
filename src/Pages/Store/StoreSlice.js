@@ -1,16 +1,17 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getAllProduct } from '~/service/appServices';
-const initialValue = {
+const initialState = {
     value: [],
     status: 'idle',
 };
 export const handleFetchAllProductThunk = createAsyncThunk('StoreSlices/handleFetchAllProductThunk', async () => {
     const res = await getAllProduct();
-    console.log(res);
+
+    return res;
 });
 export const StoreSlices = createSlice({
     name: 'StoreSlices',
-    initialValue,
+    initialState,
     reducers: {},
     extraReducers: (builder) => {
         builder

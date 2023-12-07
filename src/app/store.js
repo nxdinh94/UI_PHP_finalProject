@@ -8,6 +8,9 @@ import { fetchNewsAsyn } from '../Pages/News/NewsSlice';
 import newsSlices from '../Pages/News/NewsSlice';
 import languageReducer from '~/components/Navbar/languageSlice';
 
+import StoreSlices from '~/Pages/Store/StoreSlice';
+import { handleFetchAllProductThunk } from '~/Pages/Store/StoreSlice';
+
 import QLTKSlice from '~/Pages/Admin/QLTK/QLTKSlices';
 import {
     handleFetchAccountDataCompetentPersonnelThunk,
@@ -33,6 +36,7 @@ const rootReducer = combineReducers({
     QLTKSlice: QLTKSlice,
     teamSlices: TeamSlices,
     servicesSlices: ServicesSlices,
+    storeSlices: StoreSlices,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
@@ -49,3 +53,4 @@ store.dispatch(handleFetchAccountDataCompetentPersonnelThunk());
 store.dispatch(handleFetchAccountDataUsertsThunk());
 store.dispatch(handleFetchAllTeamThunk());
 store.dispatch(handleGetAllServicesThunk());
+store.dispatch(handleFetchAllProductThunk());

@@ -20,5 +20,5 @@ export const isRegisteredService = (userId, serviceId) => {
     });
 };
 export const getAllProduct = () => {
-    return axios.get('/api/products/listProduct');
+    return axios.get('/backend_pettu/api/products/listProduct');
 };

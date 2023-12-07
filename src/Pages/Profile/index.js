@@ -1,20 +1,24 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Row, Col, Input, Label, FormGroup, Table, Tooltip } from 'reactstrap';
+import { faCircleInfo, faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faXmark, faPenToSquare, faCircleInfo } from '@fortawesome/free-solid-svg-icons';
+import 'bootstrap/dist/css/bootstrap.min.css';
 import { Tooltip as Tooltip2 } from 'react-tippy';
+import { Col, Container, FormGroup, Input, Label, Row, Table } from 'reactstrap';
 
-import './Profile.scss';
 import { useEffect, useState } from 'react';
+import './Profile.scss';
 
 import { useTranslation } from 'react-i18next';
 
-import { handleUpdateProfileApi, handleGetRegistedServices, cancelService } from '~/service/userService';
+import {
+    cancelService,
+    handleGetRegistedServices,
+    handleUpdateProfileApi,
+    updateRegistedService,
+} from '~/service/userService';
 
-import { Link } from 'react-router-dom';
-import { getTimeUsingService } from '~/service/appServices';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
+import { getTimeUsingService } from '~/service/appServices';
 
 import CountDown from '~/components/CountDown';
 
@@ -65,6 +69,19 @@ function Profile() {
             case 'about':
                 setAboutContent(e.target.value);
                 break;
+            case 'chooseDate':
+                setIsOnChangeDate(true);
+                setChooseDate(e.target.value);
+                break;
+            case 'choosePeriod':
+                setIsOnChangePeriodDay(true);
+                const index = e.target.selectedIndex;
+                const el = e.target.childNodes[index];
+                const option = el.getAttribute('id');
+                setChoosePeriod(+option);
+                break;
+            default:
+                throw new Error('Invalid form');
         }
     };
 
@@ -108,7 +125,12 @@ function Profile() {
         newShowDiv[key] = !newShowDiv[key];
         setIsShowAnounce(newShowDiv);
     };
-    const handleSaveServiceBtn = (key) => {
+    const handleSaveServiceBtn = async (key, userId, serviceId, usingDate, periodTime) => {
+        // console.log('dfd', userId, serviceId, periodTime, usingDate);
+        const res = await updateRegistedService(userId, serviceId, usingDate, periodTime);
+        if (res.status) {
+            toast.success(res.message);
+        } else toast.error(res.message);
         const newShowDiv = [...isShowAnounce];
         newShowDiv[key] = !newShowDiv[key];
         setIsShowAnounce(newShowDiv);
@@ -117,11 +139,12 @@ function Profile() {
     //jfdfd
 
     const [chooseDate, setChooseDate] = useState('');
-    const [isOnChangeDate, setIsOnChangeDate] = useState(false);
     const [choosePeriod, setChoosePeriod] = useState(1);
+    const [isOnChangeDate, setIsOnChangeDate] = useState(false);
+    const [isOnChangePeriodDay, setIsOnChangePeriodDay] = useState(false);
     const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
     const [isShowTooltip, setIsShowTooltip] = useState(false);
-    console.log('dfd', chooseDate, choosePeriod);
+    // console.log('dfd', chooseDate, choosePeriod);
 
     useEffect(() => {
         const getPriodTime = async () => {
@@ -132,27 +155,11 @@ function Profile() {
         };
         getPriodTime();
     }, []);
-  
-    const handleOnchangeInput = (e) => {
-        let name = e.target.name;
-        switch (name) {
-            case 'chooseDate':
-                setIsOnChangeDate(true);
-                setChooseDate(e.target.value);
-                break;
-            case 'choosePeriod':
-                const index = e.target.selectedIndex;
-                const el = e.target.childNodes[index];
-                const option = el.getAttribute('id');
-                setChoosePeriod(+option);
-                break;
-            default:
-                throw new Error('Invalid form');
-        }
-    };
+
     // console.log('Select', listRegistedServces);
     const handleCancelService = async (userid, serviceid) => {
         const res = await cancelService(userid, serviceid);
+
         handle();
         if (res.status) {
             toast.success(res.message);
@@ -393,6 +400,7 @@ function Profile() {
                                         <th className="fw-bold">Ngày đăng ký</th>
                                         <th className="fw-bold">Buổi</th>
                                         <th className="fw-bold">Thời gian còn lại</th>
+                                        <th className="fw-bold">Thanh toán</th>
                                         <th className="fw-bold">Hành động</th>
                                     </tr>
                                 </thead>
@@ -417,6 +425,11 @@ function Profile() {
                                                         registerDate={listRegistedServce.register_day}
                                                     />
                                                 </td>
+                                                <td>
+                                                    {listRegistedServce.payment_status === 0
+                                                        ? 'Chưa thanh toán'
+                                                        : 'Đã thanh toán'}
+                                                </td>
                                                 {listRegistedServce.status == 1 ? (
                                                     <td></td>
                                                 ) : (
@@ -424,7 +437,10 @@ function Profile() {
                                                         <button
                                                             className="btn btn-danger mx-2"
                                                             onClick={() =>
-                                                                handleCancelService(userId, listRegistedServce.id)
+                                                                handleCancelService(
+                                                                    userId,
+                                                                    listRegistedServce.serviceid,
+                                                                )
                                                             }
                                                         >
                                                             <FontAwesomeIcon icon={faXmark} className="profile-icon" />
@@ -446,7 +462,7 @@ function Profile() {
                                                                 <div className="choose-date">
                                                                     <Label>Chọn ngày</Label>
                                                                     <Input
-                                                                        onChange={handleOnchangeInput}
+                                                                        onChange={handleOnChangeInput}
                                                                         name="chooseDate"
                                                                         type="date"
                                                                         value={
@@ -460,7 +476,7 @@ function Profile() {
                                                                 <div className="choose-period">
                                                                     <Label>Chọn buổi</Label>
                                                                     <Input
-                                                                        onChange={handleOnchangeInput}
+                                                                        onChange={handleOnChangeInput}
                                                                         name="choosePeriod"
                                                                         type="select"
                                                                         style={{ width: '100%' }}
@@ -483,7 +499,17 @@ function Profile() {
                                                                 <div className="submit-area">
                                                                     <button
                                                                         onClick={() => {
-                                                                            handleSaveServiceBtn(key);
+                                                                            handleSaveServiceBtn(
+                                                                                key,
+                                                                                userId,
+                                                                                listRegistedServce.serviceid,
+                                                                                isOnChangeDate
+                                                                                    ? chooseDate
+                                                                                    : listRegistedServce.register_day,
+                                                                                isOnChangePeriodDay
+                                                                                    ? choosePeriod
+                                                                                    : listRegistedServce.periodTime,
+                                                                            );
                                                                         }}
                                                                         className="btn btn-primary"
                                                                     >
