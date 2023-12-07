@@ -19,3 +19,6 @@ export const isRegisteredService = (userId, serviceId) => {
         },
     });
 };
+export const getAllProduct = () => {
+    return axios.get('/api/products/listProduct');
+};
