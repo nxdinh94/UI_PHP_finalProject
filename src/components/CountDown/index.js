@@ -1,32 +1,111 @@
 import { useEffect, useState } from 'react';
 
-function CountDown({ countDownDate }) {
+function CountDown({ periodTime, registerDate }) {
+    // console.log(periodTime, registerDate);
     const [resultDate, setResultDate] = useState('');
-    const countdonw = (countDownDate) => {
-        var now = new Date().getTime();
-        // console.log('new', now);
 
-        // Find the distance between now an the count down date
-        var distance = countDownDate - now;
-        // Time calculations for days, hours, minutes and seconds
-        var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-        var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-        var seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    const arrayDate = registerDate.split('-');
+    let convertTimeEnd = '';
+    let convertTimeStart = '';
+    let monthToText = '';
 
-        // Output the result in an element with id="demo"
-        setResultDate(hours + 'h ' + minutes + 'm ' + seconds + 's ');
+    switch (periodTime) {
+        case 1:
+            convertTimeStart = `7:00:00`;
+            convertTimeEnd = `11:00:00`;
+            break;
+        case 2:
+            convertTimeStart = `13:00:00`;
+            convertTimeEnd = `17:00:00`;
+            break;
+        case 3:
+            convertTimeStart = `7:00:00`;
+            convertTimeEnd = `17:00:00`;
+            break;
 
-        // If the count down is over, write some text
-        // if (distance < 0) {
-        //     setResultDate(hours + 'h ' + minutes + 'm ' + seconds + 's ');
-        // }
+        default:
+            convertTimeEnd = `17:00:00`;
+    }
+    switch (arrayDate[1]) {
+        case '12':
+            monthToText = 'December';
+            break;
+        case '1':
+            monthToText = 'January';
+            break;
+        case '2':
+            monthToText = 'February';
+            break;
+        case '3':
+            monthToText = 'March';
+            break;
+        case '4':
+            monthToText = 'April';
+            break;
+        case '5':
+            monthToText = 'May';
+            break;
+        case '6':
+            monthToText = 'June';
+            break;
+        case '7':
+            monthToText = 'July';
+            break;
+        case '8':
+            monthToText = 'August';
+            break;
+        case '9':
+            monthToText = 'September';
+            break;
+        case '10':
+            monthToText = 'October';
+            break;
+        case '11':
+            monthToText = 'November';
+            break;
+        default:
+            console.log(typeof arrayDate[1]);
+    }
+    const customeDateTimeEnd = `${monthToText} ${arrayDate[2]}, ${arrayDate[0]} ${convertTimeEnd}`;
+    const customeDateTimeStart = `${monthToText} ${arrayDate[2]}, ${arrayDate[0]} ${convertTimeStart}`;
 
-        // Get todays date and time
+    function secondsToHMS(seconds) {
+        const hours = Math.floor(seconds / 3600);
+        const minutes = Math.floor((seconds % 3600) / 60);
+        const remainingSeconds = seconds % 60;
+
+        const formattedTime = `${hours}h ${String(minutes).padStart(2, '0')}m ${String(remainingSeconds).padStart(
+            2,
+            '0',
+        )}s`;
+
+        return formattedTime;
+    }
+
+    const countdonw = () => {
+        const futureDateEnd = new Date(customeDateTimeEnd);
+        const futureDateStart = new Date(customeDateTimeStart);
+
+        // Thời điểm hiện tại
+        const currentDate = new Date();
+
+        if (futureDateStart - currentDate <= 0) {
+            const timeDifferenceInSeconds = Math.floor((futureDateEnd - currentDate) / 1000);
+            let result = secondsToHMS(timeDifferenceInSeconds);
+            setResultDate(result);
+        } else {
+            setResultDate('Dịch vụ chưa được sử dụng');
+            return;
+        }
+        if (futureDateEnd - currentDate < 0) {
+            setResultDate('Dịch vụ quá hạn');
+            return;
+        }
     };
 
     useEffect(() => {
         setInterval(() => {
-            countdonw(countDownDate);
+            countdonw();
         }, 1000);
         return () => {
             clearInterval();

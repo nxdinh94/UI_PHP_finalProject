@@ -121,7 +121,7 @@ function Profile() {
     const [choosePeriod, setChoosePeriod] = useState(1);
     const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
     const [isShowTooltip, setIsShowTooltip] = useState(false);
-    // console.log('dfd', chooseDate, choosePeriod);
+    console.log('dfd', chooseDate, choosePeriod);
 
     useEffect(() => {
         const getPriodTime = async () => {
@@ -132,6 +132,7 @@ function Profile() {
         };
         getPriodTime();
     }, []);
+  
     const handleOnchangeInput = (e) => {
         let name = e.target.name;
         switch (name) {
@@ -411,7 +412,10 @@ function Profile() {
                                                     {listRegistedServce.periodTime === 3 ? 'Cả ngày' : ''}
                                                 </td>
                                                 <td>
-                                                    <CountDown countDownDate={1704846169912} />
+                                                    <CountDown
+                                                        periodTime={listRegistedServce.periodTime}
+                                                        registerDate={listRegistedServce.register_day}
+                                                    />
                                                 </td>
                                                 {listRegistedServce.status == 1 ? (
                                                     <td></td>
