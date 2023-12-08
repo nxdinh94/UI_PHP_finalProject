@@ -8,7 +8,7 @@ function DropdownContent({ isAdmin }) {
     const language = useSelector((state) => state.language.value);
     const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
-    const productQuantityInCart = useSelector((state) => state.cartSlices.value.quantityProductInCart);
+    
 
     let user_data = '';
     let userId = user_data.id;
@@ -20,10 +20,7 @@ function DropdownContent({ isAdmin }) {
         <div className="dropdown-content">
             {isAdmin && <a href={configRoutes.adminHomePage}>Admin Page</a>}
             <a href={configRoutes.profile}>Profile</a>
-            <a href={configRoutes.cart} className="dropdown-cart">
-                {t('cart')}
-                <span className="cart-quantity">{productQuantityInCart}</span>
-            </a>
+            
             <button
                 onClick={() => {
                     handleLogoutBtn();

@@ -10,10 +10,14 @@ import SwiperForProduct from '~/components/SwiperForProduct';
 import { useParams, Link } from 'react-router-dom';
 
 import AdditionIn4Product from '~/components/AdditionIn4Product';
-
+import { handleAddProductToCartApi } from '~/service/userService';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
+import { useDispatch } from 'react-redux';
+import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
 function StoreDetail() {
     const { slug } = useParams();
-
+    const dispatch = useDispatch();
     const [productQuantity, setProductQuantity] = useState(1);
     const [tab, setTab] = useState('additional-infor');
     const [tabClassName1, setTabClassName1] = useState('active');
@@ -22,9 +26,19 @@ function StoreDetail() {
     const specificProduct = productData.filter((item) => {
         return item.productid === +slug;
     });
+    let user_data = JSON.parse(sessionStorage.user_data);
+    let userId = user_data.id;
 
+    const handleAddProductToCart = async (userid, productid, productquantity) => {
+        const res = await handleAddProductToCartApi(userid, productid, productquantity);
+        dispatch(handleFetchQuantityProductInCartThunk(userId));
+        if (res.status) {
+            toast.success(res.message);
+        } else toast.error(res.message);
+    };
     return (
         <Container fluid>
+            <Toastify />
             <Container className="storeDetail-wrapper">
                 <Row>
                     <Col md="4">
@@ -73,10 +87,15 @@ function StoreDetail() {
                                         }}
                                     />
                                 </div>
-                                <div className="add-cart">
+                                <button
+                                    className="add-cart"
+                                    onClick={() => {
+                                        handleAddProductToCart(userId, specificProduct[0].productid, productQuantity);
+                                    }}
+                                >
                                     <FontAwesomeIcon icon={faCartShopping} size="lg" />
                                     <p>Add to cart</p>
-                                </div>
+                                </button>
                             </div>
                         </div>
                     </Col>

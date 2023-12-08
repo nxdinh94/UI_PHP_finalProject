@@ -15,6 +15,8 @@ import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
 
 import DropdownContent from '~/components/DropdownContent';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 const logoOption = {
     lightLogo: '/images/logo/logo-light.png',
     darkLogo: '/images/logo/logo-dark.png',
@@ -33,7 +35,9 @@ function HeaderOnly({ children }) {
 
     const isLogin = sessionStorage.isLogin;
     let user_data = '';
-    let userId = user_data.id;
+    // let userId = user_data.id;
+
+    const productQuantityInCart = useSelector((state) => state.cartSlices.value.quantityProductInCart);
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
@@ -161,6 +165,12 @@ function HeaderOnly({ children }) {
                             <NavItem>
                                 <NavLink style={styleForNavLink} href="/contact">
                                     {t('contact')}
+                                </NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink style={styleForNavLink} href={configRoutes.cart}>
+                                    <FontAwesomeIcon icon={faCartPlus} className="nav-cart-icon" />
+                                    <span className="cart-quantity">{productQuantityInCart}</span>
                                 </NavLink>
                             </NavItem>
                             <NavItem>

@@ -2,13 +2,14 @@
     padding: 15px;
     .cart-item {
         width: 100%;
-        height: 150px;
+        height: 170px;
         border: 1px solid #ddd;
         display: flex;
         flex-direction: column;
 
         .cart-item-header {
-            height: 30px;
+            height: 20px;
+            min-height: 20px;
             width: 100%;
             background-color: #ffe0cf;
         }
@@ -41,6 +42,7 @@
                     width: 40%;
                     max-width: 130px;
                     height: 100%;
+                    object-fit: contain;
                     img {
                         width: 100%;
 
@@ -50,9 +52,12 @@
                 }
                 .product-content {
                     .product-name {
-                        span {
-                            font-size: 18px;
-                            font-weight: 400;
+                        a {
+                            span {
+                                font-size: 18px;
+                                font-weight: 400;
+                                font-family: oswald;
+                            }
                         }
                     }
                     .product-origin {
@@ -62,9 +67,10 @@
                     }
                     .product-legacy {
                         img {
-                            width: 20px;
-                            height: 20px;
+                            width: 16px;
+                            height: 16px;
                             object-fit: contain;
+                            margin-bottom: 3px;
                         }
                         span {
                             font-size: 14px;

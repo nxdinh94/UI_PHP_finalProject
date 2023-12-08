@@ -50,7 +50,13 @@ export const store = configureStore({
     middleware: [thunk],
 });
 export const persistor = persistStore(store);
-
+let user_data = '';
+let userId = '';
+let isLogin = sessionStorage.isLogin;
+if (isLogin) {
+    user_data = JSON.parse(sessionStorage.user_data);
+    userId = user_data.id;
+}
 //dispatch immediately when bootstrap app
 store.dispatch(fetchNewsAsyn());
 store.dispatch(handleFetchAccountDataCompetentPersonnelThunk());
@@ -58,3 +64,4 @@ store.dispatch(handleFetchAccountDataUsertsThunk());
 store.dispatch(handleFetchAllTeamThunk());
 store.dispatch(handleGetAllServicesThunk());
 store.dispatch(handleFetchAllProductThunk());
+store.dispatch(handleFetchQuantityProductInCartThunk(userId));

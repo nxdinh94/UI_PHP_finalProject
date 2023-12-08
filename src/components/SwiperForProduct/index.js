@@ -61,7 +61,7 @@ export default ({ productData, autoplay }) => {
                             </a>
                         </div>
                         <div className="price">
-                            <h6>{item.price}</h6>
+                            <h6>{item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h6>
                         </div>
                     </div>
                 </SwiperSlide>

@@ -27,7 +27,6 @@ $pixel7: 413px;
 
     .pageTag {
         position: relative;
-        
     }
     .nav-link {
         line-height: 40px;
@@ -35,6 +34,14 @@ $pixel7: 413px;
         @media (max-width: $lg) {
             font-size: 17px;
             padding: 2px !important;
+        }
+        &:nth-child(6) {
+            .nav-cart-icon {
+                font-size: 22px;
+                path {
+                    color: #ec5078;
+                }
+            }
         }
     }
     .btn-language {

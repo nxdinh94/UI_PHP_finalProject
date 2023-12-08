@@ -1,11 +1,15 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { handleCountProductInCartApi } from '~/service/userService';
 const initialState = {
     value: { quantityProductInCart: 1 },
     status: 'idol',
 };
 export const handleFetchQuantityProductInCartThunk = createAsyncThunk(
     'CartSlices/handleFetchQuantityProductInCart',
-    async () => {},
+    async (userId) => {
+        const res = await handleCountProductInCartApi(userId);
+        return res;
+    },
 );
 export const CartSlices = createSlice({
     name: 'CartSlices',
@@ -18,7 +22,7 @@ export const CartSlices = createSlice({
             })
             .addCase(handleFetchQuantityProductInCartThunk.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.value.quantityProductInCart = action.payload;
+                state.value = { ...state.value, quantityProductInCart: action.payload };
             });
     },
 });

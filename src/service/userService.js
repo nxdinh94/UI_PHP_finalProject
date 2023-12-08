@@ -90,3 +90,47 @@ export function updateRegistedService(userId, serviceId, usingDate, periodTime) 
         },
     );
 }
+export function handleAddProductToCartApi(userId, productId, quantity) {
+    return axios.post(
+        '/backend_pettu/api/users/addProductToCart',
+        `userId=${userId}&productId=${productId}&quantity=${quantity}`,
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        },
+    );
+}
+export function handleChangeQuantityProductInCartApi(userId, productId, quantity) {
+    return axios.post(
+        '/backend_pettu/api/users/updateQuantityInCart',
+        `userId=${userId}&productId=${productId}&quantity=${quantity}`,
+        {
+            headers: {
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+        },
+    );
+}
+export function handleDeleteProductInCartApi(userId, productId) {
+    console.log(userId, productId);
+    return axios.post('/backend_pettu/api/users/deleteProductInCart', `userId=${userId}&productId=${productId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
+export function handleGetListProductInCartApi(userId) {
+    return axios.post('/backend_pettu/api/users/getListProductCart', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
+export function handleCountProductInCartApi(userId) {
+    return axios.post('/backend_pettu/api/users/countListProductCart', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
