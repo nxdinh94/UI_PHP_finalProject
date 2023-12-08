@@ -1,0 +1,21 @@
+.additional-infor {
+    .list-in4 {
+        list-style-type: none;
+        padding: 0px;
+        .specific-in4 {
+            padding: 10px 0px;
+            .label {
+                margin-right: 15px;
+                width: 120px;
+                display: inline-block;
+                font-weight: bold;
+
+                &::after {
+                    content: ':';
+                    margin-left: 10px;
+                    float: right;
+                }
+            }
+        }
+    }
+}

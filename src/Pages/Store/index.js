@@ -27,7 +27,7 @@ function Store() {
                                 className="topic2 name fw-bolder"
                                 style={{ fontSize: 17, marginTop: 10, marginBottom: 5 }}
                             >
-                                <a href="/storeDetail/1">
+                                <a href={`/storeDetail/${item.productid}`}>
                                     <h4>{item.product_name}</h4>
                                 </a>
                             </div>
