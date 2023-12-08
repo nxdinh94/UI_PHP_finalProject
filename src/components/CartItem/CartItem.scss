@@ -1,0 +1,170 @@
+.cart-item-container {
+    padding: 15px;
+    .cart-item {
+        width: 100%;
+        height: 150px;
+        border: 1px solid #ddd;
+        display: flex;
+        flex-direction: column;
+
+        .cart-item-header {
+            height: 30px;
+            width: 100%;
+            background-color: #ffe0cf;
+        }
+        .cart-item-body {
+            display: flex;
+            width: 100%;
+            height: 100%;
+
+            .check-box {
+                width: 5%;
+                height: 100%;
+
+                padding: 0px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                input {
+                    width: 25px;
+                    height: 25px;
+                    cursor: pointer;
+                    accent-color: #ec5078;
+                }
+            }
+            .product {
+                width: 35%;
+                height: 100%;
+                display: flex;
+                align-items: center;
+                .product-image {
+                    width: 40%;
+                    max-width: 130px;
+                    height: 100%;
+                    img {
+                        width: 100%;
+
+                        height: auto;
+                        object-fit: cover;
+                    }
+                }
+                .product-content {
+                    .product-name {
+                        span {
+                            font-size: 18px;
+                            font-weight: 400;
+                        }
+                    }
+                    .product-origin {
+                        span {
+                            font-size: 14px;
+                        }
+                    }
+                    .product-legacy {
+                        img {
+                            width: 20px;
+                            height: 20px;
+                            object-fit: contain;
+                        }
+                        span {
+                            font-size: 14px;
+                            font-style: italic;
+                        }
+                    }
+                }
+            }
+
+            .price,
+            .quantity,
+            .product-in4,
+            .into-money,
+            .action {
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            .product-in4 {
+                width: 15%;
+                height: 100%;
+                flex-direction: column;
+                span {
+                    font-weight: lighter;
+                    color: #2c2c2c;
+                }
+            }
+            .price {
+                width: 15%;
+                height: 100%;
+                span {
+                    font-weight: lighter;
+                    color: #2c2c2c;
+                    &::after {
+                        content: '.000vnd';
+                    }
+                }
+            }
+            .quantity {
+                width: 15%;
+                height: 100%;
+
+                justify-content: space-around;
+                padding: 0px 30px;
+                -webkit-user-select: none;
+                -khtml-user-select: none;
+                -moz-user-select: none;
+                -ms-user-select: none;
+                -o-user-select: none;
+                user-select: none;
+                svg {
+                    cursor: pointer;
+                    padding: 8px;
+                    path {
+                        color: #2c2c2c;
+                    }
+                    &:hover {
+                        background-color: #ddd;
+                    }
+                    &.disabled {
+                        pointer-events: none;
+                        path {
+                            color: #ababab;
+                        }
+                    }
+                }
+                span {
+                    font-weight: light;
+                    font-size: 20px;
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    color: #2c2c2c;
+                }
+            }
+            .into-money {
+                width: 10%;
+                height: 100%;
+                span {
+                    color: #fa2929;
+                    font-size: 19px;
+                    &::after {
+                        content: '.000vnd';
+                    }
+                }
+            }
+            .action {
+                width: 10%;
+                height: 100%;
+
+                button {
+                    cursor: pointer;
+                    color: rgb(228, 6, 6);
+                    background-color: transparent;
+                    padding: 8px;
+                    border-radius: 3px;
+
+                    &:hover {
+                        background-color: #f7f7f7;
+                    }
+                }
+            }
+        }
+    }
+}

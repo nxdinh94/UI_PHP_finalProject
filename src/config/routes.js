@@ -15,7 +15,7 @@ const routes = {
     teamCategory: '/team/:category',
     teamDetail: '/team/:slug/detail',
     gallery: '/gallery',
-
+    cart: '/store/cart',
     page404: '*',
 
     admin: '/admin/:slug',

@@ -191,6 +191,7 @@ function HeaderOnly({ children }) {
                                             <div className="dropdown-content">
                                                 {isAdmin && <a href={routes.adminHomePage}>Admin Page</a>}
                                                 <a href={configRoutes.profile}>Profile</a>
+                                                <a href={configRoutes.cart}>Cart</a>
                                                 <button
                                                     onClick={() => {
                                                         handleLogoutBtn();

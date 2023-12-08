@@ -355,7 +355,7 @@ function Home() {
                                 <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
                                 <span className="topic1">Pets of the month</span>
                             </p>
-                            <h2 className="topic2" style={{ fontFamily: 'oswald', fontSize: '4rem' }}>
+                            <h2 className="topic2" style={{ fontSize: '4rem' }}>
                                 Every single day <br />
                                 Update
                             </h2>
