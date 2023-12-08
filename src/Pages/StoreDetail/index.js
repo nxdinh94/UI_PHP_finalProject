@@ -46,12 +46,18 @@ function StoreDetail() {
                                 </div>
                             </div>
                             <div className="price">
-                                <h6>{specificProduct[0].price}</h6>
+                                <h6>
+                                    {specificProduct[0].price.toLocaleString('it-IT', {
+                                        style: 'currency',
+                                        currency: 'VND',
+                                    })}
+                                </h6>
                             </div>
                             <p className="product-about p-text">{specificProduct[0].description}</p>
                             <div className="product-action">
                                 <div className="modify-quantity">
                                     <FontAwesomeIcon
+                                        className={productQuantity <= 0 ? 'disabled' : ''}
                                         icon={faLessThan}
                                         size="sm"
                                         onClick={() => {

@@ -13,8 +13,8 @@ import Image from '~/components/Image';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { useTranslation } from 'react-i18next';
-import routes from '~/config/routes';
 
+import DropdownContent from '~/components/DropdownContent';
 const logoOption = {
     lightLogo: '/images/logo/logo-light.png',
     darkLogo: '/images/logo/logo-dark.png',
@@ -113,11 +113,6 @@ function HeaderOnly({ children }) {
         setIsOpen(!isOpen);
     };
 
-    const handleLogoutBtn = async () => {
-        await Logout(userId);
-        window.location.href = '/';
-    };
-
     return (
         <div className={classNameSuperContainer}>
             <Container className="px-0">
@@ -187,26 +182,7 @@ function HeaderOnly({ children }) {
                                             </button>
                                         </div>
                                     )) ||
-                                        (isDropdown && isLogin && (
-                                            <div className="dropdown-content">
-                                                {isAdmin && <a href={routes.adminHomePage}>Admin Page</a>}
-                                                <a href={configRoutes.profile}>Profile</a>
-                                                <a href={configRoutes.cart}>Cart</a>
-                                                <button
-                                                    onClick={() => {
-                                                        handleLogoutBtn();
-                                                    }}
-                                                >
-                                                    Logout
-                                                </button>
-                                                <button
-                                                    className="btn-language"
-                                                    onClick={() => dispatch(changeLanguage())}
-                                                >
-                                                    {language || 'vi'}
-                                                </button>
-                                            </div>
-                                        ))}
+                                        (isDropdown && isLogin && <DropdownContent isAdmin={isAdmin} />)}
 
                                     <img src={avatar || '/images/favicon/apple-icon-57x57.png'} className="avt" />
                                 </div>

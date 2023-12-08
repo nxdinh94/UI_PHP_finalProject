@@ -5,7 +5,7 @@ import { faStar, faGreaterThan, faLessThan, faCartShopping } from '@fortawesome/
 import { useState } from 'react';
 function CartItem() {
     const [productQuantity, setProductQuantity] = useState(1);
-    const [itemPrice, setItemPrice] = useState(2);
+    const [itemPrice, setItemPrice] = useState(200000);
     const [intoMoney, setIntoMoney] = useState(itemPrice * productQuantity);
     const handleDeleteCartItem = () => {};
     return (
@@ -38,7 +38,7 @@ function CartItem() {
                         <span>{`Color: Red`}</span>
                     </div>
                     <div className="price">
-                        <span> {itemPrice}</span>
+                        <span> {itemPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
                     </div>
                     <div className="quantity">
                         <FontAwesomeIcon
@@ -61,7 +61,7 @@ function CartItem() {
                         />
                     </div>
                     <div className="into-money">
-                        <span>{intoMoney}</span>
+                        <span>{intoMoney.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
                     </div>
                     <div className="action">
                         <button

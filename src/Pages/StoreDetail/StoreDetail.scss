@@ -66,6 +66,12 @@
             .modify-quantity {
                 svg {
                     cursor: pointer;
+                    &.disabled {
+                        pointer-events: none;
+                        path {
+                            color: #ababab;
+                        }
+                    }
                     path {
                         color: #0c1529;
                     }
@@ -128,6 +134,5 @@
     }
     .tab-content {
         padding: 0px;
-       
     }
 }

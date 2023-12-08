@@ -98,9 +98,6 @@
                 span {
                     font-weight: lighter;
                     color: #2c2c2c;
-                    &::after {
-                        content: '.000vnd';
-                    }
                 }
             }
             .quantity {
@@ -144,9 +141,6 @@
                 span {
                     color: #fa2929;
                     font-size: 19px;
-                    &::after {
-                        content: '.000vnd';
-                    }
                 }
             }
             .action {

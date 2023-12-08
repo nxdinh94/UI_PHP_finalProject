@@ -1,0 +1,41 @@
+import './DropdownContent.scss';
+import configRoutes from '~/config/routes';
+import { useSelector, useDispatch } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { changeLanguage } from '~/components/Navbar/languageSlice';
+import { Logout } from '~/service/userService';
+function DropdownContent({ isAdmin }) {
+    const language = useSelector((state) => state.language.value);
+    const dispatch = useDispatch();
+    const { t, i18n } = useTranslation();
+    const productQuantityInCart = useSelector((state) => state.cartSlices.value.quantityProductInCart);
+
+    let user_data = '';
+    let userId = user_data.id;
+    const handleLogoutBtn = async () => {
+        await Logout(userId);
+        window.location.href = '/';
+    };
+    return (
+        <div className="dropdown-content">
+            {isAdmin && <a href={configRoutes.adminHomePage}>Admin Page</a>}
+            <a href={configRoutes.profile}>Profile</a>
+            <a href={configRoutes.cart} className="dropdown-cart">
+                {t('cart')}
+                <span className="cart-quantity">{productQuantityInCart}</span>
+            </a>
+            <button
+                onClick={() => {
+                    handleLogoutBtn();
+                }}
+            >
+                Logout
+            </button>
+            <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
+                {language || 'vi'}
+            </button>
+        </div>
+    );
+}
+
+export default DropdownContent;

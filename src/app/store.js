@@ -23,6 +23,9 @@ import { handleFetchAllTeamThunk } from '~/Pages/Team/TeamSlices';
 import ServicesSlices from '~/Pages/Service/ServicesSlice';
 import { handleGetAllServicesThunk } from '~/Pages/Service/ServicesSlice';
 
+import CartSlices from '~/Pages/Cart/CartSlices';
+import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
+
 // import { changeLanguage } from '~/components/Navbar/languageSlice';
 
 const persistConfig = {
@@ -37,6 +40,7 @@ const rootReducer = combineReducers({
     teamSlices: TeamSlices,
     servicesSlices: ServicesSlices,
     storeSlices: StoreSlices,
+    cartSlices: CartSlices,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
