@@ -26,6 +26,8 @@ import { handleGetAllServicesThunk } from '~/Pages/Service/ServicesSlice';
 import CartSlices from '~/Pages/Cart/CartSlices';
 import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
 
+import PaymentSlices from '~/Pages/Payment/PaymentSlices';
+
 // import { changeLanguage } from '~/components/Navbar/languageSlice';
 
 const persistConfig = {
@@ -41,6 +43,7 @@ const rootReducer = combineReducers({
     servicesSlices: ServicesSlices,
     storeSlices: StoreSlices,
     cartSlices: CartSlices,
+    paymentSlices: PaymentSlices,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

@@ -17,6 +17,7 @@ import Team from '~/Pages//Team';
 import TeamDetail from '~/Pages/TeamDetail';
 import Page404 from '~/Pages/Page404';
 import Cart from '~/Pages/Cart';
+import Payment from '~/Pages/Payment';
 const publicRoutes = [
     { path: configRoutes.home, component: Home, isHome: true },
     { path: configRoutes.services, component: Service },
@@ -37,6 +38,7 @@ const publicRoutes = [
     { path: configRoutes.teamDetail, component: TeamDetail },
     { path: configRoutes.page404, component: Page404, isPage404: true },
     { path: configRoutes.cart, component: Cart },
+    { path: configRoutes.payment, component: Payment },
 ];
 const privateRoutes = [];
 export { publicRoutes, privateRoutes };

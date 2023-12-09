@@ -1,12 +1,16 @@
 import './Cart.scss';
 import CartItem from '~/components/CartItem';
+import BottomBarCart from '~/components/BottomBarCart';
 import { Container, Row, Col } from 'reactstrap';
 import { handleGetListProductInCartApi } from '~/service/userService';
 import { useEffect, useState } from 'react';
+import { useDispatch } from 'react-redux';
+import { deleteAllProductFromBill } from '../Payment/PaymentSlices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import configureRoute from '~/config/routes';
+
 function Cart() {
     let user_data = JSON.parse(sessionStorage.user_data);
     let userId = user_data.id;
@@ -16,8 +20,11 @@ function Cart() {
         const res = await handleGetListProductInCartApi(userid);
         setListProductsInCart(res);
     };
+    const dispatch = useDispatch();
     useEffect(() => {
+        //fetch product in cart
         fetchData(userId);
+        dispatch(deleteAllProductFromBill());
     }, []);
 
     return (
@@ -49,6 +56,7 @@ function Cart() {
                         </Link>
                     </div>
                 )}
+                <BottomBarCart />
             </Container>
         </Container>
     );

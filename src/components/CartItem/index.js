@@ -4,8 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons';
 import { handleChangeQuantityProductInCartApi, handleDeleteProductInCartApi } from '~/service/userService';
 import { useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
+import { addProductToBill, deleteAllProductFromBill, deleteProductFromBill } from '~/Pages/Payment/PaymentSlices';
 function CartItem({ ...props }) {
     const { userId } = props;
     const { productid } = props;
@@ -22,32 +23,58 @@ function CartItem({ ...props }) {
     const [productQuantity, setProductQuantity] = useState(quantity);
     const [itemPrice, setItemPrice] = useState(productPrice);
     const [intoMoney, setIntoMoney] = useState(itemPrice * productQuantity);
+    const [isChecked, setIsChecked] = useState(false);
 
     const dispatch = useDispatch();
 
     const handleDeleteCartItem = async () => {
         await handleDeleteProductInCartApi(userId, productid);
-        fetchData(userId);
         dispatch(handleFetchQuantityProductInCartThunk(userId));
+        fetchData(userId);
     };
 
     const handleDecreaseQuantity = async () => {
         setProductQuantity((prev) => prev - 1);
         setIntoMoney((prev) => prev - itemPrice);
         await handleChangeQuantityProductInCartApi(userId, productid, productQuantity - 1);
+        fetchData(userId);
     };
     const handleIncreaseQuantity = async () => {
         setProductQuantity((prev) => prev + 1);
         setIntoMoney((prev) => prev + itemPrice);
         await handleChangeQuantityProductInCartApi(userId, productid, productQuantity + 1);
+        fetchData(userId);
     };
+
+    const paymentProduct = useSelector((state) => state.paymentSlices.value);
+    // console.log('payumentProduct', paymentProduct);
+    const handleOnChangeCheckbox = (e) => {
+        setIsChecked(!isChecked);
+        const targetId = e.target.value;
+        let checkIndex = -1;
+        const isExist = paymentProduct.some((item) => item.id == targetId);
+        // console.log('isExist', isExist);
+        if (isExist) {
+            checkIndex = paymentProduct.findIndex((item) => item.id == targetId);
+            dispatch(deleteProductFromBill({ index: checkIndex }));
+        } else {
+            dispatch(addProductToBill({ id: targetId, quantity: productQuantity, intoMoney: intoMoney }));
+        }
+    };
+
     return (
         <div className="cart-item-container">
             <div className="cart-item">
                 <div className="cart-item-header"></div>
                 <div className="cart-item-body">
                     <div className="check-box">
-                        <input type="checkbox" id="check-item" name="check-item" value="Bike" />
+                        <input
+                            type="checkbox"
+                            id="check-item"
+                            onChange={handleOnChangeCheckbox}
+                            name="check-item"
+                            value={productid}
+                        />
                     </div>
                     <div className="product">
                         <div className="product-image">
@@ -82,7 +109,7 @@ function CartItem({ ...props }) {
                             onClick={() => {
                                 handleDecreaseQuantity();
                             }}
-                            className={productQuantity === 1 ? 'disabled' : ''}
+                            className={productQuantity === 1 || isChecked ? 'disabled' : ''}
                         />
                         <span>{productQuantity}</span>
                         <FontAwesomeIcon
@@ -91,6 +118,7 @@ function CartItem({ ...props }) {
                             onClick={() => {
                                 handleIncreaseQuantity();
                             }}
+                            className={isChecked ? 'disabled' : ''}
                         />
                     </div>
                     <div className="into-money">

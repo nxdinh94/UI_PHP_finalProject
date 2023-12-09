@@ -167,13 +167,16 @@ function HeaderOnly({ children }) {
                                     {t('store')}
                                 </NavLink>
                             </NavItem>
+                            {isLogin && (
+                                <NavItem>
+                                    <NavLink style={styleForNavLink} href={configRoutes.cart}>
+                                        <FontAwesomeIcon icon={faCartPlus} className="nav-cart-icon" />
+                                        <sup className="cart-quantity">{productQuantityInCart}</sup>
+                                    </NavLink>
+                                </NavItem>
+                            )}
+
                             <NavItem>
-                                <NavLink style={styleForNavLink} href={configRoutes.cart}>
-                                    <FontAwesomeIcon icon={faCartPlus} className="nav-cart-icon" />
-                                    <sup className="cart-quantity">{productQuantityInCart}</sup>
-                                </NavLink>
-                            </NavItem>
-                            <NavItem >
                                 <div
                                     className="user_profile"
                                     onMouseOver={() => {
