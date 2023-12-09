@@ -8,18 +8,18 @@ import { useSelector } from 'react-redux';
 
 function Store() {
     const productData = useSelector((state) => state.storeSlices.value);
-    console.log(productData);
+    // console.log(productData);
     return (
         <Container className="my-5">
-            <Row>
+            <Row> 
                 {productData.map((item, key) => (
                     <Col lg="3" md="4" sm="6" className="store-col" key={key}>
                         <div className="product-wrapper">
                             <div className="product">
                                 <img src={item.thumpnail2} />
-                            </div>
+                            </div> 
                             <div className="rank">
-                                {[...Array(item.evaluate_star)].map((key) => (
+                                {[...Array(item.evaluate_star)].map((item, key) => (
                                     <FontAwesomeIcon icon={faStar} className="star" size="sm" key={key} />
                                 ))}
                             </div>

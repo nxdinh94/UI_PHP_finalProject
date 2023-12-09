@@ -155,7 +155,7 @@ function HeaderOnly({ children }) {
                                     </NavLink>
                                     {isOnPageTag && (
                                         <div className="dropdown-content">
-                                            <a href={configRoutes.store}>{t('store')}</a>
+                                            <a href={configRoutes.contact}>{t('contact')}</a>
                                             <a href={configRoutes.gallery}>{t('gallery')}</a>
                                             <a href={configRoutes.team}>{t('team')}</a>
                                         </div>
@@ -163,17 +163,17 @@ function HeaderOnly({ children }) {
                                 </div>
                             </NavItem>
                             <NavItem>
-                                <NavLink style={styleForNavLink} href="/contact">
-                                    {t('contact')}
+                                <NavLink style={styleForNavLink} href={configRoutes.store}>
+                                    {t('store')}
                                 </NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink style={styleForNavLink} href={configRoutes.cart}>
                                     <FontAwesomeIcon icon={faCartPlus} className="nav-cart-icon" />
-                                    <span className="cart-quantity">{productQuantityInCart}</span>
+                                    <sup className="cart-quantity">{productQuantityInCart}</sup>
                                 </NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem >
                                 <div
                                     className="user_profile"
                                     onMouseOver={() => {

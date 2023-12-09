@@ -31,7 +31,7 @@ export function handleUpdateProfileApi(...params) {
     const { twitter } = params[0];
     const { facebook } = params[0];
     const { aboutContent } = params[0];
-    console.log(userId, fullname, email, address, phone, dob, twitter, facebook, aboutContent);
+    // console.log(userId, fullname, email, address, phone, dob, twitter, facebook, aboutContent);
     return axios.post(
         '/backend_pettu/api/users/update',
         `user_id=${userId}&fullname=${fullname}&email=${email}&dob=${dob}&address=${address}&phone=${phone}&about_content=${aboutContent}&contact_facebook=${facebook}&contact_twitter=${twitter}&contact_linkedin=${linkedin}&contact_pinterest=${pinterest}`,
@@ -113,7 +113,7 @@ export function handleChangeQuantityProductInCartApi(userId, productId, quantity
     );
 }
 export function handleDeleteProductInCartApi(userId, productId) {
-    console.log(userId, productId);
+    // console.log(userId, productId);
     return axios.post('/backend_pettu/api/users/deleteProductInCart', `userId=${userId}&productId=${productId}`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',

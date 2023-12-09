@@ -39,21 +39,9 @@ $pixel7: 413px;
         width: 100%;
         text-align: center;
         border-bottom: 1px solid #ddd;
+        font-family: oswald;
         &:hover {
             background-color: #ddd;
-        }
-    }
-    .dropdown-cart {
-        position: relative;
-        .cart-quantity {
-            position: absolute;
-            top: 0px;
-            right: z0px;
-            font-size: 10px;
-            color: white;
-            background-color: red;
-            padding: 0px 5px;
-            border-radius: 50%;
         }
     }
 }

@@ -14,9 +14,7 @@ function Cart() {
     // console.log(listProductsInCart);
     const fetchData = async (userid) => {
         const res = await handleGetListProductInCartApi(userid);
-        if (res.status) {
-            setListProductsInCart(res);
-        }
+        setListProductsInCart(res);
     };
     useEffect(() => {
         fetchData(userId);
@@ -24,9 +22,9 @@ function Cart() {
 
     return (
         <Container fluid className="cart-containter text-center">
-            {listProductsInCart.status ? (
-                listProductsInCart.data.map((item, key) => {
-                    return (
+            <Container className="my-3">
+                {listProductsInCart.status ? (
+                    listProductsInCart.data.map((item, key) => (
                         <CartItem
                             key={key}
                             fetchData={fetchData}
@@ -41,19 +39,17 @@ function Cart() {
                             productPrice={item.productPrice}
                             cartPrice={item.cartPrice}
                         />
-                    );
-                })
-            ) : (
-                <Container className="my-3">
+                    ))
+                ) : (
                     <div className="no-product-cart">
-                        <p className="topic1">Không có sản phẩm trong giỏ hàng</p>
+                        <p className="topic1 m-0">Không có sản phẩm trong giỏ hàng</p>
                         <Link className="buy-product" to={configureRoute.store}>
                             <FontAwesomeIcon icon={faCartPlus} />
                             <span className="mx-2">Tiếp tục mua hàng</span>
                         </Link>
                     </div>
-                </Container>
-            )}
+                )}
+            </Container>
         </Container>
     );
 }

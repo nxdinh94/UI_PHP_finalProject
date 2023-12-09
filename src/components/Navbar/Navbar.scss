@@ -27,20 +27,45 @@ $pixel7: 413px;
 
     .pageTag {
         position: relative;
+        .dropdown-content {
+            a {
+                color: black;
+                
+            }
+        }
     }
     .nav-link {
         line-height: 40px;
         font-family: oswald;
+
         @media (max-width: $lg) {
             font-size: 17px;
             padding: 2px !important;
         }
-        &:nth-child(6) {
+    }
+    &:last-child {
+        margin-right: 0px;
+        margin-left: 16px;
+    }
+    &:nth-child(6) {
+        .nav-link {
+            position: relative;
             .nav-cart-icon {
                 font-size: 22px;
                 path {
-                    color: #ec5078;
+                    color: #5f970a;
                 }
+            }
+            .cart-quantity {
+                position: absolute;
+                top: 7px;
+                right: -2px;
+                padding: 10px 6px;
+                background-color: red;
+
+                border-radius: 50%;
+                font-size: 10px;
+                color: white;
             }
         }
     }

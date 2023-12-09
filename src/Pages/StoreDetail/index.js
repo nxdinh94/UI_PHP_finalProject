@@ -33,7 +33,7 @@ function StoreDetail() {
         const res = await handleAddProductToCartApi(userid, productid, productquantity);
         dispatch(handleFetchQuantityProductInCartThunk(userId));
         if (res.status) {
-            toast.success(res.message);
+            toast.success(res.message, { position: 'bottom-right' });
         } else toast.error(res.message);
     };
     return (

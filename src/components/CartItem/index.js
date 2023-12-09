@@ -42,7 +42,7 @@ function CartItem({ ...props }) {
         await handleChangeQuantityProductInCartApi(userId, productid, productQuantity + 1);
     };
     return (
-        <Container className="cart-item-container">
+        <div className="cart-item-container">
             <div className="cart-item">
                 <div className="cart-item-header"></div>
                 <div className="cart-item-body">
@@ -107,7 +107,7 @@ function CartItem({ ...props }) {
                     </div>
                 </div>
             </div>
-        </Container>
+        </div>
     );
 }
 

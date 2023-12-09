@@ -36,14 +36,21 @@
         .name {
             text-align: center;
             font-weight: bolder !important;
-            h4 {
-                font-size: 1rem;
-                color: #0c1529;
-                font-weight: bolder;
-                margin: 5px 0px;
-                cursor: pointer;
-                &:hover {
-                    color: #82b440;
+
+            a {
+                h4 {
+                    font-size: 1rem;
+                    color: #0c1529;
+                    font-weight: bolder;
+                    margin: 5px 0px;
+                    -webkit-box-orient: vertical;
+                    -webkit-line-clamp: 1;
+                    overflow: hidden;
+                    cursor: pointer;
+
+                    &:hover {
+                        color: #82b440;
+                    }
                 }
             }
         }
