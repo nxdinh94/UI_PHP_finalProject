@@ -5,6 +5,8 @@ import { deleteAllProductFromBill, deleteProductFromBill } from '~/Pages/Payment
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
 function BottomBarCart() {
     const dispatch = useDispatch();
     const [totalPrice, setTotalPrice] = useState(0);
@@ -17,10 +19,20 @@ function BottomBarCart() {
     }, [paymentProduct]);
     return (
         <div className="bottom-bar-wrapper">
+            <Toastify />
             <p>{`Tổng thanh toán: ${totalPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}`}</p>
-            <a href={configureRoute.payment} onClick={() => dispatch(deleteAllProductFromBill())} className="btn-buy">
+            <button
+                onClick={() => {
+                    if (totalPrice === 0) {
+                        toast.error('Vui lòng chọn sản phẩm', { position: 'bottom-left', autoClose: 1000 });
+                    } else {
+                        window.location.href = configureRoute.payment;
+                    }
+                }}
+                className="btn-buy"
+            >
                 <span>Mua hàng</span>
-            </a>
+            </button>
         </div>
     );
 }

@@ -29,6 +29,7 @@ function AnotherLayout({ children }) {
     if (pathName === '/gallery') {
         headtitle = t('gallery');
     }
+
     if (pathName === '/team') {
         headtitle = t('team');
     }
@@ -40,6 +41,9 @@ function AnotherLayout({ children }) {
     }
     if (pathName === '/team') {
         headtitle = t('team');
+    }
+    if (pathName.includes('payment')) {
+        headtitle = t('payment');
     }
     return (
         <Fragment>

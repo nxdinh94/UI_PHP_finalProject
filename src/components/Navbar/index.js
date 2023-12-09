@@ -41,7 +41,7 @@ function HeaderOnly({ children }) {
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
-
+    const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
@@ -56,8 +56,7 @@ function HeaderOnly({ children }) {
     }, []);
     useEffect(() => {
         i18n.changeLanguage(language);
-    }, [language]);
-    const dispatch = useDispatch();
+    }, [language, productQuantityInCart]);
 
     useEffect(() => {
         if (onColorChange) {
