@@ -14,6 +14,7 @@ function Payment() {
     let user_data = '';
     const [dataBillDetail, setDataBillDetail] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [classForPaymentQr, setClassForPaymentQr] = useState('bill-detail-qr');
     const transport_fee = 0;
     let paymentPrice = 0;
     let priceToPay = 0 + transport_fee;
@@ -44,6 +45,28 @@ function Payment() {
     };
     // console.log(paymentProduct);
     useEffect(() => {
+        if (paymentMethod !== 'Momo') {
+            setClassForPaymentQr('bill-detail-qr hidden');
+        } else setClassForPaymentQr('bill-detail-qr');
+    }, [paymentMethod]);
+    useEffect(() => {
+        const handleBeforeUnload = (event) => {
+            const message = 'Are you sure you want to leave?';
+            event.returnValue = message; // Standard for most browsers
+            if (window.confirm(message)) {
+                // Perform your action here when the user confirms leaving
+                
+            }
+            return message; // For some older browsers
+        };
+
+        window.addEventListener('beforeunload', handleBeforeUnload);
+
+        return () => {
+            window.removeEventListener('beforeunload', handleBeforeUnload);
+        };
+    }, []);
+    useEffect(() => {
         const handleAddToBillDetail = async () => {
             try {
                 await addToBillDetail(userId, paymentProduct);
@@ -56,7 +79,7 @@ function Payment() {
 
         handleAddToBillDetail();
     }, [userId, paymentProduct]);
-    useEffect();
+
     return (
         <Container fluid className="payment-container">
             <Toastify />
@@ -138,35 +161,42 @@ function Payment() {
             </Container>
             <Container className="payment-bill">
                 <Row>
-                    <div className="bill-detail">
-                        <ul>
-                            <li>
-                                <span>Tổng tiền hàng: </span>
-                                <span>
-                                    {paymentPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
-                                </span>
-                            </li>
-                            <li>
-                                <span>Phí vận chuyển:</span>
-                                <span>
-                                    {transport_fee.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
-                                </span>
-                            </li>
-                            <li>
-                                <span>Tổng thanh toán:</span>
-                                <span className="payment-total-price">
-                                    {priceToPay.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
-                                </span>
-                            </li>
-                        </ul>
-                        <button
-                            onClick={() => {
-                                handlePaymentBtn(userId, paymentMethod, paymentProduct);
-                            }}
-                            className="btn-buy"
-                        >
-                            <span>Thanh toán</span>
-                        </button>
+                    <div className="bill-detail-wrapper">
+                        <div className={classForPaymentQr}>
+                            <img src="/images/qr-momo.jpg" alt="image" />
+                            <span> Quý khách vui lòng thanh toán qua mã QR.</span>
+                        </div>
+
+                        <div className="bill-detail-infor">
+                            <ul>
+                                <li>
+                                    <span>Tổng tiền hàng: </span>
+                                    <span>
+                                        {paymentPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>Phí vận chuyển:</span>
+                                    <span>
+                                        {transport_fee.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>Tổng thanh toán:</span>
+                                    <span className="payment-total-price">
+                                        {priceToPay.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}
+                                    </span>
+                                </li>
+                            </ul>{' '}
+                            <button
+                                onClick={() => {
+                                    handlePaymentBtn(userId, paymentMethod, paymentProduct);
+                                }}
+                                className="btn-buy"
+                            >
+                                <span>Thanh toán</span>
+                            </button>
+                        </div>
                     </div>
                 </Row>
             </Container>

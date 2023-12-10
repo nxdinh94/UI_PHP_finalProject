@@ -91,47 +91,70 @@
     }
     .payment-bill {
         padding-right: 30px;
-        padding-bottom: 30px;
+        padding-bottom: 20px;
 
-        .bill-detail {
+        .bill-detail-wrapper {
+            padding-right: 30px;
+            padding-left: 30px;
             width: 100%;
             display: flex;
-            flex-direction: column;
-            align-items: end;
-            ul {
-                list-style-type: none;
-                li {
-                    display: flex;
-                    justify-content: space-between;
-                    align-items: center;
-                    padding: 6px 0px;
-                    width: 300px;
-                    min-width: 280px;
+
+            justify-content: space-between;
+            .bill-detail-qr {
+                display: flex;
+                flex-direction: column;
+                &.hidden {
+                    visibility: hidden;
+                }
+
+                img {
+                    width: 160px;
+                    margin-bottom: 10px;
+                }
+                span {
                     font-size: 15px;
                     font-style: italic;
+                }
+            }
+            .bill-detail-infor {
+                display: flex;
+                flex-direction: column;
+                align-items: end;
+                ul {
+                    list-style-type: none;
+                    li {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        padding: 6px 0px;
+                        width: 300px;
+                        min-width: 280px;
+                        font-size: 15px;
+                        font-style: italic;
 
-                    span {
-                        color: #4e4e4e;
-                        &.payment-total-price {
-                            color: #ea3030;
-                            font-size: 23px;
+                        span {
+                            color: #4e4e4e;
+                            &.payment-total-price {
+                                color: #ea3030;
+                                font-size: 23px;
+                            }
                         }
                     }
                 }
-            }
-            .btn-buy {
-                span {
-                    padding: 13px 60px;
+                .btn-buy {
+                    span {
+                        padding: 13px 60px;
 
-                    background-color: #ec5078;
-                    color: white;
-                    font-size: 18px;
+                        background-color: #ec5078;
+                        color: white;
+                        font-size: 18px;
 
-                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-                    border-radius: 6px;
-                    cursor: pointer;
+                        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                        border-radius: 6px;
+                        cursor: pointer;
+                    }
+                    text-decoration: none;
                 }
-                text-decoration: none;
             }
         }
     }
