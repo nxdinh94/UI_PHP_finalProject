@@ -19,6 +19,10 @@
         .topic2 {
             margin-bottom: 16px;
             font-size: 50px;
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 2;
+            overflow: hidden;
         }
         .rank-review {
             display: flex;

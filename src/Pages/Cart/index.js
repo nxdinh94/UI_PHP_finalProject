@@ -4,16 +4,19 @@ import BottomBarCart from '~/components/BottomBarCart';
 import { Container, Row, Col } from 'reactstrap';
 import { handleGetListProductInCartApi } from '~/service/userService';
 import { useEffect, useState } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { deleteAllProductFromBill } from '../Payment/PaymentSlices';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import configureRoute from '~/config/routes';
 
+import SwiperForProduct from '~/components/SwiperForProduct';
+
 function Cart() {
     let user_data = JSON.parse(sessionStorage.user_data);
     let userId = user_data.id;
+    const productData = useSelector((state) => state.storeSlices.value);
     const [listProductsInCart, setListProductsInCart] = useState([]);
     // console.log(listProductsInCart);
     const fetchData = async (userid) => {
@@ -29,7 +32,7 @@ function Cart() {
 
     return (
         <Container fluid className="cart-containter text-center">
-            <Container className="my-3">
+            <Container className="my-3 container1">
                 {listProductsInCart.status ? (
                     listProductsInCart.data.map((item, key) => (
                         <CartItem
@@ -57,6 +60,14 @@ function Cart() {
                     </div>
                 )}
                 <BottomBarCart />
+            </Container>
+            <Container>
+                <Row>
+                    <div className="relative-product mt-5">
+                        <h2 className="topic2">Related Products</h2>
+                        <SwiperForProduct productData={productData} />
+                    </div>
+                </Row>
             </Container>
         </Container>
     );

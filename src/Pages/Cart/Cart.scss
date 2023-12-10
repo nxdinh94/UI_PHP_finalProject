@@ -7,3 +7,17 @@
         }
     }
 }
+.cart-containter {
+    background-color: #f5f5f5;
+    padding: 20px 0px !important;
+    .container1 {
+        background-color: white;
+        padding: 0px;
+        box-shadow: 0 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+    }
+    .relative-product {
+        background-color: white;
+        box-shadow: 0 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+        padding: 30px 50px;
+    }
+}

@@ -1,0 +1,81 @@
+.content {
+    width: 100%;
+    height: 95%;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    overflow-y: auto;
+    .div-title {
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #e8e5e5;
+
+        padding-top: 11px;
+        padding-left: 10px;
+        p {
+            font-weight: bold;
+            color: rgb(54, 105, 244);
+        }
+    }
+    .profile-container {
+        .profile-row {
+            .profile-col {
+                width: 100wh;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                margin: 50px 0px;
+                .content {
+                    width: 90%;
+                    height: fit-content;
+                    background-color: wheat;
+                    border-radius: 10px;
+                    padding-bottom: 20px;
+                    box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                    -webkit-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                    -moz-box-shadow: 4px 4px 10px -1px rgba(0, 0, 0, 0.67);
+                    .avt-container {
+                        padding: 10px;
+                        height: 200px;
+                        width: 100%;
+                        display: flex;
+                        justify-content: center;
+                        align-items: center;
+                        border-radius: 10px 10px 0px 0px;
+                        background-color: #ff3232;
+                        .avt-wrapper {
+                            width: 180px;
+                            height: 180px;
+                            border: 5px solid rgb(255, 255, 255);
+                            border-style: double;
+                            border-radius: 50%;
+                            box-shadow: 4px 4px 10px -1px rgba(255, 255, 255, 0.67);
+                            -webkit-box-shadow: 4px 4px 10px -1px rgba(232, 182, 182, 0.67);
+                            -moz-box-shadow: 4px 4px 10px -1px rgba(255, 255, 255, 0.67);
+                            img {
+                                width: 100%;
+                                height: 100%;
+                                border-radius: 50%;
+                                object-fit: cover;
+                            }
+                        }
+                    }
+                    .profile-info {
+                        padding: 0px 20px;
+                        .button-wrapper {
+                            width: 100%;
+                            display: flex;
+                            justify-content: center;
+                            padding-left: 100px;
+                        }
+                        .textarea {
+                            height: 200px !important;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

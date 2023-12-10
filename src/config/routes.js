@@ -25,6 +25,8 @@ const routes = {
     adminQltkUsers: '/admin/qltkusers',
     adminQlsq: '/admin/qlsp',
     adminQllsq: '/admin/qllsp',
+    adminQldv: '/admin/qldv',
+    adminQldvEdit: '/admin/qldv-edit',
     adminduyetdichvu: '/admin/duyetdichvu',
 };
 export default routes;

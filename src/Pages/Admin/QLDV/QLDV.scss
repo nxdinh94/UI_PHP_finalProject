@@ -1,0 +1,76 @@
+.content {
+    width: 100%;
+    height: 95%;
+    border-radius: 4px;
+    background-color: #f1f1f1;
+    box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -webkit-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    -moz-box-shadow: 2px 4px 16px 0px rgba(0, 0, 0, 0.75);
+    overflow-y: auto;
+    .div-title {
+        width: 100%;
+        height: 50px;
+        border-bottom: 2px solid #e8e5e5;
+
+        padding-top: 11px;
+        padding-left: 10px;
+        p {
+            font-weight: bold;
+            color: rgb(54, 105, 244);
+        }
+    }
+
+    .div-content {
+        padding: 0px 50px;
+
+        .div-action {
+            height: 70px;
+            border-bottom: 1px solid #ddd;
+            padding: 15px 0px;
+            display: flex;
+            justify-content: space-between;
+            .div-search {
+                display: flex;
+                .form-control {
+                    margin: 0;
+                    padding: 0;
+                }
+                .form-label {
+                    margin: 7px 0px 6px 10px;
+                    font-size: 17px;
+                    color: #333;
+                }
+            }
+        }
+        .table-responsive {
+            margin-top: 20px;
+            tbody {
+                tr {
+                    th {
+                        a {
+                            font-weight: bold;
+                            text-decoration: none;
+                            cursor: pointer;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3;
+                            overflow: hidden;
+                            &:hover {
+                                color: rgb(7, 188, 34);
+                            }
+                        }
+                    }
+                    td {
+                        span {
+                            color: #858796;
+                            display: -webkit-box;
+                            -webkit-box-orient: vertical;
+                            -webkit-line-clamp: 3;
+                            overflow: hidden;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

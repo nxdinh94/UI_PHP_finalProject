@@ -16,6 +16,8 @@ import HomeAdmin from '~/Pages/Admin/HomeAdmin';
 import QLSP from '~/Pages/Admin/QLSP';
 import QLLSP from '~/Pages/Admin/QLLSP';
 import QLTK from '~/Pages/Admin/QLTK';
+import QLDV from '~/Pages/Admin/QLDV';
+import EditQLDV from '~/Pages/Admin/QLDV/EditQLDV';
 import DuyetDV from '~/Pages/Admin/DuyetDV';
 
 import routes from '~/config/routes';
@@ -44,6 +46,9 @@ function Admin() {
                         </div>
                         <Nav vertical>
                             <NavItem>
+                                <NavLink>&nbsp;</NavLink>
+                            </NavItem>
+                            <NavItem>
                                 <NavLink href={routes.adminHomePage}>Home Page</NavLink>
                             </NavItem>
                             <NavItem>
@@ -70,12 +75,12 @@ function Admin() {
                                 <NavLink href="#">Quản lý banner</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href="#">Quản lý dịch vụ</NavLink>
+                                <NavLink href={configRoutes.adminQldv}>Quản lý dịch vụ</NavLink>
                             </NavItem>
                             <NavItem>
                                 <NavLink href={routes.adminduyetdichvu}>Xét duyệt dịch vụ</NavLink>
                             </NavItem>
-                            <NavItem>
+                            <NavItem style={{ marginLeft: 7 }}>
                                 <NavLink href="#">Quản lý thời gian làm việc</NavLink>
                             </NavItem>
                         </Nav>
@@ -122,7 +127,9 @@ function Admin() {
                             {slug.includes('qltk') ? <QLTK /> : <></>}
                             {slug === 'qlsp' ? <QLSP /> : <></>}
                             {slug === 'qllsp' ? <QLLSP /> : <></>}
+                            {slug === 'qldv' ? <QLDV /> : <></>}
                             {slug === 'duyetdichvu' ? <DuyetDV /> : <></>}
+                            {slug.includes('qldv-edit') ? <EditQLDV /> : <></>}
                         </div>
                     </Col>
                 </Row>
