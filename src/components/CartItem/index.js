@@ -19,6 +19,7 @@ function CartItem({ ...props }) {
     const { dimensions } = props;
     const { product_name } = props;
     const { fetchData } = props;
+    const { isAllowModifyQuantity } = props;
 
     const [productQuantity, setProductQuantity] = useState(quantity);
     const [itemPrice, setItemPrice] = useState(productPrice);
@@ -67,15 +68,17 @@ function CartItem({ ...props }) {
             <div className="cart-item">
                 <div className="cart-item-header"></div>
                 <div className="cart-item-body">
-                    <div className="check-box">
-                        <input
-                            type="checkbox"
-                            id="check-item"
-                            onChange={handleOnChangeCheckbox}
-                            name="check-item"
-                            value={productid}
-                        />
-                    </div>
+                    {isAllowModifyQuantity && (
+                        <div className="check-box">
+                            <input
+                                type="checkbox"
+                                id="check-item"
+                                onChange={handleOnChangeCheckbox}
+                                name="check-item"
+                                value={productid}
+                            />
+                        </div>
+                    )}
                     <div className="product">
                         <div className="product-image">
                             <img src={thumpnail2} />
@@ -103,23 +106,27 @@ function CartItem({ ...props }) {
                         <span> {itemPrice.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
                     </div>
                     <div className="quantity">
-                        <FontAwesomeIcon
-                            icon={faLessThan}
-                            size="sm"
-                            onClick={() => {
-                                handleDecreaseQuantity();
-                            }}
-                            className={productQuantity === 1 || isChecked ? 'disabled' : ''}
-                        />
+                        {isAllowModifyQuantity && (
+                            <FontAwesomeIcon
+                                icon={faLessThan}
+                                size="sm"
+                                onClick={() => {
+                                    handleDecreaseQuantity();
+                                }}
+                                className={productQuantity === 1 || isChecked ? 'disabled' : ''}
+                            />
+                        )}
                         <span>{productQuantity}</span>
-                        <FontAwesomeIcon
-                            icon={faGreaterThan}
-                            size="sm"
-                            onClick={() => {
-                                handleIncreaseQuantity();
-                            }}
-                            className={isChecked ? 'disabled' : ''}
-                        />
+                        {isAllowModifyQuantity && (
+                            <FontAwesomeIcon
+                                icon={faGreaterThan}
+                                size="sm"
+                                onClick={() => {
+                                    handleIncreaseQuantity();
+                                }}
+                                className={isChecked ? 'disabled' : ''}
+                            />
+                        )}
                     </div>
                     <div className="into-money">
                         <span>{intoMoney.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>

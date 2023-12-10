@@ -1,63 +1,137 @@
 .payment-container {
     background-color: #f5f5f5;
-}
-.deliver-address-wrapper {
-    height: 120px;
-    background-color: white;
-    display: flex;
-    flex-direction: column;
-    padding: 12px;
-    justify-content: space-between;
-    margin-bottom: 18px;
-    box-shadow: 0 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
-    .wrapper-header {
-        margin-bottom: 12px;
-        padding: 0px 12px;
-
-        svg {
-            font-size: 22px;
-            margin-right: 6px;
-            path {
-                color: red;
-            }
-        }
-        span {
-            color: rgb(234, 49, 49);
-            font-size: 17px;
-            margin-bottom: 0px;
-        }
-    }
-    .wrapper-body {
+    padding-top: 20px !important;
+    .payment-method,
+    .deliver-address,
+    .payment-product-wrapper,
+    .payment-bill {
+        height: fit-content;
+        background-color: white;
         display: flex;
+        flex-direction: column;
+        padding: 12px;
         justify-content: space-between;
-        .name-phone,
-        .deliver-address,
-        .action {
+        margin-bottom: 18px;
+        box-shadow: 0 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
+    }
+    .deliver-address-wrapper {
+        background-color: white;
+
+        margin-bottom: 20px;
+        .wrapper-header {
+            margin-bottom: 12px;
             padding: 0px 12px;
-        }
-        .name-phone {
-            padding-left: 0px;
-            p {
-                font-weight: bold;
-                margin-bottom: 2px;
-            }
-            .name {
-                &::after {
-                    content: ' (+84)';
+
+            svg {
+                font-size: 22px;
+                margin-right: 6px;
+                path {
+                    color: red;
                 }
             }
-        }
-        .deliver-address {
-            p {
+            span {
+                color: rgb(234, 49, 49);
+                font-size: 17px;
                 margin-bottom: 0px;
             }
         }
-        .action {
-            a {
+        .wrapper-body {
+            display: flex;
+            justify-content: space-between;
+            .name-phone,
+            .deliver-address,
+            .action {
+                padding: 0px 12px;
+            }
+            .name-phone {
+                padding-left: 0px;
+                p {
+                    font-weight: bold;
+                    margin-bottom: 2px;
+                }
+                .name {
+                    &::after {
+                        content: ' (+84)';
+                    }
+                }
+            }
+            .deliver-address {
+                p {
+                    margin-bottom: 0px;
+                }
+            }
+            .action {
+                a {
+                    text-decoration: none;
+                    font-size: 18px;
+                    color: rgb(245, 57, 57);
+                    line-height: 0.8;
+                }
+            }
+        }
+    }
+    .payment-product-wrapper {
+        height: fit-content;
+    }
+    .payment-method {
+        legend {
+            color: rgb(227, 62, 62);
+        }
+        .method-option {
+            display: flex;
+        }
+        .form-check {
+            .form-check-label {
+                border: 1px solid #ddd;
+                padding: 10px 25px 10px 35px;
+                font-size: 17px;
+                border-radius: 4px;
+            }
+        }
+    }
+    .payment-bill {
+        padding-right: 30px;
+        padding-bottom: 30px;
+
+        .bill-detail {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: end;
+            ul {
+                list-style-type: none;
+                li {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    padding: 6px 0px;
+                    width: 300px;
+                    min-width: 280px;
+                    font-size: 15px;
+                    font-style: italic;
+
+                    span {
+                        color: #4e4e4e;
+                        &.payment-total-price {
+                            color: #ea3030;
+                            font-size: 23px;
+                        }
+                    }
+                }
+            }
+            .btn-buy {
+                span {
+                    padding: 13px 60px;
+
+                    background-color: #ec5078;
+                    color: white;
+                    font-size: 18px;
+
+                    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+                    border-radius: 6px;
+                    cursor: pointer;
+                }
                 text-decoration: none;
-                font-size: 18px;
-                color: rgb(245, 57, 57);
-                line-height: 0.8;
             }
         }
     }

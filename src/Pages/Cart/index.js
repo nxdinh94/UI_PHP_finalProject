@@ -48,6 +48,7 @@ function Cart() {
                             product_name={item.product_name}
                             productPrice={item.productPrice}
                             cartPrice={item.cartPrice}
+                            isAllowModifyQuantity
                         />
                     ))
                 ) : (
