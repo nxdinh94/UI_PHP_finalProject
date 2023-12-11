@@ -25,7 +25,7 @@ export const getAllProduct = () => {
 };
 // them san pham muon mua vao billdetail, json
 export const addToBillDetail = (userId, paymentProduct) => {
-    console.log(userId, paymentProduct);
+    // console.log('dfsdf', userId, paymentProduct);
     return axios.post(
         '/backend_pettu/api/users/checkOutCart',
         { userId: userId, paymentProduct: paymentProduct },
@@ -37,11 +37,11 @@ export const addToBillDetail = (userId, paymentProduct) => {
     );
 };
 // buoc thanh toan
-export const handleAddToBill = (userId, paymentProduct, paymentMethod) => {
+export const handleAddToBill = (userId, paymentProduct, paymentMethod, billId) => {
     // console.log(userId, paymentProduct);
     return axios.post(
         '/backend_pettu/api/users/paymentCart',
-        { userId: userId, payment_method: paymentMethod, paymentProduct: paymentProduct },
+        { userId: userId, payment_method: paymentMethod, paymentProduct: paymentProduct, billId: billId },
         {
             headers: {
                 'Content-Type': 'application/json',

@@ -13,6 +13,7 @@ export const handleFetchAccountDataCompetentPersonnelThunk = createAsyncThunk(
     'QLTKSlice/handleFetchAccountDataCompetentPersonnelThunk',
     async () => {
         const res = await fetchAccountCompetentPersonnel();
+       
         return res;
     },
 );

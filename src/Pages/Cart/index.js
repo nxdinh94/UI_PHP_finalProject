@@ -29,18 +29,6 @@ function Cart() {
         //fetch product in cart
         fetchData(userId);
         dispatch(deleteAllProductFromBill());
-        const handleBeforeUnload = (event) => {
-            const message = 'Are you sure you want to leave?';
-            event.returnValue = message; // Standard for most browsers
-            
-            return message; // For some older browsers
-        };
-
-        window.addEventListener('beforeunload', handleBeforeUnload);
-
-        return () => {
-            window.removeEventListener('beforeunload', handleBeforeUnload);
-        };
     }, []);
 
     return (

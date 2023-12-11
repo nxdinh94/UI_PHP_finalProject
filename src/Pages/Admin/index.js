@@ -80,6 +80,12 @@ function Admin() {
                             <NavItem>
                                 <NavLink href={routes.adminduyetdichvu}>Xét duyệt dịch vụ</NavLink>
                             </NavItem>
+                            <NavItem>
+                                <NavLink href={routes.thanhtoandonhang}>Duyệt đã thanh toán đơn hàng</NavLink>
+                            </NavItem>
+                            <NavItem>
+                                <NavLink href={routes.thanhtoandichvu}>Duyệt đã thanh toán Dịch vụ</NavLink>
+                            </NavItem>
                             <NavItem style={{ marginLeft: 7 }}>
                                 <NavLink href="#">Quản lý thời gian làm việc</NavLink>
                             </NavItem>

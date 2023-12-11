@@ -28,5 +28,7 @@ const routes = {
     adminQldv: '/admin/qldv',
     adminQldvEdit: '/admin/qldv-edit',
     adminduyetdichvu: '/admin/duyetdichvu',
+    thanhtoandichvu: '/admin/duyetthanhtoandichvu',
+    thanhtoandonhang: '/admin/duyetthanhtoandonhang',
 };
 export default routes;

@@ -7,6 +7,7 @@ const initialState = {
 };
 export const handleFetchAllTeamThunk = createAsyncThunk('TeamSlices/handleFetchAllTeamThunk', async () => {
     const res = await getAllInTeam();
+    console.log('team', res);
     return res;
 });
 export const TeamSlices = createSlice({
@@ -16,7 +17,7 @@ export const TeamSlices = createSlice({
     extraReducers: (builder) => {
         builder
             .addCase(handleFetchAllTeamThunk.pending, (state) => {
-                state.status = 'loading';
+                state.status = 'loading'; 
             })
             .addCase(handleFetchAllTeamThunk.fulfilled, (state, action) => {
                 state.status = 'idle';

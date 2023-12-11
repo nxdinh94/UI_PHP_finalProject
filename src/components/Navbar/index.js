@@ -106,7 +106,7 @@ function HeaderOnly({ children }) {
             setclassNameSuperContainer('superContainer');
             setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
             setLogo(logoOption.lightLogo);
-            console.log('jiihi');
+            
         }
         if (window.innerWidth < 768) {
             setIsOpen(false);

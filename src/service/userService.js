@@ -134,8 +134,8 @@ export function handleCountProductInCartApi(userId) {
         },
     });
 }
-export function handleGetAllFromBilldetail(userId) {
-    return axios.post('/backend_pettu/api/users/billDetail', `userId=${userId}`, {
+export function handleGetAllFromBilldetail(userId, billId) {
+    return axios.post('/backend_pettu/api/users/billDetail', `userId=${userId}&billId=${billId}`, {
         headers: {
             'Content-Type': 'application/x-www-form-urlencoded',
         },

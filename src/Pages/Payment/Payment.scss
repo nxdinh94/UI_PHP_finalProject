@@ -9,7 +9,7 @@
         background-color: white;
         display: flex;
         flex-direction: column;
-        padding: 12px;
+
         justify-content: space-between;
         margin-bottom: 18px;
         box-shadow: 0 1.5rem 2rem -2rem hsl(200 50% 20% / 40%);
@@ -20,7 +20,8 @@
         margin-bottom: 20px;
         .wrapper-header {
             margin-bottom: 12px;
-            padding: 0px 12px;
+            padding: 12px;
+            padding-right: 0px;
 
             svg {
                 font-size: 22px;
@@ -74,6 +75,7 @@
         height: fit-content;
     }
     .payment-method {
+        padding: 12px;
         legend {
             color: rgb(227, 62, 62);
         }

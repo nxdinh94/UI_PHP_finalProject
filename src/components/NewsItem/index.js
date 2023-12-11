@@ -6,17 +6,17 @@ function NewsItem({ data, slug }) {
     return (
         <div className="blog-item">
             <div className="blog-image">
-                <img className='my-image'src={data.thumbnail} />
+                <img className="my-image" src={data.thumbnail} />
             </div>
             <div className="content-item">
                 <div className="time_author">
                     <span>
-                       
-                        <FontAwesomeIcon icon={faCalendarAlt} />
+                        <FontAwesomeIcon icon={faUser} />
+
                         <span className="p-text">{data.author || 'Admin'}</span>
                     </span>
                     <span className="p-text">
-                        <FontAwesomeIcon icon={faUser} />
+                        <FontAwesomeIcon icon={faCalendarAlt} />
                         <span className="p-text">{data.create_at}</span>
                     </span>
                 </div>

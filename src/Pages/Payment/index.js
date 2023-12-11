@@ -15,6 +15,7 @@ function Payment() {
     const [dataBillDetail, setDataBillDetail] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState('');
     const [classForPaymentQr, setClassForPaymentQr] = useState('bill-detail-qr');
+    const [billId, setBillId] = useState(0);
     const transport_fee = 0;
     let paymentPrice = 0;
     let priceToPay = 0 + transport_fee;
@@ -30,17 +31,27 @@ function Payment() {
         const target = e.target.value;
         setPaymentMethod(target);
     };
+    const handleBeforeUnload = (event) => {
+        const message = 'Are you sure you want to leave?';
+        event.returnValue = message; // Standard for most browsers
+        if (window.confirm(message)) {
+            // Perform your action here when the user confirms leaving
+        }
+        return message; // For some older browsers
+    };
     const handlePaymentBtn = async (userid, paymentmethod, paymentproduct) => {
         if (!paymentmethod) {
             toast.error('Vui lòng chọn phương thức thành toán');
         } else {
-            const res = await handleAddToBill(userid, paymentproduct, paymentmethod);
-            // if (res.status) {
-            //     toast.success(res.message);
-            //     setTimeout(() => {
-            //         window.location.href = configureRoute.cart;
-            //     }, 1500);
-            // }
+            const res = await handleAddToBill(userid, paymentproduct, paymentmethod, billId);
+            // console.log(res);
+            if (res.status) {
+                toast.success(res.message);
+                window.removeEventListener('beforeunload', handleBeforeUnload);
+                setTimeout(() => {
+                    window.location.href = configureRoute.cart;
+                }, 1500);
+            }
         }
     };
     // console.log(paymentProduct);
@@ -50,27 +61,20 @@ function Payment() {
         } else setClassForPaymentQr('bill-detail-qr');
     }, [paymentMethod]);
     useEffect(() => {
-        const handleBeforeUnload = (event) => {
-            const message = 'Are you sure you want to leave?';
-            event.returnValue = message; // Standard for most browsers
-            if (window.confirm(message)) {
-                // Perform your action here when the user confirms leaving
-                
-            }
-            return message; // For some older browsers
-        };
-
         window.addEventListener('beforeunload', handleBeforeUnload);
 
         return () => {
             window.removeEventListener('beforeunload', handleBeforeUnload);
         };
     }, []);
+    // console.log('billid', billId);
     useEffect(() => {
         const handleAddToBillDetail = async () => {
             try {
-                await addToBillDetail(userId, paymentProduct);
-                const fetchBillDetail = await handleGetAllFromBilldetail(userId);
+                const res = await addToBillDetail(userId, paymentProduct);
+                // console.log('res', res);
+                const fetchBillDetail = await handleGetAllFromBilldetail(userId, res.billId);
+                setBillId(res.billId);
                 setDataBillDetail(fetchBillDetail);
             } catch (error) {
                 console.error('Error adding to bill detail:', error);
