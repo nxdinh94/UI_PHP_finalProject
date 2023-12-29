@@ -11,11 +11,21 @@ import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
 import configureRoute from '~/config/routes';
 
+import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
+import { toast } from 'react-toastify';
+import Toastify from '~/components/Toastify';
+import { handleAddProductToCartApi } from '~/service/userService';
 import SwiperForProduct from '~/components/SwiperForProduct';
 
 function Cart() {
-    let user_data = JSON.parse(sessionStorage.user_data);
-    let userId = user_data.id;
+    let userData = '';
+    let isLogin = sessionStorage.isLogin;
+    let userId = '';
+    if (isLogin) {
+        userData = JSON.parse(sessionStorage.getItem('user_data'));
+        isLogin = sessionStorage.isLogin;
+        userId = userData.id;
+    }
     const productData = useSelector((state) => state.storeSlices.value);
     const [listProductsInCart, setListProductsInCart] = useState([]);
     // console.log(listProductsInCart);
@@ -25,6 +35,13 @@ function Cart() {
     };
     const dispatch = useDispatch();
 
+    const handleAddProductToCart = async (userid, productid, productquantity) => {
+        const res = await handleAddProductToCartApi(userid, productid, productquantity);
+        dispatch(handleFetchQuantityProductInCartThunk(userId));
+        if (res.status) {
+            toast.success('Đã thêm vào giỏ hàng', { position: 'bottom-right' });
+        } else toast.error('Vui lòng đăng nhập để thực hiện chức năng');
+    };
     useEffect(() => {
         //fetch product in cart
         fetchData(userId);
@@ -33,6 +50,7 @@ function Cart() {
 
     return (
         <Container fluid className="cart-containter text-center">
+            <Toastify />
             <Container className="my-3 container1">
                 {listProductsInCart.status ? (
                     listProductsInCart.data.map((item, key) => (
@@ -67,7 +85,11 @@ function Cart() {
                 <Row>
                     <div className="relative-product mt-5">
                         <h2 className="topic2">Related Products</h2>
-                        <SwiperForProduct productData={productData} />
+                        <SwiperForProduct
+                            productData={productData}
+                            handleAddProductToCart={handleAddProductToCart}
+                            userId={userId}
+                        />
                     </div>
                 </Row>
             </Container>
