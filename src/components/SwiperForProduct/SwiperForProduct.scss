@@ -57,5 +57,16 @@
             font-family: oswald;
         }
     }
+    .action {
+        width: 100%;
+        display: flex;
+        justify-content: center;
+        .addToCartBtn {
+            background-color: #971b1b;
+            color: white;
+            border-radius: 8px;
+            padding: 1px 12px;
+            font-size: 15px;
+        }
+    }
 }
-    

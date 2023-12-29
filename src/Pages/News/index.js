@@ -7,6 +7,7 @@ import { faGreaterThan } from '@fortawesome/free-solid-svg-icons';
 
 import { Link, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
 function News() {
     const dataCate = useSelector((state) => state.newsSlices.value);
     // console.log('dataCate', dataCate);
@@ -15,6 +16,8 @@ function News() {
     // console.log('slug', slug);
     const [dataByCate, setDataByCate] = useState(dataCate[slug]);
     // console.log('dataBycate', dataByCate);
+
+    const { t } = useTranslation();
     useEffect(() => {
         setDataByCate(dataCate[slug]);
     }, [slug]);
@@ -44,28 +47,28 @@ function News() {
                 <Col lg="4">
                     <div className="right-sidebar">
                         <div className="wrapper-cate">
-                            <h4>Categories</h4>
+                            <h4>{t('category')}</h4>
                             <u className="list-cate">
                                 <li className="item-cate">
-                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
                                     <Link to="/news/dog/category">
                                         <span>Dog</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
                                     <Link to="/news/cat/category">
                                         <span>Cat</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
                                     <Link to="/news/petnews/category">
                                         <span>Pet News</span>
                                     </Link>
                                 </li>
                                 <li className="item-cate">
-                                    <FontAwesomeIcon className='arrow-news' icon={faGreaterThan} size="xs" />
+                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
                                     <Link to="/news/catnews/category">
                                         <span>Cat News</span>
                                     </Link>

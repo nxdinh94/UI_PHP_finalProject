@@ -1,4 +1,5 @@
 .storeDetail-wrapper {
+    margin-bottom: 30px;
     .product-thumpnail {
         padding: 10px 10px 10px 0px;
 
@@ -104,6 +105,19 @@
             }
         }
     }
+
+    .search-container {
+        padding-top: 20px;
+        display: flex;
+        flex-direction: column;
+        .search-title {
+            font-size: 23px;
+            font-weight: bold;
+            font-family: oswald;
+            color: #676767;
+        }
+    }
+
     .relative-product {
         .topic2 {
             font-size: 42px;

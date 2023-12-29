@@ -10,6 +10,8 @@ import Toastify from '~/components/Toastify';
 import { useDispatch } from 'react-redux';
 import './QLDV.scss';
 import routes from '~/config/routes';
+import { handleDeleteService } from '~/service/adminService/';
+import { handleGetAllServicesThunk } from '~/Pages/Service/ServicesSlice';
 
 function QLDV() {
     const [searchValue, setSearchValue] = useState('');
@@ -28,11 +30,13 @@ function QLDV() {
         <div className="content">
             <Toastify />
             <div className="div-title">
-                <p className="my-0"> Database Dich vu</p>
+                <p className="my-0"> Database dịch vụ</p>
             </div>
             <div className="div-content">
                 <div className="div-action">
-                    <button className="btn btn-primary"> Thêm mới</button>
+                    <a href={routes.adminQldvAdd} className="btn btn-primary text-white">
+                        Thêm mới
+                    </a>
                     <div className="div-search">
                         <Input
                             placeholder="Search"
@@ -42,6 +46,7 @@ function QLDV() {
                         />
                     </div>
                 </div>
+                <h1>Danh sách</h1>
                 <Table responsive>
                     <thead>
                         <tr>
@@ -81,7 +86,18 @@ function QLDV() {
                                         <span>{item.teamid}</span>
                                     </td>
                                     <td>
-                                        <button className="btn btn-danger">Xóa</button>
+                                        <button
+                                            onClick={async () => {
+                                                const res = await handleDeleteService(item.id);
+                                                if (res.status) {
+                                                    toast.success(res.message);
+                                                    dispatch(handleGetAllServicesThunk());
+                                                } else toast.error(res.message);
+                                            }}
+                                            className="btn btn-danger"
+                                        >
+                                            Xóa
+                                        </button>
                                     </td>
                                 </tr>
                             ))}

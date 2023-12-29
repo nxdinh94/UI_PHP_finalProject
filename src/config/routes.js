@@ -18,17 +18,21 @@ const routes = {
     cart: '/store/cart',
     payment: '/store/cart/payment',
     page404: '*',
+    purchaseOrder: '/purchase',
 
     admin: '/admin/:slug',
     adminHomePage: '/admin/homepage',
     adminQltkPersonnel: '/admin/qltkpersonnel',
     adminQltkUsers: '/admin/qltkusers',
-    adminQlsq: '/admin/qlsp',
+    adminQlsp: '/admin/qlsp',
+    adminQlspEdit: '/admin/qlsp-edit',
+    adminQlspAdd: '/admin/qlsp-add',
     adminQllsq: '/admin/qllsp',
     adminQldv: '/admin/qldv',
     adminQldvEdit: '/admin/qldv-edit',
+    adminQldvAdd: '/admin/qldv-add',
     adminduyetdichvu: '/admin/duyetdichvu',
     thanhtoandichvu: '/admin/duyetthanhtoandichvu',
-    thanhtoandonhang: '/admin/duyetthanhtoandonhang',
+    duyetdonhang: '/admin/duyetdonhang',
 };
 export default routes;

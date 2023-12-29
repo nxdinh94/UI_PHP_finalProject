@@ -3,11 +3,12 @@ import { Gallery } from 'react-grid-gallery';
 import Lightbox from 'react-image-lightbox';
 import 'react-image-lightbox/style.css';
 import { images, CustomImage } from './images.js';
+import { useTranslation } from 'react-i18next';
 import { Container } from 'reactstrap';
 import './Gallery.scss';
 export default function App() {
     const [index, setIndex] = useState(-1);
-
+    const { t } = useTranslation();
     const currentImage = images[index];
     const nextIndex = (index + 1) % images.length;
     const nextImage = images[nextIndex] || currentImage;
@@ -24,11 +25,11 @@ export default function App() {
             <div className="text-center">
                 <p className="my-1">
                     <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                    <span className="topic1">My gallery</span>
+                    <span className="topic1">{t('gallery')}</span>
                 </p>
-                <h2 className="topic2">My gallery</h2>
+                <h2 className="topic2">{t('gallery')}</h2>
             </div>
-            
+
             <Gallery images={images} onClick={handleClick} enableImageSelection={false} />
             {!!currentImage && (
                 /* @ts-ignore */

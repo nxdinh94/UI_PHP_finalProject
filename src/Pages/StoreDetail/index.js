@@ -1,7 +1,7 @@
 import { Col, Row, Container } from 'reactstrap';
 import './StoreDetail.scss';
-
-import { useSelector } from 'react-redux';
+import { Input } from 'reactstrap';
+import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faStar, faGreaterThan, faLessThan, faCartShopping } from '@fortawesome/free-solid-svg-icons';
 
@@ -9,11 +9,12 @@ import { useState, useEffect } from 'react';
 import SwiperForProduct from '~/components/SwiperForProduct';
 import { useParams, Link } from 'react-router-dom';
 
+import { useTranslation } from 'react-i18next';
+
 import AdditionIn4Product from '~/components/AdditionIn4Product';
 import { handleAddProductToCartApi } from '~/service/userService';
 import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
-import { useDispatch } from 'react-redux';
 import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
 function StoreDetail() {
     const { slug } = useParams();
@@ -26,15 +27,22 @@ function StoreDetail() {
     const specificProduct = productData.filter((item) => {
         return item.productid === +slug;
     });
-    let user_data = JSON.parse(sessionStorage.user_data);
-    let userId = user_data.id;
+    const { t } = useTranslation();
+    let user_data = '';
+    let userId = '';
+    let isLogin = sessionStorage.isLogin;
+    // console.log(isLogin);
+    if (isLogin) {
+        user_data = JSON.parse(sessionStorage.user_data);
+        userId = user_data.id;
+    }
 
     const handleAddProductToCart = async (userid, productid, productquantity) => {
         const res = await handleAddProductToCartApi(userid, productid, productquantity);
         dispatch(handleFetchQuantityProductInCartThunk(userId));
         if (res.status) {
-            toast.success(res.message, { position: 'bottom-right' });
-        } else toast.error(res.message);
+            toast.success('Đã thêm vào giỏ hàng', { position: 'bottom-right' });
+        } else toast.error('Vui lòng đăng nhập để thực hiện chức năng');
     };
     return (
         <Container fluid>
@@ -51,7 +59,7 @@ function StoreDetail() {
                             <h2 className="topic2">{specificProduct[0].product_name}</h2>
                             <div className="rank-review">
                                 <div className="rank">
-                                    {[...Array(specificProduct[0].evaluate_star)].map((key) => (
+                                    {[...Array(specificProduct[0].evaluate_star)].map((item, key) => (
                                         <FontAwesomeIcon icon={faStar} className="star" size="sm" key={key} />
                                     ))}
                                 </div>
@@ -94,13 +102,16 @@ function StoreDetail() {
                                     }}
                                 >
                                     <FontAwesomeIcon icon={faCartShopping} size="lg" />
-                                    <p>Add to cart</p>
+                                    <p>{t('addToCart')}</p>
                                 </button>
                             </div>
                         </div>
                     </Col>
-                    <Col md="2">
-                        <p>search</p>
+                    <Col md="2" className="p-0">
+                        <div className="search-container">
+                            <p className="search-title">{t('searchProduct')}</p>
+                            <Input className="my-0" />
+                        </div>
                     </Col>
                 </Row>
                 <Row>
@@ -148,7 +159,11 @@ function StoreDetail() {
                 <Row>
                     <div className="relative-product">
                         <h2 className="topic2">Related Products</h2>
-                        <SwiperForProduct productData={productData} />
+                        <SwiperForProduct
+                            productData={productData}
+                            handleAddProductToCart={handleAddProductToCart}
+                            userId={userId}
+                        />
                     </div>
                 </Row>
             </Container>

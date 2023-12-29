@@ -32,7 +32,7 @@ function HeaderOnly({ children }) {
     const [isOnPageTag, setIsOnPageTag] = useState(false);
     const [avatar, setAvatar] = useState('');
     const [isAdmin, setIsAdmin] = useState(true);
-
+    
     const isLogin = sessionStorage.isLogin;
     let user_data = '';
     // let userId = user_data.id;

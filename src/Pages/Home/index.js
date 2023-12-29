@@ -109,28 +109,22 @@ function Home() {
                                 loading="lazy"
                                 className="iconCat"
                             />
-                            <span className="topic1">Những gì chúng tôi cung cấp</span>
+                            <span className="topic1">{t('weProvided')}</span>
                         </div>
-                        <h2 className="topic2">Chúng tôi là tốt nhất</h2>
-                        <p className="p-text">
-                            Chúng tôi cung cấp các sản phẩm và dịch vụ chăm sóc thú cưng, bao gồm thức ăn, đồ dùng, sản
-                            phẩm chăm sóc, bệnh viện thú y, và spa chăm sóc thú cưng. Bên cạnh đó, chúng tôi còn cung
-                            cấp các tư vấn và hướng dẫn chăm sóc thú cưng để giúp người dùng có thể chăm sóc thú cưng
-                            của mình một cách tốt nhất. Với các chương trình khuyến mãi và giảm giá hấp dẫn, chúng tôi
-                            mong muốn mang đến cho khách hàng những trải nghiệm mua sắm tốt nhất.
-                        </p>
+                        <h2 className="topic2">{t('weAreTheBest')}</h2>
+                        <p className="p-text">{t('describeWeAreTheBest')}</p>
                         <ul className="w-list">
                             <li>
-                                <p className="p-text-item">Thông tin về các loại thú cưng</p>
+                                <p className="p-text-item">{t('weAreTheBestItem1')}</p>
                             </li>
                             <li>
-                                <p className="p-text-item">Tư vấn hành vi</p>
+                                <p className="p-text-item">{t('weAreTheBestItem2')}</p>
                             </li>
                             <li>
-                                <p className="p-text-item">Chuẩn đoán bệnh tật</p>
+                                <p className="p-text-item">{t('weAreTheBestItem3')}</p>
                             </li>
                             <li>
-                                <p className="p-text-item">Chi phí ưu đãi</p>
+                                <p className="p-text-item">{t('weAreTheBestItem4')}</p>
                             </li>
                         </ul>
                     </Col>
@@ -148,28 +142,21 @@ function Home() {
                             <div className="checkin">
                                 <p className="my-1">
                                     <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                    <span className="topic1">Check in time</span>
+                                    <span className="topic1">{t('checkinTime')}</span>
                                 </p>
-                                <h2 className="topic2">Chúng tôi mang lại niềm vui cho bạn</h2>
+                                <h2 className="topic2">{t('wealwaysbringHappyness')}</h2>
                                 <div>
-                                    <p className="p-text">
-                                        Chúng tôi luôn sẵn sàng phục vụ khách hàng trong khung giờ làm việc linh hoạt và
-                                        tiện lợi, để đảm bảo sự hài lòng và tin tưởng của khách hàng.
-                                    </p>
+                                    <p className="p-text">{t('describewealwaysbringHappyness')}</p>
                                 </div>
 
                                 <ul className="checkin-list">
                                     <li className="checkin-item">
-                                        <p className="h5 p-text-item">Từ 9:00 đến 21:00</p>
-                                        <p className="checkin-script p-text">
-                                            Khung giờ làm việc tiệc vời, thuận tiện cho mọi thứ.
-                                        </p>
+                                        <p className="h5 p-text-item">{`${t('from')} 9:00 ${t('to')} 21:00`}</p>
+                                        <p className="checkin-script p-text">{t('text1')}</p>
                                     </li>
                                     <li className="checkin-item">
-                                        <p className="h5 p-text-item">Dịch vụ khẩn cấp</p>
-                                        <p className="checkin-script p-text">
-                                            Hãy hoàn toàn yên tâm, chúng tôi luôn sẵn sàng vì bạn
-                                        </p>
+                                        <p className="h5 p-text-item">{t('emergencyService')}</p>
+                                        <p className="checkin-script p-text">{t('text2')}</p>
                                     </li>
                                 </ul>
                             </div>
@@ -192,9 +179,9 @@ function Home() {
                         <div className="slider-title">
                             <p>
                                 <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                <span className="topic1">Nhân viên chuyên nghiệp</span>
+                                <span className="topic1">{t('expertTeam')}</span>
                             </p>
-                            <h2 className="topic2">Nhân viên chuyên nghiệp</h2>
+                            <h2 className="topic2">{t('expertTeam')}</h2>
                         </div>
                         <Swiper teamData={handleDataTeam} />
                     </Col>
@@ -213,8 +200,8 @@ function Home() {
                                 Any question
                             </h2>
                             <p className="p-text my-4">
-                                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-                                incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud.
+                                Please ask any questions you have about us, we are happy to answer your questions. Go to
+                                the contact page now!!!
                             </p>
                             <div className="btn-area">
                                 <button
@@ -223,7 +210,7 @@ function Home() {
                                     }}
                                     className="btn-discover"
                                 >
-                                    Contact now
+                                    {t('contactnow')}
                                 </button>
                             </div>
                         </div>
@@ -315,7 +302,6 @@ function Home() {
                                 onClick={() => {
                                     handleToggleQuestionGuide(4);
                                 }}
-                                style={{ animation: `${openQuestionGuide[4] ? 'fadeIn' : 'fadeOut'} 1s` }}
                             >
                                 How to contact with our customer featire?
                             </div>
@@ -339,9 +325,9 @@ function Home() {
                         <div className="slider-title">
                             <p>
                                 <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                <span className="topic1">Pets of the month</span>
+                                <span className="topic1">{t('petInf.potm')}</span>
                             </p>
-                            <h2 className="topic2">Pets of the month</h2>
+                            <h2 className="topic2">{t('petInf.potm')}</h2>
                         </div>
                         <Slider settings={settings} dataPet={handleDataPet}></Slider>
                     </Col>
@@ -353,17 +339,17 @@ function Home() {
                         <Col lg="6" className="slider-title text-start">
                             <p className="mb-0">
                                 <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                <span className="topic1">Pets of the month</span>
+                                <span className="topic1">{t('evrsgd')}</span>
                             </p>
                             <h2 className="topic2" style={{ fontSize: '4rem' }}>
-                                Every single day <br />
-                                Update
+                                {t('evrsgd')} <br />
+                                {t('update')}
                             </h2>
                         </Col>
                         <Col lg="6">
                             <div className="btn-area">
                                 <a href={routes.services} className="btn-discover">
-                                    Discover more
+                                    {t('discoverMore')}
                                 </a>
                             </div>
                         </Col>

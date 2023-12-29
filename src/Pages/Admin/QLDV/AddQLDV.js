@@ -1,55 +1,49 @@
 import './EditQLDV.scss';
 import { Col, Container, FormGroup, Input, Label, Row, Table } from 'reactstrap';
-import { handleGetAllServicesThunk } from '~/Pages/Service/ServicesSlice';
+
 import { useEffect, useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector } from 'react-redux';
 import { toast } from 'react-toastify';
-import { handleUpdateService } from '~/service/adminService';
 import { useParams } from 'react-router-dom';
 import Toastify from '~/components/Toastify';
-function EditQLDV() {
-    const [isPreviewMode, setIsPreviewMode] = useState(true);
+import { handleAddService } from '~/service/adminService';
 
-    const allServices = useSelector((state) => state.servicesSlices.value);
-    const { slug } = useParams();
-    const specificService = allServices.filter((item) => {
-        return slug.includes(item.slug);
-    });
-    const dispatch = useDispatch();
-    const userData = JSON.parse(sessionStorage.getItem('user_data'));
-    const userId = userData.id;
-    const [serviceId, setServiceId] = useState(specificService[0].id);
-    const [name, setName] = useState(specificService[0].name);
-    const [newSlug, setNewSlug] = useState(specificService[0].slug);
-    const [icon, setIcon] = useState(specificService[0].icon);
-    const [descr, setDescr] = useState(specificService[0].dersc);
-    const [content, setContent] = useState(specificService[0].content);
-    const [cost, setCost] = useState(specificService[0].cost);
-    const [teamid, setTeamId] = useState(specificService[0].teamid);
+function AddQLDV() {
+    const [serviceName, setServiceName] = useState('');
+    const [newSlug, setNewSlug] = useState('');
+    const [thumpnail2, setThumpnail2] = useState('');
+    const [description, setDescription] = useState('');
+    const [content, setContent] = useState('');
+    const [price, setPrice] = useState('');
+    const [teamid, setTeamid] = useState('');
 
     const handleOnChangeInput = (e) => {
         let inputName = e.target.name;
         switch (inputName) {
-            case 'name':
-                setName(e.target.value);
+            case 'serviceName':
+                setServiceName(e.target.value);
                 break;
             case 'newSlug':
                 setNewSlug(e.target.value);
                 break;
-            case 'icon':
-                setIcon(e.target.value);
+            case 'thumpnail2':
+                const requiredPartName = '/images/services/';
+                let path = e.target.value;
+                let arrayPath = path.split('\\');
+                let nameImage = arrayPath[arrayPath.length - 1];
+                setThumpnail2(requiredPartName.concat(nameImage));
                 break;
-            case 'descr':
-                setDescr(e.target.value);
+            case 'description':
+                setDescription(e.target.value);
                 break;
             case 'content':
                 setContent(e.target.value);
                 break;
-            case 'cost':
-                setCost(e.target.value);
+            case 'price':
+                setPrice(e.target.value);
                 break;
             case 'teamid':
-                setTeamId(e.target.value);
+                setTeamid(e.target.value);
                 break;
 
             default:
@@ -58,29 +52,25 @@ function EditQLDV() {
     };
 
     const handleMode = async () => {
-        if (isPreviewMode) {
-            setIsPreviewMode(!isPreviewMode);
-        } else {
-            const res = await handleUpdateService({
-                serviceId,
-                name,
-                newSlug,
-                icon,
-                descr,
-                content,
-                cost,
-                teamid,
-            });
-            dispatch(handleGetAllServicesThunk());
-            // console.log('update', res);
-            setIsPreviewMode(!isPreviewMode);
-        }
+        const res = await handleAddService({
+            serviceName,
+            newSlug,
+            thumpnail2,
+            description,
+            content,
+            price,
+            teamid,
+        });
+        console.log(res);
+        if (res.status) {
+            toast.success(res.message);
+        } else toast.error(res.errors);
     };
     return (
         <div className="content">
             <Toastify />
             <div className="div-title">
-                <p className="my-0"> Database Dich vu</p>
+                <p className="my-0"> Thêm dịch vụ</p>
             </div>
             <div className="profile-container">
                 <Toastify />
@@ -89,24 +79,22 @@ function EditQLDV() {
                         <div className="content">
                             <div className="avt-container">
                                 <div className="avt-wrapper">
-                                    <img src={specificService[0].icon} />
+                                    <img src={thumpnail2} />
                                 </div>
                             </div>
                             <div className="profile-info">
                                 <Row>
                                     <FormGroup row>
-                                        <Label for="name" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                        <Label for="serviceName" size="md" sm={2} style={{ paddingTop: 20 }}>
                                             Tên dịch vụ
                                         </Label>
                                         <Col sm={10}>
                                             <Input
                                                 bsSize="md"
-                                                id="name"
-                                                name="name"
+                                                id="serviceName"
+                                                name="serviceName"
                                                 type="text"
-                                                value={name}
                                                 onChange={handleOnChangeInput}
-                                                disabled={isPreviewMode}
                                                 style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             />
                                         </Col>
@@ -124,46 +112,39 @@ function EditQLDV() {
                                                 name="newSlug"
                                                 type="text"
                                                 onChange={handleOnChangeInput}
-                                                value={newSlug}
                                                 style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
-                                                disabled
                                             />
                                         </Col>
                                     </FormGroup>
                                 </Row>
                                 <Row>
                                     <FormGroup row>
-                                        <Label for="icon" size="md" sm={2} style={{ paddingTop: 20 }}>
-                                            Icon
+                                        <Label for="thumpnail2" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                            Thumbnail
                                         </Label>
                                         <Col sm={10}>
                                             <Input
                                                 bsSize="md"
-                                                id="icon"
-                                                name="icon"
+                                                id="thumpnail2"
+                                                name="thumpnail2"
                                                 onChange={handleOnChangeInput}
-                                                type="text"
-                                                value={icon}
-                                                disabled={isPreviewMode}
+                                                type="file"
                                             />
                                         </Col>
                                     </FormGroup>
                                 </Row>
                                 <Row>
                                     <FormGroup row>
-                                        <Label for="descr" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                        <Label for="description" size="md" sm={2} style={{ paddingTop: 20 }}>
                                             Mô tả
                                         </Label>
                                         <Col sm={10}>
                                             <Input
-                                                bsSize="md"
-                                                id="descr"
-                                                name="descr"
-                                                type="text"
-                                                disabled={isPreviewMode}
+                                                type="textarea"
+                                                id="description"
+                                                name="description"
                                                 onChange={handleOnChangeInput}
-                                                value={descr}
-                                                style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
+                                                style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px', height: 150 }}
                                             />
                                         </Col>
                                     </FormGroup>
@@ -175,31 +156,29 @@ function EditQLDV() {
                                         </Label>
                                         <Col sm={10}>
                                             <Input
-                                                type="textarea"
+                                                bsSize="md"
                                                 id="content"
                                                 name="content"
+                                                type="textarea"
                                                 onChange={handleOnChangeInput}
-                                                value={content}
-                                                disabled={isPreviewMode}
-                                                style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px', height: 150 }}
+                                                style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             />
                                         </Col>
                                     </FormGroup>
                                 </Row>
+
                                 <Row>
                                     <FormGroup row>
-                                        <Label for="cost" size="md" sm={2} style={{ paddingTop: 20 }}>
-                                            Cost
+                                        <Label for="price" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                            Giá
                                         </Label>
                                         <Col sm={10}>
                                             <Input
                                                 bsSize="md"
-                                                id="cost"
-                                                name="cost"
-                                                type="text"
-                                                disabled={isPreviewMode}
+                                                id="price"
+                                                name="price"
+                                                type="number"
                                                 onChange={handleOnChangeInput}
-                                                value={cost}
                                                 style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             />
                                         </Col>
@@ -217,8 +196,6 @@ function EditQLDV() {
                                                 name="teamid"
                                                 type="text"
                                                 onChange={handleOnChangeInput}
-                                                value={teamid}
-                                                disabled={isPreviewMode}
                                                 style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             />
                                         </Col>
@@ -227,11 +204,8 @@ function EditQLDV() {
 
                                 <Row>
                                     <div className="button-wrapper">
-                                        <button
-                                            onClick={() => handleMode()}
-                                            className={isPreviewMode ? 'btn btn-primary' : 'btn btn-success'}
-                                        >
-                                            {isPreviewMode ? 'Chỉnh sửa' : 'Lưu'}
+                                        <button onClick={() => handleMode()} className="btn btn-success">
+                                            Lưu
                                         </button>
                                     </div>
                                 </Row>
@@ -244,4 +218,4 @@ function EditQLDV() {
     );
 }
 
-export default EditQLDV;
+export default AddQLDV;

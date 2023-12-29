@@ -42,6 +42,9 @@ function AnotherLayout({ children }) {
     if (pathName === '/team') {
         headtitle = t('team');
     }
+    if (pathName.includes('purchase')) {
+        headtitle = t('purchaseOrder');
+    }
     if (pathName.includes('payment')) {
         headtitle = t('payment');
     }

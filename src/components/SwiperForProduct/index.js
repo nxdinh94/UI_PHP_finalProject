@@ -9,9 +9,11 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
+import { useTranslation } from 'react-i18next';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-export default ({ productData, autoplay }) => {
+export default ({ productData, autoplay, userId, handleAddProductToCart }) => {
+    const { t } = useTranslation();
     return (
         <Swiper
             // install Swiper modules
@@ -62,6 +64,16 @@ export default ({ productData, autoplay }) => {
                         </div>
                         <div className="price">
                             <h6>{item.price.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</h6>
+                        </div>
+                        <div className="action">
+                            <button
+                                className="addToCartBtn"
+                                onClick={() => {
+                                    handleAddProductToCart(userId, item.productid, 1);
+                                }}
+                            >
+                                {t('addToCart')}
+                            </button>
                         </div>
                     </div>
                 </SwiperSlide>

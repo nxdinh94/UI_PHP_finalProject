@@ -8,7 +8,6 @@ function DropdownContent({ isAdmin }) {
     const language = useSelector((state) => state.language.value);
     const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
-    
 
     let user_data = '';
     let userId = user_data.id;
@@ -18,15 +17,15 @@ function DropdownContent({ isAdmin }) {
     };
     return (
         <div className="dropdown-content">
-            {isAdmin && <a href={configRoutes.adminHomePage}>Admin Page</a>}
-            <a href={configRoutes.profile}>Profile</a>
-            
+            {isAdmin && <a href={configRoutes.adminHomePage}>{t('adminPage')}</a>}
+            <a href={configRoutes.profile}>{t('profile')}</a>
+            <a href={configRoutes.purchaseOrder}>{t('purchaseOrder')}</a>
             <button
                 onClick={() => {
                     handleLogoutBtn();
                 }}
             >
-                Logout
+                {t('logout')}
             </button>
             <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
                 {language || 'vi'}

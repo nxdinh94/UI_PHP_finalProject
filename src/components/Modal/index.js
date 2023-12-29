@@ -3,20 +3,21 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from 'reactstrap';
 import './Modal.scss';
 
+import { useTranslation } from 'react-i18next';
 
 function Model({ petDetail }) {
     // Modal open state
     const [modal, setModal] = React.useState(false);
-
+    const { t } = useTranslation();
     // Toggle for Modal
     const toggle = () => setModal(!modal);
 
     return (
-        <div className='modal-wrapper'>
-            <Button className='btn-toggle' color="danger" onClick={toggle}>
-                Xem thi tiết
+        <div className="modal-wrapper">
+            <Button className="btn-toggle" color="danger" onClick={toggle}>
+                {t('viewDetail')}
             </Button>
-            <Modal isOpen={modal} size='lg' toggle={toggle} className="modal-wrapper">
+            <Modal isOpen={modal} size="lg" toggle={toggle} className="modal-wrapper">
                 <ModalHeader toggle={toggle}></ModalHeader>
                 <ModalBody>
                     <div className="modal-body-content">
@@ -24,22 +25,22 @@ function Model({ petDetail }) {
                         <div className="list-in4">
                             <ul>
                                 <li>
-                                    <span>Nguồn gốc: </span> <span>{petDetail.origin}</span>
+                                    <span>{`${t('petInf.origin')}:`} </span> <span>{petDetail.origin}</span>
                                 </li>
                                 <li>
-                                    <span>Kiểu lông: </span> <span>{petDetail.fur_style}</span>
+                                    <span>{`${t('petInf.hairStyle')}:`} </span> <span>{petDetail.fur_style}</span>
                                 </li>
                                 <li>
-                                    <span>Màu lông: </span> <span>{petDetail.fur_color}</span>
+                                    <span>{`${t('petInf.hairColor')}:`} </span> <span>{petDetail.fur_color}</span>
                                 </li>
                                 <li>
-                                    <span>Cân nặng: </span> <span>{petDetail.weight}</span>
+                                    <span>{`${t('petInf.weight')}:`} </span> <span>{petDetail.weight}</span>
                                 </li>
                                 <li>
-                                    <span>Tuổi thọ trung bình: </span> <span>{petDetail.longevity}</span>
+                                    <span>{`${t('petInf.longevity')}:`} </span> <span>{petDetail.longevity}</span>
                                 </li>
                                 <li>
-                                    <span>Mô tả: </span> <span>{petDetail.descr}</span>
+                                    <span>{`${t('petInf.describe')}:`} </span> <span>{petDetail.descr}</span>
                                 </li>
                             </ul>
                         </div>

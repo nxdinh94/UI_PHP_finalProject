@@ -1,23 +1,21 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col } from 'reactstrap';
 import './Contact.scss';
-
+import { useTranslation } from 'react-i18next';
 function Contact() {
+    const { t } = useTranslation();
     return (
         <Container fluid className="co-contact">
             <Container>
                 <Row>
                     <Col lg="6" className="co-text">
-                        <p className="h1">Liên hệ với chúng tôi</p>
-                        <p className="discipt">
-                            Hệ thống dịch vụ chăm sóc thú cưng chuyên nghiệp, cung cấp nhiều dịch vụ chăm sóc, bảo vệ
-                            thú cưng.
-                        </p>
+                        <p className="h1">{t('contactPage.contactWithUs')}</p>
+                        <p className="discipt">{t('contactPage.describe')}</p>
                         <Row>
                             <Col lg="10" className="d-flex list-card">
                                 <div className="cards">
                                     <img src="/images/icons8/icons8-email-80.png" loading="lazy" alt="alternative" />
-                                    <p className="h3">Email</p>
+                                    <p className="h3">{t('contactPage.email')}</p>
                                     <a
                                         href="https://mail.google.com/mail/?view=cm&fs=1&to=pettuvn@gmail.com&su=SUBJECT&body=BODY"
                                         target="_blank"
@@ -27,12 +25,12 @@ function Contact() {
                                 </div>
                                 <div className="cards">
                                     <img src="/images/icons8/icons8-location-80.png" loading="lazy" alt="alternative" />
-                                    <p className="h3">Địa chỉ</p>
+                                    <p className="h3">{t('contactPage.address')}</p>
                                     <a href="#mymap">470 Đường Trần Đại Nghĩa - phường Hòa Quý</a>
                                 </div>
                                 <div className="cards">
                                     <img src="/images/icons8/icons8-phone-80.png" loading="lazy" alt="alternative" />
-                                    <p className="h3">Hotline</p>
+                                    <p className="h3">{t('contactPage.hotline')}</p>
                                     <a href="https://zalo.me/0384566800" target="_blank">
                                         0384566800
                                     </a>

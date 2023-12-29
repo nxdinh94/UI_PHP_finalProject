@@ -6,7 +6,7 @@ const initialState = {
 };
 export const handleGetAllServicesThunk = createAsyncThunk('ServicesSlice/handleGetAllServices', async () => {
     const res = await getAllServices();
-
+    // console.log('servicesSlice', res);
     return res;
 });
 export const ServicesSlice = createSlice({

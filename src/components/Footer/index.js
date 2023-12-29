@@ -5,7 +5,10 @@ import configureRoutes from '../../config/routes';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
 
+import { useTranslation } from 'react-i18next';
+
 function Footer() {
+    const { t } = useTranslation();
     return (
         <Container fluid className="footer-wrapper">
             <Container>
@@ -21,32 +24,32 @@ function Footer() {
                         </p>
                     </Col>
                     <Col md="6" xl="3" sm="6" xs="6">
-                        <p className="h4 pt-3 fw-bold px-2 text-white ms-xl-5">Khám phá</p>
+                        <p className="h4 pt-3 fw-bold px-2 text-white ms-xl-5">{t('discoverMore')}</p>
                         <ul className="list-groups ms-xl-5">
                             <a href={configureRoutes.store} className="list-group-item">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
-                                <span>Cửa hàng</span>
+                                <span>{t('store')}</span>
                             </a>
                             <a href={configureRoutes.services} className="list-group-item p-text">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
-                                <span>Dịch vụ</span>
+                                <span>{t('service')}</span>
                             </a>
                             <a href={configureRoutes.news} className="list-group-item p-text">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
-                                <span>Tin tức</span>
+                                <span>{t('news')}</span>
                             </a>
                             <a href={configureRoutes.gallery} className="list-group-item p-text">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
-                                <span>Gallery</span>
+                                <span>{t('gallery')}</span>
                             </a>
                             <a href={configureRoutes.team} className="list-group-item p-text">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
-                                <span>Team</span>
+                                <span>{t('team')}</span>
                             </a>
                         </ul>
                     </Col>
                     <Col md="6" xl="3" sm="6" xs="6">
-                        <p className="h4 pt-3 text-white fw-bold px-2">Ủng hộ</p>
+                        <p className="h4 pt-3 text-white fw-bold px-2">{t('support')}</p>
                         <ul className="list-groups">
                             <a href="#" className="list-group-item p-text">
                                 <FontAwesomeIcon icon={faLink} className="attach-icon" />
@@ -71,8 +74,8 @@ function Footer() {
                         </ul>
                     </Col>
                     <Col md="6" xl="3" className="px-0">
-                        <p className="h4 pt-3 text-white fw-bold">Đăng kí</p>
-                        <p className="mb-2 p-text">Đăng ký tài khoản để nhận những thông tin hữu ích từ chúng tôi.</p>
+                        <p className="h4 pt-3 text-white fw-bold">{t('register')}</p>
+                        <p className="mb-2 p-text">{t('describeRegister')}</p>
                         <div className="input-group">
                             <input type="text" className="form-control my-0" placeholder="Nhập email tại đây" />
                             <button className="btn btn-success" type="button">

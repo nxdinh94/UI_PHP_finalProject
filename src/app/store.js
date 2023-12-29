@@ -30,6 +30,7 @@ import PaymentSlices from '~/Pages/Payment/PaymentSlices';
 
 // import { changeLanguage } from '~/components/Navbar/languageSlice';
 
+import CountQuantitySlices from '~/features/CountQuantity/CountQuantitySlices';
 const persistConfig = {
     key: 'root',
     storage,
@@ -44,6 +45,7 @@ const rootReducer = combineReducers({
     storeSlices: StoreSlices,
     cartSlices: CartSlices,
     paymentSlices: PaymentSlices,
+    countQuantitySlices: CountQuantitySlices,
 });
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

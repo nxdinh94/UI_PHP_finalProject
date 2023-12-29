@@ -141,3 +141,17 @@ export function handleGetAllFromBilldetail(userId, billId) {
         },
     });
 }
+export function handleGetAllPendingBill(userId) {
+    return axios.post('/backend_pettu/api/dashboard/getPendingBill', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}
+export function handlGetAllApproveBill(userId) {
+    return axios.post('/backend_pettu/api/users/getApprovedBill', `userId=${userId}`, {
+        headers: {
+            'Content-Type': 'application/x-www-form-urlencoded',
+        },
+    });
+}

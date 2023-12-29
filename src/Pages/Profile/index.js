@@ -7,6 +7,8 @@ import { Col, Container, FormGroup, Input, Label, Row, Table } from 'reactstrap'
 import { useEffect, useState } from 'react';
 import './Profile.scss';
 
+import OrderStatus from '~/components/PurchaseOrder';
+
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -130,6 +132,7 @@ function Profile() {
         const res = await updateRegistedService(userId, serviceId, usingDate, periodTime);
         if (res.status) {
             toast.success(res.message);
+            handle();
         } else toast.error(res.message);
         const newShowDiv = [...isShowAnounce];
         newShowDiv[key] = !newShowDiv[key];
@@ -381,6 +384,7 @@ function Profile() {
                     </div>
                 </Col>
             </Row>
+
             {listRegistedServces.data ? (
                 <Row>
                     <div className="content"></div>
@@ -517,40 +521,6 @@ function Profile() {
                                                                     </button>
                                                                 </div>
                                                             </div>
-                                                        )}
-                                                        {isShowAnounce[key] && (
-                                                            <Tooltip2
-                                                                position="right"
-                                                                trigger="manual"
-                                                                interactive
-                                                                open={isShowTooltip}
-                                                                html={
-                                                                    <div className="div-tippy2">
-                                                                        <span
-                                                                            style={{
-                                                                                color: ' #ec5078',
-                                                                            }}
-                                                                        >
-                                                                            Yêu cầu của quý khách đang được xử lý
-                                                                        </span>
-                                                                    </div>
-                                                                }
-                                                            >
-                                                                <button
-                                                                    className="btn btn-success"
-                                                                    onMouseOver={() => {
-                                                                        setIsShowTooltip(true);
-                                                                    }}
-                                                                    onMouseLeave={() => {
-                                                                        setIsShowTooltip(false);
-                                                                    }}
-                                                                >
-                                                                    <FontAwesomeIcon
-                                                                        icon={faCircleInfo}
-                                                                        className="profile-icon"
-                                                                    />
-                                                                </button>
-                                                            </Tooltip2>
                                                         )}
                                                     </td>
                                                 )}

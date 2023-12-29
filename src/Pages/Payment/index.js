@@ -14,6 +14,7 @@ function Payment() {
     let user_data = '';
     const [dataBillDetail, setDataBillDetail] = useState([]);
     const [paymentMethod, setPaymentMethod] = useState('');
+    const [isChosePaymentMethod, setIsChosePaymentMethod] = useState(false);
     const [classForPaymentQr, setClassForPaymentQr] = useState('bill-detail-qr');
     const [billId, setBillId] = useState(0);
     const transport_fee = 0;
@@ -32,12 +33,15 @@ function Payment() {
         setPaymentMethod(target);
     };
     const handleBeforeUnload = (event) => {
-        const message = 'Are you sure you want to leave?';
-        event.returnValue = message; // Standard for most browsers
-        if (window.confirm(message)) {
-            // Perform your action here when the user confirms leaving
+        if (isChosePaymentMethod) {
+        } else {
+            const message = 'Are you sure you want to leave?';
+            event.returnValue = message; // Standard for most browsers
+            if (window.confirm(message)) {
+                // Perform your action here when the user confirms leaving
+            }
+            return message; // For some older browsers
         }
-        return message; // For some older browsers
     };
     const handlePaymentBtn = async (userid, paymentmethod, paymentproduct) => {
         if (!paymentmethod) {
@@ -46,11 +50,12 @@ function Payment() {
             const res = await handleAddToBill(userid, paymentproduct, paymentmethod, billId);
             // console.log(res);
             if (res.status) {
+                setIsChosePaymentMethod(true);
                 toast.success(res.message);
-                window.removeEventListener('beforeunload', handleBeforeUnload);
                 setTimeout(() => {
                     window.location.href = configureRoute.cart;
                 }, 1500);
+                // window.removeEventListener('beforeunload', handleBeforeUnload);
             }
         }
     };

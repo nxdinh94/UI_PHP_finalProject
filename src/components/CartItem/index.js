@@ -14,6 +14,8 @@ function CartItem({ ...props }) {
     const { quantity } = props;
     const { productPrice } = props;
     const { cartPrice } = props;
+    const { payment_method } = props;
+    console.log(payment_method);
     const { origin } = props;
     const { color } = props;
     const { dimensions } = props;
@@ -131,15 +133,22 @@ function CartItem({ ...props }) {
                     <div className="into-money">
                         <span>{intoMoney.toLocaleString('it-IT', { style: 'currency', currency: 'VND' })}</span>
                     </div>
-                    <div className="action">
-                        <button
-                            onClick={() => {
-                                handleDeleteCartItem();
-                            }}
-                        >
-                            Xóa
-                        </button>
-                    </div>
+                    {payment_method && (
+                        <div className="payment_method">
+                            <span>{payment_method}</span>
+                        </div>
+                    )}
+                    {isAllowModifyQuantity && (
+                        <div className="action">
+                            <button
+                                onClick={() => {
+                                    handleDeleteCartItem();
+                                }}
+                            >
+                                Xóa
+                            </button>
+                        </div>
+                    )}
                 </div>
             </div>
         </div>

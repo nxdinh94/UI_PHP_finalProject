@@ -17,7 +17,7 @@ function NewsItem({ data, slug }) {
                     </span>
                     <span className="p-text">
                         <FontAwesomeIcon icon={faCalendarAlt} />
-                        <span className="p-text">{data.create_at}</span>
+                        <span className="p-text">{data.created_at}</span>
                     </span>
                 </div>
                 <div className="title">

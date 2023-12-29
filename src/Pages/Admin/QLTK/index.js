@@ -20,6 +20,7 @@ function QLTK() {
     const dispatch = useDispatch();
     const { slug } = useParams();
     // console.log('slug', slug);
+    console.log(dataToMap);
 
     const handleOnChangeSearchValue = (e) => {
         setSearchValue(e.target.value);
@@ -48,7 +49,7 @@ function QLTK() {
                 setDataToMap(accountUser);
             });
         }
-    }, [slug, accountPersonnel, accountUser]);
+    }, []);
     return (
         <div className="content">
             <Toastify />

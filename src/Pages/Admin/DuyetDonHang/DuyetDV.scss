@@ -19,9 +19,22 @@
         }
     }
     .div-content {
-        padding: 0px 50px;
+        padding: 0px 10px;
         h1 {
             margin-bottom: 20px;
+        }
+        th,
+        tr,
+        td {
+            padding: 10px 0px;
+        }
+        .duyet,
+        .cancel {
+            svg {
+                path {
+                    color: white;
+                }
+            }
         }
     }
 }

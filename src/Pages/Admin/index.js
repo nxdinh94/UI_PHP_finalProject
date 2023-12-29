@@ -14,12 +14,16 @@ import { useParams } from 'react-router-dom';
 
 import HomeAdmin from '~/Pages/Admin/HomeAdmin';
 import QLSP from '~/Pages/Admin/QLSP';
-import QLLSP from '~/Pages/Admin/QLLSP';
+import EditQLSP from '~/Pages/Admin/QLSP/EditQLSP';
+import AddQLSP from '~/Pages/Admin/QLSP/AddQLSP';
+
 import QLTK from '~/Pages/Admin/QLTK';
 import QLDV from '~/Pages/Admin/QLDV';
+import AddQLDV from '~/Pages/Admin/QLDV/AddQLDV';
 import EditQLDV from '~/Pages/Admin/QLDV/EditQLDV';
 import DuyetDV from '~/Pages/Admin/DuyetDV';
-
+import DuyetDonHang from '~/Pages/Admin/DuyetDonHang';
+import DuyetThanhToanDichVu from '~/Pages/Admin/DuyetThanhToanDichVu';
 import routes from '~/config/routes';
 
 function Admin() {
@@ -63,17 +67,9 @@ function Admin() {
                                 )}
                             </NavItem>
                             <NavItem>
-                                <NavLink href={routes.adminQlsq}>Quản lý sản phẩm</NavLink>
+                                <NavLink href={routes.adminQlsp}>Quản lý sản phẩm</NavLink>
                             </NavItem>
-                            <NavItem>
-                                <NavLink href="#">Xét duyệt hóa đơn</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">Quản lý tin tức</NavLink>
-                            </NavItem>
-                            <NavItem>
-                                <NavLink href="#">Quản lý banner</NavLink>
-                            </NavItem>
+
                             <NavItem>
                                 <NavLink href={configRoutes.adminQldv}>Quản lý dịch vụ</NavLink>
                             </NavItem>
@@ -81,13 +77,12 @@ function Admin() {
                                 <NavLink href={routes.adminduyetdichvu}>Xét duyệt dịch vụ</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={routes.thanhtoandonhang}>Duyệt đã thanh toán đơn hàng</NavLink>
+                                <NavLink href={routes.duyetdonhang}>Duyệt đơn hàng</NavLink>
                             </NavItem>
                             <NavItem>
-                                <NavLink href={routes.thanhtoandichvu}>Duyệt đã thanh toán Dịch vụ</NavLink>
-                            </NavItem>
-                            <NavItem style={{ marginLeft: 7 }}>
-                                <NavLink href="#">Quản lý thời gian làm việc</NavLink>
+                                <NavLink className="px-2" href={routes.thanhtoandichvu}>
+                                    Duyệt đã thanh toán Dịch vụ
+                                </NavLink>
                             </NavItem>
                         </Nav>
                     </Col>
@@ -132,10 +127,15 @@ function Admin() {
                             {slug === 'homepage' ? <HomeAdmin /> : <></>}
                             {slug.includes('qltk') ? <QLTK /> : <></>}
                             {slug === 'qlsp' ? <QLSP /> : <></>}
-                            {slug === 'qllsp' ? <QLLSP /> : <></>}
+
                             {slug === 'qldv' ? <QLDV /> : <></>}
                             {slug === 'duyetdichvu' ? <DuyetDV /> : <></>}
                             {slug.includes('qldv-edit') ? <EditQLDV /> : <></>}
+                            {slug.includes('qldv-add') ? <AddQLDV /> : <></>}
+                            {slug.includes('qlsp-edit') ? <EditQLSP /> : <></>}
+                            {slug.includes('qlsp-add') ? <AddQLSP /> : <></>}
+                            {slug.includes('duyetdonhang') ? <DuyetDonHang /> : <></>}
+                            {slug.includes('duyetthanhtoandichvu') ? <DuyetThanhToanDichVu /> : <></>}
                         </div>
                     </Col>
                 </Row>
