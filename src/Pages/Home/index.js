@@ -54,7 +54,14 @@ function Home() {
     const { t } = useTranslation();
     const teamData = useSelector((state) => state.teamSlices.value);
     const serviceData = useSelector((state) => state.servicesSlices.value);
-
+    let userData = '';
+    let isLogin = sessionStorage.isLogin;
+    let userId = '';
+    if (isLogin) {
+        userData = JSON.parse(sessionStorage.getItem('user_data'));
+        isLogin = sessionStorage.isLogin;
+        userId = userData.id;
+    }
     const [openQuestionGuide, setOpenQuestionGuide] = useState(Array(5).fill(false));
 
     useEffect(() => {

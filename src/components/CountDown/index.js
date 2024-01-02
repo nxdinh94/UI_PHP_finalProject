@@ -30,31 +30,31 @@ function CountDown({ periodTime, registerDate }) {
         case '12':
             monthToText = 'December';
             break;
-        case '1':
+        case '01' || '1':
             monthToText = 'January';
             break;
-        case '2':
+        case '02' || '2':
             monthToText = 'February';
             break;
-        case '3':
+        case '03' || '3':
             monthToText = 'March';
             break;
-        case '4':
+        case '04' || '4':
             monthToText = 'April';
             break;
-        case '5':
+        case '05' || '5':
             monthToText = 'May';
             break;
-        case '6':
+        case '06' || '6':
             monthToText = 'June';
             break;
-        case '7':
+        case '07' || '7':
             monthToText = 'July';
             break;
-        case '8':
+        case '08' || '8':
             monthToText = 'August';
             break;
-        case '9':
+        case '09' || '9':
             monthToText = 'September';
             break;
         case '10':
@@ -90,6 +90,7 @@ function CountDown({ periodTime, registerDate }) {
         const currentDate = new Date();
 
         if (futureDateStart - currentDate <= 0) {
+            // console.log(futureDateStart - currentDate);
             const timeDifferenceInSeconds = Math.floor((futureDateEnd - currentDate) / 1000);
             let result = secondsToHMS(timeDifferenceInSeconds);
             setResultDate(result);

@@ -12,8 +12,14 @@ import Toastify from '~/components/Toastify';
 import { useTranslation } from 'react-i18next';
 function Store() {
     const productData = useSelector((state) => state.storeSlices.value);
-    const user_data = JSON.parse(sessionStorage.user_data);
-    const userId = user_data.id;
+    let userData = '';
+    let isLogin = sessionStorage.isLogin;
+    let userId = '';
+    if (isLogin) {
+        userData = JSON.parse(sessionStorage.getItem('user_data'));
+        isLogin = sessionStorage.isLogin;
+        userId = userData.id;
+    }
 
     const dispatch = useDispatch();
     const { t } = useTranslation();

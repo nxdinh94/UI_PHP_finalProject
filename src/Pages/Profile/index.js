@@ -40,7 +40,7 @@ function Profile() {
     const [twitter, setTwitter] = useState(userData.contact_twitter);
     const [facebook, setFacebook] = useState(userData.contact_facebook);
     const [aboutContent, setAboutContent] = useState(userData.about_content);
-
+    const [delivery_address, setDelivery_address] = useState(userData.delivery_address);
     const handleOnChangeInput = (e) => {
         let inputName = e.target.name;
         switch (inputName) {
@@ -75,6 +75,9 @@ function Profile() {
                 setIsOnChangeDate(true);
                 setChooseDate(e.target.value);
                 break;
+            case 'delivery_address':
+                setDelivery_address(e.target.value);
+                break;
             case 'choosePeriod':
                 setIsOnChangePeriodDay(true);
                 const index = e.target.selectedIndex;
@@ -104,10 +107,13 @@ function Profile() {
                 twitter,
                 facebook,
                 aboutContent,
+                delivery_address,
             });
+            if (res.status) {
+                sessionStorage.setItem('user_data', JSON.stringify(res.user_data));
+                toast.success(res.message);
+            } else toast.error('Thay đổi không thành công');
             // Update new in4 into sessionStorage
-            sessionStorage.setItem('user_data', JSON.stringify(res.user_data));
-
             setIsPreviewMode(!isPreviewMode);
         }
     };
@@ -366,6 +372,25 @@ function Profile() {
                                             value={aboutContent}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
+                                        />
+                                    </Col>
+                                </FormGroup>
+                            </Row>
+                            <Row>
+                                <FormGroup row>
+                                    <Label for="delivery_address" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                        Tiểu sử
+                                    </Label>
+                                    <Col sm={10}>
+                                        <Input
+                                            bsSize="md"
+                                            id="delivery_address"
+                                            name="delivery_address"
+                                            type="textarea"
+                                            onChange={handleOnChangeInput}
+                                            value={delivery_address}
+                                            disabled={isPreviewMode}
+                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px', height: '100px' }}
                                         />
                                     </Col>
                                 </FormGroup>
