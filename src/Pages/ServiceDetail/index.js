@@ -83,24 +83,29 @@ function ServiceDetail() {
         let currentYear = d.getFullYear(); //number
         let currentMonth = d.getMonth() + 1; //number
         let currentDate = d.getDate(); //number'
-        if (
-            splitedDate[0] - currentYear >= 0 &&
-            splitedDate[1] - currentMonth >= 0 &&
-            splitedDate[2] - currentDate >= 0
-        ) {
-            const res = await handleRegisterService(userId, serviceId, register_day, periodTime);
-            setTimeout(() => {
-                setIsHandlingRegister(false);
-            }, 800);
-            if (res.status) {
-                toast.success(res.message);
+        if (isLogin) {
+            if (
+                splitedDate[0] - currentYear >= 0 &&
+                splitedDate[1] - currentMonth >= 0 &&
+                splitedDate[2] - currentDate >= 0
+            ) {
+                const res = await handleRegisterService(userId, serviceId, register_day, periodTime);
+                setTimeout(() => {
+                    setIsHandlingRegister(false);
+                }, 800);
+                if (res.status) {
+                    toast.success(res.message);
+                } else {
+                    toast.error('Bạn đã đăng ký dịch vụ này');
+                }
             } else {
-                toast.error('Bạn đã đăng ký dịch vụ này');
+                toast.error('Invalid Date');
+                setIsHandlingRegister(false);
+                return;
             }
         } else {
-            toast.error('Invalid Date');
+            toast.error('Vui lòng đăng nhập để thực hiện tính năng');
             setIsHandlingRegister(false);
-            return;
         }
     };
 

@@ -1,7 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-
-
 // const { i18n } = useTranslation();
 export const languageSlice = createSlice({
     name: 'counter',
@@ -16,8 +14,6 @@ export const languageSlice = createSlice({
             } else {
                 state.value = 'vi';
                 // i18n.changeLanguage(state.value);
-
-                
             }
         },
     },

@@ -9,7 +9,7 @@ import Footer from '../../Footer';
 
 function HomeLayout({ children }) {
     //Translatetion
-    const { t, i18n } = useTranslation();
+    const { t } = useTranslation();
 
     return (
         <div className="homeLayout-wrapper">

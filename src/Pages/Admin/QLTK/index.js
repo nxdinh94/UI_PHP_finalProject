@@ -91,7 +91,6 @@ function QLTK() {
                                     <td>{item.address}</td>
                                     <td>Staff</td>
                                     <td>
-                                        <button className="btn btn-success">Xem</button>
                                         <button className="btn btn-warning mx-1">Sửa</button>
                                         {item.status === 1 ? (
                                             <button
