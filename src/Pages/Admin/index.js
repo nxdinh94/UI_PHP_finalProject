@@ -35,8 +35,17 @@ function Admin() {
     const adminIn4String = sessionStorage.getItem('user_data');
     const adminIn4Object = JSON.parse(adminIn4String);
 
+    let userData = '';
+    let isLogin = sessionStorage.isLogin;
+    let userId = '';
+    if (isLogin) {
+        userData = JSON.parse(sessionStorage.getItem('user_data'));
+        isLogin = sessionStorage.isLogin;
+        userId = userData.id;
+    }
+
     const handleLogoutBtn = () => {
-        Logout();
+        Logout(userId);
         window.location.href = '/';
     };
 
