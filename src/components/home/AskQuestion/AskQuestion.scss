@@ -1,0 +1,68 @@
+.ask-question-wrapper {
+    margin: 0xp 20px;
+    .ask-question-right {
+        .btn-area {
+            display: flex;
+            justify-content: start;
+            align-items: center;
+            width: 100%;
+            height: 100%;
+            padding-bottom: 40px;
+            @media (max-width: 993px) {
+                justify-content: start;
+            }
+            .btn-discover {
+                display: inline-block;
+                font-size: 15px;
+                font-weight: bolder;
+                line-height: 26px;
+                padding: 13px 42px;
+                background-color: #7fb432;
+                border-radius: 30px;
+                color: white;
+                cursor: pointer;
+            }
+        }
+    }
+    .ask-question-left {
+        margin-bottom: 20px;
+        padding: 20px 40px;
+        background-color: #f7f7f5;
+        .item-open {
+            color: #08264a;
+            font-weight: bolder;
+            font-size: 19px;
+            font-family: oswald;
+            cursor: pointer;
+            -webkit-user-select: none;
+            -khtml-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            -o-user-select: none;
+            user-select: none;
+        }
+        .item-toggle {
+            transition: all 0.2s ease-in-out;
+            @keyframes fadeIn {
+                // Animation khi mount component
+                from {
+                    transform: translateY(-12px);
+                    opacity: 0;
+                }
+                to {
+                    transform: translateY(0);
+                    opacity: 1;
+                }
+            }
+            @keyframes fadeOut {
+                // Animation khi unmount component
+                0% {
+                    opacity: 1;
+                }
+                100% {
+                    opacity: 0;
+                }
+            }
+        }
+    }
+}

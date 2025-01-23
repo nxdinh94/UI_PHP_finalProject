@@ -1,4 +1,3 @@
-@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@300;500;600&display=swap';
 
 $lg: 992px;
 .modal-wrapper {
@@ -12,7 +11,7 @@ $lg: 992px;
 .modal-content {
     height: 90vh;
     // width: 737px;
-    background-image: url('../../../public/images/backgroundPetDetail.jpg');
+    background-image: url('~/public/images/backgroundPetDetail.jpg');
     background-repeat: no-repeat;
 
     background-position: 100% 99%;

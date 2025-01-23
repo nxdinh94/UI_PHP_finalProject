@@ -1,11 +1,10 @@
 import React from 'react';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Button, Modal, ModalFooter, ModalHeader, ModalBody } from 'reactstrap';
+import { Button, Modal, ModalBody, ModalHeader } from 'reactstrap';
 import './Modal.scss';
 
 import { useTranslation } from 'react-i18next';
 
-function Model({ petDetail }) {
+function MyModal({ petDetail }) {
     // Modal open state
     const [modal, setModal] = React.useState(false);
     const { t } = useTranslation();
@@ -54,4 +53,4 @@ function Model({ petDetail }) {
     );
 }
 
-export default Model;
+export default MyModal;

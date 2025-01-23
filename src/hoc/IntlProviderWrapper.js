@@ -15,7 +15,6 @@ import { LanguageUtils } from '../utils';
 const messages = LanguageUtils.getFlattenedMessages();
 
 function IntlProviderWrapper({ children, language }) {
-
     return (
         <IntlProvider locale={language} messages={messages[language]} defaultLocale="vi">
             {children}

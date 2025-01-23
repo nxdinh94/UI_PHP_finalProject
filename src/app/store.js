@@ -11,7 +11,7 @@ import languageReducer from '~/components/Navbar/languageSlice';
 import StoreSlices from '~/Pages/Store/StoreSlice';
 import { handleFetchAllProductThunk } from '~/Pages/Store/StoreSlice';
 
-import QLTKSlice from '~/Pages/Admin/QLTK/QLTKSlices';
+// import QLTKSlice from '~/Pages/Admin/QLTK/QLTKSlices';
 import {
     handleFetchAccountDataCompetentPersonnelThunk,
     handleFetchAccountDataUsertsThunk,
@@ -39,7 +39,7 @@ const persistConfig = {
 const rootReducer = combineReducers({
     newsSlices: newsSlices,
     language: languageReducer,
-    QLTKSlice: QLTKSlice,
+    // QLTKSlice: QLTKSlice,
     teamSlices: TeamSlices,
     servicesSlices: ServicesSlices,
     storeSlices: StoreSlices,

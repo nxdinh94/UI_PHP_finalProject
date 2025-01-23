@@ -47,6 +47,7 @@ export const QLTKSlice = createSlice({
             })
             .addCase(handleFetchAccountDataUsertsThunk.fulfilled, (state, action) => {
                 state.status = 'idle';
+                console.log(action.payload)
                 state.value = {
                     ...state.value,
                     usersPersonnel: [...action.payload],

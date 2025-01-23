@@ -6,6 +6,8 @@ import { PersistGate } from 'redux-persist/integration/react';
 
 import App from '~/App';
 import './i18n';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 // import IntlProviderWrapper from '~/hoc/IntlProviderWrapper';
 import GlobalStyles from '~/components/GlobalStyles';
 

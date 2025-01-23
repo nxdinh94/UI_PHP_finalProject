@@ -38,34 +38,7 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
-.iconCat {
-    object-fit: contain;
-    margin-right: 5px;
-    padding-bottom: 5px;
-}
 
-.topic1 {
-    color: #ec5078;
-    font-weight: bolder;
-    font-size: 18px;
-    margin: 8px 0px;
-    font-family: oswald;
-    line-height: 45px;
-}
-
-.topic2 {
-    font-size: 3.4rem;
-    font-weight: bolder;
-    color: #0c1529;
-    margin-bottom: 25px;
-    font-family: oswald;
-    @media (max-width: $lg) {
-        font-size: 52px;
-    }
-    @media (max-width: $md) {
-        font-size: 40px;
-    }
-}
 .p-text {
     color: rgb(147, 144, 144);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -76,7 +49,7 @@ a[href] {
 }
 //Custom tippy tooltips
 body {
-    font-family: oswald;
+    font-family: oswald !important;
     .tippy-box {
         border-radius: 8px;
         font-weight: 600;

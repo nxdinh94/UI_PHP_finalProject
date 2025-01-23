@@ -1,0 +1,70 @@
+.post-pet-care-body {
+    .service-display-wrapper {
+        width: 100%;
+        height: 250px;
+        display: flex;
+        background-color: #f7f7f5;
+
+        .service-display-image {
+            img {
+                width: 250px;
+                height: 100%;
+                object-fit: cover;
+            }
+        }
+        .service-display-content {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            padding: 30px;
+            @media (max-width: 993px) {
+                padding: 60px 30px;
+            }
+            span {
+                svg {
+                    path {
+                        color: #82b440;
+                    }
+                }
+            }
+            .content-title {
+                display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 2;
+                line-clamp: 2;
+                overflow: hidden;
+                text-overflow: ellipsis;
+                text-align: start;
+                a {
+                    color: #061a33;
+                    font-weight: bolder;
+                    font-family: oswald;
+                    cursor: pointer;
+                    transition: all 0.1s linear;
+                }
+
+                margin: 15px 0px;
+            }
+            .loadmore {
+                span {
+                    font-weight: bolder;
+                    color: #82b440;
+                    font-size: 19px;
+                    font-family: oswald;
+                    margin-right: 3px;
+                }
+                svg {
+                    font-size: 14px;
+                    path {
+                        color: #82b440;
+                    }
+                }
+                transition: all 0.2s ease-in;
+                &:hover {
+                    transform: translateX(8%);
+                }
+            }
+        }
+    }
+}

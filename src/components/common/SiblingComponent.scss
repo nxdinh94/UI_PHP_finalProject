@@ -1,0 +1,33 @@
+$xl: 1200px;
+$lg: 992px;
+$md: 768px;
+$sm: 576px;
+
+.iconCat {
+    object-fit: contain;
+    margin-right: 5px;
+    padding-bottom: 5px;
+}
+
+.sibling1 {
+    color: #ec5078;
+    font-weight: bolder;
+    font-size: 18px;
+    margin: 8px 0px;
+    font-family: oswald;
+    line-height: 45px;
+}
+
+.sibling2 {
+    font-size: 3.4rem;
+    font-weight: bolder;
+    color: #0c1529;
+    margin-bottom: 25px;
+    font-family: oswald;
+    @media (max-width: $lg) {
+        font-size: 52px;
+    }
+    @media (max-width: $md) {
+        font-size: 40px;
+    }
+}
