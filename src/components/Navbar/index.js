@@ -23,6 +23,7 @@ function HeaderOnly({ children }) {
     const [logo, setLogo] = useState(logoOption.lightLogo);
     const [isDropDown, setIsDropdown] = useState(false);
     const [isOnPageTag, setIsOnPageTag] = useState(false);
+    const [cartQuantityClassName, setCartQuantityClassName] = useState('cart-quantity-toggle');
 
     const isLogin = sessionStorage.isLogin;
     let isAdmin = false;
@@ -37,7 +38,6 @@ function HeaderOnly({ children }) {
 
     // const [language, setLanguage] = useState('vi');
     const language = useSelector((state) => state.language.value);
-    const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
@@ -51,17 +51,19 @@ function HeaderOnly({ children }) {
             setLogo(logoOption.darkLogo);
         } else {
             setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: 'transparent' }));
-            setStyleForNavLink((prev) => ({ ...prev, color: '#fffff' }));
+            setStyleForNavLink((prev) => ({ ...prev, color: '#ffffff' }));
             setLogo(logoOption.lightLogo);
         }
     }, [onColorChange]);
 
     useEffect(() => {
         if (isOpen) {
+            setCartQuantityClassName('cart-quantity-toggle');
             setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: '#ffffff' }));
             setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
             setLogo(logoOption.darkLogo);
         } else {
+            setCartQuantityClassName('cart-quantity');
             if (!onColorChange) {
                 setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: 'transparent' }));
                 setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
@@ -154,7 +156,7 @@ function HeaderOnly({ children }) {
                                 <NavItem>
                                     <NavLink style={styleForNavLink} href={configRoutes.cart}>
                                         <FontAwesomeIcon icon={faCartPlus} className="nav-cart-icon" />
-                                        <sup className="cart-quantity">{productQuantityInCart}</sup>
+                                        <sup className={cartQuantityClassName}>{productQuantityInCart}</sup>
                                     </NavLink>
                                 </NavItem>
                             )}

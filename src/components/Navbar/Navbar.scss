@@ -3,14 +3,8 @@ $md: 768px;
 $lg: 992px;
 $xl: 1200px;
 $pixel7: 413px;
-@import 'https://fonts.googleapis.com/css2?family=Oswald:wght@200&family=Roboto+Condensed:wght@300&display=swap';
 .container {
     background-color: transparent;
-}
-.container-fluid {
-    padding: 0px !important;
-    display: flex;
-    justify-content: space-around;
 }
 
 .nav-item {
@@ -40,6 +34,8 @@ $pixel7: 413px;
         margin-left: 16px;
     }
     &:nth-child(6) {
+        width: fit-content;
+        margin: auto;
         .nav-link {
             position: relative;
             .nav-cart-icon {
@@ -53,6 +49,17 @@ $pixel7: 413px;
                 top: 7px;
                 right: -2px;
                 padding: 10px 6px;
+                background-color: red;
+
+                border-radius: 50%;
+                font-size: 10px;
+                color: white;
+            }
+            .cart-quantity-toggle {
+                position: absolute;
+                top: 3px;
+                right: -6px;
+                padding: 7px 5px;
                 background-color: red;
 
                 border-radius: 50%;
