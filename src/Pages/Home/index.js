@@ -32,7 +32,7 @@ function Home() {
         };
 
         fetchAllPets();
-    }, [handleDataPet]);
+    }, []);
 
     return (
         <Container fluid className="px-0">

@@ -1,10 +1,10 @@
-import './DropdownContent.scss';
-import configRoutes from '~/config/routes';
-import { useSelector, useDispatch } from 'react-redux';
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 import { changeLanguage } from '~/components/Navbar/languageSlice';
+import configRoutes from '~/config/routes';
 import { Logout } from '~/service/userService';
-function DropdownContent({ isAdmin }) {
+import './DropdownContent.scss';
+function DropdownContent({ isLogin, isAdmin }) {
     const language = useSelector((state) => state.language.value);
     const dispatch = useDispatch();
     const { t, i18n } = useTranslation();
@@ -17,16 +17,12 @@ function DropdownContent({ isAdmin }) {
     };
     return (
         <div className="dropdown-content">
-            {isAdmin && <a href={configRoutes.adminHomePage}>{t('adminPage')}</a>}
-            <a href={configRoutes.profile}>{t('profile')}</a>
-            <a href={configRoutes.purchaseOrder}>{t('purchaseOrder')}</a>
-            <button
-                onClick={() => {
-                    handleLogoutBtn();
-                }}
-            >
-                {t('logout')}
-            </button>
+            {isAdmin && isLogin && <a href={configRoutes.adminHomePage}>{t('adminPage')}</a>}
+            {isLogin && <a href={configRoutes.profile}>{t('profile')}</a>}
+            {isLogin && <a href={configRoutes.purchaseOrder}>{t('purchaseOrder')}</a>}
+            {isLogin && <button onClick={handleLogoutBtn}>{t('logout')}</button>}
+            {!isLogin && <a href={configRoutes.login}>Login</a>}
+            {!isLogin && <a href={configRoutes.register}>Register</a>}
             <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
                 {language || 'vi'}
             </button>

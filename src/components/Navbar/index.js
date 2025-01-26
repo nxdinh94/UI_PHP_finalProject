@@ -1,22 +1,15 @@
-import { Container, Row, Col, Collapse, Navbar, NavbarToggler, NavbarBrand, Nav, NavItem, NavLink } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import configRoutes from '~/config/routes';
-
-import React, { useEffect, useState } from 'react';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { useEffect, useState } from 'react';
+import { Collapse, Container, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink } from 'reactstrap';
 import './Navbar.scss';
-import { Logout } from '~/service/userService';
-
-import { changeLanguage } from './languageSlice';
-
-import Image from '~/components/Image';
-import { useSelector, useDispatch } from 'react-redux';
 
 import { useTranslation } from 'react-i18next';
+import { useDispatch, useSelector } from 'react-redux';
 
 import DropdownContent from '~/components/DropdownContent';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import Image from '~/components/Image';
+import configRoutes from '~/config/routes';
 const logoOption = {
     lightLogo: '/images/logo/logo-light.png',
     darkLogo: '/images/logo/logo-dark.png',
@@ -25,18 +18,21 @@ const logoOption = {
 function HeaderOnly({ children }) {
     const [isOpen, setIsOpen] = useState(false);
     const [onColorChange, setOnColorChange] = useState(false);
-    const [classNameSuperContainer, setclassNameSuperContainer] = useState('superContainer');
-    const [styleForNavLink, setStyleForNavLink] = useState({ color: '#fff' });
+    const [styleForSuperContainer, setStyleForSuperContainer] = useState({ backgroundColor: 'transparent' });
+    const [styleForNavLink, setStyleForNavLink] = useState({ color: '#ffffff' });
     const [logo, setLogo] = useState(logoOption.lightLogo);
-    const [isDropdown, setIsDropdown] = useState(false);
+    const [isDropDown, setIsDropdown] = useState(false);
     const [isOnPageTag, setIsOnPageTag] = useState(false);
-    const [avatar, setAvatar] = useState('');
-    const [isAdmin, setIsAdmin] = useState(true);
-    
-    const isLogin = sessionStorage.isLogin;
-    let user_data = '';
-    // let userId = user_data.id;
 
+    const isLogin = sessionStorage.isLogin;
+    let isAdmin = false;
+    let avatar = '';
+    if (isLogin) {
+        const user_data = JSON.parse(sessionStorage.user_data);
+        avatar = user_data.thumbnail;
+        // check if user is admin
+        user_data.decentralization_id === 1 ? (isAdmin = true) : (isAdmin = false);
+    }
     const productQuantityInCart = useSelector((state) => state.cartSlices.value.quantityProductInCart);
 
     // const [language, setLanguage] = useState('vi');
@@ -45,42 +41,32 @@ function HeaderOnly({ children }) {
     const { t, i18n } = useTranslation();
 
     useEffect(() => {
-        if (isLogin) {
-            user_data = JSON.parse(sessionStorage.user_data);
-            setAvatar(user_data.thumbnail);
-            const decentralization_id = user_data.decentralization_id;
-            if (decentralization_id === 1) {
-                setIsAdmin(true);
-            } else setIsAdmin(false);
-        }
-    }, []);
-    useEffect(() => {
         i18n.changeLanguage(language);
-    }, [language, productQuantityInCart]);
+    }, [language]);
 
     useEffect(() => {
         if (onColorChange) {
-            setclassNameSuperContainer((prev) => (prev += ' changeBgColor'));
+            setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: '#ffffff' }));
             setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
             setLogo(logoOption.darkLogo);
         } else {
-            if (isOpen === false) {
-                setclassNameSuperContainer('superContainer');
-                setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
-                setLogo(logoOption.lightLogo);
-            }
+            setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: 'transparent' }));
+            setStyleForNavLink((prev) => ({ ...prev, color: '#fffff' }));
+            setLogo(logoOption.lightLogo);
         }
     }, [onColorChange]);
 
     useEffect(() => {
         if (isOpen) {
-            setclassNameSuperContainer((prev) => (prev += ' changeBgColor'));
+            setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: '#ffffff' }));
             setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
             setLogo(logoOption.darkLogo);
         } else {
-            setclassNameSuperContainer('superContainer');
-            setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
-            setLogo(logoOption.lightLogo);
+            if (!onColorChange) {
+                setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: 'transparent' }));
+                setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
+                setLogo(logoOption.lightLogo);
+            }
         }
     }, [isOpen]);
 
@@ -89,6 +75,7 @@ function HeaderOnly({ children }) {
         window.addEventListener('resize', getScreenResizeX);
         return () => {
             window.removeEventListener('scroll', getOnScrollY);
+            window.removeEventListener('resize', getOnScrollY);
         };
     }, []);
     const getOnScrollY = () => {
@@ -99,25 +86,22 @@ function HeaderOnly({ children }) {
         }
     };
     const getScreenResizeX = () => {
-        if (
-            (window.innerWidth >= 768 && isOpen === false && onColorChange === false) ||
-            (window.innerWidth >= 768 && isOpen === false && onColorChange === false)
-        ) {
-            setclassNameSuperContainer('superContainer');
-            setStyleForNavLink((prev) => ({ ...prev, color: '#fff' }));
-            setLogo(logoOption.lightLogo);
-            
-        }
         if (window.innerWidth < 768) {
             setIsOpen(false);
         }
+        if (isOpen === true) {
+            setLogo(logoOption.darkLogo);
+            setStyleForSuperContainer((prev) => ({ ...prev, backgroundColor: '#ffffff' }));
+            setStyleForNavLink((prev) => ({ ...prev, color: '#000000' }));
+        }
     };
+
     const toggle = () => {
         setIsOpen(!isOpen);
     };
 
     return (
-        <div className={classNameSuperContainer}>
+        <div style={styleForSuperContainer}>
             <Container className="px-0">
                 <Navbar color="faded" light expand="md" className="px-0">
                     <NavbarBrand href="/" className="px-0">
@@ -185,17 +169,7 @@ function HeaderOnly({ children }) {
                                         setIsDropdown(false);
                                     }}
                                 >
-                                    {(isDropdown && !isLogin && (
-                                        <div className="dropdown-content">
-                                            <a href={configRoutes.login}>Login</a>
-                                            <a href={configRoutes.register}>Register</a>
-                                            <button className="btn-language" onClick={() => dispatch(changeLanguage())}>
-                                                {language || 'vi'}
-                                            </button>
-                                        </div>
-                                    )) ||
-                                        (isDropdown && isLogin && <DropdownContent isAdmin={isAdmin} />)}
-
+                                    {isDropDown && <DropdownContent isLogin={isLogin} isAdmin={isAdmin} />}
                                     <img src={avatar || '/images/favicon/apple-icon-57x57.png'} className="avt" />
                                 </div>
                             </NavItem>

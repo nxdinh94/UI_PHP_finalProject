@@ -26,8 +26,8 @@ export default function AskQuestion() {
                 <Col md="5">
                     <div className="ask-question-right">
                         <SiblingComponent
-                            sibling1={'Asked Questions'}
-                            sibling2={['We are always', 'Ready for your', 'Any question']}
+                            sibling1={'askedquestion'}
+                            sibling2={['wearealways', 'readyforyour', 'anyquestion']}
                         />
                         <p className="p-text my-4">
                             Please ask any questions you have about us, we are happy to answer your questions. Go to the

@@ -1,14 +1,11 @@
-import { Container, Row, Col } from 'reactstrap';
-import 'bootstrap/dist/css/bootstrap.min.css';
-
-import Navbar from '~/components/Navbar';
 import './HomeLayout.scss';
+import { Col, Container, Row } from 'reactstrap';
 import { useTranslation } from 'react-i18next';
-
-import Footer from '../../Footer';
+import Navbar from '~/components/Navbar';
+import Footer from '~/components/Footer';
 
 function HomeLayout({ children }) {
-    //Translatetion
+    //Translation
     const { t } = useTranslation();
 
     return (

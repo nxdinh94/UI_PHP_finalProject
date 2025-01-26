@@ -7,6 +7,8 @@ await i18n.use(initReactI18next).init({
     interpolation: {
         escapeValue: false, // not needed for react as it escapes by default
     },
+    ns: ['translation'],
+    defaultNS: ['translation'],
     // language resources
     resources: {
         en: {
@@ -52,6 +54,10 @@ await i18n.use(initReactI18next).init({
                 requestLogin: 'Please login to use services!!!',
                 register: 'Register',
                 registedService: 'You have registered this services',
+                askedquestion: 'Asked Questions',
+                wearealways: 'We are always',
+                readyforyour: 'Ready for your',
+                anyquestion: 'Any question',
                 servicePage: {
                     title: 'Services',
                 },
@@ -133,7 +139,10 @@ await i18n.use(initReactI18next).init({
                 registedService: 'Dịch vụ đã đăng ký',
                 registerService: 'Đăng ký dịch vụ',
                 registedService: 'Bạn đã đăng kí dịch vụ này',
-
+                askedquestion: 'Câu hỏi thường gặp',
+                wearealways: 'Chúng tôi luôn',
+                readyforyour: 'Sẵn lòng cho',
+                anyquestion: 'Mọi câu hỏi',
                 servicePage: {
                     title: 'Dịch vụ',
                 },

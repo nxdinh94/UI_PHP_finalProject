@@ -9,7 +9,7 @@ export default function ServicesBody({serviceData}) {
             <Row>
                 {serviceData.slice(0, 4).map((item, index) => {
                     return (
-                        <Col lg="6" style={{ marginBottom: 24 }}>
+                        <Col key={index} lg="6" style={{ marginBottom: 24 }}>
                             <div className="service-display-wrapper">
                                 <div className="service-display-image">
                                     <img src={item.icon} />

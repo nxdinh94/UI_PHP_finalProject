@@ -7,17 +7,10 @@ $pixel7: 413px;
 .container {
     background-color: transparent;
 }
-
-.superContainer {
-    background-color: transparent;
-    &.changeBgColor {
-        background-color: white;
-    }
-    .container-fluid {
-        padding: 0px !important;
-        display: flex;
-        justify-content: space-around;
-    }
+.container-fluid {
+    padding: 0px !important;
+    display: flex;
+    justify-content: space-around;
 }
 
 .nav-item {
@@ -30,7 +23,6 @@ $pixel7: 413px;
         .dropdown-content {
             a {
                 color: black;
-                
             }
         }
     }
