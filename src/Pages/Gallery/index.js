@@ -6,6 +6,7 @@ import { images, CustomImage } from './images.js';
 import { useTranslation } from 'react-i18next';
 import { Container } from 'reactstrap';
 import './Gallery.scss';
+import SiblingComponent from '~/components/common/SiblingComponent.js';
 export default function App() {
     const [index, setIndex] = useState(-1);
     const { t } = useTranslation();
@@ -23,11 +24,7 @@ export default function App() {
     return (
         <Container className="my-5">
             <div className="text-center">
-                <p className="my-1">
-                    <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                    <span className="topic1">{t('gallery')}</span>
-                </p>
-                <h2 className="topic2">{t('gallery')}</h2>
+                <SiblingComponent sibling1={'gallery'} sibling2={['gallery']} />
             </div>
 
             <Gallery images={images} onClick={handleClick} enableImageSelection={false} />

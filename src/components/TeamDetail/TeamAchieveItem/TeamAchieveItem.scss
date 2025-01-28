@@ -1,0 +1,35 @@
+.team-wrap {
+    width: 50%;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 30px;
+    margin-bottom: 40px;
+    .wrapper-icon {
+        width: 45%;
+        height: 100%;
+        background-color: #ec5078;
+        padding: 27px 20px 0px 20px;
+        border-radius: 15px;
+        svg {
+            path {
+                color: white;
+            }
+        }
+        .team-achieve-icon {
+            font-size: 3.4rem;
+        }
+    }
+
+    .team-content {
+        h2 {
+            font-size: 3rem;
+            font-weight: bolder;
+            color: #0c1529;
+        }
+        p {
+            color: #757575;
+            font-size: 17px;
+            font-weight: bolder;
+        }
+    }
+}

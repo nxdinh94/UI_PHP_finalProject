@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { useEffect } from 'react';
 
-function NewsDetail({}) {
+function NewsDetail() {
     let { slug, cate } = useParams();
     const dataCate = useSelector((state) => state.newsSlices.value);
     const dataByCate = dataCate[cate];

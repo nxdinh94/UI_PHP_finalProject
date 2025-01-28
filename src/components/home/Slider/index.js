@@ -5,7 +5,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import Image from '~/components/Image';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import MyModal from '~/components/Modal';
+import MyModal from '~/components/home/Modal';
 let settings = {
     dots: false,
     infinite: false,

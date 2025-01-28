@@ -8,17 +8,17 @@ import { Link, useParams } from 'react-router-dom';
 import { Col, Container, Row } from 'reactstrap';
 function Team() {
     let dataSlices = useSelector((state) => state.teamSlices.value);
-    console.log(dataSlices);
+    // console.log(dataSlices);
     const { category } = useParams();
     // console.log(category);
     const [dataTeam, setDataTeam] = useState([dataSlices]);
     useEffect(() => {
-        if(category){
-            let dataByCate = dataSlices.filter((item)=>{
+        if (category) {
+            let dataByCate = dataSlices.filter((item) => {
                 return item.position_id == category;
             });
             setDataTeam(dataByCate);
-        }else setDataTeam(dataSlices);
+        } else setDataTeam(dataSlices);
     }, [dataSlices]);
     return (
         <Container className="my-5">
