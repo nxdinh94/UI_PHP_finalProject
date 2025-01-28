@@ -1,26 +1,23 @@
-import './Service.scss';
-import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { A11y, Autoplay, Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import './Service.scss';
 
 import { useSelector } from 'react-redux';
 import '~/components/Swiper/Swiper.scss';
 
-import { Link } from 'react-router-dom';
-
-import { isRegistered } from '~/service/appServices';
-
 // Import Swiper styles
+import { useEffect, useState } from 'react';
+import { useTranslation } from 'react-i18next';
+import { toast } from 'react-toastify';
+import { Col, Container, Row } from 'reactstrap';
 import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-flip';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-import 'swiper/css/effect-flip';
-import { Container, Row, Col } from 'reactstrap';
-import { useEffect, useState } from 'react';
-import { toast } from 'react-toastify';
 import Toastify from '~/components/Toastify';
-import { useTranslation } from 'react-i18next';
+import SiblingComponent from '~/components/common/SiblingComponent';
 function Service() {
     const servicesDataRedux = useSelector((state) => state.servicesSlices.value);
     const [servicesData, setServicesData] = useState([]);
@@ -56,11 +53,7 @@ function Service() {
                         </Col>
                         <Col md="12" lg="6">
                             <div className="services">
-                                <p className="my-1">
-                                    <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                    <span className="topic1">Chúng tôi cung cấp</span>
-                                </p>
-                                <h2 className="topic2">Thăm khám bệnh định kì</h2>
+                                <SiblingComponent sibling1={'weprovided'} sibling2={['regularmedicalcheckup']} />
                                 <div>
                                     <p className="p-text">
                                         <span className="fw-bold">
@@ -128,10 +121,10 @@ function Service() {
                                 </div>
                                 <div className="services-action">
                                     <button
+                                        className="btn btn-register"
                                         onClick={() => {
                                             handleOnRegisterBtn(item.slug);
                                         }}
-                                        className="btn btn-register"
                                     >
                                         Đăng ký
                                     </button>

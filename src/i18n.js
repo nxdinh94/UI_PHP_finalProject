@@ -61,6 +61,8 @@ await i18n.use(initReactI18next).init({
                 servicePage: {
                     title: 'Services',
                 },
+                weprovided: 'We provide',
+                regularmedicalcheckup: 'Regular medical checkup',
                 contactPage: {
                     title: 'Contact',
                     contactWithUs: 'Contact with us',
@@ -146,6 +148,8 @@ await i18n.use(initReactI18next).init({
                 servicePage: {
                     title: 'Dịch vụ',
                 },
+                weprovided: 'Chúng tôi cung cấp',
+                regularmedicalcheckup: 'Khám sức khỏe định kỳ',
                 contactPage: {
                     title: 'Liên hệ',
                     contactWithUs: 'Liên hệ với chúng tôi',

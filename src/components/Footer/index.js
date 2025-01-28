@@ -1,9 +1,8 @@
-import { Container, Row, Col } from 'reactstrap';
-import { Link } from 'react-router-dom';
-import './Footer.scss';
-import configureRoutes from '../../config/routes';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLink } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { Col, Container, Row } from 'reactstrap';
+import configureRoutes from '../../config/routes';
+import './Footer.scss';
 
 import { useTranslation } from 'react-i18next';
 

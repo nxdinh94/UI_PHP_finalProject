@@ -1,17 +1,16 @@
-import { Navigation, Scrollbar, A11y, Autoplay } from 'swiper/modules';
+import { A11y, Autoplay, Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import './Swiper.scss';
 // Import Swiper styles
 import 'swiper/css';
+import 'swiper/css/autoplay';
+import 'swiper/css/effect-flip';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
-import 'swiper/css/autoplay';
-import 'swiper/css/effect-flip';
 
-import { Link } from 'react-router-dom';
+import { faFacebook, faTiktok, faTwitter } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faTiktok, faFacebook, faTwitter } from '@fortawesome/free-brands-svg-icons';
 export default ({ teamData, autoplay }) => {
     return (
         <Swiper

@@ -1,5 +1,5 @@
 import { Container, Row, Col } from 'reactstrap';
-import NewsItem from '../../components/NewsItem';
+import NewsItem from '../../components/news/NewsItem';
 import './News.scss';
 import { useSelector, useDispatch } from 'react-redux';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -10,10 +10,10 @@ import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 function News() {
     const dataCate = useSelector((state) => state.newsSlices.value);
+    const dateCateKeys = Object.keys(dataCate);
     // console.log('dataCate', dataCate);
     let { slug } = useParams();
     if (!slug) slug = 'dog';
-    // console.log('slug', slug);
     const [dataByCate, setDataByCate] = useState(dataCate[slug]);
     // console.log('dataBycate', dataByCate);
 
@@ -21,7 +21,17 @@ function News() {
     useEffect(() => {
         setDataByCate(dataCate[slug]);
     }, [slug]);
-
+    function capitalizeFirstLetter(val) {
+        return String(val).charAt(0).toUpperCase() + String(val).slice(1);
+    }
+    function transformCategoryName(val) {
+        if (!val.includes('news')) {
+            return capitalizeFirstLetter(val);
+        }
+        const firstLett = val.slice(0, val.length - 4);
+        const secondLetter = val.slice(val.length - 4);
+        return capitalizeFirstLetter(firstLett) + ' ' + capitalizeFirstLetter(secondLetter);
+    }
     return (
         <Container className="search my-5">
             <Row>
@@ -39,6 +49,7 @@ function News() {
                     <Row>
                         {dataByCate.map((items, index) => (
                             <Col lg="6" key={index}>
+                                {/* slug passed is slug name's category */}
                                 <NewsItem data={items} slug={slug} />
                             </Col>
                         ))}
@@ -49,30 +60,17 @@ function News() {
                         <div className="wrapper-cate">
                             <h4>{t('category')}</h4>
                             <u className="list-cate">
-                                <li className="item-cate">
-                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
-                                    <Link to="/news/dog/category">
-                                        <span>Dog</span>
-                                    </Link>
-                                </li>
-                                <li className="item-cate">
-                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
-                                    <Link to="/news/cat/category">
-                                        <span>Cat</span>
-                                    </Link>
-                                </li>
-                                <li className="item-cate">
-                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
-                                    <Link to="/news/petnews/category">
-                                        <span>Pet News</span>
-                                    </Link>
-                                </li>
-                                <li className="item-cate">
-                                    <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
-                                    <Link to="/news/catnews/category">
-                                        <span>Cat News</span>
-                                    </Link>
-                                </li>
+                                {dateCateKeys.map((slug, index) => {
+                                    let nameCate = transformCategoryName(slug);
+                                    return (
+                                        <li key={index} className="item-cate">
+                                            <FontAwesomeIcon className="arrow-news" icon={faGreaterThan} size="xs" />
+                                            <Link to={`/news/${slug}/category`}>
+                                                <span>{nameCate}</span>
+                                            </Link>
+                                        </li>
+                                    );
+                                })}
                             </u>
                         </div>
                     </div>

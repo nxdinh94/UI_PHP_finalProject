@@ -12,7 +12,6 @@ function NewsItem({ data, slug }) {
                 <div className="time_author">
                     <span>
                         <FontAwesomeIcon icon={faUser} />
-
                         <span className="p-text">{data.author || 'Admin'}</span>
                     </span>
                     <span className="p-text">

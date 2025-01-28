@@ -38,7 +38,19 @@ a[href] {
     color: var(--text-color);
     text-decoration: none;
 }
-
+.topic2 {
+    font-size: 3.4rem;
+    font-weight: bolder;
+    color: #0c1529;
+    margin-bottom: 25px;
+    font-family: oswald;
+    @media (max-width: $lg) {
+        font-size: 52px;
+    }
+    @media (max-width: $md) {
+        font-size: 40px;
+    }
+}
 .p-text {
     color: rgb(147, 144, 144);
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
