@@ -13,9 +13,7 @@ import TeamAchieveItem from '~/components/TeamDetail/TeamAchieveItem';
 import TooltipComponent from '~/components/TeamDetail/ToolTip';
 import Toastify from '~/components/Toastify';
 
-
 function TeamDetail() {
-
     const [isShowFbTooltip, setIsFbShowTooltip] = useState(false);
     const [isTiktokShowTooltip, setIsTiktokShowTooltip] = useState(false);
     const [isTwitterShowTooltip, setIsTwitterShowTooltip] = useState(false);

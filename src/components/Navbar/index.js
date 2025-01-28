@@ -10,6 +10,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import DropdownContent from '~/components/DropdownContent';
 import Image from '~/components/Image';
 import configRoutes from '~/config/routes';
+import getUserData from '~/utils/getUserData';
 const logoOption = {
     lightLogo: '/images/logo/logo-light.png',
     darkLogo: '/images/logo/logo-dark.png',
@@ -26,14 +27,14 @@ function HeaderOnly({ children }) {
     const [cartQuantityClassName, setCartQuantityClassName] = useState('cart-quantity-toggle');
 
     const isLogin = sessionStorage.isLogin;
+    const user_data = getUserData();
     let isAdmin = false;
     let avatar = '';
     if (isLogin) {
-        const user_data = JSON.parse(sessionStorage.user_data);
+        isAdmin = user_data.decentralization_id === 1 ? true : false;
         avatar = user_data.thumbnail;
-        // check if user is admin
-        user_data.decentralization_id === 1 ? (isAdmin = true) : (isAdmin = false);
     }
+
     const productQuantityInCart = useSelector((state) => state.cartSlices.value.quantityProductInCart);
 
     // const [language, setLanguage] = useState('vi');

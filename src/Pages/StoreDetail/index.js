@@ -1,21 +1,19 @@
-import { Col, Row, Container } from 'reactstrap';
-import './StoreDetail.scss';
-import { Input } from 'reactstrap';
-import { useSelector, useDispatch } from 'react-redux';
+import { faCartShopping, faGreaterThan, faLessThan, faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faStar, faGreaterThan, faLessThan, faCartShopping } from '@fortawesome/free-solid-svg-icons';
+import { useDispatch, useSelector } from 'react-redux';
+import { Col, Container, Input, Row } from 'reactstrap';
+import './StoreDetail.scss';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import SwiperForProduct from '~/components/SwiperForProduct';
-import { useParams, Link } from 'react-router-dom';
 
 import { useTranslation } from 'react-i18next';
-
-import AdditionIn4Product from '~/components/AdditionIn4Product';
-import { handleAddProductToCartApi } from '~/service/userService';
 import { toast } from 'react-toastify';
+import AdditionIn4Product from '~/components/AdditionIn4Product';
 import Toastify from '~/components/Toastify';
 import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
+import { handleAddProductToCartApi } from '~/service/userService';
 function StoreDetail() {
     const { slug } = useParams();
     const dispatch = useDispatch();
