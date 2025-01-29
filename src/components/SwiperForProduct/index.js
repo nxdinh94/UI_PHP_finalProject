@@ -1,5 +1,6 @@
 import { A11y, Autoplay, Navigation, Scrollbar } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import { useDispatch } from 'react-redux';
 import './SwiperForProduct.scss';
 // Import Swiper styles
 import 'swiper/css';
@@ -12,8 +13,10 @@ import 'swiper/css/scrollbar';
 import { useTranslation } from 'react-i18next';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-export default ({ productData, autoplay, userId, handleAddProductToCart }) => {
+import handleAddProductToCart from '~/utils/handleAddProductToCart';
+export default ({ productData, autoplay, userId }) => {
     const { t } = useTranslation();
+    const dispatch = useDispatch();
     return (
         <Swiper
             // install Swiper modules
@@ -69,7 +72,7 @@ export default ({ productData, autoplay, userId, handleAddProductToCart }) => {
                             <button
                                 className="addToCartBtn"
                                 onClick={() => {
-                                    handleAddProductToCart(userId, item.productid, 1);
+                                    handleAddProductToCart(userId, item.productid, 1, dispatch);
                                 }}
                             >
                                 {t('addToCart')}

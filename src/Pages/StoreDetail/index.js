@@ -1,6 +1,7 @@
-import { faCartShopping, faGreaterThan, faLessThan, faStar } from '@fortawesome/free-solid-svg-icons';
+import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useDispatch, useSelector } from 'react-redux';
+import { useTranslation } from 'react-i18next';
+import { useSelector } from 'react-redux';
 import { Col, Container, Input, Row } from 'reactstrap';
 import './StoreDetail.scss';
 
@@ -8,15 +9,13 @@ import { useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import SwiperForProduct from '~/components/SwiperForProduct';
 
-import { useTranslation } from 'react-i18next';
-import { toast } from 'react-toastify';
-import AdditionIn4Product from '~/components/AdditionIn4Product';
+import AdditionIn4Product from '~/components/StoreDetail/AdditionIn4Product';
+import AddToCartButton from '~/components/StoreDetail/AddToCartButton';
+import ModifyQuantityButton from '~/components/StoreDetail/ModifyQuantityButton';
 import Toastify from '~/components/Toastify';
-import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
-import { handleAddProductToCartApi } from '~/service/userService';
+import checkLogin from '~/utils/checkLogin';
 function StoreDetail() {
     const { slug } = useParams();
-    const dispatch = useDispatch();
     const [productQuantity, setProductQuantity] = useState(1);
     const [tab, setTab] = useState('additional-infor');
     const [tabClassName1, setTabClassName1] = useState('active');
@@ -26,22 +25,14 @@ function StoreDetail() {
         return item.productid === +slug;
     });
     const { t } = useTranslation();
-    let user_data = '';
+    let isLogin = checkLogin();
     let userId = '';
-    let isLogin = sessionStorage.isLogin;
     // console.log(isLogin);
     if (isLogin) {
-        user_data = JSON.parse(sessionStorage.user_data);
+        const user_data = JSON.parse(sessionStorage.user_data);
         userId = user_data.id;
     }
 
-    const handleAddProductToCart = async (userid, productid, productquantity) => {
-        const res = await handleAddProductToCartApi(userid, productid, productquantity);
-        dispatch(handleFetchQuantityProductInCartThunk(userId));
-        if (res.status) {
-            toast.success('Đã thêm vào giỏ hàng', { position: 'bottom-right' });
-        } else toast.error('Vui lòng đăng nhập để thực hiện chức năng');
-    };
     return (
         <Container fluid>
             <Toastify />
@@ -75,33 +66,12 @@ function StoreDetail() {
                             </div>
                             <p className="product-about p-text">{specificProduct[0].description}</p>
                             <div className="product-action">
-                                <div className="modify-quantity">
-                                    <FontAwesomeIcon
-                                        className={productQuantity <= 0 ? 'disabled' : ''}
-                                        icon={faLessThan}
-                                        size="sm"
-                                        onClick={() => {
-                                            setProductQuantity((prev) => prev - 1);
-                                        }}
-                                    />
-                                    <span>{productQuantity}</span>
-                                    <FontAwesomeIcon
-                                        icon={faGreaterThan}
-                                        size="sm"
-                                        onClick={() => {
-                                            setProductQuantity((prev) => prev + 1);
-                                        }}
-                                    />
-                                </div>
-                                <button
-                                    className="add-cart"
-                                    onClick={() => {
-                                        handleAddProductToCart(userId, specificProduct[0].productid, productQuantity);
-                                    }}
-                                >
-                                    <FontAwesomeIcon icon={faCartShopping} size="lg" />
-                                    <p>{t('addToCart')}</p>
-                                </button>
+                                <ModifyQuantityButton quantity={productQuantity} setQuantity={setProductQuantity} />
+                                <AddToCartButton
+                                    userId={userId}
+                                    productid={specificProduct[0].productid}
+                                    quantity={productQuantity}
+                                />
                             </div>
                         </div>
                     </Col>
@@ -157,11 +127,7 @@ function StoreDetail() {
                 <Row>
                     <div className="relative-product">
                         <h2 className="topic2">Related Products</h2>
-                        <SwiperForProduct
-                            productData={productData}
-                            handleAddProductToCart={handleAddProductToCart}
-                            userId={userId}
-                        />
+                        <SwiperForProduct productData={productData} userId={userId} />
                     </div>
                 </Row>
             </Container>

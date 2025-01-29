@@ -1,0 +1,27 @@
+.add-cart {
+    width: 160px;
+    height: 54px;
+    background-color: #82b440;
+    border-radius: 100px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+    svg {
+        cursor: pointer;
+        path {
+            color: #ffffff;
+        }
+    }
+    p {
+        margin: 0px 5px;
+        color: white;
+        font-weight: bold;
+        cursor: pointer;
+    }
+}
