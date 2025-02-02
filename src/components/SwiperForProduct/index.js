@@ -14,7 +14,7 @@ import { useTranslation } from 'react-i18next';
 import { faStar } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import handleAddProductToCart from '~/utils/handleAddProductToCart';
-export default ({ productData, autoplay, userId }) => {
+export default ({ productData, userId, autoplay }) => {
     const { t } = useTranslation();
     const dispatch = useDispatch();
     return (

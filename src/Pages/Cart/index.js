@@ -1,47 +1,36 @@
 import './Cart.scss';
-import CartItem from '~/components/CartItem';
-import BottomBarCart from '~/components/BottomBarCart';
-import { Container, Row, Col } from 'reactstrap';
-import { handleGetListProductInCartApi } from '~/service/userService';
+import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { deleteAllProductFromBill } from '../Payment/PaymentSlices';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCartPlus } from '@fortawesome/free-solid-svg-icons';
 import { Link } from 'react-router-dom';
+import { Container, Row } from 'reactstrap';
+import BottomBarCart from '~/components/BottomBarCart';
+import CartItem from '~/components/CartItem';
 import configureRoute from '~/config/routes';
+import { handleGetListProductInCartApi } from '~/service/userService';
+import { deleteAllProductFromBill } from '../Payment/PaymentSlices';
 
-import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
-import { toast } from 'react-toastify';
-import Toastify from '~/components/Toastify';
-import { handleAddProductToCartApi } from '~/service/userService';
 import SwiperForProduct from '~/components/SwiperForProduct';
+import Toastify from '~/components/Toastify';
+import checkLogin from '~/utils/checkLogin';
 
 function Cart() {
-    let userData = '';
-    let isLogin = sessionStorage.isLogin;
+    const dispatch = useDispatch();
+    let isLogin = checkLogin();
     let userId = '';
     if (isLogin) {
-        userData = JSON.parse(sessionStorage.getItem('user_data'));
-        isLogin = sessionStorage.isLogin;
+        const userData = JSON.parse(sessionStorage.getItem('user_data'));
         userId = userData.id;
     }
     const productData = useSelector((state) => state.storeSlices.value);
     const [listProductsInCart, setListProductsInCart] = useState([]);
     // console.log(listProductsInCart);
-    const fetchData = async (userid) => {
-        const res = await handleGetListProductInCartApi(userid);
+    const fetchData = async (userId) => {
+        const res = await handleGetListProductInCartApi(userId);
         setListProductsInCart(res);
     };
-    const dispatch = useDispatch();
 
-    const handleAddProductToCart = async (userid, productid, productquantity) => {
-        const res = await handleAddProductToCartApi(userid, productid, productquantity);
-        dispatch(handleFetchQuantityProductInCartThunk(userId));
-        if (res.status) {
-            toast.success('Đã thêm vào giỏ hàng', { position: 'bottom-right' });
-        } else toast.error('Vui lòng đăng nhập để thực hiện chức năng');
-    };
     useEffect(() => {
         //fetch product in cart
         fetchData(userId);
@@ -85,11 +74,7 @@ function Cart() {
                 <Row>
                     <div className="relative-product mt-5">
                         <h2 className="topic2">Related Products</h2>
-                        <SwiperForProduct
-                            productData={productData}
-                            handleAddProductToCart={handleAddProductToCart}
-                            userId={userId}
-                        />
+                        <SwiperForProduct productData={productData} userId={userId} />
                     </div>
                 </Row>
             </Container>

@@ -1,12 +1,11 @@
-import './CartItem.scss';
-import { Container, Row, Col } from 'reactstrap';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGreaterThan, faLessThan } from '@fortawesome/free-solid-svg-icons';
-import { handleChangeQuantityProductInCartApi, handleDeleteProductInCartApi } from '~/service/userService';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { handleFetchQuantityProductInCartThunk } from '~/Pages/Cart/CartSlices';
-import { addProductToBill, deleteAllProductFromBill, deleteProductFromBill } from '~/Pages/Payment/PaymentSlices';
+import { addProductToBill, deleteProductFromBill } from '~/Pages/Payment/PaymentSlices';
+import { handleChangeQuantityProductInCartApi, handleDeleteProductInCartApi } from '~/service/userService';
+import './CartItem.scss';
 function CartItem({ ...props }) {
     const { userId } = props;
     const { productid } = props;
@@ -15,7 +14,6 @@ function CartItem({ ...props }) {
     const { productPrice } = props;
     const { cartPrice } = props;
     const { payment_method } = props;
-    console.log(payment_method);
     const { origin } = props;
     const { color } = props;
     const { dimensions } = props;

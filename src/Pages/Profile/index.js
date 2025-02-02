@@ -1,14 +1,7 @@
-import { faCircleInfo, faPenToSquare, faXmark } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Tooltip as Tooltip2 } from 'react-tippy';
+import './Profile.scss';
 import { Col, Container, FormGroup, Input, Label, Row, Table } from 'reactstrap';
 
-import { useEffect, useState } from 'react';
-import './Profile.scss';
-
-import OrderStatus from '~/components/PurchaseOrder';
-
+import { useEffect, useReducer, useState } from 'react';
 import { useTranslation } from 'react-i18next';
 
 import {
@@ -19,71 +12,115 @@ import {
 } from '~/service/userService';
 
 import { toast } from 'react-toastify';
+import SiblingComponent from '~/components/common/SiblingComponent';
+import CancelServiceButton from '~/components/Profile/CancelServiceButton';
+import CountDown from '~/components/Profile/CountDown';
+import UpdateServiceButton from '~/components/Profile/UpdateServiceButton';
 import Toastify from '~/components/Toastify';
 import { getTimeUsingService } from '~/service/appServices';
+import getUserData from '~/utils/getUserData';
 
-import CountDown from '~/components/CountDown';
+function reducer(state, action) {
+    if (action.type === 'change_name') {
+        return { ...state, name: action.payload };
+    } else if (action.type === 'change_address') {
+        return { ...state, address: action.payload };
+    } else if (action.type === 'change_email') {
+        return { ...state, email: action.payload };
+    } else if (action.type === 'change_phone') {
+        return { ...state, phone: action.payload };
+    } else if (action.type === 'change_dob') {
+        return { ...state, dob: action.payload };
+    } else if (action.type === 'change_pinterest') {
+        return { ...state, pinterest: action.payload };
+    } else if (action.type === 'change_linkedin') {
+        return { ...state, linkedin: action.payload };
+    } else if (action.type === 'change_twitter') {
+        return { ...state, twitter: action.payload };
+    } else if (action.type === 'change_facebook') {
+        return { ...state, facebook: action.payload };
+    } else if (action.type === 'change_about') {
+        return { ...state, aboutContent: action.payload };
+    } else if (action.type === 'change_delivery_address') {
+        return { ...state, deliveryAddress: action.payload };
+    } else if (action.type === 'change_date_using_service') {
+        return { ...state, changeDateUsingService: action.payload };
+    } else if (action.type === 'change_period_using_service') {
+        return { ...state, changePeriod: action.payload };
+    }
+}
+export default function Profile() {
+    const userData = getUserData();
+    const userId = userData.id;
 
-function Profile() {
+    const [t] = useTranslation();
+
+    const [isOnChangeDate, setIsOnChangeDate] = useState(false);
+    const [isOnChangePeriodDay, setIsOnChangePeriodDay] = useState(false);
+    const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
     const [isPreviewMode, setIsPreviewMode] = useState(true);
     const [listRegistedServces, setListRegistedServces] = useState([]);
 
-    const userData = JSON.parse(sessionStorage.getItem('user_data'));
-    const userId = userData.id;
-    const email = userData.email;
-    const [fullname, setFullname] = useState(userData.fullname);
-    const [address, setAddress] = useState(userData.address);
-    const [phone, setPhone] = useState(userData.phone);
-    const [dob, setDob] = useState(userData.dob);
-    const [pinterest, setPinterest] = useState(userData.contact_pinterest);
-    const [linkedin, setLinkedin] = useState(userData.contact_linkedin);
-    const [twitter, setTwitter] = useState(userData.contact_twitter);
-    const [facebook, setFacebook] = useState(userData.contact_facebook);
-    const [aboutContent, setAboutContent] = useState(userData.about_content);
-    const [delivery_address, setDelivery_address] = useState(userData.delivery_address);
+    let initialState = {
+        name: userData.fullname,
+        email: userData.email,
+        phone: userData.phone,
+        address: userData.address,
+        dob: userData.dob,
+        pinterest: userData.contact_pinterest,
+        linkedin: userData.contact_linkedin,
+        twitter: userData.contact_twitter,
+        facebook: userData.contact_facebook,
+        aboutContent: userData.about_content,
+        deliveryAddress: userData.delivery_address,
+        changeDateUsingService: '',
+        changePeriod: 1,
+    };
+    const [state, dispatch] = useReducer(reducer, initialState);
+
     const handleOnChangeInput = (e) => {
         let inputName = e.target.name;
         switch (inputName) {
             case 'fullname':
-                setFullname(e.target.value);
+                dispatch({ type: 'change_name', payload: e.target.value });
                 break;
             case 'address':
-                setAddress(e.target.value);
+                dispatch({ type: 'change_address', payload: e.target.value });
                 break;
             case 'phone':
-                setPhone(e.target.value);
+                dispatch({ type: 'change_phone', payload: e.target.value });
                 break;
             case 'dob':
-                setDob(e.target.value);
+                dispatch({ type: 'change_dob', payload: e.target.value });
                 break;
             case 'pinterest':
-                setPinterest(e.target.value);
+                dispatch({ type: 'change_pinterest', payload: e.target.value });
                 break;
             case 'linkedin':
-                setLinkedin(e.target.value);
+                dispatch({ type: 'change_linkedin', payload: e.target.value });
                 break;
             case 'twitter':
-                setTwitter(e.target.value);
+                dispatch({ type: 'change_twitter', payload: e.target.value });
                 break;
             case 'facebook':
-                setFacebook(e.target.value);
+                dispatch({ type: 'change_facebook', payload: e.target.value });
                 break;
             case 'about':
-                setAboutContent(e.target.value);
+                dispatch({ type: 'change_about', payload: e.target.value });
                 break;
-            case 'chooseDate':
+            case 'changeDateUsingService':
                 setIsOnChangeDate(true);
-                setChooseDate(e.target.value);
+                dispatch({ type: 'change_date_using_service', payload: e.target.value });
                 break;
-            case 'delivery_address':
-                setDelivery_address(e.target.value);
+            case 'deliveryAddress':
+                dispatch({ type: 'change_delivery_address', payload: e.target.value });
                 break;
-            case 'choosePeriod':
+            case 'changingPeriod':
                 setIsOnChangePeriodDay(true);
                 const index = e.target.selectedIndex;
                 const el = e.target.childNodes[index];
                 const option = el.getAttribute('id');
-                setChoosePeriod(+option);
+                dispatch({ type: 'change_period_using_service', payload: +option });
                 break;
             default:
                 throw new Error('Invalid form');
@@ -97,18 +134,19 @@ function Profile() {
             //code
             const res = await handleUpdateProfileApi({
                 userId,
-                email,
-                fullname,
-                address,
-                phone,
-                dob,
-                pinterest,
-                linkedin,
-                twitter,
-                facebook,
-                aboutContent,
-                delivery_address,
+                email: state.email,
+                fullname: state.name,
+                address: state.address,
+                phone: state.phone,
+                dob: state.dob,
+                pinterest: state.pinterest,
+                linkedin: state.linkedin,
+                twitter: state.twitter,
+                facebook: state.facebook,
+                aboutContent: state.aboutContent,
+                deliveryAddress: state.deliveryAddress,
             });
+            // console.log(res);
             if (res.status) {
                 sessionStorage.setItem('user_data', JSON.stringify(res.user_data));
                 toast.success(res.message);
@@ -117,16 +155,6 @@ function Profile() {
             setIsPreviewMode(!isPreviewMode);
         }
     };
-
-    const [t] = useTranslation();
-    const handle = async () => {
-        const res = await handleGetRegistedServices(userId);
-        setListRegistedServces(res);
-    };
-    useEffect(() => {
-        handle();
-    }, []);
-    const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
     const handleUpdateServiceBtn = (key) => {
         const newShowDiv = [...isShowAnounce];
@@ -138,7 +166,7 @@ function Profile() {
         const res = await updateRegistedService(userId, serviceId, usingDate, periodTime);
         if (res.status) {
             toast.success(res.message);
-            handle();
+            onhHandleGetRegistedServices();
         } else toast.error(res.message);
         const newShowDiv = [...isShowAnounce];
         newShowDiv[key] = !newShowDiv[key];
@@ -146,14 +174,11 @@ function Profile() {
     };
 
     //jfdfd
-
-    const [chooseDate, setChooseDate] = useState('');
-    const [choosePeriod, setChoosePeriod] = useState(1);
-    const [isOnChangeDate, setIsOnChangeDate] = useState(false);
-    const [isOnChangePeriodDay, setIsOnChangePeriodDay] = useState(false);
-    const [timeUsingServiceAPI, setTimeUsingServiceAPI] = useState([]);
-    const [isShowTooltip, setIsShowTooltip] = useState(false);
-    // console.log('dfd', chooseDate, choosePeriod);
+    const onhHandleGetRegistedServices = async () => {
+        const res = await handleGetRegistedServices(userId);
+        setListRegistedServces(res);
+    };
+    const [isShowAnounce, setIsShowAnounce] = useState(Array(100).fill(true));
 
     useEffect(() => {
         const getPriodTime = async () => {
@@ -162,6 +187,7 @@ function Profile() {
                 setTimeUsingServiceAPI(res);
             }
         };
+        onhHandleGetRegistedServices();
         getPriodTime();
     }, []);
 
@@ -169,7 +195,7 @@ function Profile() {
     const handleCancelService = async (userid, serviceid) => {
         const res = await cancelService(userid, serviceid);
 
-        handle();
+        onhHandleGetRegistedServices();
         if (res.status) {
             toast.success(res.message);
         } else toast.error(res.message);
@@ -198,7 +224,7 @@ function Profile() {
                                             id="fullname"
                                             name="fullname"
                                             type="text"
-                                            value={fullname}
+                                            value={state.name}
                                             onChange={handleOnChangeInput}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
@@ -218,7 +244,7 @@ function Profile() {
                                             name="email"
                                             type="text"
                                             onChange={handleOnChangeInput}
-                                            value={email}
+                                            value={state.email}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                             disabled
                                         />
@@ -237,7 +263,7 @@ function Profile() {
                                             name="address"
                                             onChange={handleOnChangeInput}
                                             type="text"
-                                            value={address}
+                                            value={state.address}
                                             disabled={isPreviewMode}
                                         />
                                     </Col>
@@ -245,18 +271,18 @@ function Profile() {
                             </Row>
                             <Row>
                                 <FormGroup row>
-                                    <Label for="phonenumber" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                    <Label for="phone" size="md" sm={2} style={{ paddingTop: 20 }}>
                                         Điện thoại
                                     </Label>
                                     <Col sm={10}>
                                         <Input
                                             bsSize="md"
-                                            id="phonenumber"
-                                            name="phonenumber"
+                                            id="phone"
+                                            name="phone"
                                             type="text"
                                             disabled={isPreviewMode}
                                             onChange={handleOnChangeInput}
-                                            value={phone}
+                                            value={state.phone}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
@@ -274,7 +300,7 @@ function Profile() {
                                             id="dob"
                                             name="dob"
                                             onChange={handleOnChangeInput}
-                                            value={dob}
+                                            value={state.dob}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -294,7 +320,7 @@ function Profile() {
                                             type="text"
                                             disabled={isPreviewMode}
                                             onChange={handleOnChangeInput}
-                                            value={pinterest}
+                                            value={state.pinterest}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
                                     </Col>
@@ -312,7 +338,7 @@ function Profile() {
                                             name="linkedin"
                                             type="text"
                                             onChange={handleOnChangeInput}
-                                            value={linkedin}
+                                            value={state.linkedin}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -331,7 +357,7 @@ function Profile() {
                                             name="twitter"
                                             type="text"
                                             onChange={handleOnChangeInput}
-                                            value={twitter}
+                                            value={state.twitter}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -350,7 +376,7 @@ function Profile() {
                                             name="facebook"
                                             type="text"
                                             onChange={handleOnChangeInput}
-                                            value={facebook}
+                                            value={state.facebook}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -369,7 +395,7 @@ function Profile() {
                                             name="about"
                                             type="text"
                                             onChange={handleOnChangeInput}
-                                            value={aboutContent}
+                                            value={state.aboutContent}
                                             disabled={isPreviewMode}
                                             style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px' }}
                                         />
@@ -378,19 +404,23 @@ function Profile() {
                             </Row>
                             <Row>
                                 <FormGroup row>
-                                    <Label for="delivery_address" size="md" sm={2} style={{ paddingTop: 20 }}>
-                                        Tiểu sử
+                                    <Label for="deliveryAddress" size="md" sm={2} style={{ paddingTop: 20 }}>
+                                        Delivery Address
                                     </Label>
                                     <Col sm={10}>
                                         <Input
                                             bsSize="md"
-                                            id="delivery_address"
-                                            name="delivery_address"
+                                            id="deliveryAddress"
+                                            name="deliveryAddress"
                                             type="textarea"
                                             onChange={handleOnChangeInput}
-                                            value={delivery_address}
+                                            value={state.deliveryAddress}
                                             disabled={isPreviewMode}
-                                            style={{ marginBottom: 10, padding: '0px, 0px, 0px, 5px', height: '100px' }}
+                                            style={{
+                                                marginBottom: 10,
+                                                padding: '0px, 0px, 0px, 5px',
+                                                height: '100px',
+                                            }}
                                         />
                                     </Col>
                                 </FormGroup>
@@ -412,14 +442,9 @@ function Profile() {
 
             {listRegistedServces.data ? (
                 <Row>
-                    <div className="content"></div>
                     <div className="registed-services-wrapper">
                         <div className="slider-title">
-                            <p>
-                                <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} />
-                                <span className="topic1">{t('registedService')}</span>
-                            </p>
-                            <h2 className="topic2">{t('registedService')}</h2>
+                            <SiblingComponent sibling1={'registedService'} sibling2={['registedService']} />
                         </div>
                         <div className="registed-item">
                             <Table responsive bordered>
@@ -463,40 +488,28 @@ function Profile() {
                                                     <td></td>
                                                 ) : (
                                                     <td>
-                                                        <button
-                                                            className="btn btn-danger mx-2"
-                                                            onClick={() =>
-                                                                handleCancelService(
-                                                                    userId,
-                                                                    listRegistedServce.serviceid,
-                                                                )
-                                                            }
-                                                        >
-                                                            <FontAwesomeIcon icon={faXmark} className="profile-icon" />
-                                                        </button>
+                                                        {/* Cancel Service Button */}
+                                                        <CancelServiceButton
+                                                            userId={userId}
+                                                            serviceId={listRegistedServce.serviceid}
+                                                            onHandleCancelService={handleCancelService}
+                                                        />
                                                         {isShowAnounce[key] ? (
-                                                            <button
-                                                                onClick={() => {
-                                                                    handleUpdateServiceBtn(key);
-                                                                }}
-                                                                className="btn btn-primary me-2"
-                                                            >
-                                                                <FontAwesomeIcon
-                                                                    icon={faPenToSquare}
-                                                                    className="profile-icon"
-                                                                />
-                                                            </button>
+                                                            <UpdateServiceButton
+                                                                myKey={key}
+                                                                onHandleUpdateServiceBtn={handleUpdateServiceBtn}
+                                                            />
                                                         ) : (
                                                             <div className="services-option">
                                                                 <div className="choose-date">
                                                                     <Label>Chọn ngày</Label>
                                                                     <Input
                                                                         onChange={handleOnChangeInput}
-                                                                        name="chooseDate"
+                                                                        name="changeDateUsingService"
                                                                         type="date"
                                                                         value={
                                                                             isOnChangeDate
-                                                                                ? chooseDate
+                                                                                ? state.changeDateUsingService
                                                                                 : listRegistedServce.register_day
                                                                         }
                                                                         style={{ width: '100%' }}
@@ -506,7 +519,7 @@ function Profile() {
                                                                     <Label>Chọn buổi</Label>
                                                                     <Input
                                                                         onChange={handleOnChangeInput}
-                                                                        name="choosePeriod"
+                                                                        name="changingPeriod"
                                                                         type="select"
                                                                         style={{ width: '100%' }}
                                                                         className="py-0"
@@ -514,7 +527,7 @@ function Profile() {
                                                                         {timeUsingServiceAPI.map((item, index) => (
                                                                             <option
                                                                                 key={index}
-                                                                                selected={
+                                                                                value={
                                                                                     item.id ==
                                                                                     listRegistedServce.periodTime
                                                                                 }
@@ -533,10 +546,10 @@ function Profile() {
                                                                                 userId,
                                                                                 listRegistedServce.serviceid,
                                                                                 isOnChangeDate
-                                                                                    ? chooseDate
+                                                                                    ? state.changeDateUsingService
                                                                                     : listRegistedServce.register_day,
                                                                                 isOnChangePeriodDay
-                                                                                    ? choosePeriod
+                                                                                    ? state.changePeriod
                                                                                     : listRegistedServce.periodTime,
                                                                             );
                                                                         }}
@@ -562,5 +575,3 @@ function Profile() {
         </Container>
     );
 }
-
-export default Profile;
