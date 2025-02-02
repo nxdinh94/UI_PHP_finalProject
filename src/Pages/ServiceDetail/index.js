@@ -1,19 +1,19 @@
-import { Container, Col, Row, Label, Input } from 'reactstrap';
-
 import './ServiceDetail.scss';
-import { useParams } from 'react-router-dom';
-import { useSelector } from 'react-redux';
+import { Col, Container, Input, Label, Row } from 'reactstrap';
+
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useState } from 'react';
 import { useTranslation } from 'react-i18next';
-import { Link } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link, useParams } from 'react-router-dom';
+import { toast } from 'react-toastify';
 import { getTimeUsingService } from '~/service/appServices';
 import { handleRegisterService } from '~/service/userService';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
-import { toast } from 'react-toastify';
-import Toastify from '~/components/Toastify';
 
 import { isRegisteredService } from '~/service/appServices';
+import checkLogin from '~/utils/checkLogin';
+import Toastify from '~/components/Toastify';
 
 function ServiceDetail() {
     const { t } = useTranslation();
@@ -30,20 +30,23 @@ function ServiceDetail() {
         return item.slug.includes(slug);
     });
 
-    let userData = '';
-    let isLogin = sessionStorage.isLogin;
+    let isLogin = checkLogin();
     let userId = '';
     if (isLogin) {
-        userData = JSON.parse(sessionStorage.getItem('user_data'));
+        const userData = JSON.parse(sessionStorage.getItem('user_data'));
         isLogin = sessionStorage.isLogin;
         userId = userData.id;
     }
 
-    const handleIsRegistedService = async (userId, serviceId) => {
-        const res = await isRegisteredService(userId, serviceId);
-        setIsRegistedSer(res.status);
-    };
-    const [isRegistedSer, setIsRegistedSer] = useState(handleIsRegistedService(userId, detailService[0].id));
+    const [isRegistedSer, setIsRegistedSer] = useState(false);
+
+    useEffect(() => {
+        const checkRegisteredService = async () => {
+            const res = await isRegisteredService(userId, detailService[0].id);
+            setIsRegistedSer(res.status);
+        };
+        checkRegisteredService();
+    }, [userId, detailService[0].id, isHandlingRegister]);
     useEffect(() => {
         let cost = detailService[0].cost;
         if (choosePeriod === 1 || choosePeriod === 2) {
@@ -90,11 +93,12 @@ function ServiceDetail() {
                 splitedDate[2] - currentDate >= 0
             ) {
                 const res = await handleRegisterService(userId, serviceId, register_day, periodTime);
-                setTimeout(() => {
-                    setIsHandlingRegister(false);
-                }, 800);
+
                 if (res.status) {
-                    toast.success(res.message);
+                    setTimeout(() => {
+                        setIsHandlingRegister(false);
+                        toast.success(res.message);
+                    }, 800);
                 } else {
                     toast.error('Bạn đã đăng ký dịch vụ này');
                 }
@@ -140,18 +144,7 @@ function ServiceDetail() {
                     </div>
 
                     {isRegistedSer ? (
-                        <div className="register-service " style={{ padding: 20 }}>
-                            <div className="slider-title">
-                                <p className="my-0">
-                                    <img
-                                        className="iconCat"
-                                        src={'/images/icons8/icons8-cat-footprint-16.png'}
-                                        alt="img"
-                                    />
-                                    <span className="topic1">{t('registedService')}</span>
-                                </p>
-                            </div>
-                        </div>
+                        <RegisteredServiceComponent />
                     ) : (
                         <div className="register-service">
                             <div className="slider-title">
@@ -195,22 +188,14 @@ function ServiceDetail() {
                                     <span>{totalPrice}</span>
                                 </div>
                                 <div className="submit-area">
-                                    <button
-                                        onClick={() => {
-                                            handleRegisterServiceBtn(
-                                                userId,
-                                                detailService[0].id,
-                                                chooseDate,
-                                                choosePeriod,
-                                            );
-                                        }}
-                                        className="btn btn-primary"
-                                    >
-                                        {isHandlingRegister && (
-                                            <FontAwesomeIcon icon={faSpinner} className="faSpinner" spin size="sm" />
-                                        )}
-                                        &nbsp;{t('register')}
-                                    </button>
+                                    <RegisterButton
+                                        myFunc={handleRegisterServiceBtn}
+                                        serviceId={detailService[0].id}
+                                        userId={userId}
+                                        chooseDate={chooseDate}
+                                        choosePeriod={choosePeriod}
+                                        isHandlingRegister={isHandlingRegister}
+                                    />
                                 </div>
                             </div>
                         </div>
@@ -221,4 +206,32 @@ function ServiceDetail() {
     );
 }
 
+function RegisterButton({ myFunc, serviceId, userId, chooseDate, choosePeriod, isHandlingRegister }) {
+    const { t } = useTranslation();
+    return (
+        <button
+            onClick={() => {
+                myFunc(userId, serviceId, chooseDate, choosePeriod);
+            }}
+            className="btn btn-primary"
+        >
+            {isHandlingRegister && <FontAwesomeIcon icon={faSpinner} className="faSpinner" spin size="sm" />}
+            &nbsp;{t('register')}
+        </button>
+    );
+}
+
+function RegisteredServiceComponent() {
+    const { t } = useTranslation();
+    return (
+        <div className="register-service " style={{ padding: 20 }}>
+            <div className="slider-title">
+                <p className="my-0">
+                    <img className="iconCat" src={'/images/icons8/icons8-cat-footprint-16.png'} alt="img" />
+                    <span className="topic1">{t('registedService')}</span>
+                </p>
+            </div>
+        </div>
+    );
+}
 export default ServiceDetail;
