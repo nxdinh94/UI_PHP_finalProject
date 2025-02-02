@@ -120,10 +120,12 @@ function OrderStatus() {
                                 })
                             ) : (
                                 <div className="no-product-cart">
-                                    <p className="topic1 m-0">Chưa có đơn hàng</p>
+                                    <p className="topic1 m-auto">Chưa có đơn hàng</p>
                                     <Link className="buy-product" to={configureRoute.store}>
-                                        <FontAwesomeIcon icon={faCartPlus} />
-                                        <span className="mx-2">Tiếp tục mua hàng</span>
+                                        <div>
+                                            <FontAwesomeIcon icon={faCartPlus} />
+                                            <span className="mx-2">Tiếp tục mua hàng</span>
+                                        </div>
                                     </Link>
                                 </div>
                             )}

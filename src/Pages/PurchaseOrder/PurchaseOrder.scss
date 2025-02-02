@@ -22,7 +22,6 @@
                     position: relative;
                     &::after {
                         content: '';
-
                         position: absolute;
                         left: 0px;
                         bottom: -1px;
@@ -34,4 +33,9 @@
             }
         }
     }
+}
+.no-product-cart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }

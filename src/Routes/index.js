@@ -18,7 +18,7 @@ import TeamDetail from '~/Pages/TeamDetail';
 import Page404 from '~/Pages/Page404';
 import Cart from '~/Pages/Cart';
 import Payment from '~/Pages/Payment';
-import PurchaseOrder from '~/components/PurchaseOrder';
+import PurchaseOrder from '~/Pages/PurchaseOrder';
 
 const publicRoutes = [
     { path: configRoutes.home, component: Home, isHome: true },
