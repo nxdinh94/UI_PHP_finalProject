@@ -1,7 +1,6 @@
 import './Login.scss';
-
+import { faEye, faEyeSlash, faSpinner } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 
 import { handleLoginApi } from '~/service/userService';
 
@@ -10,13 +9,13 @@ import Toastify from '~/components/Toastify';
 
 import 'react-toastify/dist/ReactToastify.css';
 
-import { useState, useRef, useEffect } from 'react';
+import { useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 function Login() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
-    const [isHandlingLogin, setIsHandlingLogin] = useState(false);
 
+    const [isHandlingLogin, setIsHandlingLogin] = useState(false);
     const [isShowPassWord, setIsShowPassword] = useState(false);
 
     const navigate = useNavigate();
@@ -40,70 +39,82 @@ function Login() {
             }, 500);
             setTimeout(() => {
                 navigate('/');
-            }, 3000);
+            }, 2500);
         } else {
             toast.error(res.message);
             sessionStorage.setItem('user_data', '{}');
             sessionStorage.setItem('isLogin', res.status);
         }
     };
-    const handleOnChangeEmail = (e) => {
-        setEmail(e.target.value);
-    };
-    const handleOnChangePass = (e) => {
-        setPassword(e.target.value);
+
+    const handleOnChangeInput = (e) => {
+        switch (e.target.name) {
+            case 'email':
+                setEmail(e.target.value);
+                break;
+            case 'password':
+                setPassword(e.target.value);
+                break;
+            default:
+                break;
+        }
     };
     return (
         <div className="app">
             <Toastify />
-            <div className="block">
-                <div className="content">
-                    <h1>ĐĂNG NHẬP</h1>
-                    <div className="login-form">
+            <div className="content">
+                <h1>ĐĂNG NHẬP</h1>
+                <div className="login-form">
+                    <input
+                        type="email"
+                        onChange={handleOnChangeInput}
+                        value={email}
+                        name="email"
+                        className="form-control"
+                        placeholder="Email"
+                    />
+                    <div className="wrapper-password">
                         <input
-                            type="email"
-                            onChange={handleOnChangeEmail}
-                            value={email}
-                            name="email"
+                            type={isShowPassWord ? 'text' : 'password'}
+                            onChange={handleOnChangeInput}
+                            value={password}
+                            name="password"
                             className="form-control"
-                            placeholder="Email"
+                            placeholder="Mật khẩu"
                         />
-                        <div className="wrapper-password">
-                            <input
-                                type={isShowPassWord ? 'text' : 'password'}
-                                onChange={handleOnChangePass}
-                                value={password}
-                                name="password"
-                                className="form-control"
-                                placeholder="Mật khẩu"
-                            />
-                            <span className='m-0 p-0' onClick={() => setIsShowPassword(!isShowPassWord)}>
-                                {isShowPassWord ? (
-                                    <FontAwesomeIcon icon={faEye} className="show-hide-pass" />
-                                ) : (
-                                    <FontAwesomeIcon icon={faEyeSlash} className="show-hide-pass" />
-                                )}
-                            </span>
-                        </div>
+                        <span className="m-0 p-0" onClick={() => setIsShowPassword(!isShowPassWord)}>
+                            {isShowPassWord ? <CloseEyeIcon /> : <OpenEyeIcon />}
+                        </span>
+                    </div>
 
-                        <button
-                            ref={btnRef}
-                            onClick={() => handleLogin(email, password)}
-                            className="btn-submit"
-                            type="submit"
-                        >
-                            {isHandlingLogin && <FontAwesomeIcon icon={faSpinner} spin size="sm" />} &nbsp; ĐĂNG NHẬP
-                        </button>
-                        <button className="forgot-pass"> Quên mật khẩu</button>
-                        <br />
-                        <div className="register-btn">
-                            Bạn chưa có tài khoản? <a href="/register"> Đăng ký</a>
-                        </div>
+                    <button
+                        ref={btnRef}
+                        onClick={() => handleLogin(email, password)}
+                        className="btn-submit"
+                        type="submit"
+                    >
+                        {isHandlingLogin && <LoadingIcon />} &nbsp; ĐĂNG NHẬP
+                    </button>
+                    <button className="forgot-pass"> Quên mật khẩu</button>
+                    <br />
+                    <div className="register-btn">
+                        Bạn chưa có tài khoản?
+                        <a href="/register">
+                            <i>Đăng ký</i>
+                        </a>
                     </div>
                 </div>
             </div>
         </div>
     );
 }
-
+export function LoadingIcon() {
+    return <FontAwesomeIcon icon={faSpinner} spin size="sm" />;
+}
+function OpenEyeIcon() {
+    return <FontAwesomeIcon icon={faEye} className="show-hide-pass" />;
+}
+function CloseEyeIcon() {
+    return <FontAwesomeIcon icon={faEyeSlash} className="show-hide-pass" />;
+}
 export default Login;
