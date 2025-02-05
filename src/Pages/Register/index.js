@@ -6,7 +6,8 @@ import Toastify from '~/components/Toastify';
 
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { LoadingIcon } from '../Login';
+import { LoadingIcon } from '../Login/index.tsx';
+
 function Register() {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');

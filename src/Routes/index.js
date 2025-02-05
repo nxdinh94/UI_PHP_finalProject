@@ -5,7 +5,7 @@ import Service from '~/Pages/Service';
 import ServiceDetail from '~/Pages/ServiceDetail';
 import Contact from '~/Pages/Contact';
 import News from '~/Pages/News';
-import Login from '~/Pages/Login';
+import Login from '~/Pages/Login/index.tsx';
 import Register from '~/Pages/Register';
 import NewsDetail from '~/Pages/NewsDetail';
 import Admin from '~/Pages/Admin';

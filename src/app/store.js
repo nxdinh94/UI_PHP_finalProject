@@ -31,6 +31,7 @@ import PaymentSlices from '~/Pages/Payment/PaymentSlices';
 // import { changeLanguage } from '~/components/Navbar/languageSlice';
 
 import CountQuantitySlices from '~/features/CountQuantity/CountQuantitySlices';
+import checkLogin from '~/utils/checkLogin';
 const persistConfig = {
     key: 'root',
     storage,
@@ -55,11 +56,10 @@ export const store = configureStore({
     middleware: [thunk],
 });
 export const persistor = persistStore(store);
-let user_data = '';
 let userId = '';
-let isLogin = sessionStorage.isLogin;
+let isLogin = checkLogin();
 if (isLogin) {
-    user_data = JSON.parse(sessionStorage.user_data);
+    const user_data = JSON.parse(sessionStorage.user_data);
     userId = user_data.id;
 }
 //dispatch immediately when bootstrap app
